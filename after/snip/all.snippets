@@ -1,0 +1,14 @@
+snippet FILEINFO "File header"
+File: `!v expand('%:t') `
+Author: romgrk
+Description: ${1:here}
+Date: `!v system("date '+%d %b %Y'")`
+endsnippet
+
+snippet !date "current date"
+`!v system("date '+%d %b %Y'")`
+endsnippet
+
+snippet !now "current time"
+`!v system("date +%T")`
+endsnippet

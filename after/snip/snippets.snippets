@@ -1,0 +1,27 @@
+
+snippet sec "Section" b
+# ${1:Section} `!p snip.rv = '='*(73-len(t[1]))`{{{
+${VISUAL}
+#===========================================================================}}}
+endsnippet
+
+snippet "sn([biwrtsme]+)?" "snippet" br
+snippet ${1:trigger} ${2:"${3:desc}"} `!p snip.rv=match.group(1)`
+`!p snip.rv = 'endsnippet'`
+endsnippet
+
+snippet $ "${#:text}" i
+${${1:#}:${2:text}}
+endsnippet
+
+snippet : "${#:text}" i
+${${1:#}:${2:text}}
+endsnippet
+
+snippet ; "${#:text}" i
+${${1:#}:${2:text}}
+endsnippet
+
+snippet "(\d)" "${#:text}" ir
+\${`!p snip.rv = match.group(1) `:$0}
+endsnippet

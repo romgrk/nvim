@@ -1,0 +1,20 @@
+
+# Utils
+
+snippet p "print()" b
+print(${1:"${2:hello}"})
+endsnippet
+
+# Language
+snippet l "local v" b
+local ${1:_}${2: = ${3:"${4:value}"}};
+endsnippet
+
+snippet f "function" b
+function ${1:name}(${2:arg})
+end
+endsnippet
+
+snippet ret "return" b
+return ${1:val};
+endsnippet

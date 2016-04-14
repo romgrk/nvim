@@ -1,0 +1,82 @@
+# Global ==================================================================={{{
+global !p
+
+# e.g.:    ${1:e}`!p snip.rv = complete(t[5], ['endif', 'else', 'elseif'])`
+def complete(t, opts):
+  if t:
+    opts = [ m[len(t):] for m in opts if m.startswith(t) ]
+  if len(opts) == 1:
+    return opts[0]
+  return '(' + '|'.join(opts) + ')'
+
+
+endglobal
+#===========================================================================}}}
+# Setup ===================================================================={{{
+
+snippet !! "exeline" b
+# !::coffee [.]
+endsnippet
+
+snippet req "require" b
+${1:module} = require '${2:$1}'
+endsnippet
+
+snippet req "..." "snip.buffer[snip.line]!='req'" e
+require '$1'
+endsnippet
+
+#===========================================================================}}}
+# UTILS ===================================================================={{{
+
+snippet l "console.log"
+console.log 
+endsnippet
+
+snippet li "log.info"
+log.info ${1:'${2:value}'}
+endsnippet
+
+snippet ex "process.exit" b
+process.exit ${1:0}
+endsnippet
+
+#===========================================================================}}}
+# LANG ====================================================================={{{
+
+# function -
+snippet "(\w+)?\s*-(-)?" "func = () ->" r
+`!p if match.group(1):
+    snip.rv = match.group(1)+' = '
+` (${1:args}) `!p 
+snip.rv = '=' if match.group(2) else '-'`> $2
+endsnippet
+
+snippet : "key: value" 
+${1:'${2:key}'}: ${3:'${4:value}'}
+endsnippet
+
+snippet new "var = new Obj" b
+${1:var} = new ${2:Object}${3:(${4:args})}
+endsnippet
+
+snippet try "try" b
+try
+    ${1:# code}
+catch err
+    ${2: else}
+endsnippet
+
+#===========================================================================}}}
+
+snippet # "Heredoc comment" b
+###
+${VISUAL:default}$0
+###
+endsnippet
+
+snippet sec "Section" b
+# ${1:Section} `!p snip.rv = '='*(73-len(t[1]))`{{{
+${VISUAL}
+#===========================================================================}}}
+endsnippet
