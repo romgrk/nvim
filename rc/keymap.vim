@@ -13,21 +13,36 @@
 "===============================================================================
 " Major maps                                                                {{{1
 
+"nnoremap 1 !
+"nnoremap 3 #
+"nnoremap 8 *
+"noremap  <A-0> )
+"noremap  <A-9> (
+"noremap! <A-0> )
+"noremap! <A-9> (
+"onoremap <A-0> )
+"onoremap <A-9> (
+
+" Example greek langmap
+":set langmap=AΑ,BΒ,CΨ,DΔ,EΕ,FΦ,GΓ,HΗ,IΙ,JΞ,KΚ,LΛ,MΜ,NΝ,OΟ,PΠ,QQ,RΡ,SΣ,TΤ,UΘ,VΩ,WW,XΧ,YΥ,ZΖ,aα,bβ,cψ,dδ,eε,fφ,gγ,hη,iι,jξ,kκ,lλ,mμ,nν,oο,pπ,qq,rρ,sσ,tτ,uθ,vω,wς,xχ,yυ,ζz
+
 nnoremap <silent><expr> <Esc> ( StopAutoHL() ? "" : ClearHighlights(v:count) ? "" : ":nohl<CR>" )
 
 let mapleader = ","
 
 let quickmap = {
 \ 'w':       ':w',
-\ ';':       ':',
+\ ';':       ":\<Up>",
+\ ':':       ':terminal',
+\ ' ':       ':',
 \ "'":       ':k',
 \ "\<C-F>":  ':Files',
-\ "\<C-G>":  'q:":P',
+\ "\<C-D>":  ':NERDTreeFind',
 \ "\<A-;>":  'q:":P',
 \ "\<A-s>":  ":set ?\<Left>",
 \ 'b':       ':CtrlPBuffer',
 \ 'j':       ':Autojump',
-\ '<':       ':Unite output:message',
+\ '<':       ':message',
 \}
 fu! CmdJump ()
     let c = GetChar('Character', ':')
@@ -54,20 +69,28 @@ nnoremap u u
 nnoremap U <C-r>
 "nmap    u <Plug>(RepeatUndo)
 
-nnoremap g<C-G> <C-G>
+" go-lower/go-upper
+nnoremap gl gu
+nnoremap gu gU
 
-" Go...
+" go-replace
+nnoremap gr      gR
+xnoremap gr      r<space>gR
+
 nnoremap go<Tab> :Tabview<CR>
 nmap     gt      :InteractiveWindow<CR>t
-nnoremap gr      gR
-xnoremap gr      r<space>:DeleteTrailingWS<CR>gR
 
 " Insert newline
-"nnor <expr><CR> ToggleCurrentWord("o\<Esc>")
 nnoremap <CR>   o<Esc>
 nnoremap <A-CR> O<Esc>
-nnoremap <C-J>  i<CR><Esc>
-"nnor     <C-NL> i<CR><Esc>
+
+
+" Split line (as opposed to J)
+nnoremap <C-J>  i<CR><Esc>:silent -DeleteTrailingWS<CR>
+
+
+" free <C-G>
+nnoremap g<C-G> <C-G>
 
 " }}}1
 "===============================================================================
@@ -199,7 +222,14 @@ nmap <M-f>    <Plug>Sneak_s
 nmap <M-b>    <Plug>Sneak_S
 nmap <M-e>    <Plug>(easymotion-bd-w)
 
-"nmap <M-space> <Plug>(easymotion-bd-w)
+nmap <expr> <Space> sneak#is_sneaking()
+            \ ? '<Plug>SneakNext'
+            \ : '<Plug>(space-do)'
+nmap        <M-space> <Plug>(space-reverse)
+
+"nmap <expr> <a-;> sneak#state().reverse==1
+        "\ ? "<Plug>Sneak_s<CR>"
+        "\ : "<Plug>Sneak_S<CR>"
 "nmap <expr> <Plug>RomgrkSneak sneak#is_sneaking()
     "\
     "\ ? (sneak#state().reverse==0
@@ -213,11 +243,6 @@ nmap <expr> <a-;> sneak#is_sneaking()
             \ ? "<Plug>Sneak_s<CR>"
             \ : "<Plug>Sneak_S<CR>")
     \ : "<Plug>SneakNext"
-
-"nmap <expr> <space> sneak#is_sneaking() ? '<Plug>SneakNext' : '<Plug>Sneak_s'
-"nmap <expr> <a-;> sneak#state().reverse==1
-        "\ ? "<Plug>Sneak_s<CR>"
-        "\ : "<Plug>Sneak_S<CR>"
 
 "nmap s <Plug>Sneak_s
 "nmap S <Plug>Sneak_S
@@ -245,17 +270,13 @@ omap U <Plug>Sneak_T
 
 "nmap sd     <Plug>(easymotion-lineanywhere)
 "nmap gL     <Plug>(easymotion-overwin-line)
-nmap gl     <Plug>(easymotion-overwin-line)
+nmap <C-L>  <Plug>(easymotion-overwin-line)
 "nmap g<C-f> <Plug>(easymotion-f2)
 
-nmap gj :call EasyMotion#JK(0, 0)<CR>
-nmap gk :call EasyMotion#JK(0, 1)<CR>
-nmap [w :call EasyMotion#WB(0, 1)<CR>
-nmap ]w :call EasyMotion#WB(0, 0)<CR>
-xmap gj :call EasyMotion#JK(0, 0)<CR>
-xmap gk :call EasyMotion#JK(0, 1)<CR>
-xmap [w :call EasyMotion#WB(0, 1)<CR>
-xmap ]w :call EasyMotion#WB(0, 0)<CR>
+nnoremap gj <Plug>(easymotion-j)
+nnoremap gk <Plug>(easymotion-k)
+nnoremap [w :call EasyMotion#WB(0, 1)<CR>
+nnoremap ]w :call EasyMotion#WB(0, 0)<CR>
 
 call EasyMotion#command_line#cnoremap("\<BS>\<BS>")
 call EasyMotion#command_line#cnoremap(";\<CR>")
@@ -295,7 +316,6 @@ nnoremap <C-B>    :CtrlPBuffer<CR>
 nnoremap <A-o>    :CtrlPCurWD<CR>
 nnoremap <A-O>    :CtrlP<CR>
 nnoremap <C-N>    :CtrlPCurFile<CR>
-nnoremap gp;      :CtrlPChange<CR>
 
 nnoremap gut      :Unite tag:% -start-insert<CR>
 nnoremap guT      :Unite tag   -start-insert<CR>
@@ -317,10 +337,20 @@ nnoremap gu<C-A-u> :<C-u>Unite source -start-insert<CR>
 "===============================================================================
 " Window & navigation                                                       {{{1
 
-nnoremap <silent><nowait>gw :InteractiveWindow<CR>
+
+nnoremap <A-w> <C-W>w
+
+nnoremap <C-W>;     :wincmd v <Bar> terminal<CR>
+nnoremap <C-W><A-;> :wincmd s <Bar> terminal<CR>
+nnoremap <C-W>:     :tab terminal<CR>
+
+nnoremap <silent>     g<C-W> :InteractiveWindow<CR>
+nnoremap <silent>     g<M-w> :InteractiveWindow<CR>
+nnoremap <silent> <C-W><C-W> :InteractiveWindow<CR>
 
 " Cycle between editor Windows
-nnoremap <silent> <A-w> :GoNextListedWindow<CR>
+nnoremap <silent> <C-W>n     :GoNextListedWindow<CR>
+nnoremap <silent> <C-W><C-N> :GoNextListedWindow<CR>
 
 nnor <silent> gf;             :GotoFirstTerminalWindow<CR>
 nnor <silent> gn;             :Tabview \| terminal<CR>
@@ -381,26 +411,23 @@ end
 "===============================================================================
 " Buffer navigation                                                         {{{1
 
-nnoremap <silent> <A-,> gT
-nnoremap <silent> <A-.> gt
-nnoremap <silent> <A-<> :bp<CR>
-nnoremap <silent> <A->> :bn<CR>
+command! -bar Bnext bnext
+command! -bar Bprev bprevious
+
+nnoremap <silent> <A-,> :Bprev<CR>
+nnoremap <silent> <A-.> :Bnext<CR>
+nnoremap <silent> <A-<> gT
+nnoremap <silent> <A->> gt
 "nnoremap <BS>  gT
 "nnoremap <C-H> gT
 "nnoremap <C-L> gt
-"nnoremap <S-Tab> gT
-"nnoremap <A-Tab> gt
 
 nnoremap <A-c>     :BufferClose<CR>
 nnoremap <A-C>     :BufferReopen<CR>
 nnoremap <C-A-w>   :BufferWipeReopen<CR>
 
 nmap g<Tab>  :tabedit <C-r>=bufname(buf#filter('&buflisted')[-1])<CR><CR>
-nmap <C-W>t  :tabedit <C-r>=bufname(buf#filter('&buflisted')[-1])<CR><CR>
-"nnoremap ]] :tnext<CR>
-"nnoremap [[ :tprevious<CR>
-"nnoremap ]} :tlast<CR>
-"nnoremap [{ :tfirst<CR>
+nmap <C-W>t  :tab sp<CR>
 
 nnoremap ]a :tnext<CR>
 nnoremap [a :tprevious<CR>
@@ -434,7 +461,8 @@ nmap <C-M-n> :Edit <C-r>=expand("%:p:h")<CR>/
 
 nnoremap gh         :call ReopenHelp()<CR>
 
-nnoremap <silent><A-E>   :VimFiler -toggle<CR>
+nnoremap <silent>gn      :NERDTree<CR>
+nnoremap <silent><C-\>   :NERDTreeToggle<CR>
 nnoremap <silent><A-\>   :VimFiler<CR>
 nnoremap <silent>g<A-j>  :Autojump<CR>
 
@@ -631,7 +659,7 @@ nmap cif    :call <SID>changeFunc('c')<CR>
 nmap cIf    :call <SID>changeFunc('ic')<CR>
 nmap caf    :call <SID>changeFunc('ac')<CR>
 nmap cnf    :call <SID>changeFunc('n')<CR>
-nmap cLF    :call <SID>changeFunc('l')<CR>
+nmap cpf    :call <SID>changeFunc('l')<CR>
 nmap cinf   :call <SID>changeFunc('in')<CR>
 nmap cilf   :call <SID>changeFunc('il')<CR>
 nmap canf   :call <SID>changeFunc('an')<CR>
@@ -639,6 +667,7 @@ nmap calf   :call <SID>changeFunc('al')<CR>
 
 nmap dsf  :call DSurroundFunc()<CR>
 nmap csf  :call CSurroundFunc()<CR>
+nmap ssf  :call <SID>changeFunc('c')<CR>
 
 fu! DSurroundFunc()
     call s:findFunc ('vbc')
@@ -702,8 +731,11 @@ vmap X <Plug>ExchangeOperator
 nmap <A-a> <Plug>(EasyAlign)
 vmap <CR>  <Plug>(EasyAlign)
 
+nmap <A-a>r     <Plug>(EasyAlign)ip1<C-x>
+nmap <A-a><A-r> <Plug>(EasyAlign)ip1<C-x>
 nmap <A-a><A-/> <Plug>(EasyAlign)ip1<C-x>
-vmap <A-a>  ""<A-y><Plug>(EasyAlign)ip1<C-D><Left><C-x>.\{-}\zs\s*\ze<C-r>"<CR>
+vmap <A-a>   ""<A-y><Plug>(EasyAlign)ip1<C-D><Left><C-x>.\{-}\zs\s*\ze<C-r>"<CR>
+vmap <C-a>   ""<A-y><Plug>(EasyAlign)ip1<C-D><Left><C-x>.\{-}\zs\s*\ze<C-r>"<CR>
 
 " align semicolon
 nnoremap <A-a><A-;> vip:EasyAlign *:<CR>
@@ -732,20 +764,30 @@ nmap <A-'>      <Plug>NERDCommenterToggle
 vmap <A-'>      <Plug>NERDCommenterToggle
 nmap <A-">      <Plug>NERDCommenterSexy
 xmap <A-">      <Plug>NERDCommenterSexy
+nmap <C-/>      <Plug>NERDCommenterSexy
+xmap <C-/>      <Plug>NERDCommenterSexy
 " }}}
 
-nmap _c <Plug>(camelCaseOperator)
-xmap _c <Plug>(camelCaseOperator)
+nmap \c m`<Plug>(camelCaseOperator)iw``
+nmap \s m`<Plug>(snakeCaseOperator)iw``
+nmap \- m`<Plug>(kebabCaseOperator)iw``
+
+nmap -c <Plug>(camelCaseOperator)
+xmap -c <Plug>(camelCaseOperator)
+nmap -- <Plug>(camelCaseOperator)
+xmap -- <Plug>(camelCaseOperator)
 nmap __ <Plug>(snakeCaseOperator)
 xmap __ <Plug>(snakeCaseOperator)
-nmap _- <Plug>(kebabCaseOperator)
-xmap _- <Plug>(kebabCaseOperator)
-nmap _s <Plug>(startCaseOperator)
-xmap _s <Plug>(startCaseOperator)
-nmap _u <Plug>(upperCaseOperator)
-xmap _u <Plug>(upperCaseOperator)
-nmap _l <Plug>(lowerCaseOperator)
-xmap _l <Plug>(lowerCaseOperator)
+nmap -d <Plug>(kebabCaseOperator)
+xmap -d <Plug>(kebabCaseOperator)
+" aka dash-case
+nmap -t <Plug>(startCaseOperator)
+xmap -t <Plug>(startCaseOperator)
+" aka title-ize
+nmap -u <Plug>(upperCaseOperator)
+xmap -u <Plug>(upperCaseOperator)
+nmap -l <Plug>(lowerCaseOperator)
+xmap -l <Plug>(lowerCaseOperator)
 
 " }}}1
 "===============================================================================
@@ -976,12 +1018,15 @@ nnoremap ZZ :wqall<CR>
 "===============================================================================
 " Operator-pending maps                                                     {{{1
 
-omap l $
-omap h ^
+onoremap l $
+onoremap h ^
+
+onoremap i<A-p> ip
+onoremap <A-p>  ap
 
 " Until...
-omap ; t;
-omap : t:
+onoremap ; t;
+onoremap : t:
 
 " Until space
 onoremap <space>   E
@@ -995,24 +1040,22 @@ vnoremap i<space> iW
 "omap <expr> "   'T' . <SID>findQuote(0)
 
 " LHS/RHS operators:                                                         {{{
-" let property = value
-omap v  <Plug>(operator-rhs)
-omap V  <Plug>(operator-Rhs)
+"let property = value
 "omap p  <Plug>(operator-lhs)
 "omap P  <Plug>(operator-Lhs)
-omap <A-i>  <Plug>(operator-lhs)
-omap <C-i>  <Plug>(operator-rhs)
+omap v      <Plug>(operator-rhs)
+omap V      <Plug>(operator-Rhs)
+omap <M-i>  <Plug>(operator-lhs)
+omap <M-I>  <Plug>(operator-Lhs)
+"omap <C-i>  <Plug>(operator-rhs)
 omap H <Plug>(operator-lhs)
 omap L <Plug>(operator-rhs)
-"omap :H <Plug>(operator-Lhs)
-"omap :L <Plug>(operator-Rhs)
 
-vmap <A-->  <Plug>(visual-lhs)
-vmap <A-=>  <Plug>(visual-rhs)
-vmap i<A-i> <Plug>(visual-lhs)
-vmap iv     <Plug>(visual-rhs)
-vmap a<A-i> <Plug>(visual-Lhs)
-vmap av     <Plug>(visual-Rhs)
+xmap <M-i>  <Plug>(operator-lhs)
+xmap H <Plug>(operator-lhs)
+xmap L <Plug>(operator-rhs)
+xmap aH <Plug>(visual-Lhs)
+xmap aL <Plug>(visual-Rhs)
 
 " end-of-LHS/RHS                                                             }}}
 
@@ -1183,7 +1226,7 @@ xnoremap <space>    E
 xnoremap <M-space>  B
 
 " Combine with VMarks?
-xmap <silent> <A-CR> :call UltiSnips#SaveLastVisualSelection()<CR>gvm'
+xmap <silent> <C-A-U> :call UltiSnips#SaveLastVisualSelection()<CR>gvm'
 
 " Visual Marks
 " TODO use these to exchange text
@@ -1191,10 +1234,12 @@ xmap m <Plug>VisualMarksVisualMark
 nmap < <Plug>VisualMarksGetVisualMark
 
 " Niceblock
-xmap <A-i> <Plug>(niceblock-I)
+xmap <C-I> <Plug>(niceblock-I)
+xmap I     <Plug>(niceblock-gI)
+"xmap <C-I> <Plug>(niceblock-I)
 xmap A     <Plug>(niceblock-A)
-xmap gi    <Plug>(niceblock-I)
-xmap gI    <Plug>(niceblock-gI)
+xmap <C-a> <Plug>(niceblock-A)
+xmap ga    <Plug>(niceblock-A)
 xmap gA    <Plug>(niceblock-A)
 
 " Move visual block.
@@ -1359,14 +1404,6 @@ nnoremap <A-H> 5zh
 nnoremap <A-L> 4zl
 
 nnoremap <C-k> za
-
-"nnor <C-K><C-k>  zk
-"nnor <C-K><C-j>  zj
-"nnor <C-K><C-h>  zH
-"nnor <C-K><C-l>  zL
-"nnor <C-K><C-o>  za
-"nnor <C-K>k      za
-"nnor <M-C-k>     zA
 
 " Recursive open/close
 nnor zm zM
