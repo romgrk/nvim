@@ -61,13 +61,6 @@ exe 'augroup RC'
 
 exe 'augroup END'
 
-augroup Pulse
-autocmd! User PrePulse
-autocmd! User PostPulse
-autocmd  User PrePulse  set cursorcolumn
-autocmd  User PostPulse set nocursorcolumn
-augroup END
-
 augroup Colorizer
     au!
 augroup END

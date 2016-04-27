@@ -26,13 +26,12 @@ fu! s:plugin_setup () abort
     for file in plugin_files
         exe 'source ' . file
     endfor
-endfu " }}}
+endfu "                                                                      }}}
 " Neovim setup                                                               {{{
 
-let $NVIM_RUNNING='true'
-"let $NVIM_LISTEN_ADDRESS='127.0.0.1:6666'
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_LISTEN_ADDRESS='127.0.0.1:6666'
 
 "                                                                            }}}
 "=============================================================================
@@ -72,29 +71,28 @@ Plug 'spiiph/vim-space'
 " General                                                                    {{{
 
 " @plugins
-Plug 'flazz/vim-colorschemes'
-Plug 'kelan/gyp.vim'
+Plug 'junegunn/vim-github-dashboard'
+Plug 'Valloric/ListToggle'
+"Plug 'scrooloose/nerdtree'
+Plug 'ap/vim-buftabline'
 Plug 'tpope/vim-eunuch'
 Plug 'justinmk/vim-syntax-extra'
-Plug 'KabbAmine/zeavim.vim'
-Plug 'justinmk/vim-dirvish'
-"Plug 'tpope/vim-rsi'
+Plug 'KabbAmine/zeavim.vim'                    , {'on': ['Zeavim', 'ZHelp']}
+"Plug 'justinmk/vim-dirvish'                    , {'on': 'Dirvish'}
 Plug 'honza/vim-snippets'
 Plug 'aperezdc/vim-template'
-"Plug 'mhinz/vim-startify'
 "Plug 'jreybert/vimagit'                       , {'on': 'Magit'}
 Plug 'sirver/UltiSnips'
 Plug 'ctrlpvim/ctrlp.vim'               " , {'on': 'CtrlP'}
 Plug 'tacahiroy/ctrlp-funky'
-"Plug 'google/vim-maktaba'
 Plug 'iago-lito/vim-visualMarks'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/vim-easy-align'
-"Plug 'junegunn/fzf',                        {'dir': '~/.local/fzf'} " , 'do': './install --all' }
+Plug 'junegunn/fzf',                        {'dir': '~/.local/fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'   ,                {'on': ['Tagbar', 'TagbarToggle'] }
-"Plug 'mileszs/ack.vim'     ,                {'on': 'Ack' }
+Plug 'mileszs/ack.vim'     ,                {'on': 'Ack' }
 Plug 'Shougo/neoinclude.vim'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
@@ -108,42 +106,53 @@ Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'  " ,                 { 'on': 'Note' }
 Plug 'xolox/vim-session' "                                                   }}}
+
 " Language                                                                   {{{
 Plug 'Quramy/vison'                             , { 'for': 'json', 'on': 'Vison' }
-"Plug 'Shutnik/jshint2.vim'                      , { 'for': 'javascript' }
-Plug 'othree/yajs.vim'                          , { 'for': 'javascript' }
-"Plug 'ternjs/tern_for_vim'                      , { 'for': 'javascript' }
-Plug 'kchmck/vim-coffee-script'               " , { 'for': 'coffee' }
-Plug 'leafgarland/typescript-vim'              , { 'for': 'typescript' }
-"Plug 'Quramy/tsuquyomi'                         , { 'for': 'typescript' }
+Plug 'moll/vim-node'                            , { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript'                  , { 'for': 'javascript' }
+Plug 'othree/javascript-libraries-syntax.vim'   , { 'for': 'javascript' }
+Plug 'kchmck/vim-coffee-script'                 , { 'for': 'coffee' }
+Plug 'leafgarland/typescript-vim'               , { 'for': 'typescript' }
 Plug 'ianks/vim-tsx'                            , { 'for': 'typescript' }
 Plug 'plasticboy/vim-markdown'                  , { 'for': 'markdown' }
 Plug 'tpope/vim-haml'                           , { 'for': ['sass', 'haml'] }
 Plug 'hail2u/vim-css3-syntax'                 " , { 'for': 'sass' }
-"Plug 'mattn/livestyle-vim'                      , { 'for': ['less', 'sass', 'scss'] }
 Plug 'groenewege/vim-less'                      , { 'for': 'less' }
 Plug 'digitaltoad/vim-pug'                      , { 'for': 'jade' }
+Plug 'othree/html5.vim'                         , { 'for': 'html' }
+Plug 'othree/html5-syntax.vim'                  , { 'for': 'html' }
 Plug 'tpope/vim-liquid'                         , { 'for': 'html' }
 Plug 'rstacruz/sparkup'                         , { 'for': 'html', 'rtp': 'vim'}
 Plug 'mattn/emmet-vim'                          , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
-"Plug 'mattn/webapi-vim'                         , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
+Plug 'mattn/webapi-vim'                         , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
 Plug 'leafo/moonscript-vim'                     , { 'for': 'moonscript' }
 Plug 'lukerandall/haskellmode-vim'              , { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc'                        , { 'for': 'haskell' }
 Plug 'eagletmt/ghcmod-vim'                      , { 'for': 'haskell' }
-"Plug 'sdiehl/haskell-vim-proto'                 , { 'for': 'haskell', 'rtp': 'vim' }
-Plug 'octol/vim-cpp-enhanced-highlight'         , { 'for': 'cpp' } "         }}}
+Plug 'kelan/gyp.vim'                            , { 'for': 'gyp' }
+Plug 'octol/vim-cpp-enhanced-highlight'         , { 'for': 'cpp' }
+Plug 'https://bitbucket.org/JohnKaul/cpp-devel-vim.git' , { 'for': 'cpp' }
+Plug 'cespare/vim-toml'                         , { 'for': 'toml' }
+Plug 'rust-lang/rust.vim'                       , { 'for': 'rust' }
+
+if exists('$VIFM')
+    set runtimepath+=/usr/share/vifm/vim-doc
+end
+" }}}
 
 " Colors/Colorscheme/UI                                                      {{{
-"Plug 'godlygeek/csapprox'
-"Plug 'Yggdroot/hiPairs'
+Plug 'Yggdroot/hiPairs'
 Plug 'lilydjwg/colorizer'
-Plug 'inside/vim-search-pulse'
-"Plug 'kshenoy/vim-signature'
+Plug 'flazz/vim-colorschemes'
+Plug 'adelarsq/vim-grimmjow'
+Plug 'kshenoy/vim-signature'
 Plug 'guns/xterm-color-table.vim',        {'on': 'XtermColorTable'}
 Plug 'airblade/vim-gitgutter' ",          {'on': 'LightLineEnable'}
 Plug 'ryanoasis/vim-devicons' ",          {'on': 'LightLineEnable'}
 Plug 'itchyny/lightline.vim'  ",          {'on': 'LightLineEnable'}
+"Plug 'godlygeek/csapprox'
+"Plug 'inside/vim-search-pulse'
 " }}}
 
 " Local (~/github/vim)                                                       {{{
@@ -155,6 +164,12 @@ Plug '~/github/vim/vim-exeline'
 Plug '~/github/vim/vimfiler-prompt'     , {'on': 'VimFiler'}
 Plug '~/github/vim/winteract.vim'
 " }}}
+
+if exists('g:nyaovim_version')
+
+Plug 'rhysd/nyaovim-mini-browser'
+
+end
 
 call plug#end()
 
@@ -177,7 +192,7 @@ call s:source_rc('keymap.vim')
 "call s:plugin_setup()
 call s:source_rc('plugins/ctrlp.vim')
 "call s:source_rc('plugins/deoplete.vim')
-call s:source_rc('plugins/dirvish.vim')
+"call s:source_rc('plugins/dirvish.vim')
 call s:source_rc('plugins/easyalign.vim')
 "call s:source_rc('plugins/emmet.vim')
 call s:source_rc('plugins/gitgutter.vim')
@@ -187,14 +202,14 @@ call s:source_rc('plugins/multiple-cursors.vim')
 "call s:source_rc('plugins/neomake.vim')
 call s:source_rc('plugins/notes.vim')
 call s:source_rc('plugins/space.vim')
-call s:source_rc('plugins/syntastic.vim')
+"call s:source_rc('plugins/syntastic.vim')
 call s:source_rc('plugins/tern.vim')
 call s:source_rc('plugins/unite.vim')
 call s:source_rc('plugins/vimfiler.vim')
 call s:source_rc('plugins/ycm.vim')
 call s:source_rc('plugins/zeavim.vim')
 
-"au VimEnter * call s:source_rc('colors.vim')
+au VimEnter * call s:source_rc('colors.vim')
 au VimEnter * call s:source_rc('highlight.vim')
 
 syntax enable
