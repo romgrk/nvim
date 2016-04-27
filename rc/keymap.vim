@@ -1,6 +1,6 @@
 " Description: vim keymap
-" Last Modified: 26 March 2016
-" Command: !::exe [so % | Redraw | call Warn('sourced')]
+" Last Modified: 27 April 2016
+" Command: !::exe [so %]
 
 " TODO -> use CompleteDone autocmd to auto-insert ;
 " TODO Search shortcuts
@@ -13,47 +13,29 @@
 "===============================================================================
 " Major maps                                                                {{{1
 
-"nnoremap 1 !
-"nnoremap 3 #
-"nnoremap 8 *
-"noremap  <A-0> )
-"noremap  <A-9> (
-"noremap! <A-0> )
-"noremap! <A-9> (
-"onoremap <A-0> )
-"onoremap <A-9> (
-
-" Example greek langmap
-":set langmap=AΑ,BΒ,CΨ,DΔ,EΕ,FΦ,GΓ,HΗ,IΙ,JΞ,KΚ,LΛ,MΜ,NΝ,OΟ,PΠ,QQ,RΡ,SΣ,TΤ,UΘ,VΩ,WW,XΧ,YΥ,ZΖ,aα,bβ,cψ,dδ,eε,fφ,gγ,hη,iι,jξ,kκ,lλ,mμ,nν,oο,pπ,qq,rρ,sσ,tτ,uθ,vω,wς,xχ,yυ,ζz
-
 nnoremap <silent><expr> <Esc> ( StopAutoHL() ? "" : ClearHighlights(v:count) ? "" : ":nohl<CR>" )
 
 let mapleader = ","
 
-let quickmap = {
-\ 'w':       ':w',
-\ ';':       ":\<Up>",
-\ ':':       ':terminal',
-\ ' ':       ':',
-\ "'":       ':k',
-\ "\<C-F>":  ':Files',
-\ "\<C-D>":  ':NERDTreeFind',
-\ "\<A-;>":  'q:":P',
-\ "\<A-s>":  ":set ?\<Left>",
+let s:quickmap = {
+\ 'w': ":silent! w | Success ' '.expand('%:t') . ' @ '.Now()",
+\ '<': ':messages', ';': ":\<Up>",  ':': ':terminal',
+\ "\<C-F>": ':Files', "\<C-D>": ':NERDTreeFind',
+\ "\<A-;>":  'q:":P', "\<A-s>":  ":set ?\<Left>",
 \ 'b':       ':CtrlPBuffer',
-\ 'j':       ':Autojump',
-\ '<':       ':message',
 \}
-fu! CmdJump ()
-    let c = GetChar('Character', ':')
+if !exists('g:quickmap') | let g:quickmap = {}
+else                     | call extend(g:quickmap,   s:quickmap) | end
+func! CmdJump ()
+    let c = GetChar('BoldError', ':')
     call feedkeys( get(g:quickmap, c, ':' . c) )
-endfu
+endfunc
 
 " Semicolon key
 "let semi = maparg(';', 'n', 0, 1)
 nmap <silent> <expr>  ;  sneak#is_sneaking()
                     \ ? '<Plug>SneakNext'
-                    \ : ':call CmdJump()<CR>'
+                    \ : ":call CmdJump()<CR>"
 nmap <silent> <A-;> <Plug>SneakPrevious
 xmap <silent> ;     <Plug>SneakNext
 vmap <silent> <A-;> <Plug>SneakPrevious
@@ -202,8 +184,8 @@ xmap <silent> ge <Plug>CamelCaseMotion_ge
 
 "omap <silent> iw <Plug>CamelCaseMotion_iw
 "xmap <silent> iw <Plug>CamelCaseMotion_iw
-omap <silent> ib <Plug>CamelCaseMotion_ib
-xmap <silent> ib <Plug>CamelCaseMotion_ib
+"omap <silent> ib <Plug>CamelCaseMotion_ib
+"xmap <silent> ib <Plug>CamelCaseMotion_ib
 omap <silent> ie <Plug>CamelCaseMotion_ie
 xmap <silent> ie <Plug>CamelCaseMotion_ie
 
@@ -434,20 +416,20 @@ nnoremap [a :tprevious<CR>
 nnoremap ]A :tfirst<CR>
 nnoremap [A :tlast<CR>
 
-nnoremap ]q :qnext<CR>
-nnoremap [q :qprevious<CR>
-nnoremap [Q :qfirst<CR>
-nnoremap ]Q :qlast<CR>
+"nnoremap ]q :qnext<CR>
+"nnoremap [q :qprevious<CR>
+"nnoremap [Q :qfirst<CR>
+"nnoremap ]Q :qlast<CR>
 
-nnoremap ]l :lnext<CR>
-nnoremap [l :lprevious<CR>
-nnoremap ]L :llast<CR>
-nnoremap [L :lfirst<CR>
+"nnoremap <expr> ]l SpaceSetup('quickfix', ':lnext', ':lnext', ':lprevious', 1)
+"nnoremap <expr> [l SpaceSetup('quickfix', ':lprevious', ':lnext', ':lprevious', 0)
+"nnoremap ]L :llast<CR>
+"nnoremap [L :lfirst<CR>
 
-nnoremap [c :cprevious<CR>
-nnoremap ]c :cnext<CR>
-nnoremap [C :cfirst<CR>
-nnoremap ]C :clast<CR>
+"nnoremap [c :cprevious<CR>
+"nnoremap ]c :cnext<CR>
+"nnoremap [C :cfirst<CR>
+"nnoremap ]C :clast<CR>
 "nmap [t :tprevious<CR>
 "nmap ]t :tnext<CR>
 "nmap [T :tfirst<CR>
@@ -667,7 +649,7 @@ nmap calf   :call <SID>changeFunc('al')<CR>
 
 nmap dsf  :call DSurroundFunc()<CR>
 nmap csf  :call CSurroundFunc()<CR>
-nmap ssf  :call <SID>changeFunc('c')<CR>
+nmap cof  :call <SID>changeFunc('c')<CR>
 
 fu! DSurroundFunc()
     call s:findFunc ('vbc')
@@ -772,56 +754,56 @@ nmap \c m`<Plug>(camelCaseOperator)iw``
 nmap \s m`<Plug>(snakeCaseOperator)iw``
 nmap \- m`<Plug>(kebabCaseOperator)iw``
 
-nmap -c <Plug>(camelCaseOperator)
-xmap -c <Plug>(camelCaseOperator)
-nmap -- <Plug>(camelCaseOperator)
-xmap -- <Plug>(camelCaseOperator)
+nmap gc <Plug>(camelCaseOperator)
+xmap gc <Plug>(camelCaseOperator)
+nmap -_ <Plug>(camelCaseOperator)
+xmap -_ <Plug>(camelCaseOperator)
 nmap __ <Plug>(snakeCaseOperator)
 xmap __ <Plug>(snakeCaseOperator)
-nmap -d <Plug>(kebabCaseOperator)
-xmap -d <Plug>(kebabCaseOperator)
+nmap -- <Plug>(kebabCaseOperator)
+xmap -- <Plug>(kebabCaseOperator)
 " aka dash-case
 nmap -t <Plug>(startCaseOperator)
 xmap -t <Plug>(startCaseOperator)
 " aka title-ize
-nmap -u <Plug>(upperCaseOperator)
-xmap -u <Plug>(upperCaseOperator)
-nmap -l <Plug>(lowerCaseOperator)
-xmap -l <Plug>(lowerCaseOperator)
+"nmap -u <Plug>(upperCaseOperator)
+"xmap -u <Plug>(upperCaseOperator)
+"nmap -l <Plug>(lowerCaseOperator)
+"xmap -l <Plug>(lowerCaseOperator)
 
 " }}}1
 "===============================================================================
 " Search & replace                                                          {{{1
 
-"nmap /    <Plug>(easymotion-sn)
-"nmap /  <Plug>(incsearch-forward)
-"nmap ?  <Plug>(incsearch-backward)
-noremap <Plug>(romgrk-n)    n
-noremap <Plug>(romgrk-N)    N
-noremap <Plug>(romgrk-*)    *
-noremap <Plug>(romgrk-#)    #
-noremap <Plug>(romgrk-h)    m`/<C-R><C-W><CR>``
+nmap <A-/>    <Plug>(easymotion-sn)
+nmap /        <Plug>(incsearch-forward)
+nmap ?        <Plug>(incsearch-backward)
+nmap <expr>n  SpaceSetup('search', 'n', 'n', 'N', 1)
+nmap <expr>N  SpaceSetup('search', 'n', 'n', 'N', 0)
+nmap <expr>*  SpaceSetup('search', '*', 'n', 'N', 1)
+nmap <expr>#  SpaceSetup('search', '#', 'n', 'N', 1)
+nnoremap   g/ m`g*``
 
-let s:pulse = 0
-fu! s:pulseMap (...)
-let s:pulse = get(a:, 1, !s:pulse)
-if (s:pulse)
-nmap n  <Plug>(romgrk-n)<Plug>Pulse
-nmap N  <Plug>(romgrk-N)<Plug>Pulse
-nmap *  <Plug>(romgrk-*)<Plug>Pulse
-nmap #  <Plug>(romgrk-#)<Plug>Pulse
-nmap g/ <Plug>(romgrk-h)<Plug>Pulse
-nmap z* <Plug>(romgrk-h)
-else
-nmap n  <Plug>(romgrk-n)
-nmap N  <Plug>(romgrk-N)
-nmap *  <Plug>(romgrk-*)
-nmap #  <Plug>(romgrk-#)
-nmap g/ <Plug>(romgrk-h)
-nmap z* <Plug>(romgrk-h)
-end
-endfu
-call <SID>pulseMap(1)
+"let s:pulse = 0
+"fu! PulseMap (...)
+"let s:pulse = get(a:, 1, !s:pulse)
+"if (s:pulse)
+"nmap n  <Plug>(romgrk-n)<Plug>Pulse
+"nmap N  <Plug>(romgrk-N)<Plug>Pulse
+"nmap *  <Plug>(romgrk-*)<Plug>Pulse
+"nmap #  <Plug>(romgrk-#)<Plug>Pulse
+"nmap g/ <Plug>(romgrk-h)<Plug>Pulse
+"nmap z* <Plug>(romgrk-h)
+"else
+"nmap n  <Plug>(romgrk-n)
+"nmap N  <Plug>(romgrk-N)
+"nmap *  <Plug>(romgrk-*)
+"nmap #  <Plug>(romgrk-#)
+"nmap g/ <Plug>(romgrk-h)
+"nmap z* <Plug>(romgrk-h)
+"end
+"endfu
+"call PulseMap(1)
 
 vmap <A-/>         "/<Plug>(visual-yank-plaintext)n
 vmap <silent><C-F> "/<Plug>(visual-yank-plaintext):set hls<CR>
@@ -916,6 +898,9 @@ endfu
 "===============================================================================
 " Quick Utils                                                               {{{1
 " @quick
+let lt_location_list_toggle_map = '<C-W><C-L>'
+let lt_quickfix_list_toggle_map = '<C-W>q'
+let lt_height = 10
 
 "vmap zz     <Plug>ZVVisSelection
 "nmap zz     <Plug>ZVMotion
@@ -993,7 +978,7 @@ nmap <leader>q :edit <C-R>=tempname()<CR><CR>
 
 nmap <M-1> :SynStack<CR>
 nmap <M-3> :SynCurrentEdit<CR>
-nmap <F1>  :SynStack<CR>
+"nmap <F1>  :SynStack<CR>
 "nmap <F3>  :SynCurrentEdit<CR>
 
 nmap <expr><C-A-g>  'i' . _#Trim(system("gcolor3"))
@@ -1097,7 +1082,7 @@ fu! I_CR ()
         return Ulti_expand() | end
 
     if pumvisible()
-        return "\<C-y>" | end
+        return "\<C-Y>\<C-R>=Ulti_expand()\<CR>" | end
 
     return delimitMate#ExpandReturn() . "\<C-g>u"
 endfu
@@ -1116,7 +1101,7 @@ endfu
 
 fu! I_TAB ()
     if pumvisible()
-        return "\<C-n>" | end
+        return "\<C-N>" | end
 
     if Ulti_canExpand()
         return Ulti_expand()
@@ -1127,7 +1112,8 @@ fu! I_TAB ()
 
     if  (getline('.')[col('.')-2] =~? '\w\|\.'
     \ && getline('.')[col('.')-1] !~? '\w' )
-        return "\<C-x>\<C-i>" | end
+        return "\<C-X>\<C-O>" | end
+
 
     if delimitMate#ShouldJump()
         let res = delimitMate#JumpAny()
@@ -1235,7 +1221,9 @@ nmap < <Plug>VisualMarksGetVisualMark
 
 " Niceblock
 xmap <C-I> <Plug>(niceblock-I)
-xmap I     <Plug>(niceblock-gI)
+xmap I     <Plug>(niceblock-I)
+xmap gI    <Plug>(niceblock-gI)
+xmap gi    <Plug>(niceblock-gI)
 "xmap <C-I> <Plug>(niceblock-I)
 xmap A     <Plug>(niceblock-A)
 xmap <C-a> <Plug>(niceblock-A)
@@ -1404,6 +1392,7 @@ nnoremap <A-H> 5zh
 nnoremap <A-L> 4zl
 
 nnoremap <C-k> za
+nnoremap <C-o> zO
 
 " Recursive open/close
 nnor zm zM
