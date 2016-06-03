@@ -1,8 +1,58 @@
+# Lang
+
+snippet fu "function name (args) {}" b
+function ${1:name} (${2:argument${3:: Type}}) {
+}
+endsnippet
+
+snippet f "method (args) {}" b
+${1:name} (${2:argument${3:: Type}}) {$0}
+endsnippet
 
 snippet l "console.log"
 console.log(${1:'${2:value}'});
 endsnippet
 
-snippet /// "ref" b
+snippet ref "ref" b
 /// <reference path='${1:.}/$0' />
 endsnippet
+
+snippet le "let val = ..." b
+let ${1:{${2:name}}} = ${3:this.${4:val}};
+endsnippet
+
+snippet c "const val = ..." b
+const ${1:{${2:name}}} = ${3:this.${4:val}};
+endsnippet
+
+snippet t "this." b
+this.$1${2:;}
+endsnippet
+
+snippet fori "for i" b
+for (let ${1:i} = 0; $1 < ${2:list}.length; $1++) {
+	let ${3:element} = $2[$1];
+}
+endsnippet
+
+snippet ret "return" b
+return $0;
+endsnippet
+
+
+# General
+
+snippet ld "debug(...)" b
+log.debug("$0");
+endsnippet
+
+# General HTML
+
+snippet # "doc.byId" b
+document.getElementById('${1:id}')${2:;}
+endsnippet
+
+snippet e "doc.createElement" b
+document.createElement('${1:div}')
+endsnippet
+

@@ -1,3 +1,4 @@
+setlocal conceallevel=0
 
 nmap <buffer> <TAB> /\v("[^"]+")\|true\|false\|\{<CR><ESC>
 nmap <buffer> <S-TAB> ?\v("[^"]+")\|true\|false\|\{<CR><ESC>

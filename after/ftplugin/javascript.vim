@@ -1,29 +1,26 @@
 setlocal foldmethod=syntax
-setlocal foldmarker=/*,*/
 
-nnoremap <buffer> <F2>   :SyntasticCheck<CR>
-nnoremap <buffer> <F3>   :SyntasticSetLoclist<CR>
+let b:javascript_fold = 1
+let b:used_javascript_libs = 'underscore,jquery'
+" let b:used_javascript_libs = ''
 
-nmap <buffer> --d i/***/<Left><Left><CR>
-"nnoremap <buffer> -i  A<space>// jshint ignore:line<Esc>
+nmap <buffer> --d   i/***/<Left><Left><CR>
+nmap <buffer> +s    ggO'use strict';<ESC>
 
-if !filereadable('.tern-project')
-    silent !cp ~/templates/tern-project .tern-project
-end
+nmap <buffer>       <F2>  :YcmCompleter RefactorRename<CR>
+nmap <buffer>        \r   :YcmCompleter RefactorRename<CR>
+nmap <buffer>        gd   :YcmCompleter GoTo<CR>
+nmap <buffer>        gD   :YcmCompleter GoToDefinition<CR>
+nmap <buffer> <leader>r   :YcmCompleter GoToReferences<CR>
+nmap <buffer> <leader>d   :YcmCompleter GetDoc<CR>
+nmap <buffer> <leader>w   :YcmCompleter GetType<CR>
 
-" TODO tern config  => see b:ternProjectDir = expand('%:p:h')
-if get(g:, 'tern', 0) && filereadable('.tern-project')
-    call tern#Enable()
-    nmap <buffer> <C-]>      :TernDef<CR>
-    nmap <buffer> <C-w><C-]> :TernDefSplit<CR>
-    nmap <buffer> <A-p><A-]> :TernDefPreview<CR>
-    nmap <buffer> <A-p><A-o> :TernDoc<CR>
-    nmap <buffer> <A-v>      :TernRefs<CR>
-    nmap <buffer> =r         :TernRefs<CR>
-    nmap <buffer> <C-r>      :TernRename<CR>
+nmap <expr><buffer> <leader>s expand('<cword>')=='true'
+            \ ? "ciwfalse\<Esc>"
+            \ : "ciwtrue\<Esc>"
 
-    nmap <buffer> <C-i> :TernType<CR>
-end
-
-nmap <buffer> <C-A-d> :exe 'au! TernAutoCmd' \| call tern#Disable()<CR>
+" if !filereadable('.tern-project')
+    " silent !cp ~/templates/tern-project .tern-project
+    " Warn 'Created ' . fnamemodify('.tern-project', ':p')
+" end
 

@@ -10,6 +10,9 @@ let g:vimsyn_noerror = 1
 runtime! syntax/comment.vim
 syn cluster vimCommentGroup contains=@comments
 
+syn match vimOptionVar /&\h[a-zA-Z0-9#_]*\>/ contains=vimOnlyOption,vimTermOption,vimFTOption contained
+syn keyword vimLet nextgroup=vimVar,vimFuncVar,vimOptionVar skipwhite let
+
 hi! link vimFunc       Function
 hi! link vimScriptVar  Identifier
 hi! link vimCommand    Keyword
@@ -19,6 +22,7 @@ hi! link vimHiBang     Operator
 hi! link vimUserFunc   Function
 hi! link vimFunc       Function
 hi! link vimOption     Control
+hi! link vimOptionVar  vimOption
 hi! link vimHiAttrib   Control
 hi! link vimMapModKey  OldSpecial
 hi! link vimNotation   OldSpecial
@@ -26,8 +30,6 @@ hi! link vimContinue   OldSpecial
 hi! link vimSynRegOpt  OldSpecial
 hi! link vimSynKeyOpt  OldSpecial
 hi! link vimSynMtchOpt OldSpecial
-
-syn match vimScriptVar /s:\k\+/
 
 " define groups that cannot contain the start of a fold
 syn cluster vimNoFold contains=vimComment,vimLineCOmment,vimCommentString,vimString,vimSynKeyRegion,vimSynRegPat,vimPatRegion,vimMapLhs,vimOperParen,@EmbeddedScript
@@ -123,3 +125,17 @@ syn region vimFoldFinally
       \ contained containedin=vimFoldTryContainer
       \ contains=TOP
       \ skip=+"\%(\\"\|[^"]\)\{-}\%("\|$\)\|'[^']\{-}'+ "comment to fix highlight on wiki'
+
+let s:bg = hi#bg('Normal')
+if (s:bg[0] != '#')
+    let s:bg = '#353535' | end
+
+let s:hl_bg = color#Lighten(s:bg, 35)
+"if str2nr(s:bg[1:], 16) < 0x888888 | silent | else | let s:hl_bg = color#Darken(s:bg,  35) | end
+call hi#('vimAutoGroupTag',      hi#fg('Type'),       s:hl_bg, 'none')
+call hi#('vimCommandTag',        hi#fg('Statement'),  s:hl_bg, 'none')
+call hi#('vimFuncNameTag',       hi#fg('Function'),   s:hl_bg, 'none')
+call hi#('vimScriptFuncNameTag', hi#fg('StaticFunc'), s:hl_bg, 'none')
+
+syn region	vimOperParen	matchgroup=vimSep	start="{" end="}" contains=@vimOperGroup nextgroup=vimVar,vimFuncVar fold
+

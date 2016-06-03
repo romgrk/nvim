@@ -1,11 +1,11 @@
-" !::exe [so %]
+" !::exe [So]
 
-command! -bar -nargs=* Log      call Info(<args>)
-command! -bar -nargs=* Debug    call Debug(<args>)
-command! -bar -nargs=* Warn     call Warn(<args>)
-command! -bar -nargs=* Error    call Error(<args>)
-command! -bar -nargs=* Success  call Success(<args>)
-command! -bar -nargs=* Info     call Info(<args>)
+command! -bar -bang -nargs=* Log      redraw | call Info(<args>)
+command! -bar -bang -nargs=* Debug    redraw | call Debug(<args>)
+command! -bar -bang -nargs=* Warn     redraw | call Warn(<args>)
+command! -bar -bang -nargs=* Error    redraw | call Error(<args>)
+command! -bar -bang -nargs=* Success  redraw | call Success(<args>)
+command! -bar -bang -nargs=* Info     redraw | call Info(<args>)
 
 fu! Echon(...) " {{{
     echon join(a:000)

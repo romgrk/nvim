@@ -1,6 +1,6 @@
 "setlocal fdm=
-:setlocal fdm=expr
-:setlocal foldexpr=GetIndentFold(v:lnum)
-nmap <buffer> =h   :call ToggleHeader()<CR>
-nmap <buffer> gh   :call ToggleHeader()<CR>
-nmap <buffer> <F4> :call ToggleHeader()<CR>
+setlocal fdm=expr
+setlocal foldexpr=GetIndentFold(v:lnum)
+setlocal foldlevel=1
+nnoremap <buffer> gh   :call ToggleHeader()<CR>
+nnoremap <buffer> <F4> :call ToggleHeader()<CR>

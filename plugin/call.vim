@@ -2,9 +2,9 @@
 " Author: romgrk
 " Date: 02 Feb 2016
 " Description: ...
-" !::exe [SO]
+" !::exe [so %]
 
-if (!exists('g:ff') || get(g:, 'debug')==1)
+if (!exists('g:ff') || get(g:, 'debug', 0))
     unlet! ff
     let ff = {}
     let ff['res']      = []
@@ -21,7 +21,7 @@ func! ParseCall (bang, ...)
     let ff = get(g:, 'ff', {})
     let hasBang    = (a:bang == '!' ? 1 : 0)
 
-    let funcID   = substitute(a:000[0], '()$', '', '')
+    let funcID   = substitute(a:000[0], '()\?', '', '')
     let args     = s:parseBinding(a:000[1:])
     let n        = len(args)
 
@@ -33,7 +33,8 @@ func! ParseCall (bang, ...)
     let res = eval(fcall)
 
     if !empty(res)
-        Print res
+        echo ''
+        Pp res
     end
 
     if !empty(ff.bindTo)
@@ -72,7 +73,7 @@ fu! s:parseBinding (list)
         end
     endfor
 
-    call Log(ff.bindTo)
+    " call Log(ff.bindTo)
     return list
 endfu
 

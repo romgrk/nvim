@@ -1,12 +1,8 @@
-" !::exe [so %]
-if !exists('g:nyaovim_version')
+" !::exe [So]
+if !exists('g:nyaovim_version') && !(getcwd() =~ 'neovim-component') && !(SessionLine()==#'nyao')
     finish
 end
 
-set title
-"set showtabline=0
-
-command! -nargs=1 -complete=dir CD call NyaoCd(<f-args>)
 fu! NyaoCd (...)
     let path = fnamemodify(expand(a:1), ':p')
     call Info(path)
@@ -14,10 +10,17 @@ fu! NyaoCd (...)
     call rpcnotify(0, 'cd', [path])
 endfu
 
-com! -nargs=* -bang Eval call rpcnotify(0, 'js:eval', [<q-args>])
-com! Resize   Eval editor.fitToParent()
-com! Reload   Eval ThisBrowserWindow.reload()
-com! DevTools Eval ThisBrowserWindow.openDevTools()
+function! JsEval (...)
+    Info 'Sending js:eval, ' . string(a:000) . '...'
+    let channel_id = get(g:,'_channel_id',1)
+    call rpcnotify(channel_id, 'js:eval', a:000)
+endfunc
+
+command! -nargs=1 -complete=dir CD call NyaoCd(<f-args>)
+command! -nargs=* Eval     call JsEval(<q-args>)
+command!          Resize   Eval editor.fitToParent()
+command!          Reload   exec 'SaveSession!' | Eval ThisBrowserWindow.reload()
+command!          DevTools Eval ThisBrowserWindow.openDevTools()
 
 let nyao_config = $HOME . '/.config/nyaovim'
 let nyao_rc     = nyao_config . 'nyaovimrc.html'
@@ -38,10 +41,14 @@ map <C-Tab>   :bn<CR>
 map <C-S-Tab> :bp<CR>
 
 nnoremap <F5>    :Reload<CR>
-nnoremap <C-R>   :Reload<CR>
+nnoremap <C-A-R> :Reload<CR>
 nnoremap <C-A-I> :DevTools<CR>
 nnoremap <C-A-D> :DevTools<CR>
-nnoremap <A-s>   :Eval ws.setSidebar()<CR>
+nnoremap <C-A-S> :Eval ws.setSidebar()<CR>
 
-redraw
-exe 'EchoHL TextInfo ' . g:nyaovim_version
+if !exists('g:did_spname')
+    let g:did_spname = 1
+    call HL_SpName()
+end
+
+" Info expand('<sfile>') . ' sourced'

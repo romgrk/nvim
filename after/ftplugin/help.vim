@@ -1,19 +1,25 @@
 setlocal nonu
 setlocal nolist
-au BufLeave <buffer> call BookmarkLastHelp()
+call BookmarkLastHelp()
 
-nm <buffer> q          :wincmd c<CR>
-nm <buffer> <esc><esc> :wincmd c<CR>
+nnoremap <buffer> q          :wincmd c<CR>
+nnoremap <buffer> <esc><esc> :wincmd c<CR>
 
-nm <buffer> <CR>  <c-]>
-nm <buffer> <A-n> /\v\\|[^\|]+\\|<CR>:nohl<CR>
+nnoremap <buffer> <CR>   <C-]>
+nnoremap <buffer> <A-CR> /<C-R><C-W><CR>:nohl<CR>
+nnoremap <nowait><buffer> ] /\v\\|[^\|]+\\|<CR>:nohl<CR>
+nnoremap <nowait><buffer> [ ?\v\\|[^\|]+\\|<CR>:nohl<CR>
+nnoremap <buffer> <A-]> /\v\<Bar>[^<Bar>]+\<Bar><CR>
+nnoremap <buffer> <A-[> ?\v\<Bar>[^<Bar>]+\<Bar><CR>
 
-nnorem <buffer><nowait> j <C-e>gj
-nnorem <buffer><nowait> k <C-y>gk
-nm <buffer><nowait> d <C-d>
-nm <buffer><nowait> u <C-u>
-nm <buffer><nowait> <A-d> <C-d>
-nm <buffer><nowait> <A-u> <C-u>
+nnoremap <buffer><nowait> j         <C-E>gj
+nnoremap <buffer><nowait> k         <C-Y>gk
+nnoremap <buffer><nowait> <A-j>     5<C-E>
+nnoremap <buffer><nowait> <A-k>     5<C-Y>
+nnoremap <buffer><nowait> <space>   <C-d>
+nnoremap <buffer><nowait> <M-space> <C-u>
+nnoremap <buffer><nowait> d         <C-d>
+nnoremap <buffer><nowait> u         <C-u>
+nnoremap <buffer><nowait> <A-d>     <C-d>
+nnoremap <buffer><nowait> <A-u>     <C-u>
 
-nm <buffer> ]] /\v\<Bar>[^<Bar>]+\<Bar><CR>
-nm <buffer> [[ ?\v\<Bar>[^<Bar>]+\<Bar><CR>

@@ -1,7 +1,7 @@
 " !::exe [so %]
 " CtrlP ==========================================================================
-
-"let ctrlp_user_command = 'find %s -type f'       " MacOSX/Linux
+" let ctrlp_user_command = 'ffind -d %s -t f'       " MacOSX/Linux
+let ctrlp_user_command = 'ffind -D 3 -d %s -type f'       " MacOSX/Linux
 "let ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 let ctrlp_extensions   = ['tag', 'buffertag', 'quickfix', 'dir',
                         \ 'mixed'] " , 'bookmarkdir', 'rtscript',

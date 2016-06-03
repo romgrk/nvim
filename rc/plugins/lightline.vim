@@ -4,14 +4,21 @@
 " Date: 10 Sep 2015
 " !::exe [so % | call lightline#init() | call lightline#colorscheme()]
 
+augroup TabLine
+    au!
+    au BufNew *    call TabLineUpdate()
+    au BufWinEnter,BufEnter,BufWritePost * call TabLineUpdate()
+    au TabEnter,TabNewEntered *            call TabLineUpdate()
+augroup END
+
 " Dictionnaries
 let s:L = {
-\ 'colorscheme':          'default',
+\ 'colorscheme':          'wombat',
 \ 'separator':            { 'left': '', 'right': '' },
 \ 'subseparator':         { 'left': '', 'right': '' },
 \ 'tabline_separator':    { 'left': '▎', 'right': '' },
 \ 'tabline_subseparator': { 'left': '', 'right': '' },
-\ 'enable':               { 'tabline': 1, 'statusline': 1, },
+\ 'enable':               { 'tabline': 0, 'statusline': 1, },
 \ 'tab':                  { 'active':   [ 'filename', 'modified' ],
 \                           'inactive': [ 'filename', 'modified' ], },
 \ }
@@ -24,7 +31,6 @@ let s:L.mode_map = {
 \ 'n' :      'N',     'v' :      '<',     's' :      'S',
 \ 'i' :      'I',     'V' :      'V',     'S' :      'S',
 \ 'R' :      'R',     "\<C-v>":  '^',     "\<C-s>":  'S', } "                }}}
-
 "let s:L.component = {
 "\     'percent':      'FilePercentFlag',
 let s:L.component_function = {
@@ -37,16 +43,17 @@ let s:L.component_function = {
 \     'icon':         'lightline#icon',
 \     'inactiveHead': 'SL_Inactive',
 \     'modified':     'ModifiedFlag',
+\     'nameHL':       'StatuslineNameHL',
 \     'name':         'StatuslineName',
 \     'readonly':     'ROFlag',
 \     'relativePath': 'LightLineRelativePath',
 \     'space':        'SlSpace',
 \     'syntastic':    'SyntasticStatuslineFlag',
-\     'tag':          'LightLineTag',
+\     'tag':          'SL_tag',
 \ }
 let s:L.component_expand = {
 \     'buffers':      'BufferLine',
-\     'filehead':     'LightLineFileHead',
+\     'filehead':     'FileHead',
 \     'tableft':      'TablineLeft',
 \ }
 let s:L.component_type = {
@@ -57,25 +64,18 @@ let s:L.component_type = {
 \ }
 
 " Statusline                                                                 {{{
-"let s:L.active = {
-    "\ 'left': [ [ 'icon', 'title' ],
-    "\           [ 'name' ],
-    "\           [ 'tag', 'modified' ],
-    "\ ],
 let s:L.active = {
-    \ 'left' : [ [ 'mode', 'space' ],
-    \            [ 'name', 'tag',  ],
-    \            [ 'ctrlpmark' ] ],
+    \ 'left' : [ [ 'fugitive', 'nameHL', 'modified', 'readonly', ],
+    \            [ 'tag', 'ctrlpmark'                  ],
+    \            [ 'space',                            ], ],
     \ 'right': [ [ 'percent' ],
-    \            [ 'github' , 'syntastic' ],
-    \            [ 'modified', 'readonly' ]
-    \ ], }
+    \            [ 'name',   ],
+    \            [ 'github', ], ], }
 "let s:L.inactive = {
     "\ 'right': [ [ 'percent'  ],
     "\            [ 'github', 'readonly'  ],
     "\             ]
     "\} "                                                                    }}}
-
 let s:L.tabline = {
     \ 'left': [ [ 'tabs' ] ],
     \ 'right': [ [ 'session' ] ] , }
@@ -86,16 +86,14 @@ function! SlSpace()
     if !&buflisted
         return ""
     end
-    if exists("g:space_move") && !empty("g:space_move")
-        let cmd = ( exists("g:space_cmd") && g:space_cmd != 'undefined' ? g:space_cmd :
-                    \ g:space_direction ? g:space_move : g:space_shift_move)
-        let cmd = substitute(cmd, '\v[^a-zA-Z0-9;,\[\]()-+_:]', '', '')
-        return GetSpaceType() . ': ' . cmd
-    else
-        return ""
-    endif
-endfunc
+    if exists("g:space")
+        let type = GetSpaceType()
+        let cmd = GetSpaceMovement()
+        return cmd
+    end
 
+    return ''
+endfunc
 function! CtrlPMark()
   if expand('%:t') =~ 'ControlP'
     call lightline#link('nR'[g:lightline.ctrlp_regex])
@@ -105,7 +103,6 @@ function! CtrlPMark()
     return ''
   endif
 endfunction
-
 let ctrlp_status_func = { 'main': 'CtrlPStatusFunc_1',
                         \ 'prog': 'CtrlPStatusFunc_2', }
 function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked, ...)
@@ -121,7 +118,6 @@ endfunction
 function! CtrlPStatusFunc_2(str)
     return lightline#statusline(0)
 endfunction
-
 let tagbar_status_func = 'TagbarStatusFunc'
 function! TagbarStatusFunc(current, sort, fname, flags, ...) abort
     let colour = a:current ? '%#StatusLine#' : '%#StatusLineNC#'
@@ -133,7 +129,7 @@ function! TagbarStatusFunc(current, sort, fname, flags, ...) abort
     let g:lightline.tagb_sort = a:sort
     let g:lightline.tagb_fname = a:fname
     let g:lightline.tagb_flags = a:flags
-    return colour . a:current . ' ' . flagstr
+    return colour . a:fname . ' [sorted by ' . a:sort . '] ' . flagstr
 endfunction
 
 fu! s:hl (...)
@@ -164,22 +160,10 @@ fu! s:dim (a, b)
     return a:a . '.' . a:b
 endfu
 
-augroup TabLine
-    au!
-    "au BufNew *    call TabLineUpdate()
-    "au BufWinEnter,BufEnter,BufWritePost * call TabLineUpdate()
-    "au TabEnter,TabNewEntered *            call TabLineUpdate()
-augroup END
-
-let s:bufHL = ['Buffer', 'BufferActive', 'BufferCurrent']
+let s:bufHL = ['BufTabLineFill', 'BufTabLineActive', 'BufTabLineCurrent']
 
 fu! TabLineUpdate ()
-    let &tabline = TablineLeft() . TabGutter() . BufferLine() . '%=' . SessionLine() . Tabpages()
-    "if (g:lightline.enable.tabline)
-        "let &tabline = lightline#tabline()
-    "else
-    "let &tabline = ' ' . BufferLine() . '%=' . Tabpages()
-    "end
+    let &tabline = BufferLine() . '%=' . TablineSession() . Tabpages()
 endfu
 fu! TabGutter ()
     let w = &numberwidth
@@ -232,6 +216,9 @@ fu! TablineLeft()
 
     return part
 endfu
+fu! TablineSession (...)
+    return '%#SessionTab#%( ' . SessionLine() . ' %)'
+endfunc
 fu! SessionLine (...)
     let name = ''
 
@@ -244,7 +231,6 @@ fu! SessionLine (...)
     end
 
     return name
-    "return '%#SessionTab#%( ' . name . ' %)'
 endfu
 fu! BufferLine ()
     let result = []
@@ -252,15 +238,15 @@ fu! BufferLine ()
         let type = buf#activity(0+num)
         let mod  = buf#modF(0+num) ? 'M' : ''
         let hlprefix   = '%#'. s:bufHL[type] . mod .'#'
-        let iconprefix = '%#'. s:bufHL[type] .'Icon#'
-        let iconExpr  = '%{FtIcon("'. bufname(num) .'")}'
-        let bufExpr  = '%{buf#tail('. num .')}'
-        let result += [iconprefix . iconExpr . hlprefix . bufExpr]
+        " let iconprefix = '%#'. s:bufHL[type] .'Icon#'
+        " let iconExpr  = '%{FtIcon("'. bufname(num) .'")}'
+        " let result += [iconprefix . iconExpr]
+        let bufExpr = '%{buf#tail('. num .')}'
+        let sep = '%( %)'
+        let result += [hlprefix . sep . bufExpr . sep]
     endfor
 
-    let sep = '%#Separator#%(▎%)'
-
-    let part = join(result, sep) . s:hl('TabLineFill')
+    let part = join(result, '') . s:hl('TabLineFill')
     return part
 endfu
 fu! Tabpages ()
@@ -393,7 +379,7 @@ fu! CurrentDiff()
     return lightline#concatenate(diff, 1)
 endfu
 
-fu! LightLineTag()
+fu! SL_tag()
 
     if &bt ==# 'terminal' | return '' | end
     if &ft ==? 'vimfiler' | return '' | end
@@ -444,7 +430,7 @@ fu! GithubFlag ()
     return b:github
 endfu
 
-fu! LightLineFileHead()
+fu! FileHead()
     if &ft ==? 'vimfiler'
         return '' | end
         "return vimfiler#get_status_string() | end
@@ -489,6 +475,20 @@ fu! s:basename (a)
     return fnamemodify(p, ':t')
 endfu
 
+fu! StatuslineNameHL () abort
+    let fname = expand('%:t')
+    return  fname == 'ControlP' ? 'ControlP' :
+          \ fname == '__Tagbar__' ? get(g:lightline, 'tagb_current', 'tagb') :
+          \ fname =~ '__Gundo\|NERD_tree' ? '' :
+          \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+          \ &ft == 'unite' ? unite#get_status_string() :
+          \ &bt == 'terminal' ? GetTerminalTitle() :
+          \ &ft == 'unite' ? unite#get_status_string() :
+          \ &ft == 'vimshell' ? vimshell#get_status_string() :
+          \ ('' != fname ? fname : '[No Name]')
+    "return GetTerminalDecoration() | end
+    "if &ft ==# 'vimfiler' return s:basename(b:vimfiler.current_dir)
+endfu
 fu! StatuslineName () abort
     let fname = expand('%:t')
     return  fname == 'ControlP' ? get(g:lightline, 'ctrlp_item', 'item') :

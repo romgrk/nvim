@@ -4,15 +4,25 @@
 " !::exe [so %]
 
 exe 'augroup ' . expand('<sfile>:t') | au!
-autocmd ColorScheme * exe 'source ' . expand('<sfile>')
+autocmd ColorScheme * exe 'source ' . expand('<sfile>:p')
 exe 'augroup END'
-
-if exists('g:pp') | call pp#prettyTheme() | end
 
 " General & Plugins                                                          {{{
 
-call hi#("AutoHL",   "none", "#404040", "none")
-"call hi#("SearchHL", "none", "#404040", "none")
+call hi#("Highlight", hi#("Search"))
+
+let bg_normal = hi#bg('Normal')
+if bg_normal[0] != '#'
+    let bg_normal = '#282828'
+end
+
+call hi#("AutoHL", "none", color#Lighten(bg_normal, '0.4'), "none")
+"call hi#("Search", hi#("CursorLine"))
+
+hi! NonText gui=none guibg=none guifg=grey40
+hi! Conceal gui=none guibg=none guifg=grey20
+
+hi! link LeadingSP Conceal
 
 hi! link Noise                   Comment
 
@@ -22,45 +32,35 @@ hi!  link SneakStreakTarget      EasyMotionTargetDefault
 hi!  link SneakStreakMask        EasyMotionShadeDefault
 call hi#('SneakStreakMask', hi#('EasyMotionShadeDefault'))
 
+hi! link CtrlPTagKind            Delimiter
+
 hi! link TagbarScope             Class
 hi! link TagbarFoldIcon          Comment
 
-hi! link hiPairs_matchPair   MatchParen
-hi! link hiPairs_unmatchPair MatchParen
+hi! link MatchParen          b_brightteal
+hi! link hiPairs_matchPair   b_brightteal
+hi! link hiPairs_unmatchPair b_brightteal
+
 
 call hi#('multiple_cursors_cursor', colors.darkred, colors.pink,     'bold')
 "hi! link multiple_cursors_visual Visual
 "hi! link multiple_cursors_visual AutoHL
 hi! link multiple_cursors_visual Visual
 
+
+hi! link helpURL URL
+
 " }}}
 " Tabline & Statusline                                                       {{{
-
-let tabsel = hi#('TabLineSel')
-hi link BufferIcon         TabLine
-hi link Buffer             TabLine
-hi link BufferActive       TabLine
-hi link BufferActiveIcon   TabLine
-"let bufsel = hi#('BufferCurrent', tabsel[0], tabsel[1])
-"hi! link BufferCurrent      TabLineSel
-"hi! link BufferCurrentIcon  TabLineSel
-hi link TabGutter          CursorLineNr
-hi link TabGutterSplit     CursorLineNr
-hi link Separator          VertSplit
+hi! uc_red    gui=undercurl guisp=#d03955
 
 let s:groups = {}
-let s:groups['MediumGreen']  = ['#005f00',      '#afdf00']
-let s:groups['MediumOrange'] = ['#870000',      '#ffb700']
-let s:groups['SessionTab']   = ['#ffb700',      colors.base0, 'bold' ]
-let s:groups['FilerTab']     = [ colors.base03, colors.base2, 'none' ]
-let s:groups['FilerIcon']    = [ colors.base02, colors.base2, 'bold' ]
-let s:groups['FilerAccent']  = [ colors.red,    colors.base2, 'bold' ]
-let s:groups['TabGutter']      = [colors.base0,    '#171717' ]
-let s:groups['TabGutterSplit'] = ['#666660',    '#171717' ]
+let s:groups['MediumGreen']  = ['#005f00', '#afdf00']
+let s:groups['MediumOrange'] = ['#870000', '#ffb700']
+let s:groups['SessionTab']   = ['#ffb700', colors.base02, 'none' ]
 for k in keys(s:groups)
-    call hi#(k, s:groups[k])
+    call hi#(k,                            s:groups[k])
 endfor     "                                                                 }}}
-
 " Tags                                                                       {{{
 
 fu! s:highlightTags ()
@@ -68,29 +68,57 @@ fu! s:highlightTags ()
     if (bg[0] != '#') | return | end
     let hl_bg = color#Lighten(bg, 35)
 
-    "if str2nr(bg[1:], 16) < 0x888888 | silent | else | let hl_bg = color#Darken(bg,  35) | end
-
-    call hi#('vimAutoGroupTag',      hi#fg('Type'),       hl_bg, 'none')
-    call hi#('vimCommandTag',        hi#fg('Statement'),  hl_bg, 'none')
-    call hi#('vimFuncNameTag',       hi#fg('Function'),   hl_bg, 'none')
-    call hi#('vimScriptFuncNameTag', hi#fg('StaticFunc'), hl_bg, 'none')
     call hi#('cFunctionTag',         hi#fg('Function'),   hl_bg, 'none')
+    call hi#('cTypeTag',             hi#fg('Type'),   hl_bg, 'none')
 endfunc
 call s:highlightTags()
+
+" 15. Highlighting tags					*tag-highlight*
+" =====================================================
+"
+" If you want to highlight all the tags in your file, you can use the following
+" mappings.
+"
+"     <F11>	-- Generate tags.vim file, and highlight tags.
+"     <F12>	-- Just highlight tags based on existing tags.vim file.
+"   :map <F11>  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR><F12>
+"   :map <F12>  :so tags.vim<CR>
+"
+" WARNING: The longer the tags file, the slower this will be, and the more
+" memory Vim will consume.
+"
+" Only highlighting typedefs, unions and structs can be done too.  For this you
+"  must use Exuberant ctags found at	http://ctags.sf.net.
+" Put these lines in your Makefile:
+"
+" # Make a highlight file for types.  Requires Exuberant ctags and awk
+" types: types.vim
+" types.vim: *.[ch]
+"     ctags --c-kinds=gstu -o- *.[ch] YXXY\
+"         awk 'BEGIN{printf("syntax keyword Type\t")}\
+"             {printf("%s ", $$1)}END{print ""}' > $@
+"
+" And put these lines in your .vimrc:
+"    " load the types.vim highlighting file, if it exists
+"    autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
+"    autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
+"    autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
+"    autocmd BufRead,BufNewFile *.[ch] endif
+
 
 "                                                                            }}}
 " GitGutter                                                                  {{{
 
 let s:bg = hi#bg('LineNr')
 if(s:bg[0] == '#')
-    call hi#('GitGutterAdd',          hi#fg('DiffAdd'),      s:bg, '')
-    call hi#('GitGutterDelete',       hi#fg('DiffDelete'),   s:bg, '')
-    call hi#('GitGutterChange',       hi#fg('DiffChange'),   s:bg, '')
-    call hi#('GitGutterChangeDelete', hi#fg('DiffModified'), s:bg, '')
+    call hi#('GitGutterAdd',          hi#fg('Success'), s:bg, '')
+    call hi#('GitGutterDelete',       hi#fg('Error'),   s:bg, '')
+    call hi#('GitGutterChange',       hi#fg('Info'), s:bg, '')
+    call hi#('GitGutterChangeDelete', hi#fg('Warning'), s:bg, '')
 end
 
 "                                                                            }}}
-" Notes, notation, etc. {{{
+" Notes, notation, etc.                                                      {{{
 
 hi! link vifmNotation  OldSpecial
 
@@ -99,15 +127,13 @@ hi! link notesDoneMarker     TextSuccess
 hi! link notesTODO           TextWarning
 
 " }}}
-" JS & JSON                                                                   {{{
+" JS, Coffee & JSON                                                                  {{{
 
-hi! link javascriptIdentifierName   Identifier
-
+"hi! link javascriptIdentifierName   Identifier
 hi! link jsonQuote               Delimiter
 hi! link jsonKeyword             Keyword
 hi! link jsonKeywordMatch        Comment
-" }}}
-" Coffee                                                                     {{{
+
 hi! link coffeeObject       Type
 hi! link coffeeObjAssign    StorageClass
 hi! link coffeeDotAccess    Function
@@ -118,15 +144,8 @@ hi! link coffeeSpecialOp    StringDelimiter
 hi! link coffeeSpecialVar   Identifier
 hi! link coffeeSpecialIdent Variable
 "                                                                            }}}
-" TypeScript                                                                 {{{
-hi! link tsPreProc              PreProc
-hi! link typescriptEndColons    Comment
-hi! link typescriptFuncKeyword  Keyword
-hi! link typescriptIdentifier   Keyword
-hi! link typescriptLogicSymbols Operator
-hi! link typescriptParens       Delimiter
-"                                                                            }}}
 " Shell                                                                      {{{
+hi! link zshHereDoc Comment
 hi! link zshKSHFunction Function
 hi! link zshVariableDef Var1
 hi! link zshDeref Var1

@@ -6,12 +6,16 @@ ${VISUAL}
 endsnippet
 
 snippet "sn([biwrtsme]+)?" "snippet" br
-snippet ${1:trigger} ${2:"${3:desc}"} `!p snip.rv=match.group(1)`
+snippet ${1:trigger} ${2:"${3:desc}"} `!p if match.group(1): snip.rv=match.group(1)`
 `!p snip.rv = 'endsnippet'`
 endsnippet
 
+snippet p "!python" i
+\`!p snip.rv = ${1:val}\`
+endsnippet
+
 snippet $ "${#:text}" i
-${${1:#}:${2:text}}
+${${1:#}:${VISUAL:text}}
 endsnippet
 
 snippet : "${#:text}" i

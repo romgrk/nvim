@@ -1,10 +1,13 @@
-setlocal nonu
+setlocal nonumber
 setlocal nobuflisted
-au BufEnter <bufer> startinsert
+setlocal nolist
 
 nmap <buffer> i     a
 nmap <buffer> <Esc> :wincmd p<CR>
 
-tnoremap <buffer> <C-A-r> <C-\><C-N>:resize<CR>i
-tmap <buffer> <A-c> <A-c>
-nmap <buffer> <A-c> <A-c>
+tnoremap <buffer> <C-A-R> <C-\><C-N>:resize +1<CR>:resize -1<CR>i
+tnoremap <buffer> <C-D> <C-D><CR>
+nmap     <buffer> <A-c> <A-c>
+
+au BufWinEnter,WinEnter <buffer> UpdateTerminalSize
+au InsertEnter          <buffer> setlocal nocursorline

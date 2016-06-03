@@ -1,5 +1,6 @@
 " !::exe [Redraw | So | Error 'ha']
 
+
 command! AutoHLToggle call AutoHLToggle()
 
 augroup autohl
@@ -9,23 +10,21 @@ augroup END
 
 nnoremap <silent>       =a       :let &hls=AutoHLToggle()<CR>
 nnoremap <silent>       =A       :let &hls=AutoHLToggle(1)<CR>
+nnoremap <silent><expr> =h       HighlightWord(1) . CheckCword('')
 nnoremap <silent><expr> <S-Home> HighlightWord(1) . CheckCword('')
 
 
-" Variables
+" Section: Variables {{{1
 
-let autoHL        = hi#('AutoHL')
-let searchHL      = hi#('Search')
+"let autoHL        = hi#('AutoHL')
+"let searchHL      = hi#('Search')
 "call hi#("hl_word", searchHL)
 let autohl_active = 0
 let hl_active     = 0
 let s:ignoreESC   = 0
 
 function! s:init ()
-    if !hi#exists('AutoHL')
-        call hi#("AutoHL",   "none",    "#404040", "")
-    end
-
+    call hi#("AutoHL",   "none",    "#404040", "")
     let g:autoHL   = hi#('AutoHL')
     let g:searchHL = hi#('Search')
 
@@ -33,11 +32,10 @@ function! s:init ()
         exec 'hi default link hl_'.it.'  Search '
     endfor
 endfu
-
 call s:init()
 
 
-" Functions
+" Section: Functions {{{1
 
 func! HighlightWord(...) "   word, delete, num
     let word = _#isString(a:1) ? a:1 : expand('<cword>')
@@ -123,7 +121,8 @@ fu! StopAutoHL (...)
     let @/ = ''
     call hi#('Search', g:searchHL)
     call EchoHL('TextError',  'Auto-Highlight: OFF')
-    return "m':nohlsearch\<CR>`'"
+    set nohlsearch
+    return ""
 endfu
 fu! StartAutoHL(...)
     let g:autohl_active = 1
@@ -140,9 +139,12 @@ fu! StartAutoHL(...)
         let s:ignoreESC = 0
         "set updatetime=70
     end
+
     let g:searchHL = hi#('Search')
     call hi#('Search', g:autoHL)
-    EchoHL TextSuccess Auto-Highlight: ON
+
+    Success 'Auto-Highlight: ON'
+
     return g:autohl_active
 endfu
 

@@ -5,45 +5,39 @@
 " TODO -> use CompleteDone autocmd to auto-insert ;
 " TODO Search shortcuts
 " TODO s & reacent mappings
-" TODO explore g- mapping & changelist
 " TODO configure Targets.vim
 " TODO configure git
 " FIXME ../plugin/space.vim
+" TODO  :function! GetPixel()
+":   let c = getline(".")[col(".") - 1]
+":   echo c
+":   exe "noremap <LeftMouse> <LeftMouse>r".c
+":   exe "noremap <LeftDrag>	<LeftMouse>r".c
+":endfunction
+":noremap <RightMouse> <LeftMouse>:call GetPixel()<CR>
+":set guicursor=n:hor20	   " to see the color beneath the cursor
+
+nnoremap <leader>a :Ack<space>
+
+nnoremap <A-[> gT
+nnoremap <A-]> gt
 
 "===============================================================================
 " Major maps                                                                {{{1
 
-nnoremap <silent><expr> <Esc> ( StopAutoHL() ? "" : ClearHighlights(v:count) ? "" : ":nohl<CR>" )
-
 let mapleader = ","
 
-let s:quickmap = {
-\ 'w': ":silent! w | Success ' '.expand('%:t') . ' @ '.Now()",
-\ '<': ':messages', ';': ":\<Up>",  ':': ':terminal',
-\ "\<C-F>": ':Files', "\<C-D>": ':NERDTreeFind',
-\ "\<A-;>":  'q:":P', "\<A-s>":  ":set ?\<Left>",
-\ 'b':       ':CtrlPBuffer',
-\}
-if !exists('g:quickmap') | let g:quickmap = {}
-else                     | call extend(g:quickmap,   s:quickmap) | end
-func! CmdJump ()
-    let c = GetChar('BoldError', ':')
-    call feedkeys( get(g:quickmap, c, ':' . c) )
-endfunc
+" Escape: Nohl
+nnoremap <silent><expr> <Esc> ( StopAutoHL() ? "" : ClearHighlights(v:count) ? "" : ":nohl<CR>" )
 
-" Semicolon key
-"let semi = maparg(';', 'n', 0, 1)
-nmap <silent> <expr>  ;  sneak#is_sneaking()
-                    \ ? '<Plug>SneakNext'
-                    \ : ":call CmdJump()<CR>"
-nmap <silent> <A-;> <Plug>SneakPrevious
-xmap <silent> ;     <Plug>SneakNext
-vmap <silent> <A-;> <Plug>SneakPrevious
+" Space: & Alt+Space
+nmap <expr> <Space> sneak#is_sneaking()
+                 \ ? '<Plug>SneakNext'
+                 \ : '<Plug>(space-do)'
+nmap        <M-space> <Plug>(space-reverse)
 
-nnoremap q; q:
-
-nnoremap p  ]p
-nnoremap P  ]P
+" nnoremap p  ]p
+" nnoremap P  ]P
 
 nnoremap Y  y$
 
@@ -51,9 +45,16 @@ nnoremap u u
 nnoremap U <C-r>
 "nmap    u <Plug>(RepeatUndo)
 
+" Goto:
+
+nnoremap ge gel
+onoremap ge :<C-U>normal! hvgel<CR>
+
 " go-lower/go-upper
-nnoremap gl gu
-nnoremap gu gU
+nnoremap gl  gu
+nnoremap gll gul
+nnoremap gu  gU
+nnoremap guu gUl
 
 " go-replace
 nnoremap gr      gR
@@ -66,13 +67,44 @@ nmap     gt      :InteractiveWindow<CR>t
 nnoremap <CR>   o<Esc>
 nnoremap <A-CR> O<Esc>
 
-
 " Split line (as opposed to J)
 nnoremap <C-J>  i<CR><Esc>:silent -DeleteTrailingWS<CR>
 
-
 " free <C-G>
 nnoremap g<C-G> <C-G>
+
+" }}}1
+"===============================================================================
+" Semicolon Quickmap                                                        {{{1
+
+let g:quickmap = {
+\ 'w':      ":w\<CR>",
+\ '<':      ':messages',
+\ ';':      ":\<Up>",
+\ "\<C-F>": ':Files',
+\ "\<A-;>": 'q:":P',
+\ "\<A-s>": ":set ?\<Left>",
+\ "\<A-o>": ":CtrlPMRU\<CR>",
+\ 'b':      ':CtrlPBuffer',
+\}
+
+" Semicolon key
+nmap <expr>   ;     CmdJump()
+
+function! CmdJump ()
+    if sneak#is_sneaking() " return maparg('<Plug>SneakNext', 'n')
+        return ":call sneak#rpt('', 0)\<CR>"
+    end
+
+    echo ''
+    let char = GetChar('Info', ':')
+    let qmap = get(get(b:, 'quickmap', g:quickmap), char, 0)
+    if !empty(qmap)
+        return qmap
+    end
+
+    return ':' . char
+endfunc
 
 " }}}1
 "===============================================================================
@@ -91,13 +123,14 @@ nn gsvb     :Files $bundle<CR>
 nn gsvp     :Files $vim/rc/plugin<CR>
 
 nn gs<A-p> :Edit $vim/plugin/
-nn gsvp    :VimFiler $vim/plugin<CR>
 nn gsg     :Edit $vim/autoload/git.vim<CR>
+
 " Files
 nn gsrc	:Edit $MYVIMRC<CR>
 nn gsm	:Edit $vim/rc/keymap.vim<CR>
 nn gskm	:PreviewEdit $vim/rc/keymap.vim<CR>:silent! normal g;<CR>
 nn gsko	:Edit $vim/plugin/options.vim<CR>
+nn gsmo	:Edit $vim/plugin/options.vim<CR>
 nn gsa	:Edit $vim/rc/autocmd.vim<CR>
 nn gsf	:Edit $vim/rc/function.vim<CR>
 nn gsd	:Edit $vim/rc/commands.vim<CR>
@@ -116,9 +149,8 @@ nn gsrv :Files $vim<CR>
 nn <A-n><A-s>    :UltiSnipsEdit<CR>
 nn <A-n><A-m>    :EditFtplugin<CR>
 nn <A-n><A-a>    :EditFtsyntax<CR>
-
 " Edit runtime syntax file
-nmap <A-n><A-f>    :EditSyntax<CR>
+nmap <A-n><A-f>  :EditSyntax<CR>
 
 " }}}1
 "===============================================================================
@@ -138,6 +170,10 @@ if (&virtualedit=~#'onemore')
     xmap $ $h
 end
 
+nnoremap <expr> <A-h>
+            \ match(getline('.'), '[^ \t]') == (col('.') - 1)
+            \ ? "0" : "^"
+
 " wide move
 noremap <A-j> 5<Down>
 noremap <A-k> 5<Up>
@@ -146,8 +182,8 @@ noremap <A-k> 5<Up>
 nnoremap <A-u> 10<C-Y>
 nnoremap <A-d> 10<C-E>
 
-nnoremap <Down> 8<C-e>
-nnoremap <Up> 7<C-y>
+"nnoremap <Down>
+"nnoremap <Up>
 
 " Previous/next in jump list
 "nnoremap <Tab>   <C-o>
@@ -159,8 +195,8 @@ nnoremap <Up> 7<C-y>
 nnoremap ''  `'
 nnoremap '   `
 
-nnoremap <C-S> ?
-nnoremap <C-F> /
+"nnoremap <C-S> ?
+"nnoremap <C-F> /
 
 " CamelCase motion
 " map: w, b,        nmap: e, ge                                              {{{
@@ -168,26 +204,31 @@ nnoremap <C-F> /
 "call camelcasemotion#CreateMotionMappings('<leader>')
 "end
 
-nmap <silent> w <Plug>CamelCaseMotion_w
-nmap <silent> b <Plug>CamelCaseMotion_b
-nmap <silent> e <Plug>CamelCaseMotion_e
-nmap <silent> ge <Plug>CamelCaseMotion_ge
-xmap <silent> w <Plug>CamelCaseMotion_w
-xmap <silent> b <Plug>CamelCaseMotion_b
-xmap <silent> e <Plug>CamelCaseMotion_e
-xmap <silent> ge <Plug>CamelCaseMotion_ge
+nmap <silent> w     <Plug>CamelCaseMotion_w
+nmap <silent> b     <Plug>CamelCaseMotion_b
+nmap <silent> e     <Plug>CamelCaseMotion_e
+" nmap <silent> ge    <Plug>CamelCaseMotion_ge
 
-omap <silent> w <Plug>CamelCaseMotion_w
-xmap <silent> b <Plug>CamelCaseMotion_b
-xmap <silent> ge <Plug>CamelCaseMotion_ge
-"xnoremap <silent> e e
+xmap <silent> w     <Plug>CamelCaseMotion_w
+xmap <silent> b     <Plug>CamelCaseMotion_b
+xmap <silent> e     <Plug>CamelCaseMotion_e
+xmap <silent> ge    <Plug>CamelCaseMotion_ge
 
-"omap <silent> iw <Plug>CamelCaseMotion_iw
-"xmap <silent> iw <Plug>CamelCaseMotion_iw
+omap <expr>   w     searchpos('\%#\s', '')[1] ?
+                    \ '<Plug>CamelCaseMotion_w' : '<Plug>CamelCaseMotion_e'
+omap <silent> <A-w> <Plug>CamelCaseMotion_e
+
+xmap <silent> b     <Plug>CamelCaseMotion_b
+" xmap <silent> ge    <Plug>CamelCaseMotion_ge
+xmap <A-w> W
+xmap <A-e> E
+
+" omap <silent> ie    <Plug>CamelCaseMotion_ie
+" xmap <silent> ie    <Plug>CamelCaseMotion_ie
+" omap <silent> icw <Plug>CamelCaseMotion_iw
+" xmap <silent> icw <Plug>CamelCaseMotion_iw
 "omap <silent> ib <Plug>CamelCaseMotion_ib
 "xmap <silent> ib <Plug>CamelCaseMotion_ib
-omap <silent> ie <Plug>CamelCaseMotion_ie
-xmap <silent> ie <Plug>CamelCaseMotion_ie
 
 xnoremap iw iw
 
@@ -197,41 +238,25 @@ xnoremap iw iw
 "===============================================================================
 " Sneak                                                                     {{{1
 
-"nmap <A-w>   <Plug>Sneak_s
-nmap <M-f>    <Plug>Sneak_s
-"xmap <M-f> <Plug>Sneak_F
-"omap <M-f> <Plug>Sneak_F
-nmap <M-b>    <Plug>Sneak_S
-nmap <M-e>    <Plug>(easymotion-bd-w)
+nmap <DEL> <Plug>Sneak_s
+nmap <BS>  <Plug>Sneak_S
+nmap <M-e> <Plug>(easymotion-bd-w)
 
-nmap <expr> <Space> sneak#is_sneaking()
-            \ ? '<Plug>SneakNext'
-            \ : '<Plug>(space-do)'
-nmap        <M-space> <Plug>(space-reverse)
+xmap <silent>    ;  <Plug>SneakNext
+xmap <silent> <A-;> <Plug>SneakPrevious
 
-"nmap <expr> <a-;> sneak#state().reverse==1
-        "\ ? "<Plug>Sneak_s<CR>"
-        "\ : "<Plug>Sneak_S<CR>"
-"nmap <expr> <Plug>RomgrkSneak sneak#is_sneaking()
-    "\
-    "\ ? (sneak#state().reverse==0
-            "\ ? "<Plug>(SneakStreak)<CR>"
-            "\ : "<Plug>(SneakStreakBackward)<CR>")
-    "\ : "<BS>"
+nmap <expr> <a-;> sneak#is_sneaking() ? (sneak#state().reverse==1
+                        \ ? "<Plug>Sneak_s<CR>"
+                        \ : "<Plug>Sneak_S<CR>")
+                \ : "<Plug>SneakNext"
 
-nmap <expr> <a-;> sneak#is_sneaking()
-    \
-    \ ? (sneak#state().reverse==1
-            \ ? "<Plug>Sneak_s<CR>"
-            \ : "<Plug>Sneak_S<CR>")
-    \ : "<Plug>SneakNext"
-
-"nmap s <Plug>Sneak_s
-"nmap S <Plug>Sneak_S
 " find operator
 nmap f     <Plug>Sneak_f
 xmap f     <Plug>Sneak_f
 omap f     <Plug>Sneak_f
+nmap <M-f> <Plug>Sneak_F
+xmap <M-f> <Plug>Sneak_F
+omap <M-f> <Plug>Sneak_F
 nmap F     <Plug>Sneak_F
 xmap F     <Plug>Sneak_F
 omap F     <Plug>Sneak_F
@@ -255,8 +280,8 @@ omap U <Plug>Sneak_T
 nmap <C-L>  <Plug>(easymotion-overwin-line)
 "nmap g<C-f> <Plug>(easymotion-f2)
 
-nnoremap gj <Plug>(easymotion-j)
-nnoremap gk <Plug>(easymotion-k)
+nmap     gj <Plug>(easymotion-j)
+nmap     gk <Plug>(easymotion-k)
 nnoremap [w :call EasyMotion#WB(0, 1)<CR>
 nnoremap ]w :call EasyMotion#WB(0, 0)<CR>
 
@@ -296,15 +321,16 @@ nnoremap <A-S-I>  :CtrlPTag<CR>
 nnoremap <C-P>    :CtrlPMixed<CR>
 nnoremap <C-B>    :CtrlPBuffer<CR>
 nnoremap <A-o>    :CtrlPCurWD<CR>
-nnoremap <A-O>    :CtrlP<CR>
+nnoremap <A-O>    :CtrlPMixed<CR>
+
 nnoremap <C-N>    :CtrlPCurFile<CR>
 
 nnoremap gut      :Unite tag:% -start-insert<CR>
 nnoremap guT      :Unite tag   -start-insert<CR>
-nnoremap guu      :Unite -start-insert neomru/file<CR>
+nnoremap guf      :Unite -start-insert neomru/file<CR>
 nnoremap gus      :Unite -start-insert source<CR>
 nnoremap gug      :Unite -start-insert file_rec/git<CR>
-nnoremap guf      :Unite -start-insert file_rec/neovim<CR>
+nnoremap gurf     :Unite -start-insert file_rec/neovim<CR>
 nnoremap gui      :Unite -start-insert tag:%<CR>
 nnoremap guI      :Unite -start-insert tag<CR>
 
@@ -319,20 +345,24 @@ nnoremap gu<C-A-u> :<C-u>Unite source -start-insert<CR>
 "===============================================================================
 " Window & navigation                                                       {{{1
 
-
-nnoremap <A-w> <C-W>w
-
-nnoremap <C-W>;     :wincmd v <Bar> terminal<CR>
-nnoremap <C-W><A-;> :wincmd s <Bar> terminal<CR>
-nnoremap <C-W>:     :tab terminal<CR>
+nnoremap <C-W>v     <C-W>v<C-W>l
+nnoremap <C-W>s     <C-W>s<C-W>j
+nnoremap <C-W>;     :wincmd s <Bar> terminal<CR>
+nnoremap <C-W>:     :wincmd v <Bar> terminal<CR>
+nnoremap <C-W><A-;> :tab terminal<CR>
+nnoremap <C-W>y     :WindowYank<CR>
+nnoremap <C-W>g     :WindowPaste<CR>
+nnoremap <C-W><C-Y> :WindowCopyView<CR>
 
 nnoremap <silent>     g<C-W> :InteractiveWindow<CR>
 nnoremap <silent>     g<M-w> :InteractiveWindow<CR>
 nnoremap <silent> <C-W><C-W> :InteractiveWindow<CR>
 
 " Cycle between editor Windows
+nnoremap          <A-w>      <C-W>w
 nnoremap <silent> <C-W>n     :GoNextListedWindow<CR>
 nnoremap <silent> <C-W><C-N> :GoNextListedWindow<CR>
+
 
 nnor <silent> gf;             :GotoFirstTerminalWindow<CR>
 nnor <silent> gn;             :Tabview \| terminal<CR>
@@ -340,21 +370,27 @@ nnor <silent> g<A-;>          :OpenTerminalHere<CR>
 "nmap <silent> <F9>            :ToggleTerminalWindow<CR>
 "tmap <silent> <F9>       <F12>:ToggleTerminalWindow<CR>
 
-" Close buffer & window
-nnor <C-q> :BufferClose<CR><C-w>c
+" Set width
 
-" Tagbar
-nnor <C-A-T> :TagbarToggle<CR>
+nnoremap <Bar><Bar>   :call SizeUp()<CR>
+nnoremap \\           :call SizeDown()<CR>
+nnoremap \<Bar>       :<C-r>=&tw<CR>wincmd  <Bar><CR>
+nnoremap <Bar>\       :<C-r>=&tw<CR>wincmd  <Bar><CR>
 
-" set textwidth/fullheight
-nmap \|\|     :<C-r>=&tw<CR>wincmd  <Bar><CR>
-nmap \\       z999<CR>
+
+" Plugin windows
+
+nnoremap <F5>    :GundoToggle<CR>
+nnoremap <C-G>   :GundoToggle<CR>
+nnoremap <C-A-T> :TagbarToggle<CR>
 
 " }}}1
 "===============================================================================
 " Terminal                                                          @term   {{{1
 
 if has('nvim')
+
+nnoremap g: :GoFirstTerminalWindow<CR>
 
 tnoremap <F12>      <C-\><C-n>
 tnoremap <M-e>      <C-\><C-n>
@@ -407,24 +443,21 @@ nnoremap <silent> <A->> gt
 nnoremap <A-c>     :BufferClose<CR>
 nnoremap <A-C>     :BufferReopen<CR>
 nnoremap <C-A-w>   :BufferWipeReopen<CR>
+" Close buffer & window
+nnoremap <C-q> :BufferClose<CR><C-w>c
 
 nmap g<Tab>  :tabedit <C-r>=bufname(buf#filter('&buflisted')[-1])<CR><CR>
 nmap <C-W>t  :tab sp<CR>
 
-nnoremap ]a :tnext<CR>
-nnoremap [a :tprevious<CR>
-nnoremap ]A :tfirst<CR>
-nnoremap [A :tlast<CR>
-
-"nnoremap ]q :qnext<CR>
-"nnoremap [q :qprevious<CR>
-"nnoremap [Q :qfirst<CR>
-"nnoremap ]Q :qlast<CR>
+"nnoremap ]a :tnext<CR>
+"nnoremap [a :tprevious<CR>
+"nnoremap ]A :tfirst<CR>
+"nnoremap [A :tlast<CR>
 
 "nnoremap <expr> ]l SpaceSetup('quickfix', ':lnext', ':lnext', ':lprevious', 1)
 "nnoremap <expr> [l SpaceSetup('quickfix', ':lprevious', ':lnext', ':lprevious', 0)
-"nnoremap ]L :llast<CR>
 "nnoremap [L :lfirst<CR>
+"nnoremap ]L :llast<CR>
 
 "nnoremap [c :cprevious<CR>
 "nnoremap ]c :cnext<CR>
@@ -744,6 +777,8 @@ nmap sk :SplitjoinSplit<CR>
 " alt-'  &  alt-"                                                            {{{
 nmap <A-'>      <Plug>NERDCommenterToggle
 vmap <A-'>      <Plug>NERDCommenterToggle
+nmap <C-'>      <Plug>NERDCommenterSexy
+xmap <C-'>      <Plug>NERDCommenterSexy
 nmap <A-">      <Plug>NERDCommenterSexy
 xmap <A-">      <Plug>NERDCommenterSexy
 nmap <C-/>      <Plug>NERDCommenterSexy
@@ -775,14 +810,18 @@ xmap -t <Plug>(startCaseOperator)
 "===============================================================================
 " Search & replace                                                          {{{1
 
+nnoremap / /
+nnoremap ? ?
+
+nmap <C-F>    <Plug>(incsearch-forward)
+nmap <C-A-F>  <Plug>(incsearch-backward)
+
+nmap <expr> n  SpaceSetup('search', '<Plug>(incsearch-nohl-n)', 'n', 'N')
+nmap <expr> N  SpaceSetup('search', '<Plug>(incsearch-nohl-N)', 'n', 'N', 0)
+nmap <expr> *  SpaceSetup('search', '<Plug>(incsearch-nohl-*)', 'n', 'N', 1)
+nmap <expr> #  SpaceSetup('search', '<Plug>(incsearch-nohl-#)', 'n', 'N', 1)
+
 nmap <A-/>    <Plug>(easymotion-sn)
-nmap /        <Plug>(incsearch-forward)
-nmap ?        <Plug>(incsearch-backward)
-nmap <expr>n  SpaceSetup('search', 'n', 'n', 'N', 1)
-nmap <expr>N  SpaceSetup('search', 'n', 'n', 'N', 0)
-nmap <expr>*  SpaceSetup('search', '*', 'n', 'N', 1)
-nmap <expr>#  SpaceSetup('search', '#', 'n', 'N', 1)
-nnoremap   g/ m`g*``
 
 "let s:pulse = 0
 "fu! PulseMap (...)
@@ -794,13 +833,6 @@ nnoremap   g/ m`g*``
 "nmap #  <Plug>(romgrk-#)<Plug>Pulse
 "nmap g/ <Plug>(romgrk-h)<Plug>Pulse
 "nmap z* <Plug>(romgrk-h)
-"else
-"nmap n  <Plug>(romgrk-n)
-"nmap N  <Plug>(romgrk-N)
-"nmap *  <Plug>(romgrk-*)
-"nmap #  <Plug>(romgrk-#)
-"nmap g/ <Plug>(romgrk-h)
-"nmap z* <Plug>(romgrk-h)
 "end
 "endfu
 "call PulseMap(1)
@@ -809,24 +841,44 @@ vmap <A-/>         "/<Plug>(visual-yank-plaintext)n
 vmap <silent><C-F> "/<Plug>(visual-yank-plaintext):set hls<CR>
 "nmap <C-F> *
 
+
 " Replace shortcuts
 " TODO implement a real replace-mode
-nmap <C-R>      :s___g<left><left>
-nmap <C-G>      &
-nmap <A-r><A-r> g&
-nmap <A-r><A-l> :s___g<left><left>
-nmap <A-r><A-a> :%s___g<left><left>
-nmap <A-r>a     :%s___g<left><left>
-nmap <A-r><A-f> :.,$s___g<Left><left>
-nmap <A-r><A-j> :.,$s___g<Left><left>
-nmap <A-r>j     :.,$s___g<Left><left>
-nmap <A-r><A-n> :%s___<Left>
-nmap <A-r>n     :%s___<Left>
-nmap <A-r><A-p> :%s___gc<Left><left><left>
 
-vmap <A-r>      :s___g<left><left>
-"nmap <A-r><A-c> :%s___gc<Left><left><left>
-"nmap <A-r><A-o> :%s___<Left>
+nmap <C-R>      :s///<left>
+nnoremap <A-r>r     &
+nnoremap <A-r><A-r> g&
+
+nmap <A-r><A-w> viw<C-F><A-r><A-l>
+
+nmap <A-r><A-l> :s///<left>
+nmap <A-r><A-a> :%s///<left>
+nmap <A-r>a     :%s///<left>
+nmap <A-r><A-f> :.,$s///<left>
+nmap <A-r><A-j> :.,$s///<left>
+nmap <A-r>j     :.,$s///<left>
+nmap <A-r><A-n> :%s///<Left>
+nmap <A-r>n     :%s///<Left>
+nmap <A-r><A-p> :%s///c<left><left>
+
+vmap <A-r>      :s///<left>
+
+" }}}1
+"===============================================================================
+" YCM & project commands                                                    {{{1
+
+nnoremap <leader>yr         :YcmRestartServer<CR>
+nnoremap <leader>yi         :YcmDebugInfo<CR>
+nnoremap <leader>yd         :YcmDiags<CR>
+nnoremap <leader>yy         :YcmForceCompileAndDiagnostics<CR>
+nnoremap <leader>w          :YcmCompleter GetType<CR>
+nnoremap <leader>d          :YcmCompleter GetDoc<CR>
+nnoremap <leader>]          :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>}          :YcmCompleter GoTo<CR>
+nnoremap <F2>               :YcmCompleter RefactorRename<space>
+nmap     <C-A-B>            :make build<CR>
+nmap     <F9>               :make build<CR>
+nmap     <F10>              :make test<CR>
 
 " }}}1
 "===============================================================================
@@ -912,9 +964,6 @@ nmap +l  :HlLine bg_darkestpurple<CR>
 nmap +c  :match  bg_yellow /\v%<C-R>=line('.')<CR>l%<C-R>=col('.')<CR>c./<CR>
 nmap +m  :match  bg_red /\v%<C-R>=line("'" . v:register)<CR>l%<C-R>=col("'" . v:register)<CR>c./<CR>
 
-nmap <C-W>y :WindowYank<CR>
-nmap <C-W>g :WindowPaste<CR>
-
 nmap \ut :UpdateTags %<CR>
 nmap \ur :UpdateTags -r %:h<CR>
 nmap \uu :Unite -execute-command=UpdateTags\ -R directory <CR>
@@ -971,7 +1020,10 @@ vnoremap > >gv
 vnoremap < <gv
 
 " Fixes something
-nnoremap <expr>i IndentWithI()
+nnoremap <expr>i
+            \
+            \ empty(getline('.')) ?
+            \ "cc" : "i"
 
 " Edit tmp buffer
 nmap <leader>q :edit <C-R>=tempname()<CR><CR>
@@ -1008,14 +1060,21 @@ onoremap h ^
 
 onoremap i<A-p> ip
 onoremap <A-p>  ap
+xnoremap a<A-p> ap
+xnoremap <A-p>  ip
 
 " Until...
 onoremap ; t;
 onoremap : t:
+onoremap , t,
+onoremap . t.
 
 " Until space
 onoremap <space>   E
 onoremap <M-space> B
+xnoremap <space>    E
+xnoremap <M-space>  B
+
 " Inside space
 onoremap i<space> iW
 vnoremap i<space> iW
@@ -1069,10 +1128,10 @@ let ycm_key_list_previous_completion = [ '<Up>'   ]
 "inoremap <expr><C-@> pumvisible() ? '<C-X><C-O>' : '<C-C>'
 inoremap <expr><C-@> pumvisible() ? '<C-X><C-O>' : '<C-X><C-O>'
 
-inoremap <silent><CR>    <C-r>=I_CR()<CR>
-inoremap <silent><Tab>   <C-r>=I_TAB()<CR>
-inoremap <silent><S-Tab> <C-r>=I_S_TAB()<CR>
-inoremap <silent><Space> <C-r>=I_SPACE()<CR>
+inoremap <silent><CR>    <C-R>=I_CR()<CR>
+imap     <silent><Tab>   <C-R>=I_TAB()<CR>
+inoremap <silent><S-Tab> <C-R>=I_S_TAB()<CR>
+inoremap <silent><Space> <C-R>=I_SPACE()<CR>
 
 smap <Tab>   <Esc>:call UltiSnips#JumpForwards()<CR>
 smap <S-Tab> <Esc>:call UltiSnips#JumpBackwards()<CR>
@@ -1112,7 +1171,7 @@ fu! I_TAB ()
 
     if  (getline('.')[col('.')-2] =~? '\w\|\.'
     \ && getline('.')[col('.')-1] !~? '\w' )
-        return "\<C-X>\<C-O>" | end
+        return get(b:, 'complete',"\<C-X>\<C-O>\<C-P>") | end
 
 
     if delimitMate#ShouldJump()
@@ -1208,9 +1267,6 @@ endfu
 " Visual-mode                                                               {{{1
 " xn := visual-mode noremap, excluding select-mode
 
-xnoremap <space>    E
-xnoremap <M-space>  B
-
 " Combine with VMarks?
 xmap <silent> <C-A-U> :call UltiSnips#SaveLastVisualSelection()<CR>gvm'
 
@@ -1243,80 +1299,43 @@ map! <A-space> _
 map! <S-space> _
 
 " Paste @@
-cnoremap <A-p> <C-R>"
+cnoremap <A-p> <C-R>+
 inoremap <A-p> <Esc>]pa
 
 " Move
 "noremap! <A-j> <Down>
 "noremap! <A-k> <Up>
-noremap! <A-j> <Down>
-noremap! <A-k> <Up>
-"noremap! <A-h> <Left>
-"noremap! <A-l> <Right>
+noremap! <M-j> <Down>
+noremap! <M-k> <Up>
+noremap! <M-h> <Left>
+noremap! <M-l> <Right>
 
-inoremap        <C-A> <C-O>^
-inoremap   <C-X><C-A> <C-A>
-cnoremap        <C-A> <Home>
-cnoremap   <C-X><C-A> <C-A>
+inoremap          <C-A> <C-O>^
+inoremap     <C-X><C-A> <C-A>
+cnoremap          <C-A> <Home>
+cnoremap     <C-X><C-A> <C-A>
 
-inoremap <expr> <C-B> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
-cnoremap        <C-B> <Left>
+inoremap <expr>   <C-B> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
+cnoremap          <C-B> <Left>
 
-inoremap <expr> <C-D> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
-cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+inoremap <expr>   <C-D> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr>   <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 
-inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
+inoremap <expr>   <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
 
-inoremap <expr> <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
-cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+inoremap <expr>   <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
+cnoremap <expr>   <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 
-noremap!        <M-b> <S-Left>
+inoremap <silent> <M-b> <C-O>?\<?<CR>
+inoremap <silent> <M-f> <C-O>/\>/<CR>
+cnoremap          <M-f> <C-R>=<SID>cmdForwardWord()<CR>
+cnoremap          <M-b> <C-R>=<SID>cmdBackwardWord()<CR>
+
 noremap!        <M-d> <C-O>dw
 cnoremap        <M-d> <S-Right><C-W>
 noremap!        <M-BS> <C-W>
-noremap!        <M-f> <S-Right>
 
-" 1}}}
-"===============================================================================
-" Insert maps                                                               {{{1
-
-"imap ;;    <Esc>:
-"imap <A-;> <C-r>=delimitMate#JumpAny()<CR>
-" Filename autocompletion
-"imap <C-f> <C-x><C-f>
-
-"imap <A-d> <C-x><C-e><C-e><C-e><C-e>
-"imap <A-u> <C-x><C-y><C-y><C-y><C-y>
-
-" Readline-like bindings
-"inoremap <C-b> <Left>
-"inoremap <C-f> <Right>
-"inoremap <nowait> <C-e> <C-o>$
-"inoremap <nowait> <C-a> <C-o>0
-"inoremap <M-b> <C-Left>
-"inoremap <M-f> <C-Right>
-
-" 1}}}
-"===============================================================================
-" Command maps                                                              {{{1
-
-"set wildchar=<Tab>
-"cmap <A-l> <C-l>
-cnoremap <A-;> <C-F>
-
-function! s:cmdClosingPair (char, ...)
-    let pos  = getcmdpos()
-    let line = getcmdline()
-    if line[pos - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    end
-endfu
-function! s:endOfCmdline ()
-    return getcmdpos() == 1+len(getcmdline())
-endfu
-function! CmdBackwardWord ()
+function! s:cmdBackwardWord ()
     let line = getcmdline()
     let pos = getcmdpos()
     let n = 0
@@ -1338,7 +1357,7 @@ function! CmdBackwardWord ()
         call setcmdpos(n + 1) | end
     return ''
 endfu
-function! CmdForwardWord ()
+function! s:cmdForwardWord ()
     let line = getcmdline()
     let pos = getcmdpos()
     let n = match(line, '\C\v>|\W\zs\s+|[^A-Z]\zs[A-Z]', pos)
@@ -1350,41 +1369,92 @@ function! CmdForwardWord ()
     return ''
 endfu
 
-"cnoremap <C-b> <Left>
-"cnoremap <C-f> <Right>
-"cnoremap <C-a> <C-b>
-"cnoremap <C-e> <C-e>
-cnoremap <M-f> <C-R>=CmdForwardWord()<CR>
-cnoremap <M-b> <C-R>=CmdBackwardWord()<CR>
+" 1}}}
+"===============================================================================
+" Insert maps                                                               {{{1
+" @insert
+
+inoremap jj <Esc>
+
+inoremap <A-o> <C-O>
+
+" Ctrl+Z/Ctrl+Y
+inoremap <C-Z> <C-O>u
+inoremap <C-Y> <C-O><C-R><C-O>`]
+
+"imap ;;    <Esc>:
+imap <A-;> <C-r>=delimitMate#JumpAny()<CR>
+
+" Filename autocompletion
+inoremap <C-F> <C-X><C-F>
+
+"imap <A-d> <C-x><C-e><C-e><C-e><C-e>
+"imap <A-u> <C-x><C-y><C-y><C-y><C-y>
+
+" Readline-like bindings
+"inoremap <C-b> <Left>
+"inoremap <C-f> <Right>
+"inoremap <nowait> <C-e> <C-o>$
+"inoremap <nowait> <C-a> <C-o>0
+"inoremap <M-b> <C-Left>
+"inoremap <M-f> <C-Right>
+
+" 1}}}
+"===============================================================================
+" Command maps                                                              {{{1
+
+"set wildchar=<Tab>
+set wildcharm=<C-x>
+"cmap <A-l> <C-l>
+cnoremap <A-a> <C-a>
+cnoremap <A-;> <C-F>
+
+function! s:cmdClosingPair (char, ...)
+    let pos  = getcmdpos()
+    let line = getcmdline()
+    if line[pos - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    end
+endfu
+function! s:isAtEndOfCmdline ()
+    return getcmdpos() == 1+len(getcmdline())
+endfu
 
 " Insert-like mappings
-cnoremap <expr>( <SID>endOfCmdline() ? "()<Left>" : "("
-cnoremap <expr>[ <SID>endOfCmdline() ? "[]<Left>" : "["
-cnoremap <expr>{ <SID>endOfCmdline() ? "{}<Left>" : "{"
+cnoremap <expr>( <SID>isAtEndOfCmdline() ? "()<Left>" : "("
+cnoremap <expr>[ <SID>isAtEndOfCmdline() ? "[]<Left>" : "["
+cnoremap <expr>{ <SID>isAtEndOfCmdline() ? "{}<Left>" : "{"
 cnoremap <expr>) <SID>cmdClosingPair(')')
 cnoremap <expr>] <SID>cmdClosingPair(']')
 cnoremap <expr>} <SID>cmdClosingPair('}')
 
 " Abbreviations:
-" Printing
+" @cabbr
 cabbrev pp    Pp
+cabbrev ff    F
 
 " Sudo
 cabbrev sudo w !sudo tee % >/dev/null
 
-" Other
-cabbrev %e expand('%:e')
-cabbrev %< expand('%<')
-cabbrev %, expand('%<')
-cabbrev %f expand('%')
-cabbrev %p expand('%:p')
-cabbrev %F expand('%:p')
-cabbrev %d expand('%:h')
-cabbrev %c getcwd()
+" Insert path...
+cnoremap <A-i>d <C-R>=expand('%:h:~')<CR>
+cnoremap <A-i>h <C-R>=expand('%:h')<CR>
+cnoremap <A-i>e <C-R>=expand('%:e')<CR>
+cnoremap <A-i>b <C-R>=expand('%<')<CR>
+cnoremap <A-i>n <C-R>=expand('%<')<CR>
+cnoremap <A-i>f <C-R>=expand('%')<CR>
+cnoremap <A-i><A-f> <C-R>=expand('%:~')<CR>
+cnoremap <A-i>p <C-R>=expand('%:p')<CR>
+cnoremap <A-i>d <C-R>=expand('%:h')<CR>
+cnoremap <A-i>c <C-R>=getcwd()<CR>
 
 " 1}}}
 "===============================================================================
 " Folds, scroll                                                             {{{1
+
+nnoremap <A-v> zOzt
 
 nnoremap z; zz
 
@@ -1403,8 +1473,14 @@ nnor zM zm
 " Horizontal scroll
 nnor zh zH
 nnor zl zL
-nnor zH 9zh
-nnor zL 7zl
+
+" Mappings to easily toggle fold levels
+nnoremap z0 :set foldlevel=0<cr>
+nnoremap z1 :set foldlevel=1<cr>
+nnoremap z2 :set foldlevel=2<cr>
+nnoremap z3 :set foldlevel=3<cr>
+nnoremap z4 :set foldlevel=4<cr>
+nnoremap z5 :set foldlevel=5<cr>
 
 " 1}}}
 "===============================================================================

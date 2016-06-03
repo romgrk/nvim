@@ -4,13 +4,24 @@ snippet traceur "traceur compile" b
 // !::exe [silent !traceur --modules commonjs --source-maps inline --out %<js % ]
 endsnippet
 
-#modules
+snippet use
+'use strict';
+endsnippet
+
+#requires
 snippet req "require" b
 const $1 = require('${1:module}');
 endsnippet
 snippet req "require"
 require('${1:module}');
 endsnippet
+snippet reqp "require path" b
+path = require('path');
+endsnippet
+snippet reqlo "require lodash" b
+${1:var }_ = require('lodash');
+endsnippet
+
 
 snippet "\b((\w|\d|_|\$)+)\.on" ".on(..)" rb
 `!p snip.rv = match.group(1)`.on("${1:event}", (${2:event}) => {${3:do}});
@@ -56,34 +67,42 @@ snippet ?
 	${1:/* condition */} ? ${2:a} : ${3:b}
 endsnippet
 
-snippet l "log" b
+
+# Utils
+
+snippet lo "log" b
 console.log($0);
 endsnippet
-
-snippet d "debug" b
-console.debug($0);
+snippet l "log var: $var" b
+console.log('$1: ', ${1});
 endsnippet
 
 snippet "([\w_0-9]+)!\?" "if not exist" r
 ${1:`!p snip.rv = match.group(1)`} === null || $1 === undefined
 endsnippet
 snippet "([\w_0-9]+)\?" "if exist" r
-${1:`!p snip.rv = match.group(1)`} !== null || $1 !== undefined
+${1:`!p snip.rv = match.group(1)`} !== null && $1 !== undefined
 endsnippet
+
 ### Functions:
 
+# call
+snippet do "(func())()" b
+(function() {
+	${1:// code}
+})();
+endsnippet
+
 # Immediate function
-snippet f- "() => {...}" 
+snippet -- "() => {...}" 
 () => { ${1:/* code */} }
 endsnippet
-snippet f= "(a) => {...}" 
+snippet == "(a) => {...}" 
 (${1:arg}) => { ${2:/* code */} }
 endsnippet
 
 snippet fu "function" b
-function ${1:name}(${2:args}) {
-// ${3:code}
-}
+function ${1:name}(${2:args}) {$0}
 endsnippet
 
 #snippet fun
@@ -104,7 +123,7 @@ endsnippet
 snippet "([\w_0-9]+)::" ".proto" r
 `!p snip.rv = match.group(1)`.prototype.
 endsnippet
-snippet proto
+snippet :: "A.prototype.name = ..." b
 	${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
 		${4:// body...}
 	};
@@ -148,24 +167,22 @@ snippet do
 	} while (${1:/* condition */});
 endsnippet
 # Object Method
-snippet :f
-regex /([,{[])|^\s*/:f/
-	${1:method_name}: function(${2:attribute}) {
-		${0}
-	}${3:,}
+snippet :f "name: method"
+${1:method_name}: function(${2:attribute}) {
+	${0}
+}${3:,}
 endsnippet
 # setTimeout function
 snippet setTimeout
-regex /\b/st|timeout|setTimeo?u?t?/
-	setTimeout(function() {${3:$TM_SELECTED_TEXT}}, ${1:10});
+setTimeout(function() {${3:$TM_SELECTED_TEXT}}, ${1:10});
 endsnippet
 # Get Elements
 snippet gett
-	getElementsBy${1:TagName}('${2}')${3}
+getElementsBy${1:TagName}('${2}')${3}
 endsnippet
 # Get Element
 snippet get
-	getElementBy${1:Id}('${2}')${3}
+getElementBy${1:Id}('${2}')${3}
 endsnippet
 # console.log (Firebug)
 snippet cl

@@ -1,5 +1,6 @@
 " File: function.vim
 " Author: romgrk
+" Date: 7 May 2016
 " Exec: !::exe [redraw | echo 'sourced' | source %]
 
 " Printing/logging
@@ -13,7 +14,7 @@ com! -nargs=1 -complete=file PreviewEdit call PreviewEdit(<f-args>)
 com! EditFtplugin                 call Edit(FindFtPlugin())
 com! EditFtsyntax                 call Edit(FindFtSyntax())
 
-function! PreviewEdit (file)
+func! PreviewEdit (file)
     let saved_previewheight = &previewheight
     let &previewheight = 10
     execute 'pedit ' . a:file
@@ -22,8 +23,7 @@ function! PreviewEdit (file)
     nmap <silent><buffer> <Esc><Esc> :BufferClose <Bar> wincmd z<CR>
     "silent normal! g;
 endfunc
-
-fu! Edit(file) "                                                             {{{
+func! Edit(file) "                                                             {{{
     if !(win#info().listed)
         call GoFirstListedWindow()
     end
@@ -46,7 +46,6 @@ com! OpenBufferInNewTab tab sview %
 com! -bar BufferClose      call BufferCloseCurrent()
 com! -bar BufferReopen     call BufferReopenClosed()
 com! -bar BufferWipeReopen call BufferWipeReopen()
-if !exists('g:closed_buffers') | let g:closed_buffers = [] | end
 fu! BufferCloseCurrent ()
     let bufnum = bufnr("%")
     let altnum = bufnr("#")
@@ -61,11 +60,14 @@ fu! BufferCloseCurrent ()
     exe "bdelete! " . bufnum
 endfu
 fu! BufferReopenClosed()
-    if len(g:closed_buffers) == 0
+    if !exists('g:session.closed_buffers')
+        let g:session.closed_buffers = []
+    end
+    if len(g:session.closed_buffers) == 0
         echom 'BufferReopen: no previously closed buffer'
         return
     end
-    let bufname = remove(g:closed_buffers, -1)
+    let bufname = remove(g:session.closed_buffers, -1)
     exe 'edit ' . bufname
     exe 'EchoHL TextInfo ''restored buffer ' . bufname . ' from close-list'''
 endfu
@@ -78,13 +80,27 @@ fu! BufferWipeReopen(...)
     exe 'e ' . bufname
 endfu
 fu! StoreBuffer(bufferName)
-    if buflisted(a:bufferName)
-        let filename = fnamemodify(a:bufferName, ':p')
-        call add(g:closed_buffers, filename)
+    if !buflisted(a:bufferName) | return | end
+    if &previewwindow           | return | end
+
+    if !exists('g:session.closed_buffers')
+        let g:session.closed_buffers = []
+    end
+    let filename = fnamemodify(a:bufferName, ':p')
+    call add(g:session.closed_buffers, filename)
+    if (len(g:session.closed_buffers) > 20)
+        call remove(g:session.closed_buffers, 15, -1)
     end
 endfu
+fu! RestorePosition ()
+    " Go back to where the cursor was when the file was closed if
+    " it exists and is a valid position.
+    if (line("'\"") > 1 && line("'\"") <= line("$"))
+        normal! `"
+    end
+endfunc
 
-com! Autojump call Autojump( 'Dirvish' )
+com! Autojump call Autojump( 'VimFiler' )
 fu! Autojump(...)
 
     let q = input('j ')
@@ -102,7 +118,7 @@ let g:termsize = 10
 
 com! OpenTerminal            call OpenTerminal()
 com! OpenTerminalHere        call OpenTerminal(1)
-com! GotoFirstTerminalWindow call GotoFirstTerminalWindow()
+com! GoFirstTerminalWindow   call GoFirstTerminalWindow()
 com! ToggleTerminalWindow    call ToggleTerminalWindow()
 com! GetTerminalWindow       call GetTerminalWindow()
 fu! OpenTerminal(...) "                                                      {{{
@@ -114,10 +130,13 @@ fu! OpenTerminal(...) "                                                      {{{
         call GetNewTerminalWindow()
     end
 endfu "                                                                      }}}
-fu! GotoFirstTerminalWindow() "                                              {{{
+fu! GoFirstTerminalWindow() "                                              {{{
     let terms = win#filter('&bt=="terminal"')
     if !empty(terms)
         execute terms[0] . 'wincmd w'
+    elseif empty(terms)
+        let terms = buf#filter('&bt=="terminal"')
+        execute 'buffer ' . terms[0]
     else
         call GetNewTerminalWindow()
     end
@@ -178,10 +197,10 @@ fu! GoNextTerminalBuffer (...)
 endfu
 
 " Window navigation
-com! WinMain              call GoFirstListedWindow()
-com! GoFirstListedWindow  call GoFirstListedWindow()
-com! GoNextListedWindow   call GoNextListedWindow()
-com! GoNextVimfilerWindow call GoNextVimfilerWindow()
+com! -bar WinMain              call GoFirstListedWindow()
+com! -bar GoFirstListedWindow  call GoFirstListedWindow()
+com! -bar GoNextListedWindow   call GoNextListedWindow()
+com! -bar GoNextVimfilerWindow call GoNextVimfilerWindow()
 fu! GoFirstListedWindow() "                                                  {{{
     let windows = win#list('listed')
     if !len(windows)
@@ -219,21 +238,13 @@ fu! GoNextVimfilerWindow() "                                                 {{{
     endif
 endfu "                                                                      }}}
 
-fu! PreviewEnter ()   "                                                      {{{
-    let pwin = win#filter('&previewwindow')[0]
-    call win#cmd(pwin, 'setlocal nofoldenable')
-    call win#cmd(pwin, 'setlocal nonumber')
-    call win#cmd(pwin, 'setlocal wrap')
-endfu     "                                                                  }}}
-
 com! BookmarkFile     call BookmarkFile()
 com! BookmarkLastHelp call BookmarkLastHelp()
 com! ReopenHelp       call ReopenHelp()
-let g:bookmarks = $HOME . '/.config/nvim/bookmarks'
 fu! BookmarkFile(...) "                                                      {{{
     let file = get(a:000, '1', @%)
     let line = get(a:000, '2', line('.'))
-    silent! exe '!echo ' . file . ':' . line . ' >> ' . g:bookmarks
+    silent! exe '!echo ' . file . ':' . line . ' >> ' . get(g:, 'bookmarks', $HOME . '/.cache/nvim/bookmarks')
     if !exists('g:session["bookmarks"]')
         let g:session["bookmarks"] = []
     end
@@ -247,13 +258,14 @@ endfu "                                                                      }}}
 fu! ReopenHelp() abort "                                                     {{{
     if !exists('g:session.last_help')
         call Warn('No last help')
+        exe 'Helptags'
         return
     end
 
     if !_#isList(g:session.last_help[1])
         call Warn('last_help == ', g:session.last_help)
     end
-    exe 'buffer' . g:session.last_help[0]
+    exe 'split buffer' . g:session.last_help[0]
     call cursor(g:session.last_help[1][1], 0)
     "set filetype=help
 	doautocmd Syntax
@@ -261,25 +273,51 @@ endfu "                                                                      }}}
 
 " Utils
 
-fu! AutodetectShiftWidth (...) "                                             {{{
-    let silent = get(a:, 1, 1)
-    for lnum in range(min([10, line('$')]))
-        let line = getline(lnum)
-        let i = match(line, '\v^[ ]+\zs[^ ]')
-        if (i > 1 && (i % 2 == 0) && i < 10)
-            "if &vbs>=5 | echo 'setlocal sw=' . i | end
-            if (silent == 1)
-                call Info('(tabs: ' . i . ')')
-            end
-            silent! exe 'setlocal sw=' . i
-            return
-        end
-    endfor
-    "if &vbs>=5 | echo 'No indent found' | end
-endfu     "                                                                  }}}
+func! Compare(i1, i2)
+    return a:i1 == a:i2 ? 0 : a:i1 > a:i2 ? 1 : -1
+endfunc
 
-fu! FoldFunction(...) "                                                      {{{
-    throw "FoldFunction()"
+function! SizeUp ()
+    let max = 0+&columns
+    let anchors = sort([max/3, 2*max/3, max, 0+&textwidth], 'Compare')
+    let size = winwidth(0)
+    Pp size, anchors
+    let i = 0
+    while size >= anchors[i] && i < len(anchors)
+        let i += 1
+    endwhile
+
+    call win#().width(anchors[i])
+endfunc
+function! SizeDown ()
+    let max = 0+&columns
+    let anchors = sort([0, max/3, 2*max/3, &textwidth+0], 'Compare')
+    let size = winwidth(0)
+    Pp size, anchors
+    let i = len(anchors) - 1
+    while size <= anchors[i] && i > 0
+        let i -= 1
+    endwhile
+
+    call win#().width(anchors[i])
+endfunc
+
+function! FoldText()
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
+    return line . ' …' . repeat(" ",fillcharcount) . foldedlinecount . ' '
+endfunc
+function! FoldFunction(...) "                                                      {{{
     let line    = substitute(getline(v:foldstart),
     \                   '/\*\|\*/\|\("\s*\)\={[{]{\d\=', '', 'g')
     let nl      = v:foldend - v:foldstart
@@ -297,30 +335,49 @@ fu! FoldFunction(...) "                                                      {{{
     return prefix . line
 endfu "                                                                      }}}
 
+fu! AutodetectShiftWidth (...) "                                             {{{
+    let silent = get(a:, 1, 1)
+    for lnum in range(min([10, line('$')]))
+        let line = getline(lnum)
+        let i = match(line, '\v^[ ]+\zs[^ ]')
+        if (i > 1 && (i % 2 == 0) && i < 10)
+            "if &vbs>=5 | echo 'setlocal sw=' . i | end
+            if (silent == 1)
+                call Info(' (tabs: ' . i . ')')
+            end
+            silent! exe 'setlocal sw=' . i
+            return
+        end
+    endfor
+    "if &vbs>=5 | echo 'No indent found' | end
+endfu     "                                                                  }}}
+
+
 com! -nargs=1                    HAS echo has('<args>')
 com! -nargs=1                    Has echo has('<args>')
 com! -nargs=* -complete=function LOG call PrintWithoutNewlines(<args>)
-fu! PrintChars(base, ...) "                                                  {{{
-    if type(a:base) == type([])
-        let base = a:base[0]
-        let range = a:base[1] - base
-    else
-        let base  = a:base
-        let range = a:1
-    end
-    let sep = ''
-    if len(a:000) > 0
-        let sep = a:1
-    endif
-    let i = 0
 
+fu! PrintChars(start, end, ...) "                                                  {{{
+    let start = _#isNumber(a:start) ? a:start : char2nr(a:start)
+    let end   = _#isNumber(a:end)   ? a:end   : char2nr(a:end)
+    let sep = get(a:000, 0, ' ')
+
+    let i = start
     let res = ''
-    while (i < range)
-        let hex = printf('%04x', (base+i))
-        exe 'let res .="\u' . hex .'"'
+
+    if (i < 0xFFFF)
+        let format = '%04x'
+    else
+        let format = '%05x'
+    end
+
+    while (i < end)
+        execute
+            \ 'let res .="\u' . printf(format, (i)) .'"'
         let res .= sep
-        let i+=1
+        let i = i + 1
     endwhile
+
     let @r=res
     exe 'normal! "rp'
 endfu "                                                                      }}}
@@ -355,6 +412,7 @@ fu! SyntaxStack() "                                                          {{{
     if lastID == 0 | return | end
     exe 'EchonHL ' . synIDattr(synIDtrans(lastID), "name") . ' ' .synIDattr(synIDtrans(lastID), "name")
     echon ' ' . string(synNames)
+    Pp hi#(lastID)
     echohl None
 endfu "                                                                      }}}
 fu! ToggleSyntax()
@@ -368,33 +426,45 @@ fu! EditSyntax (...)
     let file = findfile('syntax/'. &ft . '.vim', &rtp)
     exe 'edit ' . file
 endfu
-
-function! Today()
-    return strftime("%e %B %Y")
-endfunc
-function! LastMod()
-    if line("$") > 20
-        let l = 20
-    else
-        let l = line("$")
-    endif
-    exe "1," . l .
-            \ "g/Last Modified: /s/Last Modified: .*/" .
-            \ "Last Modified: " . strftime("%e %B %Y")
-endfun
-
-fu! IndentWithI()
-    if len(getline('.')) == 0
-        return "\"_ddO"
-    else
-        return "i"
-    endif
-endfu
-
 fu! QuickReload ()
     doautocmd Syntax
     exe 'source ' . $vim . '/after/ftplugin/' . &ft . '.vim'
 endfu
+
+function! HL_SpName ()
+    let id = 1
+    while (hi#exists(id))
+        let name = synIDattr(id, 'name')
+        if (!hi#islink(name) && !empty(name))
+            exec 'hi ' . name . ' guisp=.' . tolower(name)
+        end
+        let id += 1
+    endwhile
+endfunc
+
+function! Now()
+    return strftime("%H:%M")
+endfunc
+function! Today()
+    return strftime("%e %B %Y")
+endfunc
+function! LastMod()
+    let saved_pos = getpos('.')
+    let saved_ei = &ei
+    let &ei = 'all'
+
+    call cursor(1, 1)
+
+    let max_line = (line("$") > 20) ? 20 : line("$")
+    let res = search('\v\c(((Date)|(Last [Mm]odified)):\s*)@<=.*', '', max_line)
+    if (res != 0)
+        Pp getpos('.')
+        ":s//\= Today() /
+        exe ':substitute//' . strftime("%e %B %Y") . ' ' . Now() '/'
+    end
+    "call setpos('.', saved_pos)
+    let &ei = saved_ei
+endfun
 
 " C
 fu! ToggleHeader ()
@@ -417,7 +487,6 @@ fu! ToggleHeader ()
         end
     end
 endfu
-
 
 com! -bar          Hold   call GetChar()
 com! -bar          Redraw call Redraw()

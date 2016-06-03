@@ -1,1 +1,1 @@
-let hiPairs_stopline_more = 100
+let hiPairs_stopline_more = 50
