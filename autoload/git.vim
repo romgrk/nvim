@@ -5,16 +5,16 @@ function! git#Enable ()
 " GitGutter TODO assert usage
 nnoremap <silent>[h :GitGutterPrevHunk<CR>
 nnoremap <silent>]h :GitGutterNextHunk<CR>
-nnoremap        \hh :GitGutter
-nnoremap        \hs :GitGutterStageHunk<CR>
-nnoremap        \hv :GitGutterPreviewHunk<CR>
-nnoremap        \hr :GitGutterRevertHunk<CR>
+nnoremap   [Space]hh :GitGutter
+nnoremap   [Space]hs :GitGutterStageHunk<CR>
+nnoremap   [Space]hv :GitGutterPreviewHunk<CR>
+nnoremap   [Space]hr :GitGutterRevertHunk<CR>
 nnoremap         -- :GitGutterRevertHunk<CR>
 nnoremap         \\ :GitGutterPreviewHunk<CR>
 nnoremap         ++ :GitGutterStageHunk<CR>
 
-nnoremap \gc :Gcommit<Space>
-nnoremap \gm :Gcommit % -m ''<Left>
+nnoremap [Space]gc :Gcommit<Space>
+nnoremap [Space]gm :Gcommit % -m ''<Left>
 
 execute 'GitGutterEnable'
 endfu
