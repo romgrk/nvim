@@ -1,21 +1,15 @@
 " !::exe [so %]
 
-"#F7AAEF
-"#A04FA5
-"#A04FA5
-"#EB95ED
-"#B50DAE
-"#a755df
-
-"#FFEBEE
-"#FFCDD2
-"#EF9A9A
-"#E57373
-"#EF5350
-"#F44336
-"#E53935
-"#C62828
-"#B71C1C
+"#F7AAEF  #FFEBEE
+"#A04FA5  #FFCDD2
+"#A04FA5  #EF9A9A
+"#EB95ED  #E57373
+"#B50DAE  #EF5350
+"#a755df  #F44336
+"         #E53935
+"         #C62828
+"         #B71C1C
+"
 
 fu! LavaLampColors ()
     let keys = keys(g:)
@@ -63,7 +57,7 @@ hi!      javascriptString guifg=#A5FFA4
 " HTMLSassCssMd                                                              {{{
 "
 hi! htmlString       guifg=#CACBFF
-hi! htmlTagName      guifg=#2c23ff gui=bold
+"hi! htmlTagName      guifg=#2c23ff gui=bold
 hi! link htmlTagName htmlSpecialTagName
 hi! link htmlTagN    htmlTagName
 

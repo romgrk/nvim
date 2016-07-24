@@ -1,8 +1,10 @@
-snippet FILEINFO "File header"
-File: `!v expand('%:t') `
-Author: romgrk
-Description: ${1:here}
-Date: `!v system("date '+%d %b %Y'")`
+snippet fileinfo "File header" b
+`!v printf(&cms, repeat('=', &tw-2))`
+`!v printf(&cms, ' ')`File: `!v expand('%:t') `
+`!v printf(&cms, ' ')`Author: `!v $USER`
+`!v printf(&cms, ' ')`Date: `!v system("date '+%d %b %Y'")[:-1] `
+`!v printf(&cms, ' ')`Description: ${1:here}
+`!v printf(&cms, repeat('=', &tw-2))`
 endsnippet
 
 snippet !date "current date"

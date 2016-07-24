@@ -1,12 +1,13 @@
 " !::exe [so %]
 " CtrlP ==========================================================================
-" let ctrlp_user_command = 'ffind -d %s -t f'       " MacOSX/Linux
-let ctrlp_user_command = 'ffind -D 3 -d %s -type f'       " MacOSX/Linux
-"let ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-let ctrlp_extensions   = ['tag', 'buffertag', 'quickfix', 'dir',
-                        \ 'mixed'] " , 'bookmarkdir', 'rtscript',
 
 let ctrlp_tilde_homedir = 1
+
+"let ctrlp_user_command = 'ffind -d %s -t f'       " MacOSX/Linux
+"let ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+"let ctrlp_user_command = 'ffind -D 2 -d %s -t f'       " MacOSX/Linux
+let ctrlp_extensions   = ['tag', 'buffertag', 'quickfix', 'dir', 'mixed']
+" , 'bookmarkdir', 'rtscript',
 
 let ctrlp_funky_matchtype = 'path'
 let ctrlp_funky_syntax_highlight = 1

@@ -19,8 +19,8 @@ nmap <expr><buffer> <leader>s expand('<cword>')=='true'
             \ ? "ciwfalse\<Esc>"
             \ : "ciwtrue\<Esc>"
 
-" if !filereadable('.tern-project')
-    " silent !cp ~/templates/tern-project .tern-project
-    " Warn 'Created ' . fnamemodify('.tern-project', ':p')
-" end
+if !filereadable('.tern-project')
+    silent !cp ~/templates/tern-project .tern-project
+    Warn 'Created ' . fnamemodify('.tern-project', ':p')
+end
 

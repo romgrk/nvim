@@ -2,18 +2,19 @@
 " Author: romgrk
 " Description: configuration of lightline.vim
 " Date: 10 Sep 2015
-" !::exe [so % | call lightline#init() | call lightline#colorscheme()]
+" ::exe [so % | call lightline#init() | call lightline#colorscheme()]
 
 augroup TabLine
     au!
-    au BufNew *    call TabLineUpdate()
-    au BufWinEnter,BufEnter,BufWritePost * call TabLineUpdate()
-    au TabEnter,TabNewEntered *            call TabLineUpdate()
+    au BufNew,BufDelete       * call TabLineUpdate()
+    au BufWinEnter,BufEnter   * call TabLineUpdate()
+    au BufWritePost           * call TabLineUpdate()
+    au TabEnter,TabNewEntered * call TabLineUpdate()
 augroup END
 
 " Dictionnaries
 let s:L = {
-\ 'colorscheme':          'wombat',
+\ 'colorscheme':          'jellybeans',
 \ 'separator':            { 'left': '', 'right': '' },
 \ 'subseparator':         { 'left': '', 'right': '' },
 \ 'tabline_separator':    { 'left': '▎', 'right': '' },
@@ -160,7 +161,7 @@ fu! s:dim (a, b)
     return a:a . '.' . a:b
 endfu
 
-let s:bufHL = ['BufTabLineFill', 'BufTabLineActive', 'BufTabLineCurrent']
+let s:bufHL = ['Buffer', 'BufferActive', 'BufferCurrent']
 
 fu! TabLineUpdate ()
     let &tabline = BufferLine() . '%=' . TablineSession() . Tabpages()
@@ -236,8 +237,11 @@ fu! BufferLine ()
     let result = []
     for num in buf#filter('&buflisted', '!empty(bufname(v:val))')
         let type = buf#activity(0+num)
-        let mod  = buf#modF(0+num) ? 'M' : ''
-        let hlprefix   = '%#'. s:bufHL[type] . mod .'#'
+
+        let hl   = s:bufHL[type]
+        let hl  .= buf#modF(0+num) ? 'Mod' : ''
+
+        let hlprefix   = '%#'. hl .'#'
         " let iconprefix = '%#'. s:bufHL[type] .'Icon#'
         " let iconExpr  = '%{FtIcon("'. bufname(num) .'")}'
         " let result += [iconprefix . iconExpr]
@@ -564,4 +568,68 @@ fu! FilePercentFlag()
     return percent
 endfunc
 
+if (!get(g:, 'lightline_highlight', 0))
+    finish
+end
+
+let palette = {
+            \ 'normal': {}, 'inactive': {}, 'insert': {},
+            \ 'replace': {}, 'visual': {}, 'select': {},
+            \ 'tabline': {}, 'terminal': {} }
+
+let palette.normal.left     = [ s:mod1(s:blue), s:part1, s:part2 ]
+let palette.normal.right    = [ s:mod2(s:blue), s:part1b ]
+let palette.normal.middle   = [ s:part3 ]
+let palette.normal.error    = [ [ s:darkred, s:base02, 'bold' ] ]
+let palette.normal.warning  = [ [ s:darkorange, s:base2 ] ]
+let palette.normal.modified = [ [ s:darkorange, s:base2 ] ]
+
+"let palette.insert.left     = [ [ s:darkred, s:brightorange ],  s:part1, s:part2 ]
+"let palette.insert.right    = [ [ s:darkred, s:brightorange ], s:part1b ]
+"let palette.insert.middle   = [ [ s:black, s:brightorange ] ]
+
+let palette.replace.left     = [ [ s:darkred, s:brightorange ], [ color#Lighten(s:mediumorange, '0.8'), color#Darken(s:orange, '0.3') ] ]
+let palette.replace.right    = [ [ s:darkred, s:brightorange ], [ s:darkred, s:mediumorange ] ]
+let palette.replace.middle   = [ [ color#Darken(s:orange, '0.0'), color#Darken(s:orange, '0.6') ] ]
+"let palette.replace.left    = [ s:mod1(s:green), s:part1, s:part2 ]
+"let palette.replace.right   = [ s:mod2(s:green), s:part1b ]
+"let palette.replace.middle = [ s:part3 ]
+
+"let palette.visual.left     = [ s:mod1(s:red), s:mod1(s:mediumred) ]
+"let palette.visual.right    = [ s:mod2(s:red), s:mod1(s:mediumred) ]
+"let palette.visual.middle   = [ [ s:red, color#Darken(s:mediumred, '0.3') ] ]
+
+let palette.select.left     = [ s:mod1(s:lightteal), s:mod1(s:teal) ]
+let palette.select.right    = [ s:mod2(s:lightteal), s:mod1(s:teal) ]
+let palette.select.middle   = [ [ s:lightteal, s:teal ] ]
+
+let p_purple = [s:darkestpurple, s:white ]
+let palette.terminal.left   = [ p_purple, s:mod1(s:mediumpurple) ]
+let palette.terminal.right  = [ [s:darkestpurple, s:white ], s:mod2(s:mediumpurple) ]
+let palette.terminal.middle = [ s:mod2(s:darkestpurple) ]
+let palette.terminal.icon   = [ s:term ]
+
+" Inactive
+let palette.inactive.left   = [ hl_high, hl_med0, [ s:darkorange, s:base02 ]]
+let palette.inactive.right  = [ s:part00b, s:part01b ]
+let palette.inactive.middle = [ s:part02 ]
+
+" }}}
+" Tabline                                                                    {{{
+let palette.tabline.left   = [ [s:base2,  s:base00] , [ s:base2, s:base01 ] ]
+let palette.tabline.right  = [ [s:brightblue, s:base01 ], [ s:base2, s:base01 ] ]
+let palette.tabline.middle = [ [s:base2,  s:base00] ]
+
+let palette.tabline.tabsel   = [ [ s:white, s:brightblue,   'bold' ] ]
+"let palette.tabline.tabsel  = [ [ s:base2, s:base02,       'none' ] ]
+let palette.tabline.tabtitle = [ [ s:white, s:brightorange, 'bold' ] ]
+
+if exists('*lightline#colorscheme') && exists('g:lightline')     "           {{{
+    call lightline#colorscheme#fill(palette)
+    let s:dp          = lightline#colorscheme#default#palette
+    let s:dp.tabline  = deepcopy(palette.tabline)
+    let s:dp.inactive = deepcopy(palette.inactive)
+    let s:dp.replace  = deepcopy(palette.replace)
+    let s:dp.select   = deepcopy(palette.select)
+end
 

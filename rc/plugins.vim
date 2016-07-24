@@ -4,7 +4,18 @@
 " Last: 5 April 2016
 " !::exe [so %]
 
-let buftabline_show = 0
+
+let NERDTreeIgnore=['__pycache__[[dir]]', '.o$[[file]]']
+
+let zv_file_types = {
+\   'html'             : 'html,css,javascript',
+\   'css'              : 'css,html,javascript',
+\   'python'           : 'python 3',
+\   'javascript'       : 'javascript,nodejs',
+\   'typescript'       : 'typescript,javascript,html',
+\   '^(G|g)ulpfile\.'  : 'gulp,javascript,nodejs',
+\   'help'             : 'vim',
+\ }
 
 "=============================================================================
 " Paths                                                                      {{{
@@ -32,7 +43,7 @@ let session_directory = $vim . '/sessions'
 let session_command_aliases = 1
 let session_default_to_last = 1
 let session_persist_colors  = 1
-let session_persist_globals = ['g:session_persist_globals']
+let session_persist_globals = ['g:session_persist_globals', 'g:session']
 
 let session_autoload = 'yes'
 let session_autosave = 'yes'
@@ -44,18 +55,47 @@ if !exists('g:session')
 
 " }}}
 "=============================================================================
+" UI options                                                            {{{
+
+let buftabline_show = 0
+
+let goldenview__enable_at_startup = 0
+let goldenview__enable_default_mapping = 0
+let goldenview__restore_urules = {
+    \   'filetype' : [
+    \     ''        ,
+    \     'qf'      , 'vimpager', 'undotree', 'tagbar',
+    \     'nerdtree', 'vimshell', 'vimfiler', 'voom'  ,
+    \     'tabman'  , 'unite'   , 'quickrun', 'Decho' ,
+    \   ],
+    \   'buftype' : [
+    \     'nofile'  ,
+    \   ],
+    \   'bufname' : [
+    \     'GoToFile'                  , 'diffpanel_\d\+'      ,
+    \     '__Gundo_Preview__'         , '__Gundo__'           ,
+    \     '\[LustyExplorer-Buffers\]' , '\-MiniBufExplorer\-' ,
+    \     '_VOOM\d\+$'                , '__Urannotate_\d\+__' ,
+    \     '__MRU_Files__' ,
+    \   ],
+    \}
+
+" }}}
+"=============================================================================
 " Text/motion plugins                                                        {{{
 
 let incsearch#magic = '\v' " very magic
 let incsearch#auto_nohlsearch = 1
 
-let EasyMotion_keys = ";lkjhgfdsaqwertyuiopzxcvbnm"
-let EasyMotion_do_mapping = 0
+let jump_keys = ";lkjhgfdsaqwertyuiopzxcvbnm"
+let EasyMotion_keys = jump_keys
 let EasyMotion_use_smartsign_us = 1
+let EasyMotion_do_mapping = 0
 
-let sneak#prompt = 'Sneak: '
+let sneak#streak = 1
+let sneak#prompt = '≫ '
 let sneak#use_ic_scs = 1
-let sneak#target_labels = ";lkjhgfdsaqwertyuiopzxcvbnm"
+let sneak#target_labels = jump_keys
 let sneak#streak_esc = "\<Esc>"
 let sneak#textobject_z = 0
 
@@ -64,78 +104,68 @@ let splitjoin_join_mapping  = ''
 
 let NERDCreateDefaultMappings = 0
 
+let columnMove_mappings = 0
+
 " }}}
 "=============================================================================
-" Folding                                                                    {{{
+" Syntax, Folding                                                           {{{
 
-let vimsyn_folding     = 'af'
+let vimsyn_embed = 'P'
+let vimsyn_folding = 'afP'
+let vimsyn_noerror = 1
+
 let xml_syntax_folding = 1
 let tex_fold_enabled   = 1
 let php_folding        = 1
 let perl_fold          = 1
 
 let fastfold_savehook = 1
-let fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C']
+let fastfold_fold_command_suffixes  = ['x','X','a','A','o','O','c','C']
 let fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-"nmap zuz (FastFoldUpdate)
-
+" nmap zuz (FastFoldUpdate)
 
 " }}}
 "=============================================================================
 " Tags                                                                      {{{1
 
-let tagbar_left = 0
-"let tagbar_width = 40
-"let tagbar_zoomwidth = 0
-let tagbar_autoshowtag = 1
-let tagbar_autopreview = 0
-"let tagbar_iconchars = ['▶', '▼']
-
-function! s:buftag (val)
-    return printf(a:val, "--language-force=", " --", "-types=")
-endfunc
 let ctrlp_buftag_ctags_bin = '/usr/local/bin/ctags'
+
 let ctrlp_buftag_types = {
-\ 'typescript': s:buftag('%stypescript%stypescript%sniecamfpt'),
-\ 'coffee' : { 'bin': 'coffeetags', 'args': '-f-', },
-\ 'moon': { 'bin': 'ctags', 'args': '-f-', },
-\ }
+\ 'typescript':
+    \ '--language-force=typescript ' .
+    \ '--typescript-types=niecamfpt' }
 
-" tagbar_type_% {{{
-" let tagbar_type_typescript = {
-    " \ 'ctagstype' : 'typescript',
-    " \ 'kinds'     : [
-        " \ 'n:modules',
-        " \ 't:types',
-        " \ 'i:interfaces',
-        " \ 'e:enum',
-        " \ 'c:classes',
-        " \ 'a:abstract classes',
-        " \ 'm:members',
-        " \ 'f:functions',
-        " \ 'p:properties',
-    " \ ]
-" \ }
-let tagbar_type_moon = {
-    \ 'ctagstype' : 'moonscript',
-    \ 'kinds'     : [
+let g:tagbar_type_c = {
+    \ 'ctagsbin' : 'ctags',
+    \ 'ctagsargs' : '--file-scope=yes -o - ',
+    \ 'kinds' : [
+        \ 'd:macros:1:0',
+        \ 'p:prototypes:1:0',
+        \ 'g:enums',
+        \ 'e:enumerators:0:0',
+        \ 't:typedefs:0:0',
+        \ 's:structs',
+        \ 'u:unions',
+        \ 'm:members:0:0',
+        \ 'v:variables:0:0',
         \ 'f:functions',
-        \ 'c:classes',
-        \ 'm:methods',
-        \ 's:static properties',
-        \ 'p:properties',
-        \ 'v:variables',
-    \ ]
+    \ ],
 \ }
-"}}}
+let tagbar_type_typescript = {
+    \ 'ctagstype' : 'typescript',
+    \ 'kinds'     : [
+        \ 'n:modules',
+        \ 't:types',
+        \ 'i:interfaces',
+        \ 'e:enum',
+        \ 'c:classes',
+        \ 'a:abstract classes',
+        \ 'm:members',
+        \ 'f:functions',
+        \ 'p:properties',
+    \ ] }
 
-let easytags_async          = 1
-let easytags_dynamic_files  = 2
-let easytags_resolve_links  = 1
-let easytags_auto_update    = 1
-let easytags_auto_highlight = 0
-" easytags_languages {{{
-let easytags_languages      = {
+let easytags_languages = {
 \   'coffee': {
 \     'cmd': 'coffeetags',
 \       'args': ['--include-vars'],
@@ -158,7 +188,6 @@ let easytags_languages      = {
 \       'recurse_flag': '-R',
 \   },
 \}
-"}}}
 
 " 1}}}
 "=============================================================================
@@ -167,12 +196,16 @@ let easytags_languages      = {
 let colorizer_maxlines = -1
 let colorizer_startup  = 0
 
-let haddock_browser = 'chrome'
-let haskellmode_completion_ghc = 1
-
 let used_javascript_libs = ''
 
-autocmd VimEnter * :call pp#prettyTheme()
+if exists('*unite#custom#profile')
+    call unite#custom#profile('default', 'context', {
+    \   'start_insert': 0,
+    \   'winheight': 10,
+    \   'direction': 'botright',
+    \ })
+end
+
 
 " }}}1
 "=============================================================================

@@ -1,14 +1,23 @@
-
-
-nmap <buffer><nowait><Esc>  q
-imap <buffer><nowait><Esc>  <Esc>q
+nmap <buffer><Esc><Esc>  q
+" imap <buffer><Esc><Esc>  <Esc>q
 imap <buffer> jj        <Plug>(unite_insert_leave)
-imap <buffer> <C-u>     <Plug>(unite_delete_backward_path)
-"imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
-imap <buffer> <C-j>     <Plug>(unite_select_next_line)
+
+imap <buffer> <Tab>     <Plug>(unite_narrowing_path)
+nmap <buffer> <Tab>     <Plug>(unite_narrowing_path)
+
+nmap <buffer> <A-p>     <Plug>(unite_toggle_auto_preview)
+nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+
+imap <buffer> <A-u>     <Plug>(unite_delete_backward_path)
+" imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+
+imap <buffer> <A-k>     <Plug>(unite_select_previous_line)
+imap <buffer> <A-j>     <Plug>(unite_select_next_line)
 imap <buffer> <C-k>     <Plug>(unite_select_previous_line)
-imap <buffer> <Tab>     <Plug>(unite_select_next_line)
-imap <buffer> <S-Tab>   <Plug>(unite_select_previous_line)
+imap <buffer> <C-j>     <Plug>(unite_select_next_line)
+" imap <buffer> <Tab>     <Plug>(unite_select_next_line)
+" imap <buffer> <S-Tab>   <Plug>(unite_select_previous_line)
 "imap <buffer> <C-k>     <Plug>(unite_select_next_line)
 "imap <buffer> <C-j>     <Plug>(unite_select_previous_line)
 
@@ -21,11 +30,7 @@ imap <buffer> <A-;>     <Esc><Plug>(unite_quick_match_jump)
 nmap <buffer> <C-p>     <Plug>(unite_toggle_transpose_window)
 nmap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
 imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
-imap <buffer> <C-y>     <Plug>(unite_narrowing_path)
-nmap <buffer> <C-y>     <Plug>(unite_narrowing_path)
-nmap <buffer> <A-p>     <Plug>(unite_toggle_auto_preview)
-nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
-imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+
 "nn <silent><buffer><expr> l
         "\ unite#smart_map('l', unite#do_action('default'))
 

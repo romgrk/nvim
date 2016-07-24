@@ -1,26 +1,25 @@
 " !::exe [so % | doauto Syntax]
-setlocal nolist
-setlocal foldmethod=syntax
-setlocal keywordprg=:Zeavim
-
+" setlocal nolist
+" setlocal foldmethod=syntax
+setlocal keywordprg=:ZeavimSearch
 setlocal isident=@,48-57,_,192-255,#
 
-nmap <buffer> gH :Zeavim<space>
+let b:argwrap_line_prefix = '\'
 
-nnoremap <buffer> gdd <C-]>
-nnoremap <buffer> gdg :Goto<space>
-nnoremap <buffer> gdn :Goto nmap<space>
-nnoremap <buffer> gdm :Goto map<space>
-nnoremap <buffer> gdf :Goto fu <C-R><C-W>
-nnoremap <buffer> gdc :Goto com <C-R><C-W>
-nnoremap <buffer> gdh :Goto hi <C-R><C-W>
+nnoremap <buffer> gdd         :Goto<space>
+nnoremap <buffer> gdm         :GotoMap<space>
+nnoremap <buffer> gdn         :GotoNm<space>
+nnoremap <buffer> gdf         :GotoFu <C-R><C-W>
+nnoremap <buffer> gdc         :GotoCom <C-R><C-W>
+nnoremap <buffer> gdo         :GotoSet <C-R><C-W>
+nnoremap <buffer> gdh         :GotoHi<space>
 
-nnoremap <buffer> <leader>l :noautocmd call LastMod()<CR>
+nnoremap <buffer> [Space]lsmd :noautocmd call LastMod()<CR>
 
-nnoremap <buffer> s<A-j> A <Bar><Esc>J
-nnoremap <buffer> s<A-k> $F<BAR>dwi<BS><CR><Esc>
-nmap     <buffer> sJ     s<A-j>
-nmap     <buffer> sK     s<A-k>
+nnoremap <buffer> s<A-j>      A <Bar><Esc>J
+nnoremap <buffer> s<A-k>      $F<BAR>dwi<BS><CR><Esc>
+nmap     <buffer> sJ          s<A-j>
+nmap     <buffer> sK          s<A-k>
 
 " TODO bundle this in a plugin
 function! s:imap (leader, key, val)
@@ -41,10 +40,11 @@ let    s:specialKeys = [
 \ ['<Tab>',   '<lt>Tab>'],
 \ ['<Esc>',   '<lt>Esc>'],
 \ ['<space>', '<lt>space>'],
+\ ['[',       '[Space]'],
 \ ['<BS>',    '<lt>BS>'],
 \ ['=',       '<lt>C-r>='],
-\ ['p',       '<lt>Plug>'],
-\ ['P',       '<lt>Plug>()<Left>'],
+\ ['P',       '<lt>Plug>'],
+\ ['p',       '<lt>Plug>()<Left>'],
 \ ['b',       '<lt>buffer>'],
 \ ['n',       '<lt>nowait>'],
 \ ['e',       '<lt>expr>'],
@@ -67,7 +67,6 @@ for i in range( len(s:altkeys))
     let val = '<lt>' . key[1:]
     call s:imap(s:leader, key, val)
 endfor
-
 for i in range(len(s:ctrlkeys))
     let k = s:ctrlkeys[i]
 
@@ -79,7 +78,6 @@ for i in range(len(s:ctrlkeys))
     let val = '<lt>'.key[1:]
     call s:imap(s:leader, key, val)
 endfor
-
 for [key, val] in s:specialKeys
     call s:imap(s:leader, key, val)
 endfor

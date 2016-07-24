@@ -4,31 +4,44 @@
 " Description: notes and pre-implementations
 " !::exe [So]
 
+" If you want to highlight all the tags in your file, you can use the following
+" mappings.
+"     <F11>	-- Generate tags.vim file, and highlight tags.
+"     <F12>	-- Just highlight tags based on existing tags.vim file.
+"   :map <F11>  :sp tags<CR>:%s/^\([^	:]*:\)\=\([^	]*\).*/syntax keyword Tag \2/<CR>:wq! tags.vim<CR>/^<CR><F12>
+"   :map <F12>  :so tags.vim<CR>
+" WARNING: The longer the tags file, the slower this will be, and the more
+" memory Vim will consume.
+" Only highlighting typedefs, unions and structs can be done too.  For this you
+"  must use Exuberant ctags found at	http://ctags.sf.net.
+" Put these lines in your Makefile:
+" # Make a highlight file for types.  Requires Exuberant ctags and awk
+" types: types.vim
+" types.vim: *.[ch]
+"     ctags --c-kinds=gstu -o- *.[ch] YXXY\
+"         awk 'BEGIN{printf("syntax keyword Type\t")}\
+"             {printf("%s ", $$1)}END{print ""}' > $@
+" And put these lines in your .vimrc:
+"    " load the types.vim highlighting file, if it exists
+"    autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
+"    autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
+"    autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
+"    autocmd BufRead,BufNewFile *.[ch] endif
+
+" TODO :function! GetPixel()
+":   let c = getline(".")[col(".") - 1]
+":   echo c
+":   exe "noremap <LeftMouse> <LeftMouse>r".c
+":   exe "noremap <LeftDrag>	<LeftMouse>r".c
+":endfunction
+":noremap <RightMouse> <LeftMouse>:call GetPixel()<CR>
+":set guicursor=n:hor20	   " to see the color beneath the cursor
+
 " if mapcheck("_vv") == "" | "    map _vv :set guifont=7x13<CR> | endif
-function! Gothik (string)
-    let result = ''
-    let len = len(a:string)
-    let n = 0
-    while (n < len)
-        let result .= s:gothik(a:string[n])
-        let n += 1
-    endwhile
-    return result
-endfunc
-function! s:gothik (letter)
-    " let fraktur = [ "𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅",
-    "  A = 0x1D56C  \ "𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟" ]
-    let nr = char2nr(a:letter)
-    if (nr >= 65 && nr <= 90)          " Maj
-        let nr = nr + 120107
-    elseif (nr >= 97 && nr <= 122)     " Min
-        let nr = nr + 120101
-    else
-        return a:letter                 | end
-    return nr2char(nr)
-endfunc
 
 finish
+
+" Icons below           {{{
 
 ❝❞ ″“ ”„ ′‘ ’‚
      
@@ -73,9 +86,9 @@ finish
 ╠╡ ╳ ╞╣  ├╢   ╟┤  ├┼─┼─┼┤  ├╫─╂─╫┤  ┣┿╾┼╼┿┫  ┕┛┖┚     ┌┄┄┐ ╎ ┏┅┅┓ ┋ ▍ ╲╱╲╱╳╳╳
 ║│╱ ╲│║  │║   ║│  ││ │ ││  │║ ┃ ║│  ┃│ ╽ │┃  ░░▒▒▓▓██ ┊  ┆ ╎ ╏  ┇ ┋ ▎
 ║└─╥─┘║  │╚═╤═╝│  │╘═╪═╛│  │╙─╀─╜│  ┃└─╂─┘┃  ░░▒▒▓▓██ ┊  ┆ ╎ ╏  ┇ ┋ ▏
-╚══╩══╝  └──┴──┘  ╰──┴──╯  ╰──┴──╯  ┗━━┻━━┛  ▗▄▖▛▀▜   └╌╌┘ ╎ ┗╍╍┛ ┋  ▁▂▃▄▅▆▇█
+╚══╩══╝  └──┴──┘  ╰──┴──╯  ╰──┴──╯  ┗━━┻━━┛           └╌╌┘ ╎ ┗╍╍┛ ┋  ▁▂▃▄▅▆▇█
+▗▄▖▛▀▜
 ▝▀▘▙▄▟
-
 
 UTF-8 encoded sample plain-text file
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
@@ -245,8 +258,7 @@ Braille:
   (The first couple of paragraphs of "A Christmas Carol" by Dickens)
 
 Compact font selection example text:
-
   ABCDEFGHIJKLMNOPQRSTUVWXYZ /0123456789
   abcdefghijklmnopqrstuvwxyz £©µÀÆÖÞßéöÿ
   –—‘“”„†•…‰™œŠŸž€ ΑΒΓΔΩαβγδω АБВГДабвгд
-  ∀ ∂ ∈ ℝ ∧ ∪ ≡ ∞ ↑ ↗ ↨ ↻ ⇣ ┐ ┼ ╔ ╘ ░ ► ☺ ♀ ﬁ � ⑀ ₂ ἠ Ḃ ӥ Ẅ ɐ ː ⍎ א Ա ა
+  ∀ ∂ ∈ ℝ ∧ ∪ ≡ ∞ ↑ ↗ ↨ ↻ ⇣ ┐ ┼ ╔ ╘ ░ ► ☺ ♀ ﬁ � ⑀ ₂ ἠ Ḃ ӥ Ẅ ɐ ː ⍎ א Ա ა"}}}

@@ -356,7 +356,7 @@ endif
 if &background == "dark"
   :exe 'hi htmlTag'                .fg_blue_xdark
   :exe 'hi htmlEndTag'             .fg_blue_xdark
-  :exe 'hi htmlTagName'            .fg_blue_med
+  :exe 'hi htmlTagName'            .fg_blue_light . gui_bold
   :exe 'hi htmlSpecialTagName'     .fg_blue_med
   :exe 'hi htmlTagN'               .fg_blue_med
   :exe 'hi htmlString'             .fg_blue_xlight

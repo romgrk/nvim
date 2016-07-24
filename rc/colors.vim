@@ -101,9 +101,9 @@ for key in keys(log)
     call hi#link(key,      'Text' . key)
 endfor
 
-hi! link Msg        TextSuccess
-hi! link MoreMsg    TextInfo
-hi! link WarningMsg TextWarning
-hi! link ErrorMsg   TextError
-hi! link ModeMsg    BoldSpecial
+" hi! link Msg        TextSuccess
+" hi! link MoreMsg    TextInfo
+" hi! link WarningMsg TextWarning
+" hi! link ErrorMsg   TextError
+" hi! link ModeMsg    BoldSpecial
 

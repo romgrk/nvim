@@ -1,5 +1,7 @@
 setlocal conceallevel=0
 
+nnoremap <buffer> <expr><CR>  'ciw' . (expand('<cword')=='false' ? 'true' : 'false') . "\<Esc>"
+
 nmap <buffer> <TAB> /\v("[^"]+")\|true\|false\|\{<CR><ESC>
 nmap <buffer> <S-TAB> ?\v("[^"]+")\|true\|false\|\{<CR><ESC>
 

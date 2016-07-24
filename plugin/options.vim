@@ -1,35 +1,175 @@
+"===========================================================================
+" File: options.vim
+" Author: romgrk
+" Date: 04 Jun 2016
+" Description: options toggling
 " !::exe [So]
-if !has('vim_starting')
-    redraw | echo ''
-end
+"===========================================================================
 
-let settings = get(g:, 'settings', {})
+let g:togglekey = 'co'
+let g:togglemap = { }
 
-call s:togglemap('ve',  '&ve', ['all', 'block,onemore'])
-call s:togglemap('btl', 'g:buftabline_show', [2, 0])
+command! -bar -nargs=+ ToggleMap :call <SID>toggle_map(<args>)
 
-function! s:togglemap (trigger, what, values)
-    if !has('vim_starting') && !empty(maparg('co'.a:trigger,'n'))
-        echon ':'.a:trigger.' '
+function! s:toggle_map (...)
+    if _#isString(a:000[1]) && len(a:000) == 2
+        call s:map_toggle_cmd(
+                    \ a:000[0],
+                    \ a:000[1])
+
+    elseif has_key(a:000[1], 'cmd')
+        call s:map_toggle_cmd(
+                    \ a:000[0],
+                    \ a:000[1]['cmd'],
+                    \ a:000[2:])
+
+    elseif has_key(a:000[1], 'value')
+        call call('s:map_toggle_value',
+                    \  [a:000[0]]
+                    \+ [a:000[1]['value']]
+                    \+  a:000[2:] )
+
+    elseif len(a:000) == 3
+        call s:map_toggle_value(
+                    \ a:000[0],
+                    \ a:000[1],
+                    \ a:000[2])
     end
-    let g:settings[a:trigger] = [a:what, a:values]
-    exe 'nnoremap co' . a:trigger .
-                \ " :call \<SID>toggle('" . a:trigger . "')<CR>"
 endfunc
-function! s:get_what (trigger)
-    return get(g:settings, a:trigger, [a:trigger])[0]
+function! s:map_toggle_cmd (trigger, cmd, ... )
+    let m = { }
+    let m['trigger'] = a:trigger
+    let m['what'] = a:cmd
+    let m['lhs'] = printf('%s%s', g:togglekey, a:trigger)
+    let m['rhs'] = printf(":\<C-U>%s\<CR>", a:cmd)
+    let m['cmd'] = a:cmd
+    if (a:0)
+        call extend(m, _#isList(a:1) ? a:1 : a:000 )
+    end
+
+    let g:togglemap[a:trigger] = a:cmd
+
+    exe 'nnoremap ' . m['lhs'] . ' ' . m['rhs']
 endfunc
-function! s:get_values (trigger)
-    return get( get(g:settings, a:trigger), 1 )
+function! s:map_toggle_value (trigger, what, ...)
+    let m = { }
+    let m['trigger'] = a:trigger
+    let m['what']    = a:what
+    let m['values']  = []
+    let m['lhs']     = printf('%s%s', g:togglekey, a:trigger)
+    let m['rhs']     = printf(":call \<SID>toggle(%s)\<CR>", string(a:trigger))
+
+    if (a:0 == 0)
+        " <nop>
+    elseif (a:0 == 1 && _#isObject(a:1))
+        call extend(m, a:1)
+
+    elseif _#isList(a:1)
+        let m['values'] = (a:1)
+    end
+
+    if (a:0 == 2 && _#isObject(a:2))
+        call extend(m, a:2)
+    end
+
+    let g:togglemap[a:trigger] = l:m
+
+    exe 'nnoremap ' . m['lhs'] . ' ' . m['rhs']
+endfunc
+function! s:map_alternating (trigger, what, values, ...)
+    let m = { }
+    let m['trigger'] = a:trigger
+    let m['what'] = a:what
+    let m['values']  = a:values " : String[]
+    let m['next']    = 0
+    let m['lhs'] = printf('%s%s', g:togglekey, a:trigger)
+    let m['rhs'] = printf(":call \<SID>altern(%s)\<CR>", string(a:trigger))
+    if (a:0)
+        call extend(m, a:1) | end
+
+    let g:togglemap[a:trigger] = l:m
+    execute 'nnoremap ' . m['lhs'] . ' ' . m['rhs']
+endfunc
+
+" Cool widget
+nnoremap [Space]o   :call <SID>show_toggle_input()<CR>
+
+function! s:show_toggle_input ()
+    let buffer = ''
+    let char = ''
+    let remaining_options = keys(g:togglemap)
+    let match = -1
+    while (1 == 1)
+        redraw
+        call Log('Question', 'Change option: ')
+        call Log('Normal', buffer . repeat(' ', 5 - len(buffer)))
+
+        if (match != -1)
+            let km = remaining_options[match]
+            call Log('MoreMsg', printf("( %s )", g:togglemap[km]['what']))
+        end
+
+        call Info("\n\t")
+        for l:idx in range(len(remaining_options))
+            let hl = (match == l:idx) ? 'Visual' : 'Keyword'
+            call Log(hl, remaining_options[l:idx])
+        endfor
+
+        let char = GetChar()
+        if (char ==# "\<Esc>")
+            return
+        elseif (char ==# "\<Tab>")
+            let match +=1
+            if (match == len(remaining_options))
+                let match = -1
+            end
+        elseif (char ==# "\<S-Tab>")
+            let match -= 1
+            if (match == -1)
+                let match = len(remaining_options)
+            end
+        elseif (char ==# "\<CR>")
+            let remaining_options = [ get(remaining_options, match, '') ]
+        else
+            let buffer .= char
+            let match = 1
+        end
+
+        let condition = printf('v:val =~# "^%s"', escape(buffer, '\"'))
+        let remaining_options = filter(remaining_options, condition)
+
+        if empty(remaining_options)
+            call Debug(condition, buffer, char)
+            return
+        elseif (len(remaining_options) == 1)
+            exe 'normal ' . g:togglekey . buffer
+            return
+        end
+    endwhile
+endfunc
+function! s:altern (trigger)
+    let km = g:togglemap[a:trigger]
+    let n   = km['next']
+    let cmd = km['values'][l:n]
+    let km['next'] = (n + 1) % len(km['values'])
+
+    if has_key(km, 'pre')
+        execute km['pre'] | end
+
+    execute cmd
+
+    if has_key(km, 'post')
+        execute km['post'] | end
+
+    return ''
 endfunc
 function! s:toggle (trigger, ...)
-    let what   = s:get_what(a:trigger)
-    let values = s:get_values(a:trigger)
+    let m = g:togglemap[a:trigger]
+    let what   = m['what']
+    let values = m['values']
 
-    if _#isString(values)
-        let cmd = values
-    elseif empty(values)
-        let cmd = what
+    if empty(values)
+        let cmd = 'let ' . what . '=' . !eval(what)
     else
         let current = eval(what)
         let newval = values[0]
@@ -43,50 +183,55 @@ function! s:toggle (trigger, ...)
         let cmd = 'let '.what.' = '.string(newval)
     end
 
-    echohl ModeMsg
-    echo cmd
-    echohl None
+    if has_key(m, 'pre')
+        execute m['pre'] | end
 
     execute cmd
+
+    if has_key(m, 'post')
+        execute m['post'] | end
+
+    call Log('MoreMsg', 'Toggled: ')
+    call Log('Normal', what . "\n")
+    call Log('Comment', cmd)
 
     return ''
 endfunc
 
-"nmap <silent>=<Esc> :set hls!<CR>
-nnoremap <silent>=c     :ColorHighlight<CR>
-nnoremap <silent>=t     :call AutodetectShiftWidth()<CR>
 
-nnoremap coGG :call git#Enable()<CR>
-nnoremap coGg :call git#Disable()<CR>
+" Toggle by values
 
-nnoremap cosw :setlocal sw=
-nnoremap cots :setlocal ts=
-nnoremap coft :setlocal ft=
-nnoremap cobl :set buflisted!<CR>
+ToggleMap 'cl',  { 'value': '&cul' }
+ToggleMap 'cc',  { 'value': '&cuc' }
+ToggleMap 'l',   { 'value': '&list' }
+ToggleMap 'n',   { 'value': '&number' }
+ToggleMap 've',  { 'value': '&virtualedit' }, ['all', 'block,onemore']
 
-nnoremap con  :set nu!<CR>
-nnoremap cow  :set wrap!<CR>
-nnoremap coL  :set list!<CR>
-nnoremap col  :setlocal list!<CR>
-nnoremap cocl :set cursorline!<CR>
-nnoremap cocc :set cursorcolumn!<CR>
-nnoremap covl :call <SID>setVerbose()<CR>
-nnoremap cogg :GitGutterToggle<CR>
-nnoremap cogs :GitGutterSignsEnable<CR>
-nnoremap cosy :SyntasticToggleMode<CR>
+ToggleMap 'h',   { 'value': '&hlsearch' },         [0,     1]
+ToggleMap 'sl',  { 'value': '&laststatus' },       [0,     2]
+ToggleMap 'tl',  { 'value': '&showtabline' },      [0,     2]
+ToggleMap 'bl',  { 'value': '&buflisted' },        [0,     1]
+ToggleMap 'w',   { 'value': '&l:wrap' },           [0,     1]
+ToggleMap 'sn',  { 'value': 'g:sneak#streak' },    [0,     1]
+ToggleMap 'HI',  { 'value': 'g:high_contrast' },   [0,     1], { 'post': 'syn enable'}
+ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post':
+            \ 'let &ts = &sw \| IndentGuidesToggle \| IndentGuidesToggle'
+            \ . '\| exe \"IndentLinesToggle\" \| exe \"IndentLinesToggle\"' }
 
-nmap <expr>cosl ':set laststatus=' . (&laststatus==2 ? '0' : '2') . '<CR>'
+ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
+ToggleMap 'co',  'call colorizer#ColorToggle()'
+ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
+ToggleMap 'gu',  'GitGutterToggle'
+ToggleMap 'gs',  'GitGutterSignsEnable'
+call s:map_alternating('gg', 'Git integration', ['call git#Enable()', 'call git#Disable()'])
 
-nmap <expr>coaw ':let autowidth=' . !get(g:, 'autowidth', 1) . '<CR>'
+ToggleMap 'gvr', 'ToggleGoldenViewAutoResize'
+ToggleMap 'sy',  'SyntasticToggleMode'
 
-nmap <expr>cosl ':set laststatus=' . (&laststatus==2 ? '0' : '2') . '<CR>'
-nmap <expr>cotl ':set showtabline=' . (&showtabline==2 ? '0' : '2') . '<CR>'
+ToggleMap 'idg', 'IndentGuidesToggle'
+ToggleMap 'idl', 'IndentLinesToggle'
+ToggleMap 'lds', 'LeadingSpaceToggle'
 
-nmap <expr>cotL ':let tagbar_left=' . !tagbar_left . '<CR>'
-nmap <expr>coat ':let tagbar_autoshowtag=' . !tagbar_autoshowtag . '<CR>'
-nmap <expr>coap ':let tagbar_autopreview=' . !tagbar_autopreview . '<CR>'
-
-nnoremap <expr>coh  ':let high_contrast=' . !get(g:, 'high_contrast', 0) . '<CR>:silent! syn enable<CR>'
 
 " Foldmethod
 nmap z;m :setlocal fdm=marker<CR>
@@ -94,9 +239,10 @@ nmap z;s :setlocal fdm=syntax<CR>
 nmap z;i :setlocal fdm=indent<CR>
 nmap z;I :setlocal fdm=expr<CR>:setlocal foldexpr=GetIndentFold(v:lnum)<CR>
 nmap z;e :setlocal fdm=expr<CR>:setlocal foldexpr=
-"for level in range(6)
-    "exe 'nmap <C-L>' . (level+1) . ' :setl foldlevel=' . level . '<CR>'
-"endfor
+
+
+" Cool widget
+nnoremap covl :call <SID>setVerbose()<CR>
 
 " Verbose options reference
 let s:verboseHelp = [
@@ -121,3 +267,4 @@ function! s:setVerbose ()
     if !empty(verbose) | let &verbose = verbose | end
 endfunc
 
+" vim: fdm=syntax

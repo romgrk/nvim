@@ -13,7 +13,9 @@ let vimfiler_quick_look_command = 'gloobus-preview'
 " Default settings: side bar
 fu! vimfiler#_setup ()
     if !exists('*vimfiler#custom#profile')
-        return | end
+        au! VimEnter * call vimfiler#_setup()
+        return
+    end
 
     call vimfiler#custom#profile('default', 'context', {
     \ 'safe' : 0, 'status' : 0, 'parent' : 0,
@@ -26,4 +28,3 @@ fu! vimfiler#_setup ()
     \})
 endfu
 call vimfiler#_setup()
-au VimEnter * call vimfiler#_setup()

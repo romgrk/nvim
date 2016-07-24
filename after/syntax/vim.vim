@@ -1,40 +1,56 @@
-" The default Vim syntax file has limited 'fold' definitions, so define more.
-"
-" Folding of functions and augroups is built-in since VIM 7.2 (it was introduced
-" with vim.vim version 7.1-76) if g:vimsyn_folding contains 'a' and 'f', so set
-" this variable if you want it. (Also in older VIM versions.)
-let g:vimsyn_embed = 'P'
-let g:vimsyn_folding = 'afP'
-let g:vimsyn_noerror = 1
+" !::exe [setf vim]
+if (0 == 1)
+    " Comment syntax
+    " Highlight tests:
+    " Key: label
+    " Todo
 
+    let val = v:false
+    let val = v:null
+
+    let &l:sw = 4
+    let b:saved_sw = &l:sw
+end
+
+
+" Comments
+syn clear vimCommentTitle
 runtime! syntax/comment.vim
-syn cluster vimCommentGroup contains=@comments
+syn cluster vimCommentGroup contains=@Comment
 
-syn match vimOptionVar /&\h[a-zA-Z0-9#_]*\>/ contains=vimOnlyOption,vimTermOption,vimFTOption contained
-syn keyword vimLet nextgroup=vimVar,vimFuncVar,vimOptionVar skipwhite let
 
-hi! link vimFunc       Function
-hi! link vimScriptVar  Identifier
-hi! link vimCommand    Keyword
-hi! link vimCmdSep     SpecialChar
-hi! link vimOper       Operator
-hi! link vimHiBang     Operator
-hi! link vimUserFunc   Function
-hi! link vimFunc       Function
-hi! link vimOption     Control
-hi! link vimOptionVar  vimOption
-hi! link vimHiAttrib   Control
-hi! link vimMapModKey  OldSpecial
-hi! link vimNotation   OldSpecial
-hi! link vimContinue   OldSpecial
-hi! link vimSynRegOpt  OldSpecial
-hi! link vimSynKeyOpt  OldSpecial
-hi! link vimSynMtchOpt OldSpecial
+" Additionnal types
+syn match vimBoolean  /\vv:(true|false)/ containedin=ALL contained
+syn match vimNull     /v:null/           containedin=ALL contained
 
+
+" &option vars
+syn match vimOptionVar /\v\&([gwl]:)?\h[a-zA-Z0-9#_]*>/ contains=vimOption,vimOnlyOption,vimTermOption,vimFTOption contained
+syn keyword vimLet nextgroup=vimVar,vimFuncVar,vimOptionVar,vimFBVar skipwhite let le
+
+syn clear vimMapRhs
+syn match vimMapRhs	contained ".*" contains=vimNotation,vimCtrlChar,vimFunc	skipnl nextgroup=vimMapRhsExtend
+
+" nofold cluster groups {{{
 " define groups that cannot contain the start of a fold
-syn cluster vimNoFold contains=vimComment,vimLineCOmment,vimCommentString,vimString,vimSynKeyRegion,vimSynRegPat,vimPatRegion,vimMapLhs,vimOperParen,@EmbeddedScript
-syn cluster vimEmbeddedScript contains=vimMzSchemeRegion,vimTclRegion,vimPythonRegion,vimRubyRegion,vimPerlRegion
-" fold while loops
+
+syn cluster vimNoFold contains=vimComment,vimLineComment,vimString,
+            \vimSynKeyRegion,vimSynRegPat,vimPatRegion,vimMapLhs,
+            \@EmbeddedScript
+syn cluster vimEmbeddedScript contains=vimMzSchemeRegion,vimTclRegion,vimPythonRegion,
+            \vimRubyRegion,vimPerlRegion
+"}}}
+" fold markers {{{
+" syn region vimFoldMarker
+      " \ start="\v\{{3}"
+      " \ end="\v}{3}"
+      " \ transparent fold
+      " \ containedin=ALL
+      " \ contains=ALL
+      " \ keepend
+"}}}
+
+" fold while loops"{{{
 syn region vimFoldWhile
       \ start="\<wh\%[ile]\>"
       \ end="\<endw\%[hile]\>"
@@ -42,19 +58,23 @@ syn region vimFoldWhile
       \ keepend extend
       \ containedin=ALLBUT,@vimNoFold
       \ skip=+"\%(\\"\|[^"]\)\{-}\%("\|$\)\|'[^']\{-}'+ "comment to fix highlight on wiki'
-" fold for loops
+"}}}
+" fold for loops"{{{
 syn region vimFoldFor
-      \ start="\v<for>%(\s*\n\s*\\)?\s*.+%(\s*\n\s*\\\s*)?\s*<in>"
+      \ matchgroup=Repeat
+      \ start="\v<for>\ze%(\s*\n\s*\\)?\s*.+%(\s*\n\s*\\\s*)?\s*<in>"
       \ end="\<endfo\%[r]\>"
       \ transparent fold
       \ keepend extend
       \ containedin=ALLBUT,@vimNoFold
+      \ nextgroup=vimVar,vimFuncVar,vimOptionVar,vimFBVar
       \ skip=+"\%(\\"\|[^"]\)\{-}\%("\|$\)\|'[^']\{-}'+ "comment to fix highlight on wiki'
-
-" fold if...else...endif constructs
+"}}}
+" fold if...else...endif constructs"{{{
 " note that 'endif' has a shorthand which can also match many other end patterns
 " if we did not include the word boundary \> pattern, and also it may match
 " syntax end=/pattern/ elements, so we must explicitly exclude these
+
 syn region vimFoldIfContainer
       \ start="\<if\>"
       \ end="\<en\%[dif]\>=\@!"
@@ -89,8 +109,8 @@ syn region vimFoldElse
       \ contained containedin=vimFoldIfContainer
       \ contains=TOP
       \ skip=+"\%(\\"\|[^"]\)\{-}\%("\|$\)\|'[^']\{-}'+ "comment to fix highlight on wiki'
-
-" fold try...catch...finally...endtry constructs
+"}}}
+" fold try...catch...finally...endtry constructs"{{{
 syn region vimFoldTryContainer
       \ start="\<try\>"
       \ end="\<endt\%[ry]\>"
@@ -125,17 +145,69 @@ syn region vimFoldFinally
       \ contained containedin=vimFoldTryContainer
       \ contains=TOP
       \ skip=+"\%(\\"\|[^"]\)\{-}\%("\|$\)\|'[^']\{-}'+ "comment to fix highlight on wiki'
+"}}}
+
+" syn region vimOperParen
+            " \ matchgroup=vimSep
+            " \ start="{" end="}"
+            " \ contains=@vimOperGroup
+            " \ nextgroup=vimVar,vimFuncVar,vimOptionVar,vimFBVar
+            " \ fold
+
+" Highlight links {{{
+
+hi! link vimFunc       Function
+" hi! link vimUserFunc   Function
+hi! link vimOption     Control
+
+hi! link vimScriptVar  Identifier
+hi! link vimEnvvar     Special
+hi! link vimOptionVar  PredefinedIdentifier
+
+hi! link vimLet        StorageClass
+hi! link vimCommand    Statement
+hi! link vimCmdSep     SpecialChar
+
+hi! link vimOper       fg_lightblue
+
+hi! link vimHiBang     vimOper
+hi! link vimHiAttrib   Control
+
+hi! link vimMapModKey  Special
+hi! link vimMapMod     SpecialDelimiter
+
+hi! link vimNotation   vimSpecial
+hi! link vimContinue   vimSpecial
+hi! link vimSynRegPat  Regexp
+hi! link vimSynRegOpt  vimSpecial
+hi! link vimSynKeyOpt  vimSpecial
+
+hi! link vimAutoCmdSfxList String
+
+hi! link vimAutoEventList Type
+hi! link vimAutoEvent Type
+hi! link nvimAutoEvent Type
+
+" hi! link vimSynMtchOpt vimSpecial
+hi! link vimBoolean    Boolean
+hi! link vimNull       Constant
+"}}}
 
 let s:bg = hi#bg('Normal')
-if (s:bg[0] != '#')
-    let s:bg = '#353535' | end
+let s:bg = (s:bg[0] != '#') ? '#353535' : s:bg
 
-let s:hl_bg = color#Lighten(s:bg, 35)
-"if str2nr(s:bg[1:], 16) < 0x888888 | silent | else | let s:hl_bg = color#Darken(s:bg,  35) | end
-call hi#('vimAutoGroupTag',      hi#fg('Type'),       s:hl_bg, 'none')
-call hi#('vimCommandTag',        hi#fg('Statement'),  s:hl_bg, 'none')
-call hi#('vimFuncNameTag',       hi#fg('Function'),   s:hl_bg, 'none')
-call hi#('vimScriptFuncNameTag', hi#fg('StaticFunc'), s:hl_bg, 'none')
+if str2nr(s:bg[1:], 16) < 0x888888
+    let s:hl_bg = color#Lighten(s:bg, 35)
+else
+    let s:hl_bg = color#Darken(s:bg,  35) | end
 
-syn region	vimOperParen	matchgroup=vimSep	start="{" end="}" contains=@vimOperGroup nextgroup=vimVar,vimFuncVar fold
+call hi#('vimAutoGroupTag',       hi#fg('Type'),       s:hl_bg, 'none')
+call hi#('vimCommandTag',         hi#fg('Statement'),  s:hl_bg, 'none')
+call hi#('vimFuncNameTag',        hi#fg('Function'),   s:hl_bg, 'none')
+call hi#('vimScriptFuncNameTag',  hi#fg('StaticFunc'), s:hl_bg, 'none')
+
+call hi#('vimUserFunc',           hi#fg('Type'),       '',      'bold')
+
+" syn sync linecont	"^\s\+\\"
+
 

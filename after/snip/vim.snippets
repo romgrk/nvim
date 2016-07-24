@@ -27,15 +27,11 @@ def complete(t, opts):
 endglobal
 
 # SCRIPTING META
+
 snippet so "!::source" b
-" !::exe [so %]
+" !::exe [So]
 endsnippet
-snippet fileinfo "File header"
-" File: `!v expand('%:t') `
-" Author: romgrk
-" Date: `!v system("date '+%d %b %Y'")`
-" Description: ${1:here}
-endsnippet
+
 snippet guard "script reload guard" b
 if exists('${1:did_`!p snip.rv = snip.fn.replace('.','_')`}')
 	finish

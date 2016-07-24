@@ -1,21 +1,86 @@
-# Lang
+#==============================================================================
+# File: typescript.snippets
+# Author: romgrk
+# Date: 04 Jun 2016
+# Description: here
+#==============================================================================
+
+#==========
+# Imports:
+#==========
+
+snippet ref "ref" b
+/// <reference path='${1:.}/$0' />
+endsnippet
+
+
+snippet ex "export" b
+export ${1:default }$0
+endsnippet
+
+
+#===========
+# Language:
+#===========
+
+snippet if "if" b
+if (${1:expr}) ${2:{
+	$0;
+}}
+endsnippet
+
+
+#=============
+# Structures:
+#=============
+
+snippet i "interface" b
+interface ${1:Name}${2:{
+	$0
+}}
+endsnippet
+
+
+# Declarations: Member properties
+
+snippet m: "member: declaration;" b
+${1:member}: ${2:undefined};
+endsnippet
+
+snippet + "public member" b
+public ${1:member}: ${2:undefined};
+endsnippet
+
+snippet - "private member" b
+private ${1:member}: ${2:undefined};
+endsnippet
+
+snippet : "protected member" b
+protected ${1:member}: ${2:undefined};
+endsnippet
+
+
+
+
+# Lang:
 
 snippet fu "function name (args) {}" b
-function ${1:name} (${2:argument${3:: Type}}) {
-}
+function ${1:name} (${2:argument${3:: Type}}) {$0}
 endsnippet
 
 snippet f "method (args) {}" b
 ${1:name} (${2:argument${3:: Type}}) {$0}
 endsnippet
 
-snippet l "console.log"
-console.log(${1:'${2:value}'});
+snippet - "private" b
+private $0
 endsnippet
 
-snippet ref "ref" b
-/// <reference path='${1:.}/$0' />
+snippet + "public" b
+public $0
 endsnippet
+
+
 
 snippet le "let val = ..." b
 let ${1:{${2:name}}} = ${3:this.${4:val}};
@@ -42,9 +107,14 @@ endsnippet
 
 # General
 
+snippet l "console.log"
+console.log(${1:'${2:value}'});
+endsnippet
+
 snippet ld "debug(...)" b
 log.debug("$0");
 endsnippet
+
 
 # General HTML
 
@@ -56,3 +126,6 @@ snippet e "doc.createElement" b
 document.createElement('${1:div}')
 endsnippet
 
+snippet div "doc.createElement"
+document.createElement('${1:div}')
+endsnippet
