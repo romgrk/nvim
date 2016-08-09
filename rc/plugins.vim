@@ -4,19 +4,6 @@
 " Last: 5 April 2016
 " !::exe [so %]
 
-
-let NERDTreeIgnore=['__pycache__[[dir]]', '.o$[[file]]']
-
-let zv_file_types = {
-\   'html'             : 'html,css,javascript',
-\   'css'              : 'css,html,javascript',
-\   'python'           : 'python 3',
-\   'javascript'       : 'javascript,nodejs',
-\   'typescript'       : 'typescript,javascript,html',
-\   '^(G|g)ulpfile\.'  : 'gulp,javascript,nodejs',
-\   'help'             : 'vim',
-\ }
-
 "=============================================================================
 " Paths                                                                      {{{
 
@@ -49,6 +36,7 @@ let session_autoload = 'yes'
 let session_autosave = 'yes'
 let session_autosave_silent = 1
 let session_autosave_periodic = 1
+let session_lock_enabled = 0
 
 if !exists('g:session')
     let g:session = {} | end
@@ -131,10 +119,32 @@ let fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
 let ctrlp_buftag_ctags_bin = '/usr/local/bin/ctags'
 
 let ctrlp_buftag_types = {
-\ 'typescript':
-    \ '--language-force=typescript ' .
-    \ '--typescript-types=niecamfpt' }
+\ 'typescript': '--language-force=typescript --typescript-types=niecamfpt',
+\ 'css':        '--language-force=css --css-types=tic',
+\ 'scss':       '--language-force=scss --scss-types=vmtic',
+\ }
 
+let g:tagbar_type_css = {
+    \ 'ctagsbin' : 'ctags',
+    \ 'ctagsargs' : '--file-scope=yes -o - ',
+    \ 'kinds' : [
+        \ 'c:classes:1:0',
+        \ 'i:ids:1:0',
+        \ 't:tags:1:0',
+    \ ],
+\ }
+
+let g:tagbar_type_scss = {
+    \ 'ctagsbin' : 'ctags',
+    \ 'ctagsargs' : '--file-scope=yes -o - ',
+    \ 'kinds' : [
+        \ 'v:variables:1:0',
+        \ 'm:mixins:1:0',
+        \ 'c:classes:1:0',
+        \ 'i:ids:1:0',
+        \ 't:tags:1:0',
+    \ ],
+\ }
 let g:tagbar_type_c = {
     \ 'ctagsbin' : 'ctags',
     \ 'ctagsargs' : '--file-scope=yes -o - ',
@@ -196,8 +206,6 @@ let easytags_languages = {
 let colorizer_maxlines = -1
 let colorizer_startup  = 0
 
-let used_javascript_libs = ''
-
 if exists('*unite#custom#profile')
     call unite#custom#profile('default', 'context', {
     \   'start_insert': 0,
@@ -205,6 +213,16 @@ if exists('*unite#custom#profile')
     \   'direction': 'botright',
     \ })
 end
+
+let zv_file_types = {
+\   'html'             : 'html,css,javascript',
+\   'css'              : 'css,html,javascript',
+\   'python'           : 'python 3',
+\   'javascript'       : 'javascript,nodejs',
+\   'typescript'       : 'typescript,javascript,html',
+\   '^(G|g)ulpfile\.'  : 'gulp,javascript,nodejs',
+\   'help'             : 'vim',
+\ }
 
 
 " }}}1

@@ -549,23 +549,6 @@ endfunc
 function! Today()
     return strftime("%e %B %Y")
 endfunc
-function! LastMod()
-    let saved_pos = getpos('.')
-    let saved_ei = &ei
-    let &ei = 'all'
-
-    call cursor(1, 1)
-
-    let max_line = (line("$") > 20) ? 20 : line("$")
-    let res = search('\v\c(((Date)|(Last [Mm]odified)):\s*)@<=.*', '', max_line)
-    if (res != 0)
-        Pp getpos('.')
-        ":s//\= Today() /
-        exe ':substitute//' . strftime("%e %B %Y") . ' ' . Now() '/'
-    end
-    "call setpos('.', saved_pos)
-    let &ei = saved_ei
-endfun
 
 " Random color
 function! RandomColor () abort

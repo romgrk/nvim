@@ -22,7 +22,7 @@ command! -nargs=1 -complete=highlight  GotoHi  call <SID>goto('hi '.<q-args>)
 function! s:goto (str)
     let str = substitute(a:str, '\v[()]', '', 'g')
 
-    silent! let out = capture('verbose ' . str)
+    silent! let out = execute('verbose ' . str)
 
     let lastset = matchstr(out, 'Last set from \zs\f\+')
 

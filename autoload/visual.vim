@@ -1,5 +1,3 @@
-
-
 " credits: xolox
 function! visual#GetText()
     " Why is this not a built-in Vim script function?!

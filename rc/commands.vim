@@ -37,6 +37,8 @@ command! -bar -nargs=* -range                         HlClear     match None
 command! -bar -nargs=* -range   -complete=highlight   HlLine      match <args> /\v%<line1>l\_.*%<line2>l/
 command! -bar -nargs=* -range=0 -complete=highlight   HlChar      match <args> /\v%#./
 
+command! -bar -nargs=1 -complete=highlight Fullfill Pp hi#fullfill(<q-args>)
+
 "command! -bar ConcealLeadingSP :let _leading_sp = matchadd('Conceal', '\v(^\s*)@<=\s', 0, -1, {'conceal': '·'})
 "command! -bar ClearLeadingSP   :if matchdelete(get(g:, '_leading_sp')) == -1 | call clearmatches() | end
 

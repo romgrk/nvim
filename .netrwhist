@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/romgrk/.config/nvim/bundle/vim-cpp-enhanced-highlight/after'
 let g:netrw_dirhist_2='/home/romgrk/.config/nvim/bundle/vim-cpp-enhanced-highlight/after/syntax'
 let g:netrw_dirhist_3='/home/romgrk/.config/nvim/bundle/vim-cpp-enhanced-highlight'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/romgrk/demo/gtk'
 let g:netrw_dirhist_5='/home/romgrk/.config/nvim/bundle/targets.vim/autoload/targets'
 let g:netrw_dirhist_6='/home/romgrk/node_modules/d'
 let g:netrw_dirhist_7='/home/romgrk/demo/js'
+let g:netrw_dirhist_8='/home/romgrk/.config/nvim'

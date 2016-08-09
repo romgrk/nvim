@@ -6,6 +6,7 @@ hi! link cBang b_pink
 setlocal foldmethod=syntax
 
 nnoremap <silent><buffer> gh  :call ToggleHeader()<CR>
+if !exists('*ToggleHeader')
 function! ToggleHeader ()
     if expand('%:e') == 'h'
         let fname = expand('%<') . '.cc'
@@ -26,3 +27,4 @@ function! ToggleHeader ()
         end
     end
 endfu
+end

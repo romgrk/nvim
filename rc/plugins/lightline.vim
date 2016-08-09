@@ -4,135 +4,6 @@
 " Date: 10 Sep 2015
 " ::exe [so % | call lightline#init() | call lightline#colorscheme()]
 
-augroup TabLine
-    au!
-    au BufNew,BufDelete       * call TabLineUpdate()
-    au BufWinEnter,BufEnter   * call TabLineUpdate()
-    au BufWritePost           * call TabLineUpdate()
-    au TabEnter,TabNewEntered * call TabLineUpdate()
-augroup END
-
-" Dictionnaries
-let s:L = {
-\ 'colorscheme':          'jellybeans',
-\ 'separator':            { 'left': '', 'right': '' },
-\ 'subseparator':         { 'left': '', 'right': '' },
-\ 'tabline_separator':    { 'left': '▎', 'right': '' },
-\ 'tabline_subseparator': { 'left': '', 'right': '' },
-\ 'enable':               { 'tabline': 0, 'statusline': 1, },
-\ 'tab':                  { 'active':   [ 'filename', 'modified' ],
-\                           'inactive': [ 'filename', 'modified' ], },
-\ }
-let s:L.tab_component_function = {
-\     'modified':  'ModifiedFlag',
-\     'session':   'SessionLine',
-\ }
-let s:L.mode_map = {
-\ 'c' :      ':',     '?':       '?',     't' :      'T',
-\ 'n' :      'N',     'v' :      '<',     's' :      'S',
-\ 'i' :      'I',     'V' :      'V',     'S' :      'S',
-\ 'R' :      'R',     "\<C-v>":  '^',     "\<C-s>":  'S', } "                }}}
-"let s:L.component = {
-"\     'percent':      'FilePercentFlag',
-let s:L.component_function = {
-\     'ctrlpmark':    'CtrlPMark',
-\     'diff':         'CurrentDiff',
-\     'fileformat':   'FileformatFlag',
-\     'filetype':     'SL_filetype',
-\     'fugitive':     'FugitiveHead',
-\     'github':       'GithubFlag',
-\     'icon':         'lightline#icon',
-\     'inactiveHead': 'SL_Inactive',
-\     'modified':     'ModifiedFlag',
-\     'nameHL':       'StatuslineNameHL',
-\     'name':         'StatuslineName',
-\     'readonly':     'ROFlag',
-\     'relativePath': 'LightLineRelativePath',
-\     'space':        'SlSpace',
-\     'syntastic':    'SyntasticStatuslineFlag',
-\     'tag':          'SL_tag',
-\ }
-let s:L.component_expand = {
-\     'buffers':      'BufferLine',
-\     'filehead':     'FileHead',
-\     'tableft':      'TablineLeft',
-\ }
-let s:L.component_type = {
-\     'tableft':   'warning',
-\     'icon':       'icon',
-\     'modified':   'warning',
-\     'syntastic':  'warning',
-\ }
-
-" Statusline                                                                 {{{
-let s:L.active = {
-    \ 'left' : [ [ 'fugitive', 'nameHL', 'modified', 'readonly', ],
-    \            [ 'tag', 'ctrlpmark'                  ],
-    \            [ 'space',                            ], ],
-    \ 'right': [ [ 'percent' ],
-    \            [ 'name',   ],
-    \            [ 'github', ], ], }
-"let s:L.inactive = {
-    "\ 'right': [ [ 'percent'  ],
-    "\            [ 'github', 'readonly'  ],
-    "\             ]
-    "\} "                                                                    }}}
-let s:L.tabline = {
-    \ 'left': [ [ 'tabs' ] ],
-    \ 'right': [ [ 'session' ] ] , }
-
-let g:lightline = s:L
-
-function! SlSpace()
-    if !&buflisted
-        return ""
-    end
-    if exists("g:space")
-        let type = GetSpaceType()
-        let cmd = GetSpaceMovement()
-        return cmd
-    end
-
-    return ''
-endfunc
-function! CtrlPMark()
-  if expand('%:t') =~ 'ControlP'
-    call lightline#link('nR'[g:lightline.ctrlp_regex])
-    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
-          \ , g:lightline.ctrlp_next], 0)
-  else
-    return ''
-  endif
-endfunction
-let ctrlp_status_func = { 'main': 'CtrlPStatusFunc_1',
-                        \ 'prog': 'CtrlPStatusFunc_2', }
-function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked, ...)
-    let g:lightline.ctrlp_focus = a:focus
-    let g:lightline.ctrlp_byfname = a:byfname
-    let g:lightline.ctrlp_regex = a:regex
-    let g:lightline.ctrlp_prev = a:prev
-    let g:lightline.ctrlp_item = a:item
-    let g:lightline.ctrlp_next = a:next
-    let g:lightline.ctrlp_marked = a:marked
-    return lightline#statusline(0)
-endfunction
-function! CtrlPStatusFunc_2(str)
-    return lightline#statusline(0)
-endfunction
-let tagbar_status_func = 'TagbarStatusFunc'
-function! TagbarStatusFunc(current, sort, fname, flags, ...) abort
-    let colour = a:current ? '%#StatusLine#' : '%#StatusLineNC#'
-    let flagstr = join(a:flags, '')
-    if flagstr != ''
-        let flagstr = '[' . flagstr . '] '
-    endif
-    let g:lightline.tagb_current = a:current
-    let g:lightline.tagb_sort = a:sort
-    let g:lightline.tagb_fname = a:fname
-    let g:lightline.tagb_flags = a:flags
-    return colour . a:fname . ' [sorted by ' . a:sort . '] ' . flagstr
-endfunction
-
 fu! s:hl (...)
     let str = '%#' . a:1 . '#'
     if a:0 > 1
@@ -268,19 +139,6 @@ fu! Tabpages ()
     return tabpart
 endfu
 
-function! lightline#mode()
-  let fname = expand('%:t')
-  return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
-        \ fname == '__Gundo__' ? 'Gundo' :
-        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
-        \ winwidth(0) > 60 ? s:L.mode_map[mode()] : ''
-endfunction
-
 fu! GetTerminalTitle ()
     let title = get(b:, 'term_title', 0)
     if empty(title)
@@ -313,7 +171,6 @@ fu! GetTerminalDecoration()
     endfor
     return join(deco, ' ')
 endfu
-
 fu! IsGit (dir)
     let res = system('cd ' . a:dir . ' && git show-branch')
     return (res !~? '^fatal')
@@ -330,29 +187,12 @@ fu! s:gitBranch (dir)
     end
     return ''
 endfu
-
-" FIXME
-fu! lightline#icon ()
-    if &bt ==# 'terminal'
-        return '' | end
-    if &previewwindow
-        return '' | end
-    if &ft ==# 'vimfiler'
-        let branch = s:gitBranch(b:vimfiler.current_dir)
-        if strlen(branch)
-            return branch . ' '
-        else
-            return Icon('dir') | end
-    end
-    if &ft ==# 'unite'
-        return ' ' | end
-    if &ft ==# 'help'
-        return '' | end
-
-    let i = FtIcon(expand('%'))
-    return len(i) ? i : ''
+fu! s:basename (a)
+    let p = (a:a[-1:]=='/')
+            \? a:a[0:-2]
+            \: a:a
+    return fnamemodify(p, ':t')
 endfu
-
 fu! CurrentDiff()
     if &bt == 'terminal'
         return '' | end
@@ -382,7 +222,6 @@ fu! CurrentDiff()
     end
     return lightline#concatenate(diff, 1)
 endfu
-
 fu! SL_tag()
 
     if &bt ==# 'terminal' | return '' | end
@@ -397,31 +236,7 @@ fu! SL_tag()
     else
         return ''
     end
-    "let cword = expand('<cword>')
-    "let tags = taglist('^' . cword . '$')
-    "let res = ' '
-    "if len(tags) > 0
-        "let tag = tags[0]
-        "if exists('tag["name"]')
-            "if tag['name'] ==# cword && get(tags[0], 'language', '') ==? b:current_syntax
-                ""redraw
-                ""call EchonHL('TextSpecial', tags[0]['cmd'])
-                ""call EchonHL('Comment', string(tags[0]))
-                "let res = tag["kind"] . ':' . tag["name"]
-                "if exists('tag["type"]')
-                    "let res = res . ': ' . tag['type']
-                "end
-                "return res
-            "end
-        "end
-    "end
-    ""if len(res) < 15
-        ""let res = res . repeat(' ', 15 - len(res))
-    ""endif
-    ""let ct = tagbar#currenttag('%s','', 'sf')
-    "return res
 endfu
-
 fu! GithubFlag ()
     "if exists('b:github')
         "return b:github | end
@@ -433,7 +248,6 @@ fu! GithubFlag ()
 
     return b:github
 endfu
-
 fu! FileHead()
     if &ft ==? 'vimfiler'
         return '' | end
@@ -455,30 +269,6 @@ fu! FileHead()
 
     return ''
 endfu
-fu! LightLineRelativePath ()
-    if &bt ==? 'terminal' | return '' | end
-    if buf#ispanel()      | return '' | end
-
-    let file = bufname('%')
-    let path = fnamemodify(file, ':.:h')
-    if path ==# '.'
-        return '' | end
-    let hpath = fnamemodify(file, ':~:h')
-    if len(hpath) < len(path)
-        let tokens = split(hpath, '/')[1:]
-    else
-        let tokens = split(path, '/')
-    endif
-    return lightline#concatenate(tokens, 0)
-endfunc
-
-fu! s:basename (a)
-    let p = (a:a[-1:]=='/')
-            \? a:a[0:-2]
-            \: a:a
-    return fnamemodify(p, ':t')
-endfu
-
 fu! StatuslineNameHL () abort
     let fname = expand('%:t')
     return  fname == 'ControlP' ? 'ControlP' :
@@ -507,7 +297,6 @@ fu! StatuslineName () abort
     "return GetTerminalDecoration() | end
     "if &ft ==# 'vimfiler' return s:basename(b:vimfiler.current_dir)
 endfu
-
 fu! ModifiedFlag(...)
     if (a:0)
         let tab = a:1
@@ -522,12 +311,10 @@ fu! ROFlag()
     if get(b:, 'panel', 0) | return '' | end
     return &readonly ? '' : '' "
 endfu
-
 fu! FugitiveHead()
     let _ = fugitive#head()
     return strlen(_) ? _.' ' : ''
 endfu
-
 fu! FileformatFlag()
     if buf#ispanel()
         return '' | end
@@ -538,7 +325,6 @@ fu! FileformatFlag()
     \}
     return formatIcons[&fileformat]
 endfunction
-
 fu! SL_filetype()
     if &bt ==? 'terminal' | return '' | end
     if &ft ==? 'vimfiler' | return '' | end
@@ -558,7 +344,6 @@ fu! SL_Inactive ()
 
     return bufnr('%')
 endfu
-
 fu! FilePercentFlag()
     if &ft ==? 'vimfiler' | return ''                 | end
     if &bt ==? 'terminal' | return b:terminal_job_pid | end
@@ -571,6 +356,172 @@ endfunc
 if (!get(g:, 'lightline_highlight', 0))
     finish
 end
+
+let tagbar_status_func = 'TagbarStatusFunc'
+function! TagbarStatusFunc(current, sort, fname, flags, ...) abort
+    let colour = a:current ? '%#StatusLine#' : '%#StatusLineNC#'
+    let flagstr = join(a:flags, '')
+    if flagstr != ''
+        let flagstr = '[' . flagstr . '] '
+    endif
+    let g:lightline.tagb_current = a:current
+    let g:lightline.tagb_sort = a:sort
+    let g:lightline.tagb_fname = a:fname
+    let g:lightline.tagb_flags = a:flags
+    return colour . a:fname . ' [sorted by ' . a:sort . '] ' . flagstr
+endfunction
+
+function! SlSpace()
+    if !&buflisted
+        return ""
+    end
+    if exists("g:space")
+        let type = GetSpaceType()
+        let cmd = GetSpaceMovement()
+        return cmd
+    end
+    return ''
+endfunc
+function! CtrlPMark()
+  if expand('%:t') =~ 'ControlP'
+    call lightline#link('nR'[g:lightline.ctrlp_regex])
+    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+          \ , g:lightline.ctrlp_next], 0)
+  else
+    return ''
+  endif
+endfunction
+let ctrlp_status_func = { 'main': 'CtrlPStatusFunc_1',
+                        \ 'prog': 'CtrlPStatusFunc_2', }
+function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked, ...)
+    let g:lightline.ctrlp_focus = a:focus
+    let g:lightline.ctrlp_byfname = a:byfname
+    let g:lightline.ctrlp_regex = a:regex
+    let g:lightline.ctrlp_prev = a:prev
+    let g:lightline.ctrlp_item = a:item
+    let g:lightline.ctrlp_next = a:next
+    let g:lightline.ctrlp_marked = a:marked
+    return lightline#statusline(0)
+endfunction
+function! CtrlPStatusFunc_2(str)
+    return lightline#statusline(0)
+endfunction
+
+" Dictionnaries
+let s:L = {
+\ 'colorscheme':          'jellybeans',
+\ 'separator':            { 'left': '', 'right': '' },
+\ 'subseparator':         { 'left': '', 'right': '' },
+\ 'tabline_separator':    { 'left': '▎', 'right': '' },
+\ 'tabline_subseparator': { 'left': '', 'right': '' },
+\ 'enable':               { 'tabline': 0, 'statusline': 1, },
+\ 'tab':                  { 'active':   [ 'filename', 'modified' ],
+\                           'inactive': [ 'filename', 'modified' ], },
+\ }
+let s:L.tab_component_function = {
+\     'modified':  'ModifiedFlag',
+\     'session':   'SessionLine',
+\ }
+let s:L.mode_map = {
+\ 'c' :      ':',     '?':       '?',     't' :      'T',
+\ 'n' :      'N',     'v' :      '<',     's' :      'S',
+\ 'i' :      'I',     'V' :      'V',     'S' :      'S',
+\ 'R' :      'R',     "\<C-v>":  '^',     "\<C-s>":  'S', } "                }}}
+"let s:L.component = {
+"\     'percent':      'FilePercentFlag',
+let s:L.component_function = {
+\     'ctrlpmark':    'CtrlPMark',
+\     'diff':         'CurrentDiff',
+\     'fileformat':   'FileformatFlag',
+\     'filetype':     'SL_filetype',
+\     'fugitive':     'FugitiveHead',
+\     'github':       'GithubFlag',
+\     'icon':         'lightline#icon',
+\     'inactiveHead': 'SL_Inactive',
+\     'modified':     'ModifiedFlag',
+\     'nameHL':       'StatuslineNameHL',
+\     'name':         'StatuslineName',
+\     'readonly':     'ROFlag',
+\     'relativePath': 'LightLineRelativePath',
+\     'space':        'SlSpace',
+\     'syntastic':    'SyntasticStatuslineFlag',
+\     'tag':          'SL_tag',
+\ }
+let s:L.component_expand = {
+\     'buffers':      'BufferLine',
+\     'filehead':     'FileHead',
+\     'tableft':      'TablineLeft',
+\ }
+let s:L.component_type = {
+\     'tableft':   'warning',
+\     'icon':       'icon',
+\     'modified':   'warning',
+\     'syntastic':  'warning',
+\ }
+" Statusline                                                                 {{{
+let s:L.active = {
+    \ 'left' : [ [ 'fugitive', 'nameHL', 'modified', 'readonly', ],
+    \            [ 'tag', 'ctrlpmark'                  ],
+    \            [ 'space',                            ], ],
+    \ 'right': [ [ 'percent' ],
+    \            [ 'name',   ],
+    \            [ 'github', ], ], }
+let s:L.tabline = {
+    \ 'left': [ [ 'tabs' ] ],
+    \ 'right': [ [ 'session' ] ] , }
+let g:lightline = s:L
+
+
+function! lightline#mode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == 'ControlP' ? 'CtrlP' :
+        \ fname == '__Gundo__' ? 'Gundo' :
+        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimshell' ? 'VimShell' :
+        \ winwidth(0) > 60 ? s:L.mode_map[mode()] : ''
+endfunction
+
+fu! LightLineRelativePath ()
+    if &bt ==? 'terminal' | return '' | end
+    if buf#ispanel()      | return '' | end
+
+    let file = bufname('%')
+    let path = fnamemodify(file, ':.:h')
+    if path ==# '.'
+        return '' | end
+    let hpath = fnamemodify(file, ':~:h')
+    if len(hpath) < len(path)
+        let tokens = split(hpath, '/')[1:]
+    else
+        let tokens = split(path, '/')
+    endif
+    return lightline#concatenate(tokens, 0)
+endfunc
+
+fu! lightline#icon ()
+    if &bt ==# 'terminal'
+        return '' | end
+    if &previewwindow
+        return '' | end
+    if &ft ==# 'vimfiler'
+        let branch = s:gitBranch(b:vimfiler.current_dir)
+        if strlen(branch)
+            return branch . ' '
+        else
+            return Icon('dir') | end
+    end
+    if &ft ==# 'unite'
+        return ' ' | end
+    if &ft ==# 'help'
+        return '' | end
+
+    let i = FtIcon(expand('%'))
+    return len(i) ? i : ''
+endfu
 
 let palette = {
             \ 'normal': {}, 'inactive': {}, 'insert': {},

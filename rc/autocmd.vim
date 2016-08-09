@@ -2,7 +2,7 @@
 " Author: romgrk
 " Description:
 " Last Modified:  5 May 2016
-" Exec: !::exe [source %]
+" Exec: !::exe [So]
 
 exe 'augroup RC'
     au!
@@ -11,40 +11,49 @@ exe 'augroup RC'
     au VimLeave *  SaveSession!
     au QuitPre  *  SaveSession!
 
+    au SessionLoadPost * SourceLocalVimrc
+
+    " Save/load current view
+    "au VimLeave ?* mkview!
+    "au VimEnter ?* silent loadview
+
     " Jump back at last pos
     au BufReadPost * call RestorePosition()
-
     " Close list
     au BufDelete   * call StoreBuffer(expand('<afile>'))
 
-    " Save/load current vim state when exiting/opening a file
-    " au VimLeave ?* mkview!
-    " au VimEnter ?* silent loadview
+    " Terminal
+    if has('nvim')
+    au TermOpen * setfiletype terminal
+    au TermOpen * au BufEnter <buffer=abuf> startinsert
+    end
 
-    " Cursor line&column
-    au WinLeave * setlocal nocursorline
-    au WinLeave * setlocal nocursorcolumn
+    " Cmdwin in ./cmdwin.vim
+
+
+    " Styling listeners:
+
+    " Modified-buffer styling
+    au BufReadPost,BufNewFile * call BufferReadHandler()
+
+    " CursorLine & CursorColumn
+    au WinLeave * setlocal nocursorline nocursorcolumn
     au WinEnter * let &l:cul = &g:cul
     au WinEnter * let &l:cuc = &g:cuc
+
+    " Colors
+    au FileType css,scss,sass,less call colorizer#ColorHighlight(1)
+
 
     " Preview
     au BufWinEnter * if &previewwindow | call PreviewOpen()  | end
     au WinEnter    * if &previewwindow | call PreviewEnter() | end
     au WinLeave    * if &previewwindow | call PreviewLeave() | end
 
-    " Terminal
-    au TermOpen * setfiletype terminal
-    au TermOpen * au BufEnter <buffer=abuf> startinsert
-
-    " Cmdwin in ./cmdwin.vim
-
     " QuickFix
-    au QuickFixCmdPost [^l]* cwindow | call QuickFixOpen('c')
-    au QuickFixCmdPost    l* lwindow | call QuickFixOpen('l')
-
-    "au BufReadPost quickfix  setlocal modifiable
-                         "\ | silent exe 'g/^/s//\=line(".")." "/'
-                         "\ | setlocal nomodifiable
+    au QuickFixCmdPost [^l]* call QuickFixOpen('c')
+    au QuickFixCmdPost    l* call QuickFixOpen('l')
+    au BufReadPost quickfix  call QuickFixEnter()
 
     " Auto-Bookmarks
     au FileType help          call BookmarkLastHelp()
@@ -52,21 +61,22 @@ exe 'augroup RC'
     au BufLeave ~/notes/*.txt let session.lastnote = @%
 
     " Filetype-specific autocommands:
-    "au BufWritePre,FileWritePre *.file  ks|call LastMod()|'s
-    "au BufWritePre,FileWritePre *.vim   ks|call LastMod()|'s
-    "au BufReadPost,BufNewFile package.json  Vison package.json
+    au BufNewFile,BufReadPost .babelrc setfiletype json
+    au BufNewFile,BufReadPost .tern-project setfiletype json
 
+    "au BufWritePre,FileWritePre *.vim   ks|call LastMod()|'s
     au BufReadPost,BufNewFile * if (&omnifunc == "")
                              \|     setlocal omnifunc=syntaxcomplete#Complete
                              \| end
-
-    " Colors
-    au FileType    css      call colorizer#ColorHighlight(1)
-    au FileType    sass     call colorizer#ColorHighlight(1)
-    au FileType    scss     call colorizer#ColorHighlight(1)
-    au FileType    less     call colorizer#ColorHighlight(1)
-
 exe 'augroup END'
+
+augroup TabLine
+    au!
+    au BufNew,BufDelete       * call TabLineUpdate()
+    au BufWinEnter,BufEnter   * call TabLineUpdate()
+    au BufWritePost           * call TabLineUpdate()
+    au TabEnter,TabNewEntered * call TabLineUpdate()
+augroup END
 
 augroup DeleteTrailingWS
     au!

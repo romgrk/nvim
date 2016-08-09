@@ -1,7 +1,8 @@
 setlocal foldmethod=syntax
 
-let b:javascript_fold = 1
-let b:used_javascript_libs = 'underscore,jquery'
+let jsx_ext_required        = 0 " Allow JSX in normal JS files
+let javascript_plugin_jsdoc = 1
+
 " let b:used_javascript_libs = ''
 
 nmap <buffer> --d   i/***/<Left><Left><CR>
@@ -23,4 +24,6 @@ if !filereadable('.tern-project')
     silent !cp ~/templates/tern-project .tern-project
     Warn 'Created ' . fnamemodify('.tern-project', ':p')
 end
+
+vnoremap <buffer>[Space]var :call js#ExtractLocalVariable()<CR>
 

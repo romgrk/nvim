@@ -1,7 +1,6 @@
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
-priority -50
 
 snippet def "#define ..."
 #define ${1}
@@ -84,14 +83,35 @@ struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`} {
 };
 endsnippet
 
-snippet fun "function" b
-${1:void} ${2:function_name}(${3})
-{
+snippet "(s)?([vcilfd])(p)?" "[static] function" br
+`!p
+if match.group(1):
+	 snip.rv = 'static '
+else:
+	 snip.rv = ''
+``!p
+c_types = {
+	'v': 'void',
+	'c': 'char',
+	'i': 'int',
+	'l': 'long',
+	'f': 'float',
+	'd': 'double'
+}
+snip.rv = c_types[match.group(2)]
+if match.group(3):
+	snip.rv += '*'
+` ${1:function_name} (${2}) {
+}
+endsnippet
+
+snippet fn "function" b
+${1:void} ${2:function_name}(${3}) {
 	${VISUAL}${0}
 }
 endsnippet
 
-snippet fund "function declaration" b
+snippet fd "function declaration" b
 ${1:void} ${2:function_name}(${3});
 endsnippet
 

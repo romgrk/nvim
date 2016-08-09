@@ -10,6 +10,7 @@ augroup Colors
     autocmd ColorScheme * exec 'source ' . expand('<sfile>')
 augroup end
 
+
 " Colors {{{
 
 let s:base03 = '#151515'

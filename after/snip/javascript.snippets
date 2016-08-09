@@ -65,7 +65,17 @@ endsnippet
 
 # Utils
 
-snippet lo "log" b
+snippet fs "fs = require..." b
+const fs = require('fs');
+endsnippet
+snippet util "util = require..." b
+const util = require('util');
+endsnippet
+snippet path "path = require..." b
+const path = require('path');
+endsnippet
+
+snippet log "log" b
 console.log($0);
 endsnippet
 snippet l "log var: $var" b
@@ -90,7 +100,7 @@ endsnippet
 
 # Immediate function
 snippet -- "() => {...}" 
-() => { ${1:/* code */} }
+(${1:e}) => ${2:{ $0 }}
 endsnippet
 snippet == "(a) => {...}" 
 (${1:arg}) => { ${2:/* code */} }

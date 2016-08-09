@@ -2,7 +2,7 @@
 " Author: romgrk
 " Description: vim settings
 " Date: 15 Oct 2015
-" !::exe [so %]
+" !::exe [So]
 "
 " TODO errorformat for ts
 
@@ -39,8 +39,8 @@ set modelines=3
 set hidden switchbuf=useopen
 
 " System clipboard
-set clipboard+=unnamedplus
-" set clipboard+=autoselect
+set clipboard=unnamedplus
+"set clipboard=autoselect
 
 
 
@@ -50,6 +50,10 @@ set clipboard+=unnamedplus
 
 set tags=./.tags,.tags
 "set sessionoptions-=help
+
+set wildignore=node_modules,bower_components
+set wildignorecase " aka wic
+
 
 set history=500
 set undolevels=500
@@ -128,8 +132,8 @@ set showbreak=…\                " NonText
 
 set list listchars=
 "set lcs+=conceal:
-"set lcs+=eol:¬                 " EOL character
-set lcs+=tab:»- "\              " Tab character replacement
+set lcs+=eol:¬                 " EOL character
+set lcs+=tab:\  "\              " Tab character replacement
 set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
 set lcs+=precedes:,extends:   " Horizontal ellipsis
 
@@ -169,7 +173,6 @@ set completeopt+=preview
 
 set wildmenu
 set wildmode=longest:full,list:full
-set wildignorecase " aka wic
 set wildoptions=tagfile
 
 " }}}
@@ -209,12 +212,6 @@ set viewoptions+=folds   " All local fold options (ie. opened/closed/manual fold
 set viewoptions+=slash   " Backslashes in filenames are replaced with foward slashes
 set viewoptions+=unix    " Use Unix EOL
 
-" }}}
-"===============================================================================
-" Nyao {{{
-if exists('nyaovim_version')
-set title
-end
 " }}}
 "===============================================================================
 " vim: fdm=marker

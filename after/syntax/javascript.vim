@@ -18,11 +18,19 @@ hi! link jsAssignExpIdent  Identifier
 hi! link jsStorageClass    StorageClass
 hi! link jsGlobalObjects   Global
 hi! link jsObjectKey       Property
+hi! link jsFunctionKey     jsObjectKey
 hi! link jsArrowFunction   Keyword
 hi! link jsNull            Constant
 hi! link jsUndefined       Constant
 hi! link jsFuncArgs        Argument
 hi! link jsBuiltins        Predefined
+hi! link jsRegexpString    Regexp
+hi! link jsRegexpBoundary  RegexpKey
+hi! link jsRegexpCharClass RegexpDelimiter
+hi! link jsTemplateVar     Normal
+
+hi! link jsModuleOperators Special
+hi! link jsModuleKeywords  Special
 
 "let g:javascript_conceal_function       = "ƒ"
 "let g:javascript_conceal_arrow_function = "⇒"

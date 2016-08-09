@@ -12,4 +12,4 @@ nm <buffer> M mm
 
 nmap <buffer> . I
 
-setlocal conceallevel=0
+setlocal conceallevel=1

@@ -1,10 +1,16 @@
+"============================================================================
+" File: vim.vim
+" Author: romgrk
+" Date: 24 Jul 2016
+" Description: here
 " !::exe [so % | doauto Syntax]
-" setlocal nolist
-" setlocal foldmethod=syntax
-setlocal keywordprg=:ZeavimSearch
-setlocal isident=@,48-57,_,192-255,#
+"============================================================================
 
 let b:argwrap_line_prefix = '\'
+
+setlocal foldmethod=syntax
+setlocal keywordprg=:ZeavimSearch
+setlocal isident=@,48-57,_,192-255,#
 
 nnoremap <buffer> gdd         :Goto<space>
 nnoremap <buffer> gdm         :GotoMap<space>
@@ -13,21 +19,18 @@ nnoremap <buffer> gdf         :GotoFu <C-R><C-W>
 nnoremap <buffer> gdc         :GotoCom <C-R><C-W>
 nnoremap <buffer> gdo         :GotoSet <C-R><C-W>
 nnoremap <buffer> gdh         :GotoHi<space>
-
-nnoremap <buffer> [Space]lsmd :noautocmd call LastMod()<CR>
-
 nnoremap <buffer> s<A-j>      A <Bar><Esc>J
 nnoremap <buffer> s<A-k>      $F<BAR>dwi<BS><CR><Esc>
 nmap     <buffer> sJ          s<A-j>
 nmap     <buffer> sK          s<A-k>
 
-" TODO bundle this in a plugin
+nnoremap <buffer> [Space]lsmd :noautocmd call LastMod()<CR>
+
 function! s:imap (leader, key, val)
     let leader = a:leader
     let key    = a:key  | let val    = a:val
     execute 'imap <buffer> ' . leader . key . ' ' . val
 endfunc
-
 let s:leader = '<A-i>'
 let s:altkeys   = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 let s:altkeys  .= '1234567890-=[]{};:''"\,<.>/?!@#$%^&*()_+`~'

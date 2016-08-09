@@ -84,3 +84,12 @@ hi! link notesTODO           TextWarning
     " autocmd BufWinLeave * call clearmatches()
 " augroup END
 "}}}
+
+if get(g:, 'colors_name') is 'materialtheme'
+    hi Folded guibg=#2f3e46 guifg=none
+    hi! link BufferActive Normal
+    hi! link BufferActiveMod Type
+    hi! link TabLineFill CursorLine
+    hi! link CursorLineNr Delimiter
+    hi! Visual guibg=#3a4d56
+end

@@ -1,6 +1,6 @@
 " !::exe [So]
-" if !exists('g:nyaovim_version') && !(getcwd() =~ 'neovim-component')
-    " finish | end
+ if !exists('g:nyaovim_version') && !(getcwd() =~ 'neovim-component')
+     finish | end
 
 let $NYAO = $HOME . '/.config/nyaovim'
 let nyao_rc    = $NYAO . '/nyaovimrc.html'
