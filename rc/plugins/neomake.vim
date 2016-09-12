@@ -16,7 +16,7 @@ let neomake_error_sign = {
   \ }
 
 
-let neomake_javascript_enabled_makers = ['npm']
+let neomake_javascript_enabled_makers = ['npm', 'eslint']
 let neomake_javascript_npm_maker = {
   \ 'exe': 'npm',
   \ 'args': ['run', 'build'],

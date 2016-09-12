@@ -47,25 +47,17 @@ call plug#begin($vim . '/bundle')
 " WATCHME
 " Plug 'tomtom/tinykeymap_vim'
 " Plug 'tpope/vim-projectionist'
-" Plug 'LucHermitte/lh-vim-lib'
-" Plug 'LucHermitte/lh-tags'
-" Plug 'LucHermitte/lh-dev'
-" Plug 'LucHermitte/lh-brackets'
-" Plug 'LucHermitte/vim-refactor'
 " Plug 'kasandell/Code-Pull'
 " Plug 'hienvd/vim-stackoverflow'
-
 Plug 'neovim/node-host'
 
 " Essential                                                                  {{{
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
 Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
-"Plug 'scrooloose/syntastic'                              , {'on': 'SyntasticCheck'}
 " }}}
 " Editing                                                                    {{{
 Plug 'wellle/targets.vim'
-Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/argwrap.vim'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -78,13 +70,15 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'                                 , {'for': 'vim'}
+"Plug 'tpope/vim-endwise'                                 , {'for': 'vim'}
+"Plug 'Townk/vim-autoclose'
+"Plug 'Raimondi/delimitMate'
+Plug 'cohama/lexima.vim'
 "Plug 'easymotion/vim-easymotion'
 " }}}
 " General                                                                    {{{
 " @plugins
 Plug 'bfredl/nvim-miniyank'
-"Plug 'jaxbot/chrome-devtools.vim'
 "Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'honza/vim-snippets'
@@ -123,7 +117,7 @@ Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 "Plug 'moll/vim-node'                                   , { 'for': 'javascript' }
 "Plug 'othree/javascript-libraries-syntax.vim'            , { 'for': 'javascript' }
 "Plug 'othree/yajs.vim'                                   , { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript', 'branch': 'develop' }
 "Plug 'jelera/vim-javascript-syntax'                      , { 'for': 'javascript' }
 Plug 'bigfish/vim-js-context-coloring'                   , { 'branch': 'neovim', 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
@@ -165,7 +159,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 "Plug 'iago-lito/vim-visualMarks'
 "Plug 'KabbAmine/vCoolor.vim'
-"Plug 'itchyny/lightline.vim'  "                         , {'on': 'LightLineEnable'}
 "Plug 'ntpeters/vim-airline-colornum'
 Plug 'kshenoy/vim-signature'                             , {'on': 'SignatureToggleSigns'}
 Plug 'nathanaelkane/vim-indent-guides'                   , {'on': 'IndentGuidesToggle'}
@@ -173,6 +166,7 @@ Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnab
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'idanarye/vim-smile'
 " }}}
 " Colors/Colorscheme                                                         {{{
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
@@ -180,8 +174,8 @@ Plug 'lilydjwg/colorizer'
 Plug 'flazz/vim-colorschemes'
 Plug 'adelarsq/vim-grimmjow'
 Plug 'airblade/vim-gitgutter'
-"Plug 'KabbAmine/yowish.vim'
-"Plug 'AlessandroYorba/Sierra'
+Plug 'KabbAmine/yowish.vim'
+Plug 'chriskempson/base16-vim'
 " }}}
 " Local (~/github/vim)                                                       {{{
 Plug '~/github/vim/equal-op'

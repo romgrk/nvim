@@ -3,8 +3,7 @@
 " Last Modified: 27 April 2016
 " !::exe [So]
 
-" }}}1
-"===============================================================================
+
 "= FIXME =======================================================================
 " Change these if you want different commands for the specified actions...  {{{{1
 "nmap <silent> dm  :call ForAllMatches('delete', {})<CR>
@@ -17,17 +16,6 @@
 "vmap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
 " }}}1
 "===============================================================================
-
-"= TODO ==========[ Incremental Y  ]======================================= {{{1
-" Make v<motions>Y act like an incremental v<motion>y
-vnoremap <silent>        gy  <ESC>:silent let @y = @+<CR>gv"Yy:silent let @+ = @y<CR>
-" Make Y<motion> act like an incremental y<motion>
-nnoremap <silent><expr>  gy  Incremental_Y()
-" Make YY act like an incremental yy
-"nnoremap <silent>       gyy  :call Incremental_YY()<CR>
-"}}}
-"===============================================================================
-
 "= TODO ==========[ Fold around search patterns ]========================== {{{1
 " Toggle on and off...
 
@@ -60,7 +48,8 @@ endfunc
 "===============================================================================
 
 " Recent mappings:
-"
+
+nnoremap \|\| :<C-R>=&tw<CR>wincmd \|<CR>
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -488,6 +477,7 @@ nnoremap      [Space]w+   :call SizeUp()<CR>
 "===============================================================================
 
 " Various:
+nnoremap      [Space]ret  :set et <Bar> ret<CR>
 nnoremap      [Space]ap   vip:EasyAlign<CR>
 " ArgWrap     foo(bwibble, wobble, wubble)
 nnoremap      [Space]arg  :ArgWrap<CR>
@@ -509,6 +499,7 @@ nnoremap      [Space]mW :.,.MultipleCursorsFind \w\+<CR>
 
 nnoremap <silent><A-\>   :NERDTreeFocus<CR>
 nnoremap <silent><C-\>   :NERDTreeToggle<CR>
+nnoremap <silent><C-A-\> :NERDTreeFind<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
@@ -1450,6 +1441,8 @@ cnoremap <A-a> <C-A>
 cnoremap <A-i>.     '%'
 cnoremap <A-i>5     '%'
 
+cnoremap <C-r><C-l> <C-r>=getline('.')<CR>
+
 " alt-u ~ go up
 cnoremap <A-u> <C-W><C-W>
 
@@ -1488,6 +1481,8 @@ endfu
 
 nnoremap <A-H> 5zh
 nnoremap <A-L> 4zl
+nnoremap <C-h> zH
+nnoremap <C-l> zL
 
 nnoremap <C-k> za
 nnoremap <C-o> zO

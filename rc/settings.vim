@@ -132,7 +132,7 @@ set showbreak=…\                " NonText
 
 set list listchars=
 "set lcs+=conceal:
-set lcs+=eol:¬                 " EOL character
+"set lcs+=eol:¬                 " EOL character
 set lcs+=tab:\  "\              " Tab character replacement
 set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
 set lcs+=precedes:,extends:   " Horizontal ellipsis
@@ -169,7 +169,7 @@ set showfulltag
 
 set completeopt=menu,menuone
 set completeopt+=longest,noselect
-set completeopt+=preview
+"set completeopt+=preview
 
 set wildmenu
 set wildmode=longest:full,list:full

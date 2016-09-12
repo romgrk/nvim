@@ -1,14 +1,14 @@
-nm <buffer> <Esc>       :WinMain<CR>
-nm <buffer> <C-tab>     :wincmd p<CR><c-tab>
-nm <buffer> <S-C-tab>   :wincmd p<CR><s-c-tab>
+nnoremap <buffer> <Esc>       :WinMain<CR>
+nnoremap <buffer> <C-tab>     :wincmd p<CR><c-tab>
+nnoremap <buffer> <S-C-tab>   :wincmd p<CR><s-c-tab>
 
-nm <buffer> gp :NERDTreeCWD<CR>
-nm <buffer> gh :NERDTree <C-r>=expand('~')<CR><CR>
+nnoremap <buffer> gp :NERDTreeCWD<CR>
+nnoremap <buffer> gh :NERDTree <C-r>=expand('~')<CR><CR>
 
-nm <buffer> a ma
-nm <buffer> A ma/<Left>
-nm <buffer> d md
-nm <buffer> M mm
+nmap <buffer> a ma
+nmap <buffer> A ma/<Left>
+nmap <nowait><buffer> d md
+nmap <buffer> M mm
 
 nmap <buffer> . I
 
