@@ -78,6 +78,7 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'ElmCast/elm-vim'
 Plug 'bfredl/nvim-miniyank'
 "Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-syntax-extra'

@@ -28,6 +28,8 @@ hi! link jsTemplateVar     Normal
 hi! link jsModuleOperators Special
 hi! link jsModuleKeywords  Special
 
+hi! link jsGlobalNodeObjects Special
+
 "let g:javascript_conceal_function       = "ƒ"
 "let g:javascript_conceal_arrow_function = "⇒"
 unlet! g:javascript_conceal_function
