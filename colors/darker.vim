@@ -123,15 +123,15 @@ for k in keys(s:)
 endfor
 
 if exists('*RandomColor')
-call hi#('User1', '#202020', RandomColor(), '')
-call hi#('User2', '#202020', RandomColor(), '')
-call hi#('User3', '#202020', RandomColor(), '')
-call hi#('User4', '#202020', RandomColor(), '')
-call hi#('User5', '#202020', RandomColor(), '')
-call hi#('User6', '#202020', RandomColor(), '')
-call hi#('User7', '#202020', RandomColor(), '')
-call hi#('User8', '#202020', RandomColor(), '')
-call hi#('User9', '#202020', RandomColor(), '')
+"call hi#('User1', '#202020', RandomColor(), '')
+"call hi#('User2', '#202020', RandomColor(), '')
+"call hi#('User3', '#202020', RandomColor(), '')
+"call hi#('User4', '#202020', RandomColor(), '')
+"call hi#('User5', '#202020', RandomColor(), '')
+"call hi#('User6', '#202020', RandomColor(), '')
+"call hi#('User7', '#202020', RandomColor(), '')
+"call hi#('User8', '#202020', RandomColor(), '')
+"call hi#('User9', '#202020', RandomColor(), '')
 end
 
 let log = {}
@@ -451,6 +451,7 @@ call hi#('DbgBreakPt',           '',        '#4F0037', '')
 
 call hi#('PreciseJumpTarget',    '#B9ED67', '#405026', '' )
 call hi#('EasyMotionTargetDefault', '#ff0000', '', 'bold')
+hi!  link Sneak                  EasyMotionTargetDefault
 hi!  link SneakPluginTarget      EasyMotionTargetDefault
 hi!  link SneakStreakTarget      EasyMotionTargetDefault
 hi!  link SneakStreakMask        EasyMotionShadeDefault
