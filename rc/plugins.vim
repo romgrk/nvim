@@ -4,6 +4,9 @@
 " Last: 5 April 2016
 " !::exe [so %]
 
+let jsx_ext_required        = 1 " Allow JSX in normal JS files
+let javascript_plugin_jsdoc = 1
+
 "=============================================================================
 " Paths                                                                      {{{
 
@@ -131,6 +134,7 @@ let g:tagbar_type_css = {
         \ 'c:classes:1:0',
         \ 'i:ids:1:0',
         \ 't:tags:1:0',
+        \ 's:selectors:1:0',
     \ ],
 \ }
 

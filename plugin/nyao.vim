@@ -1,6 +1,6 @@
 " !::exe [So]
- if !exists('g:nyaovim_version') && !(getcwd() =~ 'neovim-component')
-     finish | end
+if !exists('g:nyaovim_version') && !(getcwd() =~ 'neovim-component')
+    finish | end
 
 let $NYAO = $HOME . '/.config/nyaovim'
 let nyao_rc    = $NYAO . '/nyaovimrc.html'
@@ -42,8 +42,8 @@ command! Reload   exec 'SaveSession!' | Eval ThisBrowserWindow.reload()
 command! DevTools Eval ThisBrowserWindow.openDevTools()
 
 " Commands: Styling
-command! -nargs=1 FontFamily call SetFontFamily(<q-args>)
-command! -nargs=1 FontSize 	 call SetFontSize(<args>)
+command! -nargs=1 Guifont    call SetFontFamily(<q-args>)
+command! -nargs=1 FontSize   call SetFontSize(<args>)
 command! -nargs=1 LineHeight call SetLineHeight(<args>)
 
 " Commands: UI views

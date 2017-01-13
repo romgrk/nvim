@@ -62,10 +62,10 @@ call hi#('multiple_cursors_visual', hi#('Visual'))
 " }}}
 " GitGutter                                                                  {{{
 let s:bg = hi#bg('LineNr')
-call hi#('GitGutterAdd',          hi#fg('Success'), s:bg, '')
-call hi#('GitGutterDelete',       hi#fg('Error'),   s:bg, '')
-call hi#('GitGutterChange',       hi#fg('Info'),    s:bg, '')
-call hi#('GitGutterChangeDelete', hi#fg('Warning'), s:bg, '')
+call hi#('GitGutterAdd',          hi#fg('TextSuccess'), s:bg, '')
+call hi#('GitGutterDelete',       hi#fg('TextError'),   s:bg, '')
+call hi#('GitGutterChange',       hi#fg('TextInfo'),    s:bg, '')
+call hi#('GitGutterChangeDelete', hi#fg('TextWarning'), s:bg, '')
 " }}}
 " Notes, notation, etc.                                                      {{{
 hi! link vifmNotation  OldSpecial

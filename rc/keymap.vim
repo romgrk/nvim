@@ -3,8 +3,6 @@
 " Last Modified: 27 April 2016
 " !::exe [So]
 
-" }}}1
-"===============================================================================
 "= FIXME =======================================================================
 " Change these if you want different commands for the specified actions...  {{{{1
 "nmap <silent> dm  :call ForAllMatches('delete', {})<CR>
@@ -17,17 +15,6 @@
 "vmap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
 " }}}1
 "===============================================================================
-
-"= TODO ==========[ Incremental Y  ]======================================= {{{1
-" Make v<motions>Y act like an incremental v<motion>y
-vnoremap <silent>        gy  <ESC>:silent let @y = @+<CR>gv"Yy:silent let @+ = @y<CR>
-" Make Y<motion> act like an incremental y<motion>
-nnoremap <silent><expr>  gy  Incremental_Y()
-" Make YY act like an incremental yy
-"nnoremap <silent>       gyy  :call Incremental_YY()<CR>
-"}}}
-"===============================================================================
-
 "= TODO ==========[ Fold around search patterns ]========================== {{{1
 " Toggle on and off...
 
@@ -60,7 +47,12 @@ endfunc
 "===============================================================================
 
 " Recent mappings:
-"
+
+nnoremap \|\| :<C-R>=&tw<CR>wincmd \|<CR>
+nnoremap <C-A> ggVG
+
+tnoremap <F1> <C-\><C-N>gt
+nnoremap <F1>           gt
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -75,28 +67,7 @@ nnoremap <silent><expr> <Esc> (
             \ : ":nohl<CR>" )
 
 " <CR>
-"cnoremap <expr> <CR> CmdCR()
-"function! CmdCR() "{{{
-    "let cmdline = getcmdline()
-    "if cmdline =~ '\C^ls'
-        "" like :ls but prompts for a buffer command
-        "return "\<CR>:b"
-    "elseif cmdline =~ '/#$'
-        "" like :g//# but prompts for a command
-        "return "\<CR>:"
-    "elseif cmdline =~ '\v\C^(dli|il)'
-        "" like :dlist or :ilist but prompts for a count for :djump or :ijump
-        "return "\<CR>:" . cmdline[0] . "jump  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
-    "elseif cmdline =~ '\v\C^(cli|lli)'
-        "" like :clist or :llist but prompts for an error/location number
-        "return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
-    "elseif cmdline =~ '\C^old'
-        "" like :oldfiles but prompts for an old file to edit
-        "return "\<CR>:edit #<"
-    "else
-        "return g:space.parse_cmd_line()
-    "endif
-"endfunction "}}}
+"cnoremap <expr> <CR> g:space.parse_cmd_line()
 
 
 " V cycles visual modes
@@ -106,13 +77,10 @@ xnoremap <expr>v
             \ : mode() ==# 'V' ? 'v' : 'V')
 
 " <Space>[Space] prefix
-nnoremap [Space]   :Commands<CR>
+nmap <expr>[Space]   SpaceDo()
 " Space/Alt+Space
 nmap <expr><Space>
-            \ (g:space.is_spacing ? SpaceDo()
-            \ : '[Space]')
-            " sneak#is_sneaking() ?  '<Plug>SneakNext'
-            " : '<Plug>(space-do)'
+            \ (g:space.is_spacing ? SpaceDo() : '[Space]')
 nnoremap <M-Space> <Plug>(space-reverse)
 
 
@@ -488,6 +456,7 @@ nnoremap      [Space]w+   :call SizeUp()<CR>
 "===============================================================================
 
 " Various:
+nnoremap      [Space]ret  :set et <Bar> ret<CR>
 nnoremap      [Space]ap   vip:EasyAlign<CR>
 " ArgWrap     foo(bwibble, wobble, wubble)
 nnoremap      [Space]arg  :ArgWrap<CR>
@@ -509,6 +478,7 @@ nnoremap      [Space]mW :.,.MultipleCursorsFind \w\+<CR>
 
 nnoremap <silent><A-\>   :NERDTreeFocus<CR>
 nnoremap <silent><C-\>   :NERDTreeToggle<CR>
+nnoremap <silent><C-A-\> :NERDTreeFind<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
@@ -1034,6 +1004,8 @@ endfu
 " Quick Utils                                                               {{{1
 " @quick
 
+inoremap <A-o> <C-O>
+
 " Insert word of the line above
 inoremap <C-Y> <C-C>:let @z = @"<CR>mz
                 \:exec 'normal!' (col('.')==1 && col('$')==1 ? 'k' : 'kl')<CR>
@@ -1066,9 +1038,6 @@ nmap <silent>ycD :let @+=expand("%:p:h") <Bar> call Warn('Yanked: ' . @+)<CR>
 
 " Insert 愛 (<S-F3>)
 imap <expr> <F1>  "\u611B"
-"imap <expr> <F3>  "\u611B"
-"imap <expr> <F15> "\u611B"
-"imap <expr> <F27> "\u611B"
 
 
 " Gtfo
@@ -1315,7 +1284,8 @@ func! I_CR ()
     if pumvisible()
         return "\<C-Y>\<C-R>=Ulti_expand()\<CR>" | end
 
-    return delimitMate#ExpandReturn() . "\<C-g>u"
+    "return delimitMate#ExpandReturn() . "\<C-g>u"
+    return "\<CR>\<C-g>u"
 endfu
 
 func! I_SPACE ()
@@ -1323,7 +1293,6 @@ func! I_SPACE ()
         "return delimitMate#JumpAny() | end
 
     if pumvisible()
-        "let deoplete#disable_auto_complete = 1
         return "\<C-g>\<Esc>" . "\<space>"
     end
 
@@ -1343,11 +1312,6 @@ fu! I_TAB ()
     if  (getline('.')[col('.')-2] =~? '\w\|\.'
     \ && getline('.')[col('.')-1] !~? '\w' )
         return get(b:, 'tab_complete', &omnifunc != '' ? "\<C-X>\<C-O>" : "\<C-N>")."\<C-P>"  | end
-
-    if delimitMate#ShouldJump()
-        let res = delimitMate#JumpAny()
-        if !empty(res) | return res | end
-    end
 
     return "\<TAB>"
 endfu
@@ -1401,29 +1365,6 @@ function! Ulti_expand()
 py3 << EOF
 SM.expand()
 EOF
-"if SM._cs:
-    "tabstops = []
-    "for i in SM._cs._tabstops:
-        "ts = SM._cs._tabstops[i]
-        "try:
-            "text = ts.current_text
-        "except IndexError:
-            "continue
-        "if len(text) == 0:
-            "continue
-        "tabstops.append([ts._start[0] + 1, ts._start[1] + 1, len(text)])
-    "vim.command("let g:tabstops = %s" % (tabstops))
-"else:
-    "vim.command("let g:tabstops = []")
-"EOF
-    "if !empty(g:tabstops)
-        "if exists('g:ts_match')
-            "try | call matchdelete(g:ts_match) | catch | endtry
-            "unlet g:ts_match
-        "end
-        "let g:ts_match = matchaddpos('MatchHighlight', g:tabstops)
-        ""echo g:tabstops
-    "end
     return ""
 endfu
 
@@ -1449,6 +1390,8 @@ cnoremap <A-a> <C-A>
 " Insert...
 cnoremap <A-i>.     '%'
 cnoremap <A-i>5     '%'
+
+cnoremap <C-r><C-l> <C-r>=getline('.')<CR>
 
 " alt-u ~ go up
 cnoremap <A-u> <C-W><C-W>
@@ -1488,6 +1431,8 @@ endfu
 
 nnoremap <A-H> 5zh
 nnoremap <A-L> 4zl
+nnoremap <C-h> zH
+nnoremap <C-l> zL
 
 nnoremap <C-k> za
 nnoremap <C-o> zO
