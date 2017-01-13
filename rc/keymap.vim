@@ -84,6 +84,11 @@ xnoremap <expr>v
             \ : mode() ==# 'V' ? 'v' : 'V')
 
 " <Space>[Space] prefix
+"nmap <expr>[Space]   SpaceDo()
+"" Space/Alt+Space
+"nmap <expr><Space>
+            "\ (g:space.is_spacing ? SpaceDo() : '[Space]')
+"nnoremap <M-Space> <Plug>(space-reverse)
 "nnoremap [Space]   :Commands<CR>
 nnoremap [Space]   <Nop>
 " Space/Alt+Space
