@@ -54,6 +54,13 @@ nnoremap <C-A> ggVG
 tnoremap <F1> <C-\><C-N>gt
 nnoremap <F1>           gt
 
+nnoremap <C-A> ggVG
+nnoremap <C-C> "+y
+nnoremap gp "+p
+
+"nunmap p
+"nunmap P
+
 "===============================================================================
 " Major maps                                                                {{{1
 
@@ -77,11 +84,16 @@ xnoremap <expr>v
             \ : mode() ==# 'V' ? 'v' : 'V')
 
 " <Space>[Space] prefix
-nmap <expr>[Space]   SpaceDo()
+"nnoremap [Space]   :Commands<CR>
+nnoremap [Space]   <Nop>
 " Space/Alt+Space
-nmap <expr><Space>
-            \ (g:space.is_spacing ? SpaceDo() : '[Space]')
-nnoremap <M-Space> <Plug>(space-reverse)
+
+nmap <Space> [Space]
+            "\ (g:space.is_spacing ? SpaceDo()
+            "\ : '[Space]')
+            "" sneak#is_sneaking() ?  '<Plug>SneakNext'
+            "" : '<Plug>(space-do)'
+"nnoremap <M-Space> <Plug>(space-reverse)
 
 
 nnoremap Y  y$
@@ -95,16 +107,16 @@ nnoremap U <C-R>
 nmap     p <Plug>(miniyank-autoput)
 nmap     P <Plug>(miniyank-autoPut)
 nmap <A-p> <Plug>(miniyank-cycle)
-nmap <Leader>c <Plug>(miniyank-tochar)
+"nmap <Leader>c <Plug>(miniyank-tochar)
 "nmap <Leader>l <Plug>(miniyank-toline)
 "nmap <Leader>b <Plug>(miniyank-toblock)
 
 
 " G-commands:
 
-nnoremap gp   P`[
+"nnoremap gp   P`[
 "nnoremap gp  m`p``
-nnoremap gP   m`P``
+"nnoremap gP   m`P``
 
 " Re-select last pasted text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -114,9 +126,8 @@ onoremap ge :<C-U>normal! hvgel<CR>
 
 " go-lower/go-upper
 nnoremap gl  gu
-nnoremap gll gul
+nnoremap gL  gul
 nnoremap gu  gU
-nnoremap guu gUl
 
 nnoremap gU  ~
 
@@ -216,7 +227,7 @@ nnoremap gsP        :Edit $vim/rc/plugins/
 nnoremap gs<A-p>    :Edit $vim/plugin/
 nnoremap gsg        :Edit $vim/autoload/git.vim<CR>
 
-nnoremap <C-n>      :Edit <C-R>=expand("%:p:h")<CR>/<C-D>
+nnoremap <C-n>      :Edit <C-R>=escape(expand("%:p:h"), ' ')<CR>/<C-D>
 
 " New...
 nnoremap <A-n><A-s> :UltiSnipsEdit<CR>
@@ -912,10 +923,15 @@ nmap <C-F>    <Plug>(incsearch-forward)
 nmap <C-G>    <Plug>(incsearch-backward)
 nmap <C-A-F>  <Plug>(incsearch-backward)
 
-nmap <expr> n  SpaceSetup('search', '<Plug>(incsearch-nohl-n)', 'n', 'N', 1)
-nmap <expr> N  SpaceSetup('search', '<Plug>(incsearch-nohl-N)', 'n', 'N', 0)
-nmap <expr> *  SpaceSetup('search', '<Plug>(incsearch-nohl-*)', 'n', 'N', 1)
-nmap <expr> #  SpaceSetup('search', '<Plug>(incsearch-nohl-#)', 'n', 'N', 1)
+nmap n  <Plug>(incsearch-nohl-n)
+nmap N  <Plug>(incsearch-nohl-N)
+nmap *  <Plug>(incsearch-nohl-*)
+nmap #  <Plug>(incsearch-nohl-#)
+
+"nmap <expr> n  SpaceSetup('search', '<Plug>(incsearch-nohl-n)', 'n', 'N', 1)
+"nmap <expr> N  SpaceSetup('search', '<Plug>(incsearch-nohl-N)', 'n', 'N', 0)
+"nmap <expr> *  SpaceSetup('search', '<Plug>(incsearch-nohl-*)', 'n', 'N', 1)
+"nmap <expr> #  SpaceSetup('search', '<Plug>(incsearch-nohl-#)', 'n', 'N', 1)
 
 " Yank selected text as an escaped search-pattern
 map <silent><Plug>(visual-yank-plaintext)
@@ -1138,8 +1154,8 @@ map! <A-space> _
 map! <S-space> _
 
 " Paste @@
-cnoremap <A-p> <C-R>+
-inoremap <A-p> <C-R>+
+cnoremap <A-p> <C-R>"
+inoremap <A-p> <C-R>"
 
 " Section: Filename/path insertion {{{
 
@@ -1278,8 +1294,8 @@ smap <Tab>   <Esc>:call UltiSnips#JumpForwards()<CR>
 smap <S-Tab> <Esc>:call UltiSnips#JumpBackwards()<CR>
 
 func! I_CR ()
-    if Ulti_canExpand()
-        return Ulti_expand() | end
+    "if Ulti_canExpand()
+        "return Ulti_expand() | end
 
     if pumvisible()
         return "\<C-Y>\<C-R>=Ulti_expand()\<CR>" | end
@@ -1303,11 +1319,11 @@ fu! I_TAB ()
     if pumvisible()
         return "\<C-N>" | end
 
-    if Ulti_canExpand()
-        return Ulti_expand() | end
+    "if Ulti_canExpand()
+        "return Ulti_expand() | end
 
-    if Ulti_canJump()
-        return Ulti_jump('1') | end
+    "if Ulti_canJump()
+        "return Ulti_jump('1') | end
 
     if  (getline('.')[col('.')-2] =~? '\w\|\.'
     \ && getline('.')[col('.')-1] !~? '\w' )
@@ -1317,8 +1333,8 @@ fu! I_TAB ()
 endfu
 
 fu! I_S_TAB ()
-    if Ulti_canJump() && !pumvisible()
-        return Ulti_jump('0') | end
+    "if Ulti_canJump() && !pumvisible()
+        "return Ulti_jump('0') | end
 
     if pumvisible()
         return "\<C-p>" | end
@@ -1326,14 +1342,19 @@ fu! I_S_TAB ()
     return "\<S-TAB>"
 endfu
 
+if has('py3')
 " SECTION: UltiSnips helpers
 py3 << EOF
 import vim
 from UltiSnips import UltiSnips_Manager, _vim
 SM = UltiSnips_Manager
 EOF
+end
 
 function! Ulti_canExpand()
+if has('py3')
+    return 0
+end
 py3 << EOF
 before = _vim.buf.line_till_cursor
 sn=SM._snips(before, False)
@@ -1342,6 +1363,10 @@ EOF
 endfunction
 
 function! Ulti_canJump()
+if has('py3')
+    return 0
+end
+
 py3 << EOF
 if SM._cs:
     vim.command('return 1')
@@ -1351,6 +1376,10 @@ EOF
 endfunction
 
 function! Ulti_jump(dir)
+if has('py3')
+    return 0
+end
+
 py3 << EOF
 if SM._cs:
     if vim.eval('a:dir') == '1':
@@ -1362,6 +1391,10 @@ EOF
 endfu
 
 function! Ulti_expand()
+if has('py3')
+    return 0
+end
+
 py3 << EOF
 SM.expand()
 EOF
@@ -1369,6 +1402,10 @@ EOF
 endfu
 
 function! TAB_expandOrJump()
+if has('py3')
+    return 0
+end
+
     call UltiSnips#ExpandSnippetOrJump()
     return g:ulti_expand_or_jump_res
 endfu

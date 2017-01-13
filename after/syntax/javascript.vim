@@ -6,6 +6,8 @@ hi! link jsBraces          Delimiter
 hi! link jsBrackets        Delimiter2
 
 "hi! link jsThis            Var3
+hi! link jsImport          Special
+hi! link jsFrom            Special
 hi! link jsThis            jsPrototype
 hi! link jsFunction        Keyword
 hi! link jsFuncCall        Function
