@@ -386,10 +386,6 @@ nnoremap [Space]gr         :YcmCompleter RefactorRename<space>
 "===============================================================================
 
 " Session management:
-nmap <silent><leader>ss     :wall! <Bar> SaveSession<CR><Esc>
-nmap         <leader>so     :OpenSession!<space>
-nmap <silent><leader>sd     :OpenSession! default<CR>
-nmap <silent><leader>sc     :wall! <Bar> CloseSession<CR>
 nnoremap      [Space]ss     :wall! <Bar> SaveSession<CR><Esc>
 nnoremap      [Space]so     :call feedkeys(":OpenSession! \<C-D>", 't')<CR>
 nnoremap      [Space]sd     :OpenSession! default<CR>
@@ -425,11 +421,6 @@ nnoremap      [Space]as     :Ag <C-R>/<CR>
 "===============================================================================
 
 " Windows-things:
-nnoremap      [Space]gvr  :GoldenViewResize<CR>
-nnoremap      [Space]we   :SwitchGoldenViewLargest<CR>
-nnoremap      [Space]wq   :SwitchGoldenViewSmallest<CR>
-nmap <silent> [Space]ws   <Plug>GoldenViewSplit
-nmap <silent> [Space]w=   <Plug>GoldenViewResize
 nnoremap      [Space]w-   :call SizeDown()<CR>
 nnoremap      [Space]w+   :call SizeUp()<CR>
 

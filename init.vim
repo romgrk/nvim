@@ -112,7 +112,6 @@ Plug 'xolox/vim-session'
 "Plug 'KabbAmine/zeavim.vim'                              , {'on': ['Zeavim', 'ZHelp']}
 Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
 Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
-"Plug 'zhaocai/GoldenView.Vim'                 "          , {'on': 'GoldenViewResize'}
 " }}}
 " Language                                                                   {{{
 Plug 'othree/xml.vim'
