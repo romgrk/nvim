@@ -605,7 +605,7 @@ fu! Compare(i1, i2)
     return a:i1 == a:i2 ? 0 : a:i1 > a:i2 ? 1 : -1
 endfunc
 fu! Input(...) " @params msg | (hi, msg)                                     {{{
-    let [hlgroup, msg] = a:0 && _#isArray(a:1)
+    let [hlgroup, msg] = a:0 && _#isList(a:1)
                 \ ? [a:1[0], a:1[1]]
                 \ : ['Question', a:1]
 

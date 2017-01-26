@@ -263,7 +263,7 @@ function! s:setVerbose ()
         call pp#dump(line[1])
         echo ''
     endfor
-    let verbose = _#Input(['Info', 'set verbose='])
+    let verbose = Input(['Info', 'set verbose='])
     if !empty(verbose) | let &verbose = verbose | end
 endfunc
 
