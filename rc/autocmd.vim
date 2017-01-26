@@ -7,6 +7,8 @@
 exe 'augroup RC'
     au!
 
+    au VimEnter * nested exe 'Guifont Monaco for Powerline:h10'
+
     "au FocusLost * wa!
     au VimLeave *  SaveSession!
     au QuitPre  *  SaveSession!

@@ -12,7 +12,7 @@ let ycm_enable_diagnostic_signs                  = 0
 let ycm_server_log_level = 'warning'
 
 let ycm_cache_omnifunc = 1
-let ycm_min_num_of_chars_for_completion     = 3
+let ycm_min_num_of_chars_for_completion     = 2
 "let ycm_seed_identifiers_with_syntax = 1
 "let ycm_collect_identifiers_from_tags_files = 1
 let ycm_use_ultisnips_completer = 0

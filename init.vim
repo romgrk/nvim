@@ -6,7 +6,7 @@
 " Vim setup                                                                {{{
 
 set        path=,,./*;,**2;,/usr/include
-set runtimepath+=~/.local/fzf
+"set runtimepath+=~/.local/fzf
 " set runtimepath+=~/github/coffeelib
 
 let $vimrc  = $MYVIMRC
@@ -55,7 +55,7 @@ call plug#begin($vim . '/bundle')
 " Plug 'kasandell/Code-Pull'
 " Plug 'hienvd/vim-stackoverflow'
 
-Plug 'neovim/node-host'
+"Plug 'neovim/node-host'
 
 " Essential                                                                  {{{
 Plug 'neomake/neomake'
@@ -108,7 +108,7 @@ Plug 'mileszs/ack.vim'
 "Plug 'tsukkee/unite-tag'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
-Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
@@ -118,6 +118,7 @@ Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 "Plug 'zhaocai/GoldenView.Vim'                 "          , {'on': 'GoldenViewResize'}
 " }}}
 " Language                                                                   {{{
+Plug 'othree/xml.vim'
 "Plug 'tpope/vim-jdaddy'
 "Plug 'Quramy/vison'                                    , { 'for': 'json', 'on': 'Vison' }
 "Plug 'moll/vim-node'                                   , { 'for': 'javascript' }
@@ -125,9 +126,9 @@ Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 "Plug 'othree/yajs.vim'                                   , { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 "Plug 'jelera/vim-javascript-syntax'                      , { 'for': 'javascript' }
-Plug 'bigfish/vim-js-context-coloring'                   , { 'branch': 'neovim', 'for': 'javascript' }
+Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
-Plug 'mxw/vim-jsx'                                       , { 'for': 'javascript.jsx' }
+Plug 'mxw/vim-jsx'                                       , { 'on': 'JSX', 'for': 'javascript.jsx' }
 Plug 'ianks/vim-tsx'                                     , { 'for': 'typescript.tsx' }
 Plug 'Quramy/tsuquyomi'                                  , { 'on': 'TsuServerInfo' } " { 'for': 'typescript' }
 "Plug 'HerringtonDarkholme/yats.vim'                    , { 'for': 'typescript' }
@@ -152,6 +153,7 @@ Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'cs
 Plug 'octol/vim-cpp-enhanced-highlight'                  , { 'on':  'CppHL' }
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
+Plug 'dzeban/vim-log-syntax'
 "Plug '~/.local/coccinelle/editors/vim'                   , { 'for': 'cocci'}
 if exists('$VIFM')
     set runtimepath+=/usr/share/vifm/vim-doc
@@ -182,6 +184,7 @@ Plug 'adelarsq/vim-grimmjow'
 Plug 'airblade/vim-gitgutter'
 "Plug 'KabbAmine/yowish.vim'
 "Plug 'AlessandroYorba/Sierra'
+Plug 'chriskempson/base16-vim'
 " }}}
 " Local (~/github/vim)                                                       {{{
 Plug '~/github/vim/equal-op'
@@ -191,7 +194,6 @@ Plug '~/github/vim/pp.vim'
 Plug '~/github/vim/replace.vim'
 Plug '~/github/vim/vim-exeline'
 Plug '~/github/vim/winteract.vim'                        , {'on': 'InteractiveWindow'}
-"Plug '~/github/vim/vimfiler-prompt'                      , {'on': 'VimFiler'}
 " }}}
 
 call plug#end() " }}}
@@ -220,6 +222,7 @@ au!
 au VimEnter * colorscheme darker
 au VimEnter * call s:source_rc('colors.vim')
 au VimEnter * call s:source_rc('highlight.vim')
+au VimEnter * exe 'Guifont Monaco for Powerline:h10'
 augroup END
 
 " }}}

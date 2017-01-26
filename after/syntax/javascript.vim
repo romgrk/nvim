@@ -5,6 +5,10 @@
 "let &cpo = s:cpo_save
 "unlet s:cpo_save
 
+syn keyword jsNodeVars __dirname __filename containedin=ALL
+
+hi! link jsNodeVars        Special
+
 hi! link jsFuncBraces      Delimiter
 hi! link jsBraces          Delimiter
 hi! link jsBrackets        Delimiter2

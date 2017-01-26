@@ -7,6 +7,8 @@
 "=============================================================================
 " Paths                                                                      {{{
 
+let $XDG_RUNTIME_DIR = $HOME . "/tmp"
+
 let local_vimrc            = {}
 let local_vimrc.names      = ['.vimrc', 'vimrc', '.localrc']
 let local_vimrc.cache_file = path#Join([$XDG_CACHE_HOME, 'local_vimrc'])
@@ -21,6 +23,9 @@ let notes_directories = ['~/notes']
 " Ultisnips
 let UltiSnipsSnippetsDir         = $vim . '/after/snip'
 let UltiSnipsSnippetDirectories  = [$vim . '/after/snip']
+
+let python_host_prog  = 'C:\Python27\python.exe'
+let python3_host_prog = 'C:\Python34\python.exe'
 
 " }}}
 "=============================================================================

@@ -3,30 +3,15 @@
 " Last Modified: 27 April 2016
 " !::exe [So]
 
-" }}}1
-"===============================================================================
-"= FIXME =======================================================================
-" Change these if you want different commands for the specified actions...  {{{{1
-"nmap <silent> dm  :call ForAllMatches('delete', {})<CR>
-"nmap <silent> DM  :call ForAllMatches('delete', {'inverse':1})<CR>
-"nmap <silent> ym  :call ForAllMatches('yank',   {})<CR>
-"nmap <silent> YM  :call ForAllMatches('yank',   {'inverse':1})<CR>
-"vmap <silent> Dm  :<C-U>call ForAllMatches('delete', {'visual':1})<CR>
-"vmap <silent> DM  :<C-U>call ForAllMatches('delete', {'visual':1, 'inverse':1})<CR>
-"vmap <silent> gym  :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
-"vmap <silent> YM  :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
-" }}}1
-"===============================================================================
 
-"= TODO ==========[ Incremental Y  ]======================================= {{{1
-" Make v<motions>Y act like an incremental v<motion>y
-vnoremap <silent>        gy  <ESC>:silent let @y = @+<CR>gv"Yy:silent let @+ = @y<CR>
-" Make Y<motion> act like an incremental y<motion>
-nnoremap <silent><expr>  gy  Incremental_Y()
-" Make YY act like an incremental yy
-"nnoremap <silent>       gyy  :call Incremental_YY()<CR>
-"}}}
-"===============================================================================
+" Recent mappings:
+
+if has('win32')
+  nnoremap <C-A> ggVG
+  nnoremap <C-C> "+y
+  nnoremap gp    "+p
+end
+
 
 "= TODO ==========[ Fold around search patterns ]========================== {{{1
 " Toggle on and off...
@@ -40,27 +25,7 @@ function! FS_FoldAroundInput(...)
     return FS_FoldAroundTarget(pat,{'context': 2, 'folds': 'visible'})
 endfunc
 
-" Show only sub defns (and maybe comments)...
-" let perl_sub_pat = '^\s*\%(sub\|func\|method\|package\)\s\+\k\+'
-" let vim_sub_pat  = '^\s*fu\%[nction!]\s\+\k\+'
-" augroup FoldSub
-    " autocmd!
-    " autocmd BufEnter * nmap <silent> <expr>  zp  FS_FoldAroundTarget(perl_sub_pat,{'context':1})
-    " autocmd BufEnter * nmap <silent> <expr>  za  FS_FoldAroundTarget(perl_sub_pat.'\\|^\s*#.*',{'context':0, 'folds':'invisible'})
-    " autocmd BufEnter *.vim,.vimrc nmap <silent> <expr>  zp  FS_FoldAroundTarget(vim_sub_pat,{'context':1})
-    " autocmd BufEnter *.vim,.vimrc nmap <silent> <expr>  za  FS_FoldAroundTarget(vim_sub_pat.'\\|^\s*".*',{'context':0, 'folds':'invisible'})
-    " autocmd BufEnter * nmap <silent> <expr>             zv  FS_FoldAroundTarget(vim_sub_pat.'\\|^\s*".*',{'context':0, 'folds':'invisible'})
-" augroup END
-
-" Show only C #includes...
-" nmap <silent> <expr>  zu  FS_FoldAroundTarget('^\s*use\s\+\S.*;',{'context':1})
-" nmap <silent> <expr>  zu  FS_FoldAroundTarget(vim_sub_pat,{'context':1})
-
-" }}}1
 "===============================================================================
-
-" Recent mappings:
-"
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -74,30 +39,6 @@ nnoremap <silent><expr> <Esc> (
             \ : ClearHighlights(v:count) ? ""
             \ : ":nohl<CR>" )
 
-" <CR>
-"cnoremap <expr> <CR> CmdCR()
-"function! CmdCR() "{{{
-    "let cmdline = getcmdline()
-    "if cmdline =~ '\C^ls'
-        "" like :ls but prompts for a buffer command
-        "return "\<CR>:b"
-    "elseif cmdline =~ '/#$'
-        "" like :g//# but prompts for a command
-        "return "\<CR>:"
-    "elseif cmdline =~ '\v\C^(dli|il)'
-        "" like :dlist or :ilist but prompts for a count for :djump or :ijump
-        "return "\<CR>:" . cmdline[0] . "jump  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
-    "elseif cmdline =~ '\v\C^(cli|lli)'
-        "" like :clist or :llist but prompts for an error/location number
-        "return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
-    "elseif cmdline =~ '\C^old'
-        "" like :oldfiles but prompts for an old file to edit
-        "return "\<CR>:edit #<"
-    "else
-        "return g:space.parse_cmd_line()
-    "endif
-"endfunction "}}}
-
 
 " V cycles visual modes
 nnoremap       v v
@@ -106,14 +47,15 @@ xnoremap <expr>v
             \ : mode() ==# 'V' ? 'v' : 'V')
 
 " <Space>[Space] prefix
-nnoremap [Space]   :Commands<CR>
+nnoremap [Space]   <Nop>
 " Space/Alt+Space
-nmap <expr><Space>
-            \ (g:space.is_spacing ? SpaceDo()
-            \ : '[Space]')
-            " sneak#is_sneaking() ?  '<Plug>SneakNext'
-            " : '<Plug>(space-do)'
-nnoremap <M-Space> <Plug>(space-reverse)
+
+nmap <Space> [Space]
+            "\ (g:space.is_spacing ? SpaceDo()
+            "\ : '[Space]')
+            "" sneak#is_sneaking() ?  '<Plug>SneakNext'
+            "" : '<Plug>(space-do)'
+"nnoremap <M-Space> <Plug>(space-reverse)
 
 
 nnoremap Y  y$
@@ -122,21 +64,20 @@ nnoremap u u
 nnoremap U <C-R>
 "nmap    u <Plug>(RepeatUndo)
 
-
 " YankRing
 nmap     p <Plug>(miniyank-autoput)
 nmap     P <Plug>(miniyank-autoPut)
 nmap <A-p> <Plug>(miniyank-cycle)
-nmap <Leader>c <Plug>(miniyank-tochar)
+"nmap <Leader>c <Plug>(miniyank-tochar)
 "nmap <Leader>l <Plug>(miniyank-toline)
 "nmap <Leader>b <Plug>(miniyank-toblock)
 
 
 " G-commands:
 
-nnoremap gp   P`[
+"nnoremap gp   P`[
 "nnoremap gp  m`p``
-nnoremap gP   m`P``
+"nnoremap gP   m`P``
 
 " Re-select last pasted text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -248,7 +189,7 @@ nnoremap gsP        :Edit $vim/rc/plugins/
 nnoremap gs<A-p>    :Edit $vim/plugin/
 nnoremap gsg        :Edit $vim/autoload/git.vim<CR>
 
-nnoremap <C-n>      :Edit <C-R>=expand("%:p:h")<CR>/<C-D>
+nnoremap <C-n>      :Edit <C-R>=escape(expand("%:p:h"), ' ')<CR>/<C-D>
 
 " New...
 nnoremap <A-n><A-s> :UltiSnipsEdit<CR>
@@ -279,6 +220,8 @@ xnoremap <expr><A-l> (&ve=~#'onemore'<Bar><Bar>&ve==#'all') ? '$h' : '$'
 " wide move
 noremap <A-j> 5<Down>
 noremap <A-k> 5<Up>
+nnoremap <A-j> 5gj
+nnoremap <A-k> 5gk
 
 " scroll up/down
 nnoremap <A-u> 10<C-Y>
@@ -491,6 +434,7 @@ nnoremap      [Space]w+   :call SizeUp()<CR>
 nnoremap      [Space]ap   vip:EasyAlign<CR>
 " ArgWrap     foo(bwibble, wobble, wubble)
 nnoremap      [Space]arg  :ArgWrap<CR>
+nnoremap      [Space]ret  :set et <Bar> ret<CR>
 nnoremap      [Space]dws  :%DeleteTrailingWS<CR>
 nnoremap      [Space]aw   :call AutodetectShiftWidth()<CR>
 " Stackoverflow
@@ -942,10 +886,15 @@ nmap <C-F>    <Plug>(incsearch-forward)
 nmap <C-G>    <Plug>(incsearch-backward)
 nmap <C-A-F>  <Plug>(incsearch-backward)
 
-nmap <expr> n  SpaceSetup('search', '<Plug>(incsearch-nohl-n)', 'n', 'N', 1)
-nmap <expr> N  SpaceSetup('search', '<Plug>(incsearch-nohl-N)', 'n', 'N', 0)
-nmap <expr> *  SpaceSetup('search', '<Plug>(incsearch-nohl-*)', 'n', 'N', 1)
-nmap <expr> #  SpaceSetup('search', '<Plug>(incsearch-nohl-#)', 'n', 'N', 1)
+nmap n  <Plug>(incsearch-nohl-n)
+nmap N  <Plug>(incsearch-nohl-N)
+nmap *  <Plug>(incsearch-nohl-*)
+nmap #  <Plug>(incsearch-nohl-#)
+
+"nmap <expr> n  SpaceSetup('search', '<Plug>(incsearch-nohl-n)', 'n', 'N', 1)
+"nmap <expr> N  SpaceSetup('search', '<Plug>(incsearch-nohl-N)', 'n', 'N', 0)
+"nmap <expr> *  SpaceSetup('search', '<Plug>(incsearch-nohl-*)', 'n', 'N', 1)
+"nmap <expr> #  SpaceSetup('search', '<Plug>(incsearch-nohl-#)', 'n', 'N', 1)
 
 " Yank selected text as an escaped search-pattern
 map <silent><Plug>(visual-yank-plaintext)
@@ -1169,8 +1118,8 @@ map! <A-space> _
 map! <S-space> _
 
 " Paste @@
-cnoremap <A-p> <C-R>+
-inoremap <A-p> <C-R>+
+cnoremap <A-p> <C-R>"
+inoremap <A-p> <C-R>"
 
 " Section: Filename/path insertion {{{
 
@@ -1287,7 +1236,15 @@ endfu
 
 " 1}}}
 "===============================================================================
-" Insert, Autocomplete & Snippets (<TAB>, <Space>, etc)                     {{{1
+" Insert                                                                    {{{1
+
+
+inoremap <A-o> <C-o>
+
+
+" 1}}}
+"===============================================================================
+" Autocomplete & Snippets (<TAB>, <Space>, etc)                             {{{1
 
 let UltiSnipsExpandTrigger       = "<A-;>"
 let UltiSnipsJumpForwardTrigger  = "<C-A-n>"
@@ -1309,8 +1266,8 @@ smap <Tab>   <Esc>:call UltiSnips#JumpForwards()<CR>
 smap <S-Tab> <Esc>:call UltiSnips#JumpBackwards()<CR>
 
 func! I_CR ()
-    if Ulti_canExpand()
-        return Ulti_expand() | end
+    "if Ulti_canExpand()
+        "return Ulti_expand() | end
 
     if pumvisible()
         return "\<C-Y>\<C-R>=Ulti_expand()\<CR>" | end
@@ -1334,11 +1291,11 @@ fu! I_TAB ()
     if pumvisible()
         return "\<C-N>" | end
 
-    if Ulti_canExpand()
-        return Ulti_expand() | end
+    "if Ulti_canExpand()
+        "return Ulti_expand() | end
 
-    if Ulti_canJump()
-        return Ulti_jump('1') | end
+    "if Ulti_canJump()
+        "return Ulti_jump('1') | end
 
     if  (getline('.')[col('.')-2] =~? '\w\|\.'
     \ && getline('.')[col('.')-1] !~? '\w' )
@@ -1353,8 +1310,8 @@ fu! I_TAB ()
 endfu
 
 fu! I_S_TAB ()
-    if Ulti_canJump() && !pumvisible()
-        return Ulti_jump('0') | end
+    "if Ulti_canJump() && !pumvisible()
+        "return Ulti_jump('0') | end
 
     if pumvisible()
         return "\<C-p>" | end
@@ -1362,14 +1319,19 @@ fu! I_S_TAB ()
     return "\<S-TAB>"
 endfu
 
+if has('py3')
 " SECTION: UltiSnips helpers
 py3 << EOF
 import vim
 from UltiSnips import UltiSnips_Manager, _vim
 SM = UltiSnips_Manager
 EOF
+end
 
 function! Ulti_canExpand()
+if has('py3')
+    return 0
+end
 py3 << EOF
 before = _vim.buf.line_till_cursor
 sn=SM._snips(before, False)
@@ -1378,6 +1340,10 @@ EOF
 endfunction
 
 function! Ulti_canJump()
+if has('py3')
+    return 0
+end
+
 py3 << EOF
 if SM._cs:
     vim.command('return 1')
@@ -1387,6 +1353,10 @@ EOF
 endfunction
 
 function! Ulti_jump(dir)
+if has('py3')
+    return 0
+end
+
 py3 << EOF
 if SM._cs:
     if vim.eval('a:dir') == '1':
@@ -1398,6 +1368,10 @@ EOF
 endfu
 
 function! Ulti_expand()
+if has('py3')
+    return 0
+end
+
 py3 << EOF
 SM.expand()
 EOF
@@ -1428,6 +1402,10 @@ EOF
 endfu
 
 function! TAB_expandOrJump()
+if has('py3')
+    return 0
+end
+
     call UltiSnips#ExpandSnippetOrJump()
     return g:ulti_expand_or_jump_res
 endfu

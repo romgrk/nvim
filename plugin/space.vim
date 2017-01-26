@@ -1,1 +1,1 @@
-../bundle/vim-space/plugin/space.vim
+"../bundle/vim-space/plugin/space.vim

@@ -39,7 +39,11 @@ set modelines=3
 set hidden switchbuf=useopen
 
 " System clipboard
-set clipboard=unnamedplus
+if has('win32')
+  set clipboard=
+else
+  set clipboard=unnamedplus
+end
 "set clipboard=autoselect
 
 
@@ -66,8 +70,10 @@ set cdpath+=$HOME/github
 set cdpath+=$HOME/projects
 
 set undofile
-set undodir=$XDG_CACHE_HOME/vim_undo
-set viewdir=$XDG_CACHE_HOME/vim_views
+"set undodir=$XDG_CACHE_HOME/vim_undo
+"set viewdir=$XDG_CACHE_HOME/vim_views
+set undodir=$HOME/AppData/Local/nvim-data/undo
+set viewdir=$HOME/AppData/Local/nvim-data/views
 
 " IO & backups behavior
 set noswapfile
@@ -132,10 +138,15 @@ set showbreak=…\                " NonText
 
 set list listchars=
 "set lcs+=conceal:
-set lcs+=eol:¬                 " EOL character
-set lcs+=tab:\  "\              " Tab character replacement
+if has('win32')
+  "set lcs+=eol:¬                 " EOL character
+  set lcs+=tab:>\  "\              " Tab character replacement
+else
+  set lcs+=eol:¬                 " EOL character
+  set lcs+=tab:\  "\              " Tab character replacement
+end
 set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
-set lcs+=precedes:,extends:   " Horizontal ellipsis
+set lcs+=precedes:<,extends:>   " Horizontal ellipsis
 
 set fillchars=
 set fcs+=vert:│                 " ▎VertSplit

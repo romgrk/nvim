@@ -9,6 +9,8 @@ imap <buffer> <A-CR>  <br/>
 nmap <buffer> <Tab>   %
 xmap <buffer> <Tab>   %
 
+imap <C-;> <Plug>SparkupExecute
+
 " inoremap <silent><expr><buffer> <Tab> pumvisible()
             " \ ? "" \ : "=emmet#expandAbbr(0,"")"
 
