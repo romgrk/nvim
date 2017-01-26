@@ -13,20 +13,6 @@ if has('win32')
 end
 
 
-"= TODO ==========[ Fold around search patterns ]========================== {{{1
-" Toggle on and off...
-
-nnoremap <silent><expr>  [Space]zz  FS_ToggleFoldAroundSearch({'context':1})
-nnoremap <silent><expr>  [Space]fi  FS_FoldAroundInput()
-
-function! FS_FoldAroundInput(...)
-    let pat = Input('//fold_pattern//', '')
-    if empty(pat) | let pat = @/ | end
-    return FS_FoldAroundTarget(pat,{'context': 2, 'folds': 'visible'})
-endfunc
-
-"===============================================================================
-
 "===============================================================================
 " Major maps                                                                {{{1
 
@@ -981,13 +967,14 @@ endfu
 " Quick Utils                                                               {{{1
 " @quick
 
-inoremap <A-o> <C-O>
-
 " Insert word of the line above
 inoremap <C-Y> <C-C>:let @z = @"<CR>mz
                 \:exec 'normal!' (col('.')==1 && col('$')==1 ? 'k' : 'kl')<CR>
                 \:exec (col('.')==col('$') - 1 ? 'let @" = @_' : 'normal! yw')<CR>
                 \`zp:let @" = @z<CR>a
+
+" Fold around search patterns
+nnoremap <silent><expr>  [Space]zz  FS_ToggleFoldAroundSearch({'context':1})
 
 " Fixes something
 nnoremap <expr>i empty(getline('.')) ? 'cc' : 'i'

@@ -60,7 +60,7 @@ Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'
 " }}}
 " Editing                                                                    {{{
 Plug 'wellle/targets.vim'
-Plug 'vim-scripts/argwrap.vim'
+"Plug 'vim-scripts/argwrap.vim'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bkad/CamelCaseMotion'
@@ -75,12 +75,12 @@ Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-endwise'                                 , {'for': 'vim'}
 "Plug 'Townk/vim-autoclose'
 "Plug 'Raimondi/delimitMate'
-Plug 'cohama/lexima.vim'
+"Plug 'cohama/lexima.vim'
 "Plug 'easymotion/vim-easymotion'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'ElmCast/elm-vim'
+"Plug 'ElmCast/elm-vim'
 "Plug 'bfredl/nvim-miniyank'
 "Plug 'justinmk/vim-dirvish'
 Plug 'justinmk/vim-syntax-extra'
