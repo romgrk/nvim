@@ -1,9 +1,5 @@
 " !::exe [so %]
 " Language:	JavaScript
-"let s:cpo_save = &cpo
-"set cpo&vim
-"let &cpo = s:cpo_save
-"unlet s:cpo_save
 
 syn keyword jsNodeVars __dirname __filename containedin=ALL
 
@@ -14,6 +10,8 @@ hi! link jsBraces          Delimiter
 hi! link jsBrackets        Delimiter2
 
 "hi! link jsThis            Var3
+hi! link jsImport          Special
+hi! link jsFrom            Special
 hi! link jsThis            jsPrototype
 hi! link jsFunction        Keyword
 hi! link jsFuncCall        Function
@@ -36,6 +34,8 @@ hi! link jsTemplateVar     Normal
 hi! link jsModuleOperators Special
 hi! link jsModuleKeywords  Special
 
+hi! link jsGlobalNodeObjects Special
+
 "let g:javascript_conceal_function       = "ƒ"
 "let g:javascript_conceal_arrow_function = "⇒"
 unlet! g:javascript_conceal_function
@@ -49,8 +49,9 @@ unlet! g:javascript_conceal_null
 unlet! g:javascript_conceal_prototype
 unlet! g:javascript_conceal_static
 unlet! g:javascript_conceal_super
-"syntax match commentTitle /\v.? \zs\w+:/
-"syntax keyword  commentTODO  TODO
-"syntax keyword  commentXXX   XXX
-"syntax keyword  commentFIXME FIXME
-"syntax cluster Comments contains=commentTitle,commentTODO,commentXXX,commentFIXME
+
+"syntax clear jsCommentTodo
+"runtime! syntax/comment.vim
+"syn region jsComment start=+\/\/+ end=/$/  keepend extend contains=jsCommentTodo,@Comments
+"syn region jsComment matchgroup=jsComment start=+/\*\s*+ end=+\*/+  fold contains=jsDocTags,jsCommentTodo,jsCvsTag,@jsHtml,@Comments
+

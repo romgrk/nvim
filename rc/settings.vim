@@ -180,7 +180,7 @@ set showfulltag
 
 set completeopt=menu,menuone
 set completeopt+=longest,noselect
-set completeopt+=preview
+"set completeopt+=preview
 
 set wildmenu
 set wildmode=longest:full,list:full

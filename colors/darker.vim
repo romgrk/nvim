@@ -451,6 +451,7 @@ call hi#('DbgBreakPt',           '',        '#4F0037', '')
 
 call hi#('PreciseJumpTarget',    '#B9ED67', '#405026', '' )
 call hi#('EasyMotionTargetDefault', '#ff0000', '', 'bold')
+hi!  link Sneak                  EasyMotionTargetDefault
 hi!  link SneakPluginTarget      EasyMotionTargetDefault
 hi!  link SneakStreakTarget      EasyMotionTargetDefault
 hi!  link SneakStreakMask        EasyMotionShadeDefault

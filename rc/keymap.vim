@@ -39,6 +39,9 @@ nnoremap <silent><expr> <Esc> (
             \ : ClearHighlights(v:count) ? ""
             \ : ":nohl<CR>" )
 
+" <CR>
+"cnoremap <expr> <CR> g:space.parse_cmd_line()
+
 
 " V cycles visual modes
 nnoremap       v v
@@ -47,7 +50,10 @@ xnoremap <expr>v
             \ : mode() ==# 'V' ? 'v' : 'V')
 
 " <Space>[Space] prefix
+"nmap <expr>[Space]   SpaceDo()
+"nnoremap [Space]   :Commands<CR>
 nnoremap [Space]   <Nop>
+
 " Space/Alt+Space
 
 nmap <Space> [Space]
@@ -87,9 +93,8 @@ onoremap ge :<C-U>normal! hvgel<CR>
 
 " go-lower/go-upper
 nnoremap gl  gu
-nnoremap gll gul
+nnoremap gL  gul
 nnoremap gu  gU
-nnoremap guu gUl
 
 nnoremap gU  ~
 
@@ -431,6 +436,7 @@ nnoremap      [Space]w+   :call SizeUp()<CR>
 "===============================================================================
 
 " Various:
+nnoremap      [Space]ret  :set et <Bar> ret<CR>
 nnoremap      [Space]ap   vip:EasyAlign<CR>
 " ArgWrap     foo(bwibble, wobble, wubble)
 nnoremap      [Space]arg  :ArgWrap<CR>
@@ -453,6 +459,7 @@ nnoremap      [Space]mW :.,.MultipleCursorsFind \w\+<CR>
 
 nnoremap <silent><A-\>   :NERDTreeFocus<CR>
 nnoremap <silent><C-\>   :NERDTreeToggle<CR>
+nnoremap <silent><C-A-\> :NERDTreeFind<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
@@ -983,6 +990,8 @@ endfu
 " Quick Utils                                                               {{{1
 " @quick
 
+inoremap <A-o> <C-O>
+
 " Insert word of the line above
 inoremap <C-Y> <C-C>:let @z = @"<CR>mz
                 \:exec 'normal!' (col('.')==1 && col('$')==1 ? 'k' : 'kl')<CR>
@@ -1015,9 +1024,6 @@ nmap <silent>ycD :let @+=expand("%:p:h") <Bar> call Warn('Yanked: ' . @+)<CR>
 
 " Insert 愛 (<S-F3>)
 imap <expr> <F1>  "\u611B"
-"imap <expr> <F3>  "\u611B"
-"imap <expr> <F15> "\u611B"
-"imap <expr> <F27> "\u611B"
 
 
 " Gtfo
@@ -1272,7 +1278,8 @@ func! I_CR ()
     if pumvisible()
         return "\<C-Y>\<C-R>=Ulti_expand()\<CR>" | end
 
-    return delimitMate#ExpandReturn() . "\<C-g>u"
+    "return delimitMate#ExpandReturn() . "\<C-g>u"
+    return "\<CR>\<C-g>u"
 endfu
 
 func! I_SPACE ()
@@ -1280,7 +1287,6 @@ func! I_SPACE ()
         "return delimitMate#JumpAny() | end
 
     if pumvisible()
-        "let deoplete#disable_auto_complete = 1
         return "\<C-g>\<Esc>" . "\<space>"
     end
 
@@ -1300,11 +1306,6 @@ fu! I_TAB ()
     if  (getline('.')[col('.')-2] =~? '\w\|\.'
     \ && getline('.')[col('.')-1] !~? '\w' )
         return get(b:, 'tab_complete', &omnifunc != '' ? "\<C-X>\<C-O>" : "\<C-N>")."\<C-P>"  | end
-
-    if delimitMate#ShouldJump()
-        let res = delimitMate#JumpAny()
-        if !empty(res) | return res | end
-    end
 
     return "\<TAB>"
 endfu
@@ -1375,29 +1376,6 @@ end
 py3 << EOF
 SM.expand()
 EOF
-"if SM._cs:
-    "tabstops = []
-    "for i in SM._cs._tabstops:
-        "ts = SM._cs._tabstops[i]
-        "try:
-            "text = ts.current_text
-        "except IndexError:
-            "continue
-        "if len(text) == 0:
-            "continue
-        "tabstops.append([ts._start[0] + 1, ts._start[1] + 1, len(text)])
-    "vim.command("let g:tabstops = %s" % (tabstops))
-"else:
-    "vim.command("let g:tabstops = []")
-"EOF
-    "if !empty(g:tabstops)
-        "if exists('g:ts_match')
-            "try | call matchdelete(g:ts_match) | catch | endtry
-            "unlet g:ts_match
-        "end
-        "let g:ts_match = matchaddpos('MatchHighlight', g:tabstops)
-        ""echo g:tabstops
-    "end
     return ""
 endfu
 
@@ -1427,6 +1405,8 @@ cnoremap <A-a> <C-A>
 " Insert...
 cnoremap <A-i>.     '%'
 cnoremap <A-i>5     '%'
+
+cnoremap <C-r><C-l> <C-r>=getline('.')<CR>
 
 " alt-u ~ go up
 cnoremap <A-u> <C-W><C-W>
@@ -1466,6 +1446,8 @@ endfu
 
 nnoremap <A-H> 5zh
 nnoremap <A-L> 4zl
+nnoremap <C-h> zH
+nnoremap <C-l> zL
 
 nnoremap <C-k> za
 nnoremap <C-o> zO

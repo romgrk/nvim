@@ -8,8 +8,8 @@ nnoremap <silent>]h  :GitGutterNextHunk<CR>
 nnoremap   [Space]hh :GitGutter
 nnoremap   [Space]hs :GitGutterStageHunk<CR>
 nnoremap   [Space]hv :GitGutterPreviewHunk<CR>
-nnoremap   [Space]hr :GitGutterRevertHunk<CR>
-nnoremap          -- :GitGutterRevertHunk<CR>
+nnoremap   [Space]hr :GitGutterUndoHunk<CR>
+nnoremap          -- :GitGutterUndoHunk<CR>
 nnoremap          \\ :GitGutterPreviewHunk<CR>
 nnoremap          ++ :GitGutterStageHunk<CR>
 

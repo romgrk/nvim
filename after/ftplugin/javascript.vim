@@ -1,8 +1,5 @@
 setlocal foldmethod=syntax
 
-let jsx_ext_required        = 0 " Allow JSX in normal JS files
-let javascript_plugin_jsdoc = 1
-
 " let b:used_javascript_libs = ''
 
 nmap <buffer> --d   i/***/<Left><Left><CR>

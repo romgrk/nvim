@@ -4,7 +4,12 @@ snippet use
 endsnippet
 
 snippet i "import" b
-import
+import $1 from '$0';
+endsnippet
+snippet ii "import" b
+import {
+	$1
+} from '$0';
 endsnippet
 
 #requires

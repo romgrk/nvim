@@ -1,0 +1,60 @@
+
+
+snippet ** "/* Comment */" b
+/***********`!p snip.rv = '*'*(len(t[1])+2)`
+ * Section: ${1:Name} *
+ ************`!p snip.rv = '*'*(len(t[1])+1)`/
+endsnippet
+
+snippet bef "before" b
+&::before {
+	content: ' ';
+	position: absolute;
+	display: inline-block;
+}
+endsnippet
+snippet aft "&::after" b
+&::after {
+	content: ' ';
+	position: absolute;
+	display: inline-block;
+}
+endsnippet
+
+snippet dib "d: inline-block" b
+display: inline-block;
+endsnippet
+
+snippet wh "w, h: 100%" b
+width:  ${1:100%};
+height: ${2:100%};
+endsnippet
+snippet tl "top, left: 0" b
+top:  ${1:0px};
+left: ${2:0px};
+endsnippet
+
+snippet fg "color" b
+color: ${1:#b4b2b0};
+endsnippet
+snippet bg "background" b
+background-color: ${1:#b4b2b0};
+endsnippet
+snippet * "Comment" b
+/*
+ * $0
+ */
+endsnippet
+
+snippet bg "background-color" b
+background-color: ${1:red}
+endsnippet
+
+snippet ! "!important"
+!important
+endsnippet
+
+snippet -w "-webkit" b
+-webkit-${1:property}: ${2:value}
+endsnippet
+

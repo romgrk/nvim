@@ -8,6 +8,7 @@ nmap <buffer> <Esc> :wincmd p<CR>
 tnoremap <buffer> <C-A-R> <C-\><C-N>:resize +1<CR>:resize -1<CR>i
 tnoremap <buffer> <C-D> <C-D><CR>
 nmap     <buffer> <A-c> <A-c>
+tmap     <buffer> <A-w> <C-\><C-N><A-w>
 
-au BufWinEnter,WinEnter <buffer> UpdateTerminalSize
+"au BufWinEnter,WinEnter <buffer> UpdateTerminalSize
 au InsertEnter          <buffer> setlocal nocursorline
