@@ -911,7 +911,7 @@ function! s:update_impl(pull, force, args) abort
     return s:warn('echo', 'No plugin to '. (a:pull ? 'update' : 'install'))
   endif
 
-  if !s:is_win && s:git_version_requirement(2, 3)
+  if !s:is_win && s:git_version_requirement(0, 0)
     let s:git_terminal_prompt = exists('$GIT_TERMINAL_PROMPT') ? $GIT_TERMINAL_PROMPT : ''
     let $GIT_TERMINAL_PROMPT = 0
     for plug in values(todo)
