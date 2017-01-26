@@ -87,15 +87,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf'                                      , {'dir': '~/.local/fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'Konfekt/FastFold'
-Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
+"Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
 Plug 'mileszs/ack.vim'
-"Plug 'Shougo/neoinclude.vim'
-"Plug 'Shougo/neomru.vim'
-"Plug 'Shougo/vimproc.vim'
-"Plug 'Shougo/neoyank.vim'
-"Plug 'Shougo/unite.vim'
-"Plug 'Shougo/vimfiler.vim'                    "          , {'on': 'VimFiler'}
-"Plug 'tsukkee/unite-tag'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 "Plug 'xolox/vim-easytags'
