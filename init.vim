@@ -45,12 +45,7 @@ call plug#begin($vim . '/bundle')
 
 
 " WATCHME
-" Plug 'tomtom/tinykeymap_vim'
 " Plug 'tpope/vim-projectionist'
-" Plug 'kasandell/Code-Pull'
-" Plug 'hienvd/vim-stackoverflow'
-
-"Plug 'neovim/node-host'
 
 " Essential                                                                  {{{
 Plug 'neomake/neomake'
@@ -80,9 +75,7 @@ Plug 'tpope/vim-surround'
 " }}}
 " General                                                                    {{{
 " @plugins
-"Plug 'ElmCast/elm-vim'
-"Plug 'bfredl/nvim-miniyank'
-"Plug 'justinmk/vim-dirvish'
+Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'honza/vim-snippets'
 Plug 'aperezdc/vim-template'
@@ -110,8 +103,8 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 "Plug 'KabbAmine/zeavim.vim'                              , {'on': ['Zeavim', 'ZHelp']}
-Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
-Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
+"Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
+"Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
 Plug 'othree/xml.vim'
@@ -122,7 +115,7 @@ Plug 'othree/xml.vim'
 "Plug 'othree/yajs.vim'                                   , { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript', 'branch': 'develop' }
 "Plug 'jelera/vim-javascript-syntax'                      , { 'for': 'javascript' }
-Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript' }
+"Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'mxw/vim-jsx'                                       , { 'on': 'JSX', 'for': 'javascript.jsx' }
 Plug 'ianks/vim-tsx'                                     , { 'for': 'typescript.tsx' }
@@ -145,12 +138,10 @@ Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'cs
 "Plug 'eagletmt/neco-ghc'                                 , { 'for': 'haskell' }
 "Plug 'eagletmt/ghcmod-vim'                               , { 'for': 'haskell' }
 "Plug 'kelan/gyp.vim'                                     , { 'for': 'gyp' }
-"Plug 'tenfyzhong/vim-gencode-cpp'                        , { 'for': 'cpp' }
-Plug 'octol/vim-cpp-enhanced-highlight'                  , { 'on':  'CppHL' }
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
 Plug 'dzeban/vim-log-syntax'
-"Plug '~/.local/coccinelle/editors/vim'                   , { 'for': 'cocci'}
+
 if exists('$VIFM')
     set runtimepath+=/usr/share/vifm/vim-doc
 end
@@ -161,16 +152,12 @@ Plug 'scrooloose/nerdtree'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-"Plug 'iago-lito/vim-visualMarks'
-"Plug 'KabbAmine/vCoolor.vim'
-"Plug 'ntpeters/vim-airline-colornum'
 Plug 'kshenoy/vim-signature'                             , {'on': 'SignatureToggleSigns'}
 Plug 'nathanaelkane/vim-indent-guides'                   , {'on': 'IndentGuidesToggle'}
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 "Plug 'Yggdroot/indentLine'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'idanarye/vim-smile'
+Plug 'vim-airline/vim-airline'                           , {'on': 'AirlineToggle' }
+Plug 'vim-airline/vim-airline-themes'                    , {'on': 'AirlineToggle' }
 " }}}
 " Colors/Colorscheme                                                         {{{
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
@@ -178,7 +165,6 @@ Plug 'lilydjwg/colorizer'
 Plug 'flazz/vim-colorschemes'
 Plug 'adelarsq/vim-grimmjow'
 Plug 'airblade/vim-gitgutter'
-Plug 'chriskempson/base16-vim'
 " }}}
 " Local (~/github/vim)                                                       {{{
 Plug '~/github/vim/equal-op'
@@ -186,7 +172,7 @@ Plug '~/github/vim/columnMove.vim'
 Plug '~/github/vim/lib.kom'
 Plug '~/github/vim/pp.vim'
 Plug '~/github/vim/replace.vim'
-"Plug '~/github/vim/vim-exeline'
+Plug '~/github/vim/vim-exeline'
 Plug '~/github/vim/winteract.vim'                        , {'on': 'InteractiveWindow'}
 " }}}
 
