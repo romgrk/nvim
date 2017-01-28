@@ -6,9 +6,12 @@
 
 " Recent mappings:
 
+
+nmap <A-=>  m`v<A-p><CR>=``
+
 if has('win32')
   nnoremap <C-A> ggVG
-  nnoremap <C-C> "+y
+  noremap  <C-C> "+y
   nnoremap gp    "+p
 end
 
