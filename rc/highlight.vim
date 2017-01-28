@@ -57,7 +57,7 @@ else
 end
 
 call hi#('multiple_cursors_cursor', colors.darkred, colors.pink, 'bold')
-call hi#('multiple_cursors_visual', hi#('Visual'))
+hi! link multiple_cursors_visual visual
 
 " }}}
 " GitGutter                                                                  {{{
@@ -68,22 +68,11 @@ call hi#('GitGutterChange',       hi#fg('TextInfo'),    s:bg, '')
 call hi#('GitGutterChangeDelete', hi#fg('TextWarning'), s:bg, '')
 " }}}
 " Notes, notation, etc.                                                      {{{
-hi! link vifmNotation  OldSpecial
+hi! link vifmNotation        OldSpecial
 hi! link notesXXX            ErrorMsg
 hi! link notesDoneMarker     TextSuccess
 hi! link notesTODO           TextWarning
 " }}}
-" ExtraWhitespace [disabled]                                                 {{{
-" highlight ExtraWhitespace ctermfg=166 guifg=#d65d0e
-" augroup ExtraWhitespace
-    " au!
-    " " this one is which you're most likely to use?
-    " autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    " autocmd BufWinLeave * call clearmatches()
-" augroup END
-"}}}
 
 if get(g:, 'colors_name') is 'materialtheme'
     hi Folded guibg=#2f3e46 guifg=none
