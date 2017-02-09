@@ -11,7 +11,7 @@ nmap <A-=>  m`v<A-p><CR>=``
 
 if has('win32')
   nnoremap <C-A> ggVG
-  noremap  <C-C> "+y
+  noremap  <C-c> "+y
   nnoremap gp    "+p
 end
 

@@ -216,7 +216,7 @@ ToggleMap 'sn',  { 'value': 'g:sneak#streak' },    [0,     1]
 ToggleMap 'HI',  { 'value': 'g:high_contrast' },   [0,     1], { 'post': 'syn enable'}
 ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post':
             \ 'let &ts = &sw \| IndentGuidesToggle \| IndentGuidesToggle'
-            \ . '\| exe \"IndentLinesToggle\" \| exe \"IndentLinesToggle\"' }
+            \ . '\| silent! exe \"IndentLinesToggle\" \| silent! exe \"IndentLinesToggle\"' }
 
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
 ToggleMap 'co',  'call colorizer#ColorToggle()'

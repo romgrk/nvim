@@ -185,6 +185,11 @@ call s:source_rc('keymap.vim')
 " Settings (after plugins):
 call s:source_plugins()
 
+" Local settings:
+if filereadable('~/.localrc')
+    source ~/.localrc
+end
+
 if argc() == 2 && argv(0) == 's'
     exe 'au VimEnter * OpenSession! ' . argv(1)
     argdel *
@@ -195,7 +200,6 @@ au!
 au VimEnter * colorscheme darker
 au VimEnter * call s:source_rc('colors.vim')
 au VimEnter * call s:source_rc('highlight.vim')
-au VimEnter * exe 'Guifont Monaco for Powerline:h10'
 augroup END
 
 " }}}
