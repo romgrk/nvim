@@ -1278,11 +1278,11 @@ fu! I_TAB ()
     if pumvisible()
         return "\<C-N>" | end
 
-    "if Ulti_canExpand()
-        "return Ulti_expand() | end
+    if Ulti_canExpand()
+        return Ulti_expand() | end
 
-    "if Ulti_canJump()
-        "return Ulti_jump('1') | end
+    if Ulti_canJump()
+        return Ulti_jump('1') | end
 
     if  (getline('.')[col('.')-2] =~? '\w\|\.'
     \ && getline('.')[col('.')-1] !~? '\w' )
@@ -1292,8 +1292,8 @@ fu! I_TAB ()
 endfu
 
 fu! I_S_TAB ()
-    "if Ulti_canJump() && !pumvisible()
-        "return Ulti_jump('0') | end
+    if Ulti_canJump() && !pumvisible()
+        return Ulti_jump('0') | end
 
     if pumvisible()
         return "\<C-p>" | end
@@ -1301,20 +1301,14 @@ fu! I_S_TAB ()
     return "\<S-TAB>"
 endfu
 
-if has('py3')
 " SECTION: UltiSnips helpers
+
+function! Ulti_canExpand()
+if !has('python3') | return 0 | end
 py3 << EOF
 import vim
 from UltiSnips import UltiSnips_Manager, _vim
 SM = UltiSnips_Manager
-EOF
-end
-
-function! Ulti_canExpand()
-if has('py3')
-    return 0
-end
-py3 << EOF
 before = _vim.buf.line_till_cursor
 sn=SM._snips(before, False)
 vim.command('return %i' % len(sn))
@@ -1322,11 +1316,11 @@ EOF
 endfunction
 
 function! Ulti_canJump()
-if has('py3')
-    return 0
-end
-
+if !has('python3') | return 0 | end
 py3 << EOF
+import vim
+from UltiSnips import UltiSnips_Manager, _vim
+SM = UltiSnips_Manager
 if SM._cs:
     vim.command('return 1')
 else:
@@ -1335,11 +1329,10 @@ EOF
 endfunction
 
 function! Ulti_jump(dir)
-if has('py3')
-    return 0
-end
-
 py3 << EOF
+import vim
+from UltiSnips import UltiSnips_Manager, _vim
+SM = UltiSnips_Manager
 if SM._cs:
     if vim.eval('a:dir') == '1':
         SM._jump()
@@ -1350,23 +1343,8 @@ EOF
 endfu
 
 function! Ulti_expand()
-if has('py3')
-    return 0
-end
-
-py3 << EOF
-SM.expand()
-EOF
+    call UltiSnips#ExpandSnippet()
     return ""
-endfu
-
-function! TAB_expandOrJump()
-if has('py3')
-    return 0
-end
-
-    call UltiSnips#ExpandSnippetOrJump()
-    return g:ulti_expand_or_jump_res
 endfu
 
 " }}}1

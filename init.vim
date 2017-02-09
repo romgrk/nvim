@@ -5,9 +5,7 @@
 "=============================================================================
 " Vim setup                                                                {{{
 
-set        path=,,./*;,**2;,/usr/include
-"set runtimepath+=~/.local/fzf
-" set runtimepath+=~/github/coffeelib
+set path=,,./*;,**2;,/usr/include
 
 let $vimrc  = $MYVIMRC
 let $vim    = fnamemodify($vimrc, ':h')
@@ -15,15 +13,13 @@ let $bundle = $vim . '/bundle'
 let $rc     = $vim . '/rc'
 
 " Load one file from ./rc/
-function! s:source_rc (file)
-    let fname = fnameescape($vim . '/rc/' . a:file)
-    execute 'source ' . fname
+function! s:source_rc(file)
+    execute 'source ' . fnameescape($vim . '/rc/' . a:file)
 endfu
 
 " Load all files from ./rc/plugins/
-function! s:source_plugins ()
-    let plugin_files = split(glob($vim . '/rc/plugins/*'), "\n")
-    for file in plugin_files
+function! s:source_plugins()
+    for file in split(glob($vim . '/rc/plugins/*'), "\n")
         exe 'source ' . file
     endfor
 endfunc
@@ -49,7 +45,7 @@ call plug#begin($vim . '/bundle')
 
 " Essential                                                                  {{{
 Plug 'neomake/neomake'
-"Plug 'sirver/UltiSnips'
+Plug 'sirver/UltiSnips'
 Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
 "Plug 'scrooloose/syntastic'                             , {'on': 'SyntasticCheck'}
 " }}}
@@ -204,7 +200,4 @@ augroup END
 
 " }}}
 "=============================================================================
-" Lint:"{{{
-autocmd BufEnter init.vim nmap <buffer> gL  m'gg/Plugins<CR>zcVjj:EasyAlign {'ig':[],'stl':0} 1,<CR>''
-"}}}
 " end-of-RC
