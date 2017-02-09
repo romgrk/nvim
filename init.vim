@@ -186,8 +186,8 @@ call s:source_rc('keymap.vim')
 call s:source_plugins()
 
 " Local settings:
-if filereadable('~/.localrc')
-    source ~/.localrc
+if filereadable($vim . '/local.vim')
+    exe 'source ' . $vim . '/local.vim'
 end
 
 if argc() == 2 && argv(0) == 's'

@@ -3,3 +3,7 @@ cache
 .imdone
 sessions
 .unused
+local.vim
+local_vimrc
+rc/__pycache__
+.init.vim-rplugin~
