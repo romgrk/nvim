@@ -7,6 +7,8 @@
 " Recent mappings:
 
 
+nnoremap <A-e> El
+
 nmap <A-=>  m`v<A-p><CR>=``
 
 if has('win32')
@@ -111,11 +113,13 @@ nnoremap <A-CR> O<Esc>
 nnoremap <silent><C-J>  i<CR><Esc>:silent -DeleteTrailingWS<CR>
 
 
-" Alt-M smart guess for starting MultiCursor-mode
-vnoremap <expr> <A-m>
-            \ visualmode() !=# 'v'
-            \ ?  ":'<,'>MultipleCursorsFind \\S\\+"
-            \ : ":call multiple_cursors#new('v', 0)"
+" Alt-M start MultiCursor-mode
+nnoremap <A-m> viw:MultipleCursorsFind <C-R><C-W><CR>
+vnoremap <A-m> :<C-U>call multiple_cursors#new('v', 0)<CR>
+"vnoremap <expr> <A-m>
+            "\ visualmode() ==# 'V'
+            "\ ?  ":'<,'>MultipleCursorsFind \\S\\+"
+            "\ : ":call multiple_cursors#new('v', 0)"
 
 " }}}1
 "===============================================================================
@@ -1018,15 +1022,19 @@ nnoremap ZZ :wqall<CR>
 onoremap l $
 onoremap h ^
 
-"omap ' i'
-"omap " i"
-
 " Paragraph: operator
 " all paragraph
 onoremap <A-p> ap
 " in paragraph
 xnoremap <A-p> ip
 
+" Remaps to targets
+omap '  i'
+omap "  i"
+omap id i"
+omap iq i'
+omap ik i{
+omap ir i[
 
 " A/in <tag>
 onoremap a, a<
@@ -1177,8 +1185,8 @@ inoremap <expr>   <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<L
 inoremap <expr>   <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
 cnoremap <expr>   <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 
-inoremap <silent> <M-b> <C-O>?\<?<CR>
-inoremap <silent> <M-f> <C-O>/\>/<CR>
+inoremap <silent> <M-b> <C-O>:call search('\<', 'b')<CR>
+inoremap <silent> <M-f> <C-O>:call search('\>')<CR>
 cnoremap          <M-f> <C-R>=<SID>cmdForwardWord()<CR>
 cnoremap          <M-b> <C-R>=<SID>cmdBackwardWord()<CR>
 
@@ -1240,6 +1248,8 @@ let UltiSnipsJumpBackwardTrigger = "<C-A-p>"
 let ycm_key_invoke_completion        =  '<C-Space>'
 let ycm_key_list_select_completion   = [ '<Down>' ]
 let ycm_key_list_previous_completion = [ '<Up>'   ]
+
+inoremap <C-Space> <C-X><C-I>
 
 " Filename autocompletion
 inoremap <C-F> <C-X><C-F>
