@@ -6,6 +6,10 @@
 
 " Recent mappings:
 
+nnoremap <F1> :silent !explorer .<CR>
+
+nnoremap <F12>   :windo diffthis<CR>
+nnoremap <S-F12> :windo diffoff<CR>
 
 nnoremap <A-e> El
 
@@ -207,6 +211,8 @@ nnoremap <A-n><A-o> :Note vim<CR>
 " j/k screen rows
 nnoremap j gj
 nnoremap k gk
+xnoremap j gj
+xnoremap k gk
 
 " SoL-EoL motion
 noremap       <A-l> $l
@@ -1035,6 +1041,10 @@ omap id i"
 omap iq i'
 omap ik i{
 omap ir i[
+omap ad a"
+omap aq a'
+omap ak a{
+omap ar a[
 
 " A/in <tag>
 onoremap a, a<

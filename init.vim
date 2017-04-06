@@ -46,12 +46,15 @@ call plug#begin($vim . '/bundle')
 " Essential                                                                  {{{
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
+if !has('win32')
 Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
+else
+Plug 'xleng/YCM_WIN_X86'
+end
 "Plug 'scrooloose/syntastic'                             , {'on': 'SyntasticCheck'}
 " }}}
 " Editing                                                                    {{{
 Plug 'wellle/targets.vim'
-"Plug 'vim-scripts/argwrap.vim'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bkad/CamelCaseMotion'
@@ -153,7 +156,7 @@ Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTab
 Plug 'lilydjwg/colorizer'
 Plug 'flazz/vim-colorschemes'
 Plug 'adelarsq/vim-grimmjow'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 " }}}
 " Local (~/github/vim)                                                       {{{
 Plug '~/github/vim/equal-op'

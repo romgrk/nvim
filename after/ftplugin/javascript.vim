@@ -13,6 +13,8 @@ nmap <buffer> <leader>r   :YcmCompleter GoToReferences<CR>
 nmap <buffer> <leader>d   :YcmCompleter GetDoc<CR>
 nmap <buffer> <leader>w   :YcmCompleter GetType<CR>
 
+inoremap <A-8> /*<CR><CR>/<Up>
+
 if !filereadable('.tern-project') && filereadable('~/templates/tern-project')
     silent !cp ~/templates/tern-project .tern-project
     Warn 'Created ' . fnamemodify('.tern-project', ':p')
