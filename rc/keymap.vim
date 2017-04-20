@@ -6,11 +6,6 @@
 
 " Recent mappings:
 
-nnoremap <F1> :silent !explorer .<CR>
-
-nnoremap <F12>   :windo diffthis<CR>
-nnoremap <S-F12> :windo diffoff<CR>
-
 nnoremap <A-e> El
 
 nmap <A-=>  m`v<A-p><CR>=``
@@ -969,6 +964,16 @@ endfu
 "===============================================================================
 " Quick Utils                                                               {{{1
 " @quick
+
+" File Explorer
+if has('win32')
+nnoremap <F1> :silent !explorer .<CR>
+end
+
+" Diff/Undiff open windows
+nnoremap <F12>   :windo diffthis<CR>
+nnoremap <S-F12> :windo diffoff<CR>
+
 
 " Insert word of the line above
 inoremap <C-Y> <C-C>:let @z = @"<CR>mz
