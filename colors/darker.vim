@@ -378,7 +378,7 @@ call hi#('Purple3',              '#EB95ED', '',        '')
 
 hi! link SpecialIdentifier  Violet
 
-call hi#('Special',              '#a755df', '',        'bold')
+call hi#('Special',              '#a755df', '',        '')
 call hi#('SpecialDelimiter',     '#a040af', '',        '')
 
 call hi#('SpecialLight',         '#eb95ed', '',        '')

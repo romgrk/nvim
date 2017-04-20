@@ -465,16 +465,6 @@ nnoremap <silent> <A-o>    :CtrlP<CR>
 nnoremap <silent> <A-O>    :CtrlPMixed<CR>
 nnoremap <silent> <C-S>    :CtrlPBuffer<CR>
 
-nnoremap <silent> <C-P><C-P> :CtrlP<CR>
-nnoremap <silent> <C-P>u     :CtrlPMRU<CR>
-nnoremap <silent> <C-P><C-U> :CtrlPMRU<CR>
-nnoremap <silent> <C-P>h     :CtrlPCurWD<CR>
-nnoremap <silent> <C-P><C-D> :CtrlPCurWD<CR>
-nnoremap <silent> <C-P>f     :CtrlPCurFile<CR>
-nnoremap <silent> <C-P><C-N> :CtrlPCurFile<CR>
-nnoremap <silent> <C-P>m     :CtrlPMixed<CR>
-nnoremap <silent> <C-P>x     :CtrlPMixed<CR>
-
 " }}}1
 "===============================================================================
 " Window & Tabs navigation                                                  {{{1
