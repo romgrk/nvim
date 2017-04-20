@@ -150,6 +150,7 @@ Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnab
 "Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'                           , {'on': 'AirlineToggle' }
 Plug 'vim-airline/vim-airline-themes'                    , {'on': 'AirlineToggle' }
+Plug 'machakann/vim-highlightedyank'
 " }}}
 " Colors/Colorscheme                                                         {{{
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}

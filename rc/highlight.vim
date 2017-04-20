@@ -9,11 +9,12 @@ au ColorScheme * exe 'source ' . expand('<sfile>:p')
 au VimEnter * :call pp#prettyTheme()
 exe 'augroup END'
 
-" General                                                                    {{{
-
 let bg_normal = hi#bg('Normal')
 let bg_normal = (bg_normal[0] != '#') ? '#282828' : bg_normal
 let bg_light  = color#Lighten(bg_normal, '0.3')
+let bg_lighter  = color#Lighten(bg_normal, '0.6')
+
+" General                                                                    {{{
 
 call hi#("Highlight", hi#("Search"))
 call hi#('AutoHL', 'none', bg_light, 'none')
@@ -58,6 +59,10 @@ end
 
 call hi#('multiple_cursors_cursor', colors.darkred, colors.pink, 'bold')
 hi! link multiple_cursors_visual visual
+
+
+"hi! HighlightedyankRegion cterm=reverse gui=reverse
+call hi#('HighlightedyankRegion', '', bg_lighter, '')
 
 " }}}
 " GitGutter                                                                  {{{
