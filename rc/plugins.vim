@@ -27,8 +27,10 @@ let notes_directories = ['~/notes']
 let UltiSnipsSnippetsDir         = $vim . '/after/snip'
 let UltiSnipsSnippetDirectories  = [$vim . '/after/snip']
 
+if has('win32')
 let python_host_prog  = 'C:\Python27\python.exe'
 let python3_host_prog = 'C:\Python34\python.exe'
+end
 
 " }}}
 "=============================================================================
