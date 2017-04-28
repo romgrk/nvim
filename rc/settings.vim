@@ -135,6 +135,7 @@ set nowrap
 
 set linebreak
 set showbreak=…\                " NonText
+set breakindent
 
 " }}}
 
