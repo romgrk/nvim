@@ -970,6 +970,11 @@ if has('win32')
 nnoremap <F1> :silent !explorer .<CR>
 end
 
+nnoremap <F3> :NERDTreeFind<CR>
+
+nnoremap <F5> :e!<CR>
+
+
 " Diff/Undiff open windows
 nnoremap <F12>   :windo diffthis<CR>
 nnoremap <S-F12> :windo diffoff<CR>
