@@ -225,6 +225,8 @@ nnoremap <A-k> 5gk
 " scroll up/down
 nnoremap <A-u> 10<C-Y>
 nnoremap <A-d> 10<C-E>
+vnoremap <A-u> 12<Up>
+vnoremap <A-d> 12<Down>
 
 nnoremap <A-b> <Left>gel
 
