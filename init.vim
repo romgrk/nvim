@@ -74,6 +74,9 @@ Plug 'tpope/vim-surround'
 " }}}
 " General                                                                    {{{
 " @plugins
+if !has('win32')
+Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
+end
 Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'honza/vim-snippets'
@@ -86,7 +89,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf'                                      , {'dir': '~/.local/fzf'}
 Plug 'junegunn/fzf.vim'
 Plug 'Konfekt/FastFold'
-"Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
@@ -133,6 +135,7 @@ Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'cs
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
 Plug 'dzeban/vim-log-syntax'
+Plug 'elixir-lang/vim-elixir'
 
 if exists('$VIFM')
     set runtimepath+=/usr/share/vifm/vim-doc
@@ -157,7 +160,7 @@ Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTab
 Plug 'lilydjwg/colorizer'
 Plug 'flazz/vim-colorschemes'
 Plug 'adelarsq/vim-grimmjow'
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " }}}
 " Local (~/github/vim)                                                       {{{
 Plug '~/github/vim/equal-op'

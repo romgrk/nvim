@@ -225,6 +225,8 @@ nnoremap <A-k> 5gk
 " scroll up/down
 nnoremap <A-u> 10<C-Y>
 nnoremap <A-d> 10<C-E>
+vnoremap <A-u> 12<Up>
+vnoremap <A-d> 12<Down>
 
 nnoremap <A-b> <Left>gel
 
@@ -974,6 +976,11 @@ endfu
 if has('win32')
 nnoremap <F1> :silent !explorer .<CR>
 end
+
+nnoremap <F3> :NERDTreeFind<CR>
+
+nnoremap <F5> :e!<CR>
+
 
 " Diff/Undiff open windows
 nnoremap <F12>   :windo diffthis<CR>

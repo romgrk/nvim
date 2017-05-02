@@ -95,6 +95,8 @@ set smartcase ignorecase
 set infercase
 set gdefault
 
+set inccommand=nosplit
+
 "}}}
 "===============================================================================
 " UI {{{
@@ -143,7 +145,7 @@ if has('win32')
   "set lcs+=eol:¬                 " EOL character
   set lcs+=tab:>\  "\              " Tab character replacement
 else
-  set lcs+=eol:¬                 " EOL character
+  "set lcs+=eol:¬                 " EOL character
   set lcs+=tab:\  "\              " Tab character replacement
 end
 set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
