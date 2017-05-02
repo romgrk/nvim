@@ -40,11 +40,10 @@ set hidden switchbuf=useopen
 
 " System clipboard
 if has('win32')
-  set clipboard=
+  set clipboard=unnamedplus
 else
   set clipboard=unnamedplus
 end
-"set clipboard=autoselect
 
 
 
@@ -118,7 +117,7 @@ set shortmess=aostWAc " set terse
 
 " Mouse
 set mouse=ah mousemodel=popup
-set selectmode=mouse
+"set selectmode=mouse
 
 " Scroll-aside
 set scrolloff=2
