@@ -453,7 +453,12 @@ nnoremap <C-A-P>  :Commands<CR>
 nnoremap <C-A-O>  :GitFiles<CR>
 
 
+if has('win32')
+nnoremap <silent> <A-i>    :CtrlPFunky<CR>
+else
 nnoremap <silent> <A-i>    :CtrlPBufTag<CR>
+end
+
 nnoremap <silent> <A-S-I>  :CtrlPTag<CR>
 
 nnoremap <silent> <A-o>    :CtrlP<CR>
