@@ -25,7 +25,6 @@ function! s:source_plugins()
 endfunc
 
 " Neovim setup
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let $NVIM_LISTEN_ADDRESS='127.0.0.1:6666'
 
 " }}}
