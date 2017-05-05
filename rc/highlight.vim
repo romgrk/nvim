@@ -44,9 +44,9 @@ if (&bg == 'light')
     hi! IndentGuidesEven guibg=#eeeeee
     hi! link IndentGuidesOdd  Folded
 
-    hi! link MatchParen          bg_brightteal
-    hi! link hiPairs_matchPair   bg_brightteal
-    hi! link hiPairs_unmatchPair bg_brightteal
+    hi! link MatchParen          b_brightteal
+    hi! link hiPairs_matchPair   b_brightteal
+    hi! link hiPairs_unmatchPair b_brightteal
 else
     let indentLine_color_gui ='#303030'
     hi! IndentGuidesEven guibg=#212121
