@@ -7,3 +7,4 @@ local.vim
 local_vimrc
 rc/__pycache__
 .init.vim-rplugin~
+rplugin.vim
