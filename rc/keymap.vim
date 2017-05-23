@@ -61,13 +61,11 @@ nnoremap U <C-R>
 "nmap    u <Plug>(RepeatUndo)
 
 " YankRing
+if exists('*miniyank#on_yank')
 nmap     p <Plug>(miniyank-autoput)
 nmap     P <Plug>(miniyank-autoPut)
 nmap <A-p> <Plug>(miniyank-cycle)
-"nmap <Leader>c <Plug>(miniyank-tochar)
-"nmap <Leader>l <Plug>(miniyank-toline)
-"nmap <Leader>b <Plug>(miniyank-toblock)
-
+end
 
 " G-commands:
 
@@ -83,10 +81,11 @@ onoremap ge :<C-U>normal! hvgel<CR>
 
 " go-lower/go-upper
 nnoremap gl  gu
-nnoremap gL  gul
 nnoremap gu  gU
-
 nnoremap gU  ~
+xnoremap gl  gu
+xnoremap gu  gU
+xnoremap gU  ~
 
 " go-replace
 nnoremap gr      gR
@@ -555,8 +554,8 @@ nnoremap yd yyp
 " Indent
 nnoremap <silent>>> V><Esc>
 nnoremap <silent><< V<<Esc>
-vnoremap          > >gv
-vnoremap          < <gv
+vnoremap <nowait> > >gv
+vnoremap <nowait> < <gv
 
 
 " Targets:
@@ -840,7 +839,7 @@ nmap sk :SplitjoinSplit<CR>
 nmap <A-'>      <Plug>NERDCommenterToggle
 vmap <A-'>      <Plug>NERDCommenterToggle
 nmap <A-">      <Plug>NERDCommenterSexy
-xmap <A-">      <Plug>NERDCommenterSexy
+"xmap <A-">      <Plug>NERDCommenterSexy
 " }}}
 
 " StringTransform:
