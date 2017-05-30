@@ -230,7 +230,7 @@ ToggleMap 'sy',  'SyntasticToggleMode'
 
 ToggleMap 'idg', 'IndentGuidesToggle'
 ToggleMap 'idl', 'IndentLinesToggle'
-ToggleMap 'lds', 'LeadingSpaceToggle'
+"ToggleMap 'lds', 'LeadingSpaceToggle'
 
 
 " Foldmethod
