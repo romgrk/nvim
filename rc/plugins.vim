@@ -32,6 +32,7 @@ let python_host_prog  = 'C:\Python27\python.exe'
 let python3_host_prog = 'C:\Python34\python.exe'
 end
 
+
 " }}}
 "=============================================================================
 " Session options (vim-session)                                              {{{

@@ -68,7 +68,7 @@ Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-endwise'                                 , {'for': 'vim'}
 "Plug 'Townk/vim-autoclose'
 "Plug 'Raimondi/delimitMate'
-"Plug 'cohama/lexima.vim'
+Plug 'cohama/lexima.vim'
 "Plug 'easymotion/vim-easymotion'
 " }}}
 " General                                                                    {{{
@@ -106,7 +106,7 @@ Plug 'othree/xml.vim'
 "Plug 'moll/vim-node'                                   , { 'for': 'javascript' }
 "Plug 'othree/javascript-libraries-syntax.vim'            , { 'for': 'javascript' }
 "Plug 'othree/yajs.vim'                                   , { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript', 'branch': 'develop' }
+Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 "Plug 'jelera/vim-javascript-syntax'                      , { 'for': 'javascript' }
 "Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
