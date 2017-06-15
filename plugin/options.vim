@@ -219,6 +219,7 @@ ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post':
             \ . '\| silent! exe \"IndentLinesToggle\" \| silent! exe \"IndentLinesToggle\"' }
 
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
+ToggleMap 'js',  'setfiletype javascript'
 ToggleMap 'co',  'call colorizer#ColorToggle()'
 ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
 ToggleMap 'gu',  'GitGutterToggle'
