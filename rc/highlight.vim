@@ -47,6 +47,15 @@ if (&bg == 'light')
     hi! link MatchParen          b_brightteal
     hi! link hiPairs_matchPair   b_brightteal
     hi! link hiPairs_unmatchPair b_brightteal
+
+    hi! link HighlightedyankRegion Highlight
+
+    " GitGutter                                                                  {{{
+    hi! link GitGutterAdd DiffAdded
+    hi! link GitGutterDelete DiffRemoved
+    hi! link GitGutterChange DiffModified
+    hi! link GitGutterChangeDelete DiffRemoved
+    " }}}
 else
     let indentLine_color_gui ='#303030'
     hi! IndentGuidesEven guibg=#212121
@@ -55,22 +64,22 @@ else
     hi! link MatchParen          b_brightteal
     hi! link hiPairs_matchPair   b_brightteal
     hi! link hiPairs_unmatchPair b_brightteal
+
+    hi! link HighlightedyankRegion Search
+
+    " GitGutter                                                                  {{{
+    let s:bg = hi#bg('LineNr')
+    call hi#('GitGutterAdd',          hi#fg('TextSuccess'), s:bg, '')
+    call hi#('GitGutterDelete',       hi#fg('TextError'),   s:bg, '')
+    call hi#('GitGutterChange',       hi#fg('TextInfo'),    s:bg, '')
+    call hi#('GitGutterChangeDelete', hi#fg('TextWarning'), s:bg, '')
+    " }}}
 end
 
 call hi#('multiple_cursors_cursor', colors.darkred, colors.pink, 'bold')
 hi! link multiple_cursors_visual visual
 
 
-"call hi#('HighlightedyankRegion', '', bg_lighter, '')
-hi! link HighlightedyankRegion Search
-
-" }}}
-" GitGutter                                                                  {{{
-let s:bg = hi#bg('LineNr')
-call hi#('GitGutterAdd',          hi#fg('TextSuccess'), s:bg, '')
-call hi#('GitGutterDelete',       hi#fg('TextError'),   s:bg, '')
-call hi#('GitGutterChange',       hi#fg('TextInfo'),    s:bg, '')
-call hi#('GitGutterChangeDelete', hi#fg('TextWarning'), s:bg, '')
 " }}}
 " Notes, notation, etc.                                                      {{{
 hi! link vifmNotation        OldSpecial

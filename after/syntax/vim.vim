@@ -157,7 +157,7 @@ syn region vimFoldFinally
 " Highlight links {{{
 
 hi! link vimFunc       Function
-" hi! link vimUserFunc   Function
+hi! link vimUserFunc   Function
 hi! link vimOption     Control
 
 hi! link vimScriptVar  Identifier
@@ -206,7 +206,7 @@ call hi#('vimCommandTag',         hi#fg('Statement'),  s:hl_bg, 'none')
 call hi#('vimFuncNameTag',        hi#fg('Function'),   s:hl_bg, 'none')
 call hi#('vimScriptFuncNameTag',  hi#fg('StaticFunc'), s:hl_bg, 'none')
 
-call hi#('vimUserFunc',           hi#fg('Type'),       '',      'bold')
+"call hi#('vimUserFunc',           hi#fg('Type'),       '',      'bold')
 
 " syn sync linecont	"^\s\+\\"
 
