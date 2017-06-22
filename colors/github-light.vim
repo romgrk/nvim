@@ -1,5 +1,8 @@
 " !::exe [so % | call colorizer#ColorHighlight(1)]
 "set background=dark
+if &bg != 'light'
+  set background=light
+end
 let colors_name = 'github-light'
 
 " Definitions:                                                               {{{
@@ -145,6 +148,7 @@ let theme.insensitive_base      = '#282828'
 let theme.fg_text               = '#24292e'
 let theme.fg                    = '#24292e'
 let theme.fg_subtle             = '#c0c0c0'
+let theme.fg_verysubtle         = '#e0e0e0'
 let theme.fg_shaded             = '#24292e'
 let theme.fg_dark               = '#24292e'
 let theme.fg_widget             = '#efe3d5'
@@ -189,39 +193,39 @@ let theme.folded_fg             = '#999999'
 " }}}
 " General UI                                                                 {{{
 
-call hi#('Normal',          theme.fg,        theme.bg, '')
-call hi#('Shaded',          theme.fg_shaded, '',       '')
-call hi#('EndOfBuffer',     theme.fg_widget, theme.bg, '')
+call hi#('Normal',           theme.fg,        theme.bg, '')
+call hi#('Shaded',           theme.fg_shaded, '',       '')
+call hi#('EndOfBuffer',      theme.fg_widget, theme.bg, '')
 
-call hi#('Cursor',          '', theme.base,  'reverse')
-call hi#('SecondaryCursor', '', theme.bg_hl, 'none')
+call hi#('Cursor',           '', theme.base,  'reverse')
+call hi#('SecondaryCursor',  '', theme.bg_hl, 'none')
 
-call hi#('CursorLine',   '',              theme.bg_verysubtle)
-call hi#('CursorColumn', '',              theme.bg_verysubtle)
-call hi#('CursorLineNr', theme.hl,        theme.bg_verysubtle, 'none')
-call hi#('LineNr',       theme.fg_widget, theme.bg_widget, 'none')
+call hi#('CursorLine',       '',              theme.bg_verysubtle)
+call hi#('CursorColumn',     '',              theme.bg_verysubtle)
+call hi#('CursorLineNr',     theme.hl,        theme.bg_verysubtle, 'none')
+call hi#('LineNr',           theme.fg_widget, theme.bg_widget, 'none')
 
-call hi#('TermCursor',   '',                    theme.base,           '')
-call hi#('TermCursorNC', '',                    theme.unfocused_base, '')
+call hi#('TermCursor',       '',                    theme.base,           '')
+call hi#('TermCursorNC',     '',                    theme.unfocused_base, '')
 
-call hi#('Visual',       theme.selection)
-call hi#('LastVisual',   '',         theme.bg_selection_dark, '')
-call hi#('WildMenu',     theme.fg,   theme.bg_selection)
-call hi#('StatusLine',   theme.fg,   theme.bg_dark,               'NONE')
-call hi#('StatusLineNC', '#1f1f1f',  theme.bg_dark,               'NONE')
-call hi#('Separator',    '#4c4c4c', 'none',                  '')
-call hi#('VertSplit',    theme.bg,  theme.bg_widget,         '')
+call hi#('Visual',           theme.selection)
+call hi#('LastVisual',       '',              theme.bg_selection_dark, '')
+call hi#('WildMenu',         theme.fg,        theme.bg_selection)
+call hi#('StatusLine',       theme.fg,        theme.bg_dark,           'NONE')
+call hi#('StatusLineNC',     '#1f1f1f',       theme.bg_dark,           'NONE')
+call hi#('Separator',        '#4c4c4c',       'none',                  '')
+call hi#('VertSplit',        theme.fg_subtle, theme.bg_widget,         '')
 
-call hi#('Pmenu',        theme.fg, theme.bg_overlay)
-call hi#('PmenuSel',     theme.fg, theme.bg_selection)
-call hi#('PmenuSbar',    '',       theme.bg_dark)
-call hi#('PmenuThumb',   '#666660', '#666660')
-call hi#('Terminal',      s:white,  s:_black, 'bold'  )
+call hi#('Pmenu',            theme.fg, theme.bg_overlay)
+call hi#('PmenuSel',         theme.fg, theme.bg_selection)
+call hi#('PmenuSbar',        '',       theme.bg_dark)
+call hi#('PmenuThumb',       '#666660', '#666660')
+call hi#('Terminal',         s:white,  s:_black, 'bold'  )
 
-call hi#('Folded',      'none',          theme.bg_verysubtle,  'none')
-call hi#('FoldColumn',  theme.fg_subtle, theme.bg_widget,      '')
-call hi#('SignColumn',  '',              theme.insensitive_bg, '')
-call hi#('ColorColumn', '',              theme.insensitive_bg, '')
+call hi#('Folded',           'none',          theme.bg_verysubtle,  'none')
+call hi#('FoldColumn',       theme.fg_subtle, theme.bg_widget,      '')
+call hi#('SignColumn',       '',              theme.insensitive_bg, '')
+call hi#('ColorColumn',      '',              theme.insensitive_bg, '')
 
 
 call hi#('IndentGuidesEven', '#404040', '',        '')
@@ -298,7 +302,7 @@ call hi#('BoldComment',          '#6a737d', '',        'bold')
 call hi#('SpecialComment',       '#7597c6', '',        'bold')
 call hi#('CommentLabel',         '#799d6a', '',        'bold')
 
-call hi#('Global',               '#005cc5', '',        'bold')
+call hi#('Global',               '#005cc5', '',        'none')
 call hi#('PreProc',              '#005cc5', '',        'none')
 call hi#('Macro',                '#005cc5', '',        'bold')
 call hi#('Define',               '#005cc5', '',        'bold')
@@ -310,16 +314,17 @@ call hi#('Keyword',              '#d73a49', '',        '')
 call hi#('Statement',            '#d73a49', '',        'none')
 call hi#('Label',                '#d73a49', '',        '')
 
-call hi#('Operator',             '#94afff', '',        '')
+call hi#('Operator',             '#d73a49', '',        '')
+"call hi#('Operator',             '#94afff', '',        '')
 
-call hi#('Constant',             '#005cc5', '',        'bold')
+call hi#('Constant',             '#005cc5', '',        'none')
 call hi#('Number',               '#005cc5', '',        'none')
 call hi#('Float',                '#005cc5', '',        'none')
-call hi#('Boolean',              '#005cc5', '',        'bold')
-call hi#('Enum',                 '#005cc5', '',        '')
+call hi#('Boolean',              '#005cc5', '',        'none')
+call hi#('Enum',                 '#005cc5', '',        'none')
 
-call hi#('Delimiter',            '#668799', '',        '')
-call hi#('Delimiter2',           '#799033', '',        '')
+call hi#('Delimiter',            '#668799', '',        'none')
+call hi#('Delimiter2',           '#799033', '',        'none')
 call hi#('SpecialChar',          '#799d6a', '',        'bold')
 
 call hi#('String',               '#032fb2', '',        'none')
@@ -328,39 +333,39 @@ call hi#('StringDelimiter',      '#032f62', '',        'bold')
 call hi#('Character',            '#238fff', '',        'bold')
 
 
-call hi#('SpecialIdentifier',    '#9c5fff', '',        '')
+call hi#('SpecialIdentifier',    '#9c5fff', '',        'none')
 
-call hi#('Special',              '#a755df', '',        '')
-call hi#('SpecialDelimiter',     '#a040af', '',        '')
+call hi#('Special',              '#a755df', '',        'none')
+call hi#('SpecialDelimiter',     '#a040af', '',        'none')
 
 
-call hi#('Identifier',           theme.fg,  '',        '')
-call hi#('Variable',             '#ffe790', '',        '')
-call hi#('Argument',             '#dea537', '',        '')
+call hi#('Identifier',           theme.fg,  '',        'none')
+call hi#('Variable',             '#ffe790', '',        'none')
+call hi#('Argument',             '#dea537', '',        'none')
 
 " func name
-call hi#('Function',             '#6f42c1', '',        '')
+call hi#('Function',             '#6f42c1', '',        'none')
 call hi#('Method',               '#6f42c1', '',        'bold')
 
-call hi#('Symbol',               '#005cc5', '',        '')
-call hi#('Control',              '#005cc5', '',        '')
-call hi#('PredefinedIdentifier', '#005cc5', '',        '')
-call hi#('Predefined',           '#005cc5', '',        '')
+call hi#('Symbol',               '#005cc5', '',        'none')
+call hi#('Control',              '#005cc5', '',        'none')
+call hi#('PredefinedIdentifier', '#005cc5', '',        'none')
+call hi#('Predefined',           '#005cc5', '',        'none')
 
-call hi#('StaticFunc',           '#ffb964', '',        '')
-call hi#('Property',             '#d5af7f', '',        '')
+call hi#('StaticFunc',           '#ffb964', '',        'none')
+call hi#('Property',             '#dea537', '',        'none')
 
 
 call hi#('Type',                 '#d73a49', '',        'none')
-call hi#('StorageClass',         '#d73a49', '',        '')
+call hi#('StorageClass',         '#d73a49', '',        'none')
 call hi#('Class',                '#d73a49', '',        'none')
-call hi#('Structure',            '#d73a49', '',        '')
-call hi#('Typedef',              '#d73a49', '',        '')
+call hi#('Structure',            '#d73a49', '',        'none')
+call hi#('Typedef',              '#d73a49', '',        'none')
 
-call hi#('Regexp',               '#dd0093', '',        '')
-call hi#('RegexpSpecial',        '#a40073', '',        '')
+call hi#('Regexp',               '#dd0093', '',        'none')
+call hi#('RegexpSpecial',        '#a40073', '',        'none')
 call hi#('RegexpDelimiter',      '#540063', '',        'bold')
-call hi#('RegexpKey',            '#fefdfc', '#5f0041', '')
+call hi#('RegexpKey',            '#5f0041', '',        'bold')
 
 " }}}
 " Diff                                                                       {{{

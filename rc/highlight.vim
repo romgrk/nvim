@@ -16,7 +16,7 @@ let bg_lighter = color#Lighten(bg_normal, '0.8')
 
 " General                                                                    {{{
 
-call hi#("Highlight", hi#("Search"))
+"call hi#("Highlight", hi#("Search"))
 call hi#('AutoHL', 'none', bg_light, 'none')
 
 hi! link    Noise          Comment
@@ -44,9 +44,9 @@ if (&bg == 'light')
     hi! IndentGuidesEven guibg=#eeeeee
     hi! link IndentGuidesOdd  Folded
 
-    hi! link MatchParen          b_brightteal
-    hi! link hiPairs_matchPair   b_brightteal
-    hi! link hiPairs_unmatchPair b_brightteal
+    hi! link MatchParen          bg_brightteal
+    hi! link hiPairs_matchPair   bg_brightteal
+    hi! link hiPairs_unmatchPair bg_brightteal
 
     hi! link HighlightedyankRegion Highlight
 
