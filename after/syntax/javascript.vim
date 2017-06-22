@@ -9,10 +9,12 @@ hi! link jsFuncBraces      Delimiter
 hi! link jsBraces          Delimiter
 hi! link jsBrackets        Delimiter2
 
-"hi! link jsThis            Var3
 hi! link jsImport          Special
 hi! link jsFrom            Special
 hi! link jsThis            jsPrototype
+if (&bg == 'light')
+  hi! link jsPrototype       Keyword
+end
 hi! link jsFunction        Keyword
 hi! link jsFuncCall        Function
 hi! link jsFuncAssignIdent Function
@@ -30,6 +32,7 @@ hi! link jsRegexpString    Regexp
 hi! link jsRegexpBoundary  RegexpKey
 hi! link jsRegexpCharClass RegexpDelimiter
 hi! link jsTemplateVar     Normal
+hi! link jsTernaryIfOperator jsOperator
 
 hi! link jsModuleOperators Special
 hi! link jsModuleKeywords  Special

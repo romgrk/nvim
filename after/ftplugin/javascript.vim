@@ -13,6 +13,12 @@ nmap <buffer> <leader>r   :YcmCompleter GoToReferences<CR>
 nmap <buffer> <leader>d   :YcmCompleter GetDoc<CR>
 nmap <buffer> <leader>w   :YcmCompleter GetType<CR>
 
+nmap <buffer><silent> K   :silent !start "https://developer.mozilla.org/en-US/search?q=<C-R><C-W>&topic=js&topic=api"<CR>
+
+
+imap <buffer> <A-i>f function(){<space>
+
+
 inoremap <A-8> /*<CR><CR>/<Up>
 
 if !filereadable('.tern-project') && filereadable('~/templates/tern-project')
