@@ -362,10 +362,10 @@ call hi#('Class',                '#d73a49', '',        'none')
 call hi#('Structure',            '#d73a49', '',        'none')
 call hi#('Typedef',              '#d73a49', '',        'none')
 
-call hi#('Regexp',               '#dd0093', '',        'none')
-call hi#('RegexpSpecial',        '#a40073', '',        'none')
-call hi#('RegexpDelimiter',      '#540063', '',        'bold')
-call hi#('RegexpKey',            '#5f0041', '',        'bold')
+call hi#('Regexp',               '#dd0093', 'none',        'none')
+call hi#('RegexpSpecial',        '#a40073', 'none',        'none')
+call hi#('RegexpDelimiter',      '#540063', 'none',        'bold')
+call hi#('RegexpKey',            '#5f0041', 'none',        'bold')
 
 " }}}
 " Diff                                                                       {{{
