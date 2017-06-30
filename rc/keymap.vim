@@ -392,11 +392,11 @@ nnoremap      [Space]sl     :SourceLocalVimrc<CR>
 
 nnoremap      [Space]ma   :Magit<CR>
 
-nnoremap      [Space]gc   :Gcommit % -m ''<Left>
+nnoremap      [Space]gc   :Gcommit % -m ""<Left>
 nnoremap      [Space]gk   :Git checkout<space>
 nnoremap      [Space]gK   :Git checkout -b<space>
-nnoremap      [Space]gp   :Gpull<CR>
-nnoremap      [Space]gP   :Gpush<CR>
+nnoremap      [Space]gl   :Gpull<CR>
+nnoremap      [Space]gp   :Gpush<CR>
 nnoremap      [Space]gs   :Gstatus<CR>
 
 "===============================================================================
