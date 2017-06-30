@@ -14,6 +14,7 @@ hi! link jsFrom            Special
 hi! link jsThis            jsPrototype
 if (&bg == 'light')
   hi! link jsPrototype       Keyword
+  hi! link jsObjectKey       Property
 end
 hi! link jsFunction        Keyword
 hi! link jsFuncCall        Function
@@ -21,7 +22,6 @@ hi! link jsFuncAssignIdent Function
 hi! link jsAssignExpIdent  Identifier
 hi! link jsStorageClass    StorageClass
 hi! link jsGlobalObjects   Global
-hi! link jsObjectKey       Property
 hi! link jsFunctionKey     jsObjectKey
 hi! link jsArrowFunction   Keyword
 hi! link jsNull            Constant
