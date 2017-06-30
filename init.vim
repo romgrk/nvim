@@ -42,17 +42,15 @@ call plug#begin($vim . '/bundle')
 " WATCHME
 " Plug 'tpope/vim-projectionist'
 
-" Essential                                                                  {{{
+" Editing                                                                    {{{
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
 if !has('win32')
 Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
 else
 Plug 'xleng/YCM_WIN_X86'
+Plug 'vim-scripts/AutoComplPop'
 end
-"Plug 'scrooloose/syntastic'                             , {'on': 'SyntasticCheck'}
-" }}}
-" Editing                                                                    {{{
 Plug 'wellle/targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -65,17 +63,10 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-"Plug 'tpope/vim-endwise'                                 , {'for': 'vim'}
-"Plug 'Townk/vim-autoclose'
-"Plug 'Raimondi/delimitMate'
 Plug 'cohama/lexima.vim'
-"Plug 'easymotion/vim-easymotion'
 " }}}
 " General                                                                    {{{
 " @plugins
-if !has('win32')
-Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
-end
 Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'honza/vim-snippets'
@@ -91,29 +82,24 @@ Plug 'Konfekt/FastFold'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
-"Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
+if !has('win32')
+Plug 'xolox/vim-easytags'
+Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
+end
 "Plug 'KabbAmine/zeavim.vim'                              , {'on': ['Zeavim', 'ZHelp']}
 "Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
 "Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
 Plug 'othree/xml.vim'
-"Plug 'tpope/vim-jdaddy'
-"Plug 'Quramy/vison'                                    , { 'for': 'json', 'on': 'Vison' }
-"Plug 'moll/vim-node'                                   , { 'for': 'javascript' }
-"Plug 'othree/javascript-libraries-syntax.vim'            , { 'for': 'javascript' }
-"Plug 'othree/yajs.vim'                                   , { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
-"Plug 'jelera/vim-javascript-syntax'                      , { 'for': 'javascript' }
-"Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'mxw/vim-jsx'                                       , { 'on': 'JSX', 'for': 'javascript.jsx' }
 Plug 'ianks/vim-tsx'                                     , { 'for': 'typescript.tsx' }
 Plug 'Quramy/tsuquyomi'                                  , { 'on': 'TsuServerInfo' } " { 'for': 'typescript' }
-"Plug 'HerringtonDarkholme/yats.vim'                    , { 'for': 'typescript' }
 Plug 'kchmck/vim-coffee-script'                          , { 'for': 'coffee' }
 Plug 'plasticboy/vim-markdown'                           , { 'for': 'markdown' }
 Plug 'tpope/vim-haml'                                    , { 'for': ['sass', 'scss', 'haml'] }
