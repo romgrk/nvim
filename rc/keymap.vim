@@ -838,8 +838,8 @@ nmap sk :SplitjoinSplit<CR>
 " alt-'  &  alt-"                                                            {{{
 nmap <A-'>      <Plug>NERDCommenterToggle
 vmap <A-'>      <Plug>NERDCommenterToggle
-nmap <A-">      <Plug>NERDCommenterSexy
-"xmap <A-">      <Plug>NERDCommenterSexy
+nmap <C-'>      <Plug>NERDCommenterSexy
+vmap <C-'>      <Plug>NERDCommenterSexy
 " }}}
 
 " StringTransform:
@@ -886,21 +886,12 @@ nmap #  <Plug>(incsearch-nohl-#)
 
 " Yank selected text as an escaped search-pattern
 map <silent><Plug>(visual-yank-plaintext)
-     \ :<C-U>call setreg(v:register, '\V'.escape(visual#GetText(), '\/'))<CR>
+      \ :<C-U>call setreg(v:register, '\C\V'.escape(visual#GetText(), '\/'))<CR>
+
 vmap <M-y>           <Plug>(visual-yank-plaintext)
 vmap <A-/>         "/<Plug>(visual-yank-plaintext)n
 vmap <silent><C-F> "/<Plug>(visual-yank-plaintext):set hls<CR>
 nmap z*         viw"/<Plug>(visual-yank-plaintext):set hls<CR>
-" credits: xolox
-function! visual#GetText()
-    " Why is this not a built-in Vim script function?!
-    let [lnum1, col1] = getpos("'<")[1:2]
-    let [lnum2, col2] = getpos("'>")[1:2]
-    let lines = getline(lnum1, lnum2)
-    let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
-    let lines[0] = lines[0][col1 - 1:]
-    return join(lines, "\n")
-endfunction
 
 
 
