@@ -214,7 +214,7 @@ call hi#('WildMenu',         theme.fg,        theme.bg_selection)
 call hi#('StatusLine',       theme.fg,        theme.bg_dark,           'NONE')
 call hi#('StatusLineNC',     '#1f1f1f',       theme.bg_dark,           'NONE')
 call hi#('Separator',        '#4c4c4c',       'none',                  '')
-call hi#('VertSplit',        theme.fg_subtle, theme.bg_widget,         '')
+call hi#('VertSplit',        theme.fg_subtle, theme.bg_widget,         'none')
 
 call hi#('Pmenu',            theme.fg, theme.bg_overlay)
 call hi#('PmenuSel',         theme.fg, theme.bg_selection)
