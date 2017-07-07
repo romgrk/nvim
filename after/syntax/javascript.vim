@@ -15,6 +15,8 @@ hi! link jsThis            jsPrototype
 if (&bg == 'light')
   hi! link jsPrototype       Keyword
   hi! link jsObjectKey       Property
+else
+  hi! link jsPrototype     Special
 end
 hi! link jsFunction        Keyword
 hi! link jsFuncCall        Function
