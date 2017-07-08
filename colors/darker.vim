@@ -1,5 +1,7 @@
 " !::exe [so % | call colorizer#ColorHighlight(1)]
-"set background=dark
+if (&bg == 'light')
+  set background=dark
+end
 let colors_name = 'darker'
 
 " Definitions:                                                               {{{

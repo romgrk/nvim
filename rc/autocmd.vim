@@ -8,6 +8,17 @@ exe 'augroup RC'
     au!
 
     au VimEnter * nested exe 'Guifont Monaco for Powerline:h10'
+    au VimEnter * nested let g:previous_columns = &columns
+
+    au VimResized * if (&columns < (g:previous_columns - 2) / 2)
+                 \|   only
+                 \|   let g:previous_columns = &columns
+                 \| end
+    au VimResized * if ((&columns + 2) > g:previous_columns * 2)
+                 \|   vsplit
+                 \|   exe "normal! \<c-w>="
+                 \|   let g:previous_columns = &columns
+                 \| end
 
     "au FocusLost * wa!
     au VimLeave *  SaveSession!
