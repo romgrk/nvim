@@ -403,6 +403,7 @@ nnoremap      [Space]gs   :Gstatus<CR>
 " Files:
 nnoremap      [Space]md     :Mkdir! <C-D>
 nnoremap      [Space]mv     :Move <C-D>
+nnoremap      [Space]re     :Rename<space>
 
 " Search:
 nnoremap      [Space]ac     :Ack<space>
