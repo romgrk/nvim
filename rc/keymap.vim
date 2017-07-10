@@ -12,8 +12,6 @@ nmap <A-=>  m`v<A-p><CR>=``
 
 if has('win32')
   nnoremap <C-A> ggVG
-  noremap  <C-c> "+y
-  nnoremap gp    "+p
 end
 
 
@@ -405,6 +403,7 @@ nnoremap      [Space]gs   :Gstatus<CR>
 " Files:
 nnoremap      [Space]md     :Mkdir! <C-D>
 nnoremap      [Space]mv     :Move <C-D>
+nnoremap      [Space]re     :Rename<space>
 
 " Search:
 nnoremap      [Space]ac     :Ack<space>

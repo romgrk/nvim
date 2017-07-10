@@ -35,6 +35,7 @@ hi! link jsRegexpBoundary  RegexpKey
 hi! link jsRegexpCharClass RegexpDelimiter
 hi! link jsTemplateVar     Normal
 hi! link jsTernaryIfOperator jsOperator
+hi! link jsTaggedTemplate Function
 
 hi! link jsModuleOperators Special
 hi! link jsModuleKeywords  Special
