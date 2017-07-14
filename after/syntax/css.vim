@@ -10,4 +10,6 @@ hi! link cssAttrRegion Type
 if (&bg == 'light')
 hi! link cssProp Predefined
 hi! link cssUnitDecorators Keyword
+else
+hi! link cssProp Property
 end
