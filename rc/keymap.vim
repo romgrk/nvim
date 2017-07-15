@@ -6,8 +6,6 @@
 
 " Recent mappings:
 
-nnoremap <A-e> El
-
 nmap <A-=>  m`v<A-p><CR>=``
 
 if has('win32')
@@ -218,6 +216,8 @@ noremap <A-j> 5<Down>
 noremap <A-k> 5<Up>
 nnoremap <A-j> 5gj
 nnoremap <A-k> 5gk
+vnoremap <A-j> 5gj
+vnoremap <A-k> 5gk
 
 " scroll up/down
 nnoremap <A-u> 10<C-Y>
@@ -225,7 +225,11 @@ nnoremap <A-d> 10<C-E>
 vnoremap <A-u> 12<Up>
 vnoremap <A-d> 12<Down>
 
-nnoremap <A-b> <Left>gel
+nnoremap <A-b> B
+nnoremap <A-e> El
+onoremap <A-b> B
+onoremap <A-e> E
+
 
 " Column-edge
 nmap  <C-A-J>       <Plug>ColumnMoveDown

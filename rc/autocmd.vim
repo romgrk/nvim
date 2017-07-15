@@ -14,7 +14,7 @@ exe 'augroup RC'
                  \|   only
                  \|   let g:previous_columns = &columns
                  \| end
-    au VimResized * if ((&columns + 2) > g:previous_columns * 2)
+    au VimResized * if ((&columns + 2) > g:previous_columns * 2 && (&columns / 2) >= 80)
                  \|   vsplit
                  \|   exe "normal! \<c-w>="
                  \|   let g:previous_columns = &columns
