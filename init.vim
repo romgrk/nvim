@@ -67,6 +67,7 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
 Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'honza/vim-snippets'
