@@ -49,7 +49,7 @@ if !has('win32')
 Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
 else
 Plug 'xleng/YCM_WIN_X86'
-Plug 'vim-scripts/AutoComplPop'
+Plug 'romgrk/AutoComplPop'
 end
 Plug 'wellle/targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
