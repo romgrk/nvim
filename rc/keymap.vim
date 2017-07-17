@@ -410,11 +410,8 @@ nnoremap      [Space]mv     :Move <C-D>
 nnoremap      [Space]re     :Rename<space>
 
 " Search:
-nnoremap      [Space]ac     :Ack<space>
-nnoremap      [Space]ak     :Ack<space><C-R><C-W><CR>
-nnoremap      [Space]ag     :Ag<space>
-nnoremap      [Space]aa     :Ag <C-R><C-W><CR>
-nnoremap      [Space]as     :Ag <C-R>/<CR>
+nnoremap      [Space]ag     :Rg<space>
+nnoremap      [Space]aa     :Rg<CR>
 
 "===============================================================================
 
