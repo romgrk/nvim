@@ -57,11 +57,11 @@ nnoremap U <C-R>
 "nmap    u <Plug>(RepeatUndo)
 
 " YankRing
-if exists('*miniyank#on_yank')
+"if exists('*miniyank#on_yank')
 nmap     p <Plug>(miniyank-autoput)
 nmap     P <Plug>(miniyank-autoPut)
 nmap <A-p> <Plug>(miniyank-cycle)
-end
+"end
 
 " G-commands:
 
