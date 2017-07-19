@@ -209,7 +209,19 @@ noremap       <A-l> $l
 noremap <expr><A-h>
             \ (col('.') - 1) &&  match(getline('.'),'\S') >= col('.') - 1
             \ ? '0' : '^'
-xnoremap <expr><A-l> (&ve=~#'onemore'<Bar><Bar>&ve==#'all') ? '$h' : '$'
+
+xnoremap <expr><A-l> <SID>endOfLine()
+
+fu! s:endOfLine()
+  if (visualmode() ==# "\<C-v>")
+    return '$'
+  end
+  if (&ve=~#'onemore' || &ve==#'all')
+    return '$h'
+  end
+  return '$'
+endfu
+
 
 " wide move
 noremap <A-j> 5<Down>
