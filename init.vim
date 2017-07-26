@@ -50,6 +50,7 @@ Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'
 else
 Plug 'xleng/YCM_WIN_X86'
 Plug 'romgrk/AutoComplPop'
+Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
 end
 Plug 'wellle/targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
@@ -67,7 +68,6 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
 Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'honza/vim-snippets'
@@ -110,6 +110,7 @@ Plug 'digitaltoad/vim-pug'                               , { 'for': ['jade', 'pu
 Plug 'othree/html5.vim'                                  , { 'for': 'html' }
 Plug 'othree/html5-syntax.vim'                           , { 'for': 'html' }
 Plug 'tpope/vim-liquid'                                  , { 'for': 'html' }
+Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'rstacruz/sparkup'                                  , { 'for': 'html', 'rtp': 'vim'}
 Plug 'mattn/emmet-vim'                                   , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
 Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
