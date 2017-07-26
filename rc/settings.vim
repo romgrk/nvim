@@ -45,6 +45,7 @@ else
   set clipboard=unnamedplus
 end
 
+set updatetime=2000
 
 
 " }}}

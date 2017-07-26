@@ -57,11 +57,11 @@ nnoremap U <C-R>
 "nmap    u <Plug>(RepeatUndo)
 
 " YankRing
-if exists('*miniyank#on_yank')
+"if exists('*miniyank#on_yank')
 nmap     p <Plug>(miniyank-autoput)
 nmap     P <Plug>(miniyank-autoPut)
 nmap <A-p> <Plug>(miniyank-cycle)
-end
+"end
 
 " G-commands:
 
@@ -209,7 +209,19 @@ noremap       <A-l> $l
 noremap <expr><A-h>
             \ (col('.') - 1) &&  match(getline('.'),'\S') >= col('.') - 1
             \ ? '0' : '^'
-xnoremap <expr><A-l> (&ve=~#'onemore'<Bar><Bar>&ve==#'all') ? '$h' : '$'
+
+xnoremap <expr><A-l> <SID>endOfLine()
+
+fu! s:endOfLine()
+  if (visualmode() ==# "\<C-v>")
+    return '$'
+  end
+  if (&ve=~#'onemore' || &ve==#'all')
+    return '$h'
+  end
+  return '$'
+endfu
+
 
 " wide move
 noremap <A-j> 5<Down>
@@ -410,11 +422,8 @@ nnoremap      [Space]mv     :Move <C-D>
 nnoremap      [Space]re     :Rename<space>
 
 " Search:
-nnoremap      [Space]ac     :Ack<space>
-nnoremap      [Space]ak     :Ack<space><C-R><C-W><CR>
-nnoremap      [Space]ag     :Ag<space>
-nnoremap      [Space]aa     :Ag <C-R><C-W><CR>
-nnoremap      [Space]as     :Ag <C-R>/<CR>
+nnoremap      [Space]ag     :Rg<space>
+nnoremap      [Space]aa     :Rg<CR>
 
 "===============================================================================
 
