@@ -378,12 +378,13 @@ end
 
 nnoremap <C-A-B>           :NeomakeSh make build<CR>
 
+nnoremap [Space]<space>    :Commands<CR>
+
 " YCM:
 nnoremap [Space]yr         :YcmRestartServer<CR>
 nnoremap [Space]yi         :YcmDebugInfo<CR>
 nnoremap [Space]yd         :YcmDiags<CR>
 nnoremap [Space]yy         :YcmForceCompileAndDiagnostics<CR>
-nnoremap [Space]<space>    :YcmCompleter GetType<CR>
 nnoremap [Space]<A-d>      :YcmCompleter GetDoc<CR>
 nnoremap [Space]]          :YcmCompleter GoTo<CR>
 nnoremap [Space]}          :YcmCompleter GoToType<CR>

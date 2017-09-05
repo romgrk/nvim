@@ -92,7 +92,7 @@ let vimsyn_embed = 'P'
 let vimsyn_folding = 'afP'
 let vimsyn_noerror = 1
 
-let xml_syntax_folding = 1
+let xml_syntax_folding = 0
 let tex_fold_enabled   = 1
 let php_folding        = 1
 let perl_fold          = 1
@@ -112,6 +112,10 @@ let ctrlp_buftag_types = {
 \ 'typescript': '--language-force=typescript --typescript-types=niecamfpt',
 \ 'css':        '--language-force=css --css-types=tic',
 \ 'scss':       '--language-force=scss --scss-types=vmtic',
+\ 'javascript' : {
+    \ 'bin': 'jsctags',
+    \ 'args': '-f -',
+\ },
 \ }
 
 let g:tagbar_type_css = {

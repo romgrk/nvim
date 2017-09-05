@@ -9,7 +9,9 @@ hi! link jsFuncBraces      Delimiter
 hi! link jsBraces          Delimiter
 hi! link jsBrackets        Delimiter2
 
+hi! link jsExport          Special
 hi! link jsImport          Special
+hi! link jsModuleAs        Special
 hi! link jsFrom            Special
 hi! link jsThis            jsPrototype
 if (&bg == 'light')
