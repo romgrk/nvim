@@ -151,13 +151,13 @@ Plug 'adelarsq/vim-grimmjow'
 Plug 'airblade/vim-gitgutter'
 " }}}
 " Local (~/github/vim)                                                       {{{
-Plug '~/github/vim/equal-op'
-Plug '~/github/vim/columnMove.vim'
-Plug '~/github/vim/lib.kom'
-Plug '~/github/vim/pp.vim'
-Plug '~/github/vim/replace.vim'
-Plug '~/github/vim/vim-exeline'
-Plug '~/github/vim/winteract.vim'                        , {'on': 'InteractiveWindow'}
+Plug 'romgrk/equal.operator'
+Plug 'romgrk/columnMove.vim'
+Plug 'romgrk/lib.kom'
+Plug 'romgrk/pp.vim'
+Plug 'romgrk/replace.vim'
+Plug 'romgrk/vim-exeline'
+Plug 'romgrk/winteract.vim'                        , {'on': 'InteractiveWindow'}
 " }}}
 
 call plug#end() " }}}
