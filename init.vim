@@ -99,7 +99,7 @@ end
 Plug 'othree/xml.vim'
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
-Plug 'mxw/vim-jsx'                                       , { 'on': 'JSX', 'for': 'javascript.jsx' }
+Plug 'neoclide/vim-jsx-improve'                          , { 'for': 'javascript.jsx' }
 Plug 'ianks/vim-tsx'                                     , { 'for': 'typescript.tsx' }
 Plug 'Quramy/tsuquyomi'                                  , { 'on': 'TsuServerInfo' } " { 'for': 'typescript' }
 Plug 'kchmck/vim-coffee-script'                          , { 'for': 'coffee' }

@@ -407,7 +407,8 @@ nnoremap      [Space]sl     :SourceLocalVimrc<CR>
 
 nnoremap      [Space]ma   :Magit<CR>
 
-nnoremap      [Space]gc   :Gcommit % -m ""<Left>
+nnoremap      [Space]ga   :Git add %<CR>
+nnoremap      [Space]gc   :Gcommit -m ""<Left>
 nnoremap      [Space]gk   :Git checkout<space>
 nnoremap      [Space]gK   :Git checkout -b<space>
 nnoremap      [Space]gl   :Gpull<CR>
@@ -912,8 +913,6 @@ nmap z*         viw"/<Plug>(visual-yank-plaintext):set hls<CR>
 nnoremap <A-r>r     &
 nnoremap <A-r><A-r> g&
 
-nmap <A-r><A-w> viw<C-F><A-r><A-l>
-
 nmap <A-r><A-l> :s///<left>
 nmap <A-r><A-a> :%s///<left>
 nmap <A-r>a     :%s///<left>
@@ -922,7 +921,9 @@ nmap <A-r><A-j> :.,$s///<left>
 nmap <A-r>j     :.,$s///<left>
 nmap <A-r><A-n> :%s///<Left>
 nmap <A-r>n     :%s///<Left>
-nmap <A-r><A-p> :%s///c<left><left>
+
+nmap <A-r><A-w> viw<C-F><A-r><A-l>
+nmap <A-r><A-p> m'viw<C-F><A-r><A-l><A-p><CR>''
 
 vmap <A-r>      :s///<left>
 
