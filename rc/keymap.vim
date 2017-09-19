@@ -407,6 +407,7 @@ nnoremap      [Space]sl     :SourceLocalVimrc<CR>
 
 nnoremap      [Space]ma   :Magit<CR>
 
+nnoremap      [Space]ga   :Git add %<CR>
 nnoremap      [Space]gc   :Gcommit -m ""<Left>
 nnoremap      [Space]gk   :Git checkout<space>
 nnoremap      [Space]gK   :Git checkout -b<space>

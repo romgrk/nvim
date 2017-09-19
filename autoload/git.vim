@@ -13,12 +13,6 @@ nnoremap          -- :GitGutterUndoHunk<CR>
 nnoremap          \\ :GitGutterPreviewHunk<CR>
 nnoremap          ++ :GitGutterStageHunk<CR>
 
-nnoremap   [Space]gp :Gpush<CR>
-nnoremap   [Space]gc :Gcommit -m ''<Left>
-nnoremap   [Space]gm :Gcommit % -m ''<Left>
-nnoremap   [Space]gd :Gdiff %<CR>
-nnoremap   [Space]ga :Git add %<CR>
-
 execute 'GitGutterEnable'
 endfu
 
