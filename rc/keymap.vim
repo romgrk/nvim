@@ -436,6 +436,9 @@ nnoremap      [Space]w+   :call SizeUp()<CR>
 "===============================================================================
 
 " Various:
+
+nnoremap      [Space]gf   :NERDTreeFind<CR>
+
 nnoremap      [Space]ret  :set et <Bar> ret<CR>
 nnoremap      [Space]ap   vip:EasyAlign<CR>
 " ArgWrap     foo(bwibble, wobble, wubble)
@@ -443,9 +446,6 @@ nnoremap      [Space]arg  :ArgWrap<CR>
 nnoremap      [Space]ret  :set et <Bar> ret<CR>
 nnoremap      [Space]dws  :%DeleteTrailingWS<CR>
 nnoremap      [Space]aw   :call AutodetectShiftWidth()<CR>
-" Stackoverflow
-nnoremap      [Space]st   :SO<space>
-nnoremap      [Space]sf   :SOf<space>
 
 " Multi-Cursors:
 " (see: ./plugins/multiple-cursors.vim)

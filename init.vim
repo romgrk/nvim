@@ -132,7 +132,7 @@ end
 " }}}
 " UI                                                                         {{{
 Plug 'scrooloose/nerdtree'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature'                             , {'on': 'SignatureToggleSigns'}

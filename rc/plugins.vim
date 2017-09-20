@@ -118,7 +118,7 @@ let ctrlp_buftag_types = {
 \ },
 \ }
 
-let g:tagbar_type_css = {
+let tagbar_type_css = {
     \ 'ctagsbin' : 'ctags',
     \ 'ctagsargs' : '--file-scope=yes -o - ',
     \ 'kinds' : [
@@ -129,7 +129,7 @@ let g:tagbar_type_css = {
     \ ],
 \ }
 
-let g:tagbar_type_scss = {
+let tagbar_type_scss = {
     \ 'ctagsbin' : 'ctags',
     \ 'ctagsargs' : '--file-scope=yes -o - ',
     \ 'kinds' : [
@@ -140,7 +140,7 @@ let g:tagbar_type_scss = {
         \ 't:tags:1:0',
     \ ],
 \ }
-let g:tagbar_type_c = {
+let tagbar_type_c = {
     \ 'ctagsbin' : 'ctags',
     \ 'ctagsargs' : '--file-scope=yes -o - ',
     \ 'kinds' : [
@@ -171,13 +171,6 @@ let tagbar_type_typescript = {
     \ ] }
 
 let easytags_languages = {
-\   'coffee': {
-\     'cmd': 'coffeetags',
-\       'args': ['--include-vars'],
-\       'fileoutput_opt': '-f',
-\       'stdout_opt': '-f-',
-\       'recurse_flag': '-R'
-\   },
 \   'moon': {
 \     'cmd': 'ctags',
 \       'args': [],
@@ -201,24 +194,17 @@ let easytags_languages = {
 let colorizer_maxlines = -1
 let colorizer_startup  = 0
 
-if exists('*unite#custom#profile')
-    call unite#custom#profile('default', 'context', {
-    \   'start_insert': 0,
-    \   'winheight': 10,
-    \   'direction': 'botright',
-    \ })
-end
-
-let zv_file_types = {
-\   'html'             : 'html,css,javascript',
-\   'css'              : 'css,html,javascript',
-\   'python'           : 'python 3',
-\   'javascript'       : 'javascript,nodejs',
-\   'typescript'       : 'typescript,javascript,html',
-\   '^(G|g)ulpfile\.'  : 'gulp,javascript,nodejs',
-\   'help'             : 'vim',
+let NERDTreeIndicatorMapCustom = {
+\   'Modified'  : '✹',
+\   'Staged'    : '✚',
+\   'Untracked' : '✭',
+\   'Renamed'   : '➜',
+\   'Unmerged'  : '═',
+\   'Deleted'   : '✖',
+\   'Dirty'     : '✹',
+\   'Clean'     : '✔︎',
+\   'Unknown'   : '?'
 \ }
-
 
 " }}}1
 "=============================================================================
