@@ -1,1 +1,0 @@
-syntax keyword Tag
