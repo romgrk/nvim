@@ -445,7 +445,6 @@ nnoremap      [Space]ap   vip:EasyAlign<CR>
 nnoremap      [Space]arg  :ArgWrap<CR>
 nnoremap      [Space]ret  :set et <Bar> ret<CR>
 nnoremap      [Space]dws  :%DeleteTrailingWS<CR>
-nnoremap      [Space]aw   :call AutodetectShiftWidth()<CR>
 
 " Multi-Cursors:
 " (see: ./plugins/multiple-cursors.vim)

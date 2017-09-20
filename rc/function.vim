@@ -620,18 +620,3 @@ fu! Input(...) " @params msg | (hi, msg)                                     {{{
 
     return res
 endfu "                                                                      }}}
-fu! AutodetectShiftWidth (...)
-    let silent = get(a:, 1, 1)
-    for lnum in range(min([10, line('$')]))
-        let line = getline(lnum)
-        let i = match(line, '\v^[ ]+\zs[^ ]')
-        if (i > 1 && (i % 2 == 0) && i < 10)
-            if (silent == 1)
-                call Info(' (tabs: ' . i . ')')
-            end
-            silent! exe 'setlocal sw=' . i
-            return
-        end
-    endfor
-endfunc
-

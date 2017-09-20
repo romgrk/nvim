@@ -106,12 +106,21 @@ let fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
 "=============================================================================
 " Tags                                                                      {{{1
 
-let ctrlp_buftag_ctags_bin = '/usr/local/bin/ctags'
+let ctags_cmd = 'ctags'
+
+let easytags_cmd = ctags_cmd
+let easytags_async = 1
+let easytags_dynamic_files = 1
+let easytags_events = ['BufWritePost']
+
+
+let ctrlp_buftag_ctags_bin = ctags_cmd
 
 let ctrlp_buftag_types = {
 \ 'typescript': '--language-force=typescript --typescript-types=niecamfpt',
 \ 'css':        '--language-force=css --css-types=tic',
 \ 'scss':       '--language-force=scss --scss-types=vmtic',
+\ 'vim':        '--language-force=vim --vim-kinds=acfv',
 \ 'javascript' : {
     \ 'bin': 'jsctags',
     \ 'args': '-f -',
