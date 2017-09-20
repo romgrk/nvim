@@ -220,6 +220,8 @@ ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post':
 
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
 ToggleMap 'js',  'setfiletype javascript'
+ToggleMap 'jx',  'setfiletype javascript.jsx'
+ToggleMap 'jn',  'setfiletype javascript.node'
 ToggleMap 'co',  'call colorizer#ColorToggle()'
 ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
 ToggleMap 'gu',  'GitGutterToggle'
