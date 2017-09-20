@@ -380,6 +380,9 @@ nnoremap <C-A-B>           :NeomakeSh make build<CR>
 
 nnoremap [Space]<space>    :Commands<CR>
 
+nmap     [Space]j         <Plug>Sneak_s
+nmap     [Space]k         <Plug>Sneak_S
+
 " YCM:
 nnoremap [Space]yr         :YcmRestartServer<CR>
 nnoremap [Space]yi         :YcmDebugInfo<CR>
