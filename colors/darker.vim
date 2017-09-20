@@ -216,7 +216,7 @@ call hi#('Normal',          theme.fg,        theme.bg, '')
 call hi#('Shaded',          theme.fg_shaded, '',       '')
 call hi#('EndOfBuffer',     theme.base,      theme.bg, '')
 
-call hi#('Cursor',          '', theme.base,  'reverse')
+call hi#('Cursor',          '', '',          'reverse')
 call hi#('SecondaryCursor', '', theme.bg_hl, 'none')
 
 call hi#('CursorLine',   '',              theme.bg_verysubtle)
