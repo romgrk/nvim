@@ -403,6 +403,7 @@ nnoremap      [Space]ss     :wall! <Bar> SaveSession<CR><Esc>
 nnoremap      [Space]so     :call feedkeys(":OpenSession! \<C-D>", 't')<CR>
 nnoremap      [Space]sd     :OpenSession! default<CR>
 nnoremap      [Space]sc     :wall! <Bar> CloseSession<CR>
+nnoremap      [Space]sn     :SaveSession<space>
 
 nnoremap      [Space]sl     :SourceLocalVimrc<CR>
 
