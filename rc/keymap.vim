@@ -468,7 +468,7 @@ nnoremap <C-A-P>  :Commands<CR>
 nnoremap <C-A-O>  :GitFiles<CR>
 
 
-if has('win32')
+if has('win32') || get(g:, 'ctrlp_funky_enable', 0)
 nnoremap <silent> <A-i>    :CtrlPFunky<CR>
 else
 nnoremap <silent> <A-i>    :CtrlPBufTag<CR>
@@ -566,8 +566,8 @@ nnoremap yu yyP
 nnoremap yd yyp
 
 " Indent
-nnoremap <silent>>> V><Esc>
-nnoremap <silent><< V<<Esc>
+nnoremap <nowait> > V><Esc>
+nnoremap <nowait> < V<<Esc>
 vnoremap <nowait> > >gv
 vnoremap <nowait> < <gv
 
