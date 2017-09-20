@@ -39,6 +39,9 @@ hi! link CtrlPMatch              Error
 hi! link TagbarScope             Class
 hi! link TagbarFoldIcon          Comment
 
+hi! link SneakLabel              EasyMotionTargetDefault
+hi! link SneakLabelMask          Noise
+
 if (&bg == 'light')
     let indentLine_color_gui ='#bebebe'
     hi! IndentGuidesEven guibg=#eeeeee

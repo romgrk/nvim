@@ -68,7 +68,6 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'jremmen/vim-ripgrep'
 Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
@@ -90,7 +89,7 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 if !has('win32')
-"Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
 end
 "Plug 'KabbAmine/zeavim.vim'                              , {'on': ['Zeavim', 'ZHelp']}
@@ -99,6 +98,7 @@ end
 " }}}
 " Language                                                                   {{{
 Plug 'othree/xml.vim'
+Plug 'moll/vim-node'                                     , { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'neoclide/vim-jsx-improve'                          , { 'for': 'javascript.jsx' }
