@@ -52,7 +52,7 @@ set updatetime=2000
 "===============================================================================
 " Paths, session files & backups {{{
 
-"set tags=./.tags,.tags
+set tags=./.tags,.tags
 "set sessionoptions-=help
 
 set wildignore=node_modules,bower_components

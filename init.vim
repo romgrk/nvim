@@ -99,7 +99,7 @@ end
 " }}}
 " Language                                                                   {{{
 Plug 'othree/xml.vim'
-Plug 'moll/vim-node'                                     , { 'for': 'javascript' }
+Plug 'moll/vim-node'                                     , { 'for': 'javascript.node' }
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'neoclide/vim-jsx-improve'                          , { 'for': 'javascript.jsx' }
@@ -125,8 +125,9 @@ Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'cs
 "Plug 'kelan/gyp.vim'                                     , { 'for': 'gyp' }
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
+Plug 'hdima/python-syntax'                               , { 'for': 'python' }
 Plug 'dzeban/vim-log-syntax'
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir'                            , { 'for': 'elixir' }
 
 if exists('$VIFM')
     set runtimepath+=/usr/share/vifm/vim-doc
