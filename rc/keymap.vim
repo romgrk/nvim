@@ -1004,7 +1004,10 @@ inoremap <C-Y> <C-C>:let @z = @"<CR>mz
 nnoremap <silent><expr>  [Space]zz  FS_ToggleFoldAroundSearch({'context':1})
 
 " Fixes something
-nnoremap <expr>i empty(getline('.')) ? 'cc' : 'i'
+nnoremap <expr>i empty(substitute(getline('.'), '^\s\+', '', '')) ? 'cc' : 'i'
+
+
+nnoremap <C-r>   :e!<CR>
 
 nnoremap =r      :call QuickReload()<CR>
 
