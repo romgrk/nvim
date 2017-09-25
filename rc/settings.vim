@@ -70,10 +70,13 @@ set cdpath+=$HOME/github
 set cdpath+=$HOME/projects
 
 set undofile
-"set undodir=$XDG_CACHE_HOME/vim_undo
-"set viewdir=$XDG_CACHE_HOME/vim_views
+if !has('win32')
+set undodir=$XDG_CACHE_HOME/vim_undo
+set viewdir=$XDG_CACHE_HOME/vim_views
+else
 set undodir=$HOME/AppData/Local/nvim-data/undo
 set viewdir=$HOME/AppData/Local/nvim-data/views
+end
 
 " IO & backups behavior
 set noswapfile
