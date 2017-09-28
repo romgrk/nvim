@@ -406,6 +406,7 @@ nnoremap      [Space]sc     :wall! <Bar> CloseSession<CR>
 nnoremap      [Space]sn     :SaveSession<space>
 
 nnoremap      [Space]sl     :SourceLocalVimrc<CR>
+nnoremap      [Space]sn     :Note <C-R>=fnamemodify(v:this_session, ':t:r')<CR><CR>
 
 " Git:
 
