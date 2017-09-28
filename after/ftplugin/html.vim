@@ -9,7 +9,9 @@ imap <buffer> <A-CR>  <br/>
 nmap <buffer> <Tab>   %
 xmap <buffer> <Tab>   %
 
-imap <C-;> <Plug>SparkupExecute
+imap <buffer><nowait><C-E> <Plug>SparkupExecute
+
+"let b:tab_key = "\<Plug>SparkupExecute"
 
 " inoremap <silent><expr><buffer> <Tab> pumvisible()
             " \ ? "" \ : "=emmet#expandAbbr(0,"")"

@@ -19,9 +19,6 @@ else
 end
 
 
-imap <buffer> <A-i>f function(){<space>
-
-
 inoremap <A-8> /*<CR><CR>/<Up>
 
 if !filereadable('.tern-project') && filereadable('~/templates/tern-project')
