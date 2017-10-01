@@ -34,7 +34,7 @@ function! s:runSearch(pattern, ...)
         let s:paths = a:000
     end
 
-    let command = "rg -n '" . s:pattern . "' " . join(s:paths)
+    let command = "rg -nH '" . s:pattern . "' " . join(s:paths)
 
     call s:run(
             \ command,
@@ -69,8 +69,8 @@ function! s:runReplace(replacement)
     let s:replacementFileTotal = 0
 
     for file in files
-        let lines = join(matches[file], ',')
-        let command = "sed -i '" . lines . "s/" . s:pattern . "/" . s:replacement . "/g' " . file
+        let subCommand = "s/" . s:pattern . "/" . s:replacement . "/g"
+        let command = "sed -i '" . join(map(matches[file], {key, line -> line . subCommand}), '; ') . "' " . file
         let s:replacementFileTotal = s:replacementFileTotal + 1
         let s:replacementTotal = s:replacementTotal + len(matches[file])
         call s:run(command, s:directory, function('s:onExitReplace'))
@@ -125,6 +125,7 @@ function! s:onExitSearch(...) dict
     au BufLeave <buffer> bd
     nnoremap                 <buffer><Esc> <C-W>p
     nnoremap         <nowait><buffer><A-r> :Replace<space>
+    nnoremap         <nowait><buffer><CR>  :Replace<space>
     nnoremap <silent><nowait><buffer>d     :call <SID>deleteLine()<CR>
 
     " Display content
@@ -149,7 +150,7 @@ function! s:onExitReplace(...) dict
 
     let s:waitingCount = s:waitingCount - 1
     if s:waitingCount != 0
-        Pp 'Waiting: ', s:waitingCount
+        echo s:waitingCount . ' remaining'
         return
     end
 
