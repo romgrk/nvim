@@ -6,6 +6,8 @@
 
 " Recent mappings:
 
+nnoremap <C-F> :Search<space>
+
 nmap <A-=>  m`v<A-p><CR>=``
 
 if has('win32')
@@ -884,13 +886,9 @@ xmap -s <Plug>(startCaseOperator)
 "===============================================================================
 " Search & replace                                                          {{{1
 
-nnoremap / /
-nnoremap ? ?
-
 " IncSearch
-nmap <C-F>    <Plug>(incsearch-forward)
-nmap <C-G>    <Plug>(incsearch-backward)
-nmap <C-A-F>  <Plug>(incsearch-backward)
+nmap / <Plug>(incsearch-forward)
+nmap ? <Plug>(incsearch-backward)
 
 nmap n  <Plug>(incsearch-nohl-n)
 nmap N  <Plug>(incsearch-nohl-N)
