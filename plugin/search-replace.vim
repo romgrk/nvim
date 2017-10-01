@@ -1,8 +1,9 @@
-"!::exe [SO]
+"!::exe [So]
 
 let s:isSearching = v:false
 let s:matches = {}
 let s:directory = '.'
+let s:paths = ['.']
 let s:pattern = ''
 let s:replacement = ''
 let s:waitingCount = 0
@@ -10,12 +11,12 @@ let s:replacementTotal = 0
 let s:replacementFileTotal = 0
 let s:replacementJobs = []
 
-command! -nargs=+ -complete=dir Search    :call <SID>runSearch(<f-args>)
-command! -nargs=+               Replace   :call <SID>runReplace(<f-args>)
+command! -nargs=* -complete=dir Search    :call <SID>runSearch(<f-args>)
+command! -nargs=1               Replace   :call <SID>runReplace(<f-args>)
 
 function! s:run(cmd, cwd, Fn)
     let opts = {}
-    let opts.cwd = expand(a:cwd)
+    let opts.cwd = fnamemodify(expand(a:cwd), ':p')
     let opts.stdout = []
     let opts.stderr = []
     let opts.on_stdout = {jobID, data, event -> extend(opts.stdout, data)}
@@ -25,6 +26,59 @@ function! s:run(cmd, cwd, Fn)
     return opts
 endfunction
 
+function! s:runSearch(pattern, ...)
+    let s:pattern = s:escape(a:pattern)
+
+    let s:paths = ['.']
+    if a:0 > 0
+        let s:paths = a:000
+    end
+
+    let command = "rg -n '" . s:pattern . "' " . join(s:paths)
+
+    call s:run(
+            \ command,
+            \ s:directory,
+            \ function('s:onExitSearch'))
+endfunction
+
+function! s:runReplace(replacement)
+    if !s:isSearching
+        return | end
+    let s:isSearching = v:false
+    let s:replacement = s:escape(a:replacement)
+
+    let s:replacementJobs = []
+
+    let matches = {}
+    let currentFile = ''
+    for n in range(1, line('$'))
+        let text = getline(n)
+        if text =~ '^###'
+            let currentFile = text[4:-4]
+            let matches[currentFile] = []
+        else
+            let line = matchstr(text, '\v\d+:@=')
+            call add(matches[currentFile], line)
+        end
+    endfor
+
+    let files = keys(matches)
+
+    let s:replacementTotal = 0
+    let s:replacementFileTotal = 0
+
+    for file in files
+        let lines = join(matches[file], ',')
+        let command = "sed -i '" . lines . "s/" . s:pattern . "/" . s:replacement . "/g' " . file
+        let s:replacementFileTotal = s:replacementFileTotal + 1
+        let s:replacementTotal = s:replacementTotal + len(matches[file])
+        call s:run(command, s:directory, function('s:onExitReplace'))
+    endfor
+
+    let s:waitingCount = s:replacementFileTotal
+endfunction
+
 function! s:onExitSearch(...) dict
     let chunks = filter(self.stdout, {key, val -> val != ''})
     let parts = map(chunks, {key, val -> split(val, ':')})
@@ -32,6 +86,9 @@ function! s:onExitSearch(...) dict
     let s:matches = {}
     let totalMatches = 0
     for p in parts
+        if len(p) < 3
+            continue
+        end
         let file = p[0]
         let line = p[1]
         let text = substitute(join(p[2:], ':'), '^\s\+', '', '')
@@ -66,8 +123,9 @@ function! s:onExitSearch(...) dict
 
     " Create mappings
     au BufLeave <buffer> bd
-    nnoremap         <buffer><Esc> <C-W>p
-    nnoremap <nowait><buffer><A-r> :Replace<space>
+    nnoremap                 <buffer><Esc> <C-W>p
+    nnoremap         <nowait><buffer><A-r> :Replace<space>
+    nnoremap <silent><nowait><buffer>d     :call <SID>deleteLine()<CR>
 
     " Display content
     let lastFile = ''
@@ -108,55 +166,18 @@ function! s:displayDone(...)
     call EchonHL('Normal', ' files )')
 endfunction
 
-function! s:runSearch(pattern, ...)
-    let s:pattern = s:escape(a:pattern)
-
-    let s:directory = '.'
-    if a:0 == 1
-        let s:directory = a:1
-    end
-
-    call s:run(
-            \ "rg -n '" . s:pattern . "'",
-            \ s:directory,
-            \ function('s:onExitSearch'))
-endfunction
-
-function! s:runReplace(replacement)
-    if !s:isSearching
-        return | end
-    let s:isSearching = v:false
-    let s:replacement = s:escape(a:replacement)
-
-    let s:replacementJobs = []
-
-    let matches = {}
-    let currentFile = ''
-    for n in range(1, line('$'))
-        let text = getline(n)
-        if text =~ '^###'
-            let currentFile = text[4:-4]
-            let matches[currentFile] = []
-        else
-            let line = matchstr(text, '\v\d+:@=')
-            call add(matches[currentFile], line)
+function! s:deleteLine()
+    let text = getline('.')
+    let firstLine = line('.')
+    if text =~ '^###'
+        let lastLine = searchpos('^###', 'n')[0] - 1
+        if lastLine == 0
+            let lastLine = line('$')
         end
-    endfor
-
-    let files = keys(matches)
-
-    let s:replacementTotal = 0
-    let s:replacementFileTotal = 0
-
-    for file in files
-        let lines = join(matches[file], ',')
-        let command = "sed -i '" . lines . "s/" . s:pattern . "/" . s:replacement . "/g' " . file
-        let s:replacementFileTotal = s:replacementFileTotal + 1
-        let s:replacementTotal = s:replacementTotal + len(matches[file])
-        call s:run(command, s:directory, function('s:onExitReplace'))
-    endfor
-
-    let s:waitingCount = s:replacementFileTotal
+        execute firstLine . ',' . lastLine . 'delete'
+    else
+        execute firstLine . 'delete'
+    end
 endfunction
 
 function! s:escape(pattern)
