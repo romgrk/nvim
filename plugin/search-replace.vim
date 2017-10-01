@@ -109,12 +109,13 @@ function! s:displayDone(...)
 endfunction
 
 function! s:runSearch(pattern, ...)
-    let s:pattern = a:pattern
+    let s:pattern = s:escape(a:pattern)
+
+    let s:directory = '.'
     if a:0 == 1
         let s:directory = a:1
-    else
-        let s:directory = '.'
     end
+
     call s:run(
             \ "rg -n '" . s:pattern . "'",
             \ s:directory,
@@ -125,7 +126,7 @@ function! s:runReplace(replacement)
     if !s:isSearching
         return | end
     let s:isSearching = v:false
-    let s:replacement = a:replacement
+    let s:replacement = s:escape(a:replacement)
 
     let s:replacementJobs = []
 
@@ -156,4 +157,8 @@ function! s:runReplace(replacement)
     endfor
 
     let s:waitingCount = s:replacementFileTotal
+endfunction
+
+function! s:escape(pattern)
+    return substitute(a:pattern, "'", "''", 'g')
 endfunction
