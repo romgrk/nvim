@@ -24,16 +24,22 @@ function! s:run(cmd, cwd, Fn)
     let opts.cwd = fnamemodify(expand(a:cwd), ':p')
     let opts.stdout = []
     let opts.stderr = []
-    let opts.on_stdout = {jobID, data, event -> extend(opts.stdout, data)}
-    let opts.on_stderr = {jobID, data, event -> extend(opts.stderr, data)}
+    let opts.on_stdout = function('s:on_stdout')
+    let opts.on_stderr = function('s:on_stderr')
     let opts.on_exit = function('s:on_exit')
     let opts.handler = a:Fn
     let opts.jobID = jobstart(a:cmd, opts)
     return opts
 endfunction
+function! s:on_stdout(jobID, data, event) dict
+    call extend(self.stdout, a:data)
+endfunction
+function! s:on_stderr(jobID, data, event) dict
+    call extend(self.stderr, a:data)
+endfunction
 function! s:on_exit(...) dict
-    let self.stdout = filter(self.stdout, {key, val -> val != ''})
-    let self.stderr = filter(self.stderr, {key, val -> val != ''})
+    let self.stdout = filter(self.stdout, "v:val != ''")
+    let self.stderr = filter(self.stderr, "v:val != ''")
     call self.handler(self)
 endfunction
 
@@ -92,7 +98,7 @@ function! s:runReplace(replacement)
 
     for file in files
         let subCommand = "s/" . s:escape(s:pattern) . "/" . s:escape(s:replacement) . "/g"
-        let subCommands = join(map(matches[file], {key, line -> line . subCommand}), '; ')
+        let subCommands = join(map(matches[file], 'v:val . subCommand'), '; ')
         let command = "sed -i " . shellescape(subCommands) . " " . file
         let s:totalReplacements = s:totalReplacements + len(matches[file])
         call add(s:replacementFiles, file)
@@ -108,7 +114,7 @@ function! s:runReplace(replacement)
 endfunction
 
 function! s:onExitSearch(job)
-    let parts = map(a:job.stdout, {key, val -> split(val, ':')})
+    let parts = map(a:job.stdout, "split(v:val, ':')")
 
     let s:search = {}
     let s:totalMatches = 0
@@ -132,7 +138,7 @@ function! s:onExitSearch(job)
 endfunction
 
 function! s:onExitSearchMatches(job)
-    let parts = map(a:job.stdout, {key, val -> split(val, ':')})
+    let parts = map(a:job.stdout, "split(v:val, ':')")
 
     let s:searchMatches = {}
     for p in parts
