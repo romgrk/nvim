@@ -53,7 +53,7 @@ fu! BufferCloseCurrent ()
     if buflisted(altnum)
         buffer #
     else
-        noautocmd bnext | end
+        bnext | end
 
     if bufnum==bufnr('%')
         enew | end
