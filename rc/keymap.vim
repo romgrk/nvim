@@ -421,6 +421,7 @@ nnoremap      [Space]gK   :Git checkout -b<space>
 nnoremap      [Space]gl   :Gpull<CR>
 nnoremap      [Space]gp   :Gpush<CR>
 nnoremap      [Space]gs   :Gstatus<CR>
+nnoremap      [Space]gu   :call GitOpenUnmergedFiles()<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching

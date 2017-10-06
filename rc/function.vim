@@ -41,6 +41,15 @@ fu! FindFtSyntax(...) "                                                      {{{
     return ftdir
 endfu "                                                                      }}}
 
+com! GitOpenUnmergedFiles call GitOpenUnmergedFiles()
+function! GitOpenUnmergedFiles()
+  let cd = system('git rev-parse --show-cdup')[:-2]
+  let files = split(system('git diff --name-only --diff-filter=U'), "\n")
+  for f in files
+    execute 'edit ' . cd . f
+  endfor
+endfunction
+
 
 com! -bar BufferClose      call BufferCloseCurrent()
 com! -bar BufferReopen     call BufferReopenClosed()
