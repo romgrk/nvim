@@ -891,8 +891,8 @@ xmap -s <Plug>(startCaseOperator)
 nmap / <Plug>(incsearch-forward)
 nmap ? <Plug>(incsearch-backward)
 
-nmap n  <Plug>(incsearch-nohl-n)
-nmap N  <Plug>(incsearch-nohl-N)
+nmap n  <Plug>(incsearch-nohl-n)zz
+nmap N  <Plug>(incsearch-nohl-N)zz
 nmap *  <Plug>(incsearch-nohl-*)
 nmap #  <Plug>(incsearch-nohl-#)
 
