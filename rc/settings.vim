@@ -55,7 +55,7 @@ set updatetime=2000
 set tags=./.tags,.tags
 "set sessionoptions-=help
 
-set wildignore=node_modules,bower_components
+set wildignore=node_modules,bower_components,package-lock.json
 set wildignorecase " aka wic
 
 

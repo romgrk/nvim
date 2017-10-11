@@ -6,6 +6,7 @@
 
 " Recent mappings:
 
+nnoremap <C-R> :e!<CR>
 nnoremap <C-F> :Search<space>
 
 nmap <A-=>  m`v<A-p><CR>=``
@@ -758,14 +759,13 @@ nmap cIf    :call <SID>changeFunc('ic')<CR>
 nmap caf    :call <SID>changeFunc('ac')<CR>
 nmap cnf    :call <SID>changeFunc('n')<CR>
 nmap cpf    :call <SID>changeFunc('l')<CR>
-nmap cinf   :call <SID>changeFunc('in')<CR>
-nmap cilf   :call <SID>changeFunc('il')<CR>
-nmap canf   :call <SID>changeFunc('an')<CR>
-nmap calf   :call <SID>changeFunc('al')<CR>
+"nmap cinf   :call <SID>changeFunc('in')<CR>
+"nmap cilf   :call <SID>changeFunc('il')<CR>
+"nmap canf   :call <SID>changeFunc('an')<CR>
+"nmap calf   :call <SID>changeFunc('al')<CR>
 
 nmap dsf  :call DSurroundFunc()<CR>
 nmap csf  :call CSurroundFunc()<CR>
-nmap cof  :call <SID>changeFunc('c')<CR>
 
 fu! DSurroundFunc()
     call s:findFunc ('vbc')

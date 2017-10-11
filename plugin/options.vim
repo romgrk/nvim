@@ -229,7 +229,7 @@ ToggleMap 'gs',  'GitGutterSignsEnable'
 call s:map_alternating('gg', 'Git integration', ['call git#Enable()', 'call git#Disable()'])
 
 ToggleMap 'gvr', 'ToggleGoldenViewAutoResize'
-ToggleMap 'sy',  'SyntasticToggleMode'
+ToggleMap 'y',   'SyntasticToggleMode'
 
 ToggleMap 'idg', 'IndentGuidesToggle'
 ToggleMap 'idl', 'IndentLinesToggle'
