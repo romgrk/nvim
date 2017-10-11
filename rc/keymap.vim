@@ -175,7 +175,6 @@ nnoremap gsf        :Edit $vim/rc/function.vim<CR>
 nnoremap gsd        :Edit $vim/rc/commands.vim<CR>
 nnoremap gsc        :Edit $vim/rc/colors.vim<CR>
 nnoremap gsh        :Edit $vim/rc/highlight.vim<CR>
-nnoremap gsl        :Edit $vim/rc/lavalamp.vim<CR>
 nnoremap gso        :Edit $vim/rc/settings.vim<CR>
 nnoremap gsj        :Edit $vim/colors/darker.vim<CR>
 nnoremap gstl       :Edit $vim/rc/plugins/lightline.vim<CR>
@@ -288,7 +287,6 @@ nnoremap <C-]> <C-W>z<C-]>
 nmap <silent> w     <Plug>CamelCaseMotion_w
 nmap <silent> b     <Plug>CamelCaseMotion_b
 nmap <silent> e     <Plug>CamelCaseMotion_e
-" nmap <silent> ge    <Plug>CamelCaseMotion_ge
 
 xmap <silent> w     <Plug>CamelCaseMotion_w
 xmap <silent> b     <Plug>CamelCaseMotion_b
@@ -301,7 +299,6 @@ omap <silent> <A-w> <Plug>CamelCaseMotion_e
 
 xmap <silent> b     <Plug>CamelCaseMotion_b
 
-" xmap <silent> ge    <Plug>CamelCaseMotion_ge
 xmap <A-w> B
 xmap <A-e> E
 
@@ -344,37 +341,6 @@ omap u <Plug>Sneak_t
 omap U <Plug>Sneak_T
 
 " 1}}}
-"===============================================================================
-" EasyMotion                                                                {{{1
-function! EnableEasyMotion ()
-
-"nmap sd     <Plug>(easymotion-lineanywhere)
-"nmap gL     <Plug>(easymotion-overwin-line)
-"nmap g<C-f> <Plug>(easymotion-f2)
-nmap <M-e>   <Plug>(easymotion-bd-w)
-
-nnoremap [Space]L :call EasyMotion#overwin#line()<CR>
-
-nnoremap       [j :call EasyMotion#JK(0, 1)<CR>
-nnoremap       ]j :call EasyMotion#JK(0, 0)<CR>
-nnoremap [Space]k :call EasyMotion#JK(0, 1)<CR>
-nnoremap [Space]j :call EasyMotion#JK(0, 0)<CR>
-nnoremap       [w :call EasyMotion#WB(0, 1)<CR>
-nnoremap       ]w :call EasyMotion#WB(0, 0)<CR>
-
-call EasyMotion#command_line#cnoremap("\<BS>\<BS>")
-call EasyMotion#command_line#cnoremap(";\<CR>")
-call EasyMotion#command_line#cmap(" \<Tab>")
-call EasyMotion#command_line#cmap("\<A-space>\<Tab>")
-"call EasyMotion#command_line#cmap("\<A-space>\<Tab>")
-
-endfunc
-if exists('*timer_start')
-            \ && has('vim_starting')
-            \ && exists('*EasyMotion#command_line#cmap')
-    call timer_start(6000, 'EnableEasyMotion')
-end
-" }}}1
 "===============================================================================
 " Commands & Space maps                                                     {{{1
 " @space
@@ -858,9 +824,7 @@ nmap sk :SplitjoinSplit<CR>
 " Comment:
 " alt-'  &  alt-"                                                            {{{
 nmap <A-'>      <Plug>NERDCommenterToggle
-vmap <A-'>      <Plug>NERDCommenterToggle
-nmap <C-'>      <Plug>NERDCommenterSexy
-vmap <C-'>      <Plug>NERDCommenterSexy
+vmap <A-'>      <Plug>NERDCommenterSexy
 " }}}
 
 " StringTransform:
@@ -891,15 +855,10 @@ xmap -s <Plug>(startCaseOperator)
 nmap / <Plug>(incsearch-forward)
 nmap ? <Plug>(incsearch-backward)
 
-nmap n  <Plug>(incsearch-nohl-n)
-nmap N  <Plug>(incsearch-nohl-N)
+nmap n  <Plug>(incsearch-nohl-n)zz
+nmap N  <Plug>(incsearch-nohl-N)zz
 nmap *  <Plug>(incsearch-nohl-*)
 nmap #  <Plug>(incsearch-nohl-#)
-
-"nmap <expr> n  SpaceSetup('search', '<Plug>(incsearch-nohl-n)', 'n', 'N', 1)
-"nmap <expr> N  SpaceSetup('search', '<Plug>(incsearch-nohl-N)', 'n', 'N', 0)
-"nmap <expr> *  SpaceSetup('search', '<Plug>(incsearch-nohl-*)', 'n', 'N', 1)
-"nmap <expr> #  SpaceSetup('search', '<Plug>(incsearch-nohl-#)', 'n', 'N', 1)
 
 " Yank selected text as an escaped search-pattern
 map <silent><Plug>(visual-yank-plaintext)
@@ -919,12 +878,8 @@ nnoremap <A-r><A-r> g&
 nmap <A-r><A-l> :s///<left>
 nmap <A-r><A-a> :%s///<left>
 nmap <A-r>a     :%s///<left>
-nmap <A-r><A-f> :.,$s///<left>
 nmap <A-r><A-j> :.,$s///<left>
 nmap <A-r>j     :.,$s///<left>
-nmap <A-r><A-n> :%s///<Left>
-nmap <A-r>n     :%s///<Left>
-
 nmap <A-r><A-w> viw<C-F><A-r><A-l>
 nmap <A-r><A-p> m'viw<C-F><A-r><A-l><A-p><CR>''
 
@@ -1418,24 +1373,53 @@ cabbrev sudo    w !sudo tee % >/dev/null
 
 
 " Insert-like mappings
-cnoremap <expr>( <SID>isAtEndOfCmdline() ? "()<Left>" : "("
-cnoremap <expr>[ <SID>isAtEndOfCmdline() ? "[]<Left>" : "["
-cnoremap <expr>{ <SID>isAtEndOfCmdline() ? "{}<Left>" : "{"
-cnoremap <expr>) <SID>cmdClosingPair(')')
-cnoremap <expr>] <SID>cmdClosingPair(']')
-cnoremap <expr>} <SID>cmdClosingPair('}')
 " Movement functions
-function! s:cmdClosingPair (char, ...)
+let s:cmd_pairs = {
+\'(': ')',
+\'[': ']',
+\'{': '}',
+\'"': '"',
+\"'": "'"
+\}
+for k in keys(s:cmd_pairs)
+  let opening = k
+  let closing = s:cmd_pairs[k]
+  execute 'cnoremap ' . opening . ' ' . opening . closing .'<Left>'
+  if closing == '"'
+    execute "cnoremap <expr>" . closing . " <SID>cmdClosingPair('" . closing . "', '" . opening ."')"
+  else
+    execute 'cnoremap <expr>' . closing . ' <SID>cmdClosingPair("' . closing . '", "' . opening .'")'
+  end
+endfor
+cnoremap <expr><BS> <SID>cmdDeletePair("\<BS>")
+cnoremap <expr><C-h> <SID>cmdDeletePair("\<C-h>")
+function! s:cmdClosingPair (closing, opening)
     let pos  = getcmdpos()
     let line = getcmdline()
-    if line[pos - 1] == a:char
+    let next = line[pos - 1]
+    if next == a:closing
         return "\<Right>"
+    elseif a:closing == a:opening
+        return a:opening . a:closing . "\<Left>"
     else
-        return a:char
+        return a:closing
     end
 endfu
 function! s:isAtEndOfCmdline ()
+  return 1
     return getcmdpos() == 1+len(getcmdline())
+endfu
+function! s:cmdDeletePair (char)
+    let pos  = getcmdpos()
+    let line = getcmdline()
+    let char_before = line[pos - 2]
+    let char_after  = line[pos - 1]
+    if has_key(s:cmd_pairs, char_before)
+      \ && s:cmd_pairs[char_before] == char_after
+        return "\<Right>\<BS>\<BS>"
+    else
+        return a:char
+    end
 endfu
 
 " 1}}}
