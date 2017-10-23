@@ -70,6 +70,7 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
@@ -126,7 +127,7 @@ Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'cs
 "Plug 'kelan/gyp.vim'                                     , { 'for': 'gyp' }
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
-Plug 'hdima/python-syntax'                               , { 'for': 'python' }
+"Plug 'hdima/python-syntax'                               , { 'for': 'python' }
 Plug 'dzeban/vim-log-syntax'
 Plug 'elixir-lang/vim-elixir'                            , { 'for': 'elixir' }
 

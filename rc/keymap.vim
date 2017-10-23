@@ -6,6 +6,12 @@
 
 " Recent mappings:
 
+nnoremap ]a :ALENext<CR>zz
+nnoremap [a :ALEPrevious<CR>zz
+
+nnoremap g<C-k> zkzczz
+nnoremap g<C-j> zjzczz
+
 nnoremap <C-R> :e!<CR>
 nnoremap <C-F> :Search<space>
 
