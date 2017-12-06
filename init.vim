@@ -120,6 +120,7 @@ Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'rstacruz/sparkup'                                  , { 'for': 'html', 'rtp': 'vim'}
 Plug 'mattn/emmet-vim'                                   , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
 Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
+Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'scss'] }
 "Plug 'leafo/moonscript-vim'                              , { 'for': 'moonscript' }
 "Plug 'lukerandall/haskellmode-vim'                       , { 'for': 'haskell' }
 "Plug 'eagletmt/neco-ghc'                                 , { 'for': 'haskell' }
