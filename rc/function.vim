@@ -15,10 +15,14 @@ com! EditFtplugin                 call Edit(FindFtPlugin())
 com! EditFtsyntax                 call Edit(FindFtSyntax())
 
 func! Edit(file) "                                                             {{{
-    if !(win#info().listed)
-        call GoFirstListedWindow()
-    end
+  if !(win#info().listed)
+    call GoFirstListedWindow()
+  end
+  if _#isList(a:file)
+    call map(a:file, 'execute("edit " . v:val)')
+  else
     execute 'edit ' . a:file
+  end
 endfu "                                                                      }}}
 func! PreviewEdit(file)
     let saved_previewheight = &previewheight
@@ -41,6 +45,14 @@ fu! FindFtSyntax(...) "                                                      {{{
     return ftdir
 endfu "                                                                      }}}
 
+function! ExecTerminal(command)
+  split
+  wincmd j
+  15wincmd _
+  execute 'term ' . a:command
+  normal! i
+endfunction
+
 com! GitOpenUnmergedFiles call GitOpenUnmergedFiles()
 function! GitOpenUnmergedFiles()
   let cd = system('git rev-parse --show-cdup')[:-2]
@@ -49,7 +61,19 @@ function! GitOpenUnmergedFiles()
     echo 'No unmerged files to open'
     return
   end
-  call map(files, 'execute("edit " . cd . v:val)')
+  call Edit(files)
+endfunction
+com! GitPush call GitPush()
+function! GitPush()
+  call ExecTerminal('git push')
+endfunction
+com! GitStatus call GitStatus()
+function! GitStatus()
+  call ExecTerminal('git status')
+endfunction
+com! GitDiff call GitDiff()
+function! GitDiff()
+  call ExecTerminal('git diff')
 endfunction
 
 
@@ -578,6 +602,20 @@ function! JsEval (...)
     return system(
                 \ printf('node -p "%s"', code))
 endfunc
+
+function! GetArgs()
+  let args = []
+  for i in range(argc())
+    call add(args, argv(i))
+  endfor
+  return args
+endfunction
+function! ClearArgs()
+  let argsLength = argc()
+  for i in range(argsLength)
+    exe 'argdel ' . argv(argsLength - i - 1)
+  endfor
+endfunction
 
 com! -bar          Hold   call GetChar()
 com! -bar          Redraw call Redraw()
