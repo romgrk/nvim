@@ -287,7 +287,7 @@ call hi#('LabelGreen',      [ theme.base, colors.mediumgreen,   'bold' ] )
 call hi#('LabelBlue',       [ theme.base, colors.brightblue,    'bold' ] )
 call hi#('LabelPurple',     [ theme.fg, colors.darkestpurple, 'bold' ] )
 
-call hi#('Search',          'none',    '#3d3a00', 'none')
+call hi#('Search',          'none',    '#444444', 'none')
 call hi#('IncSearch',       '#870000', '#f2ad00', 'none')
 call hi#('IncSearchCursor', '',        '',        'reverse')
 
