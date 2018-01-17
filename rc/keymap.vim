@@ -6,6 +6,8 @@
 
 " Recent mappings:
 
+nnoremap <F12> :Goyo<CR>
+
 nnoremap ]a :ALENext<CR>zz
 nnoremap [a :ALEPrevious<CR>zz
 
@@ -16,6 +18,10 @@ nnoremap <C-R> :e!<CR>
 nnoremap <C-F> :Search<space>
 
 nmap <A-=>  m`v<A-p><CR>=``
+
+nnoremap 8 *
+nnoremap g8 V*
+xnoremap 8 *
 
 if has('win32')
   nnoremap <C-A> ggVG
@@ -358,6 +364,10 @@ nnoremap [Space]<space>    :Commands<CR>
 nmap     [Space]j         <Plug>Sneak_s
 nmap     [Space]k         <Plug>Sneak_S
 
+" ALE:
+nnoremap [Space]af         :ALEFix<CR>
+
+
 " YCM:
 nnoremap [Space]yr         :YcmRestartServer<CR>
 nnoremap [Space]yi         :YcmDebugInfo<CR>
@@ -375,10 +385,12 @@ nnoremap [Space]gr         :YcmCompleter RefactorRename<space>
 
 " Session management:
 nnoremap      [Space]ss     :wall! <Bar> SaveSession<CR><Esc>
+nnoremap      [Space]sS     :SaveSession!<space>
 nnoremap      [Space]so     :call feedkeys(":OpenSession! \<C-D>", 't')<CR>
 nnoremap      [Space]sd     :OpenSession! default<CR>
 nnoremap      [Space]sc     :wall! <Bar> CloseSession<CR>
 nnoremap      [Space]sn     :SaveSession<space>
+nnoremap      [Space]si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
 
 nnoremap      [Space]sl     :SourceLocalVimrc<CR>
 nnoremap      [Space]sn     :Note <C-R>=fnamemodify(v:this_session, ':t:r')<CR><CR>
@@ -387,8 +399,9 @@ nnoremap      [Space]sn     :Note <C-R>=fnamemodify(v:this_session, ':t:r')<CR><
 
 nnoremap      [Space]ma   :Magit<CR>
 
-nnoremap      [Space]ga   :Git add %<CR>
+nnoremap      [Space]ga   :!git add %<CR>
 nnoremap      [Space]gc   :Gcommit -m ""<Left>
+nnoremap      [Space]g.   :Gcommit % -m ""<Left>
 nnoremap      [Space]gk   :Git checkout<space>
 nnoremap      [Space]gK   :Git checkout -b<space>
 nnoremap      [Space]gl   :Gpull<CR>
@@ -418,6 +431,8 @@ nnoremap      [Space]w+   :call SizeUp()<CR>
 
 " Various:
 
+nnoremap      [Space]ca   :CtrlPClearAllCaches<CR>
+
 nnoremap      [Space]gf   :NERDTreeFind<CR>
 
 nnoremap      [Space]ret  :set et <Bar> ret<CR>
@@ -444,9 +459,6 @@ nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
 
-nnoremap <C-A-P>  :Commands<CR>
-nnoremap <C-A-O>  :GitFiles<CR>
-
 
 if has('win32') || get(g:, 'ctrlp_funky_enable', 0)
 nnoremap <silent> <A-i>    :CtrlPFunky<CR>
@@ -459,6 +471,7 @@ nnoremap <silent> <A-S-I>  :CtrlPTag<CR>
 nnoremap <silent> <A-o>    :CtrlP<CR>
 nnoremap <silent> <A-O>    :CtrlPMixed<CR>
 nnoremap <silent> <C-S>    :CtrlPBuffer<CR>
+nnoremap <silent> <C-A-o>  :GitFiles<CR>
 
 " }}}1
 "===============================================================================
@@ -949,10 +962,6 @@ nnoremap <F3> :NERDTreeFind<CR>
 
 nnoremap <F5> :e!<CR>
 
-
-" Diff/Undiff open windows
-nnoremap <F12>   :windo diffthis<CR>
-nnoremap <S-F12> :windo diffoff<CR>
 
 
 " Insert word of the line above
