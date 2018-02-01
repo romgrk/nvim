@@ -1057,20 +1057,19 @@ vnoremap i<space> iW
 
 " LHS/RHS operators:                                                         {{{
 "let property = value
-omap p      <Plug>(operator-lhs)
-omap P      <Plug>(operator-Lhs)
-omap v      <Plug>(operator-rhs)
-omap V      <Plug>(operator-Rhs)
-omap <A-i>  <Plug>(operator-lhs)
 omap ih     <Plug>(operator-lhs)
+omap iH     <Plug>(operator-Lhs)
 omap ah     <Plug>(operator-Lhs)
 omap il     <Plug>(operator-rhs)
 omap al     <Plug>(operator-Rhs)
+omap iL     <Plug>(operator-Rhs)
 
 xmap ih     <Plug>(visual-lhs)
-xmap il     <Plug>(visual-rhs)
+xmap iH     <Plug>(visual-Lhs)
 xmap ah     <Plug>(visual-Lhs)
+xmap il     <Plug>(visual-rhs)
 xmap al     <Plug>(visual-Rhs)
+xmap iL     <Plug>(visual-Rhs)
 " end-of-LHS/RHS                                                             }}}
 
 " }}}1
