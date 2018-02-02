@@ -26,6 +26,7 @@ endfunc
 
 " Neovim setup
 let $NVIM_LISTEN_ADDRESS='127.0.0.1:6666'
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " }}}
 "=============================================================================
@@ -69,6 +70,7 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
@@ -118,6 +120,7 @@ Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'rstacruz/sparkup'                                  , { 'for': 'html', 'rtp': 'vim'}
 Plug 'mattn/emmet-vim'                                   , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
 Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
+Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'scss'] }
 "Plug 'leafo/moonscript-vim'                              , { 'for': 'moonscript' }
 "Plug 'lukerandall/haskellmode-vim'                       , { 'for': 'haskell' }
 "Plug 'eagletmt/neco-ghc'                                 , { 'for': 'haskell' }
@@ -125,7 +128,7 @@ Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'cs
 "Plug 'kelan/gyp.vim'                                     , { 'for': 'gyp' }
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
-Plug 'hdima/python-syntax'                               , { 'for': 'python' }
+"Plug 'hdima/python-syntax'                               , { 'for': 'python' }
 Plug 'dzeban/vim-log-syntax'
 Plug 'elixir-lang/vim-elixir'                            , { 'for': 'elixir' }
 

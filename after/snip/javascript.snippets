@@ -3,10 +3,47 @@ snippet use
 'use strict';
 endsnippet
 
+snippet div "div" b
+<div className='$0'>
+</div>
+endsnippet
+snippet table "table" b
+<table>
+<tbody>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+</tbody>
+</table>
+endsnippet
+snippet cns "constructor" b
+constructor(props) {
+	super(props)
+	$0
+}
+endsnippet
+snippet cwrp "componentWillReceiveProps" b
+componentWillReceiveProps(props) {
+	$0
+}
+endsnippet
+snippet i "import" b
+import $1 from '${2:$1}'
+endsnippet
+
 snippet /// "comment" b
 /*
  * $0
  */
+endsnippet
+
+snippet mstp "mapStateToProps"
+const mapStateToProps = state => ({
+	$0
+})
+const mapDispatchToProps = dispatch => ({
+})
 endsnippet
 
 snippet rnp "new Promise"
@@ -27,23 +64,14 @@ snippet $$ "queryAll"
 document.querySelectorAll($0)
 endsnippet
 
-snippet i "import" b
-import $1 from '$0';
-endsnippet
 snippet ii "import" b
-import {
-	$1
-} from '$0';
+import { $1 } from '$0'
 endsnippet
 
 #requires
 snippet req "require" b
-const $1 = require('${1:module}')
+const $1 = require('${1:${2:module}}')
 endsnippet
-snippet req "require"
-require('${1:module}')
-endsnippet
-
 
 snippet "\b((\w|\d|_|\$)+)\.on" ".on(..)" rb
 `!p snip.rv = match.group(1)`.on("${1:event}", (${2:event}) => {${3:do}});

@@ -10,6 +10,7 @@ let g:togglekey = 'co'
 let g:togglemap = { }
 
 command! -bar -nargs=+ ToggleMap :call <SID>toggle_map(<args>)
+command! -bar -nargs=+ AlternMap :call <SID>map_alternating(<args>)
 
 function! s:toggle_map (...)
     if _#isString(a:000[1]) && len(a:000) == 2
@@ -88,7 +89,7 @@ function! s:map_alternating (trigger, what, values, ...)
         call extend(m, a:1) | end
 
     let g:togglemap[a:trigger] = l:m
-    execute 'nnoremap ' . m['lhs'] . ' ' . m['rhs']
+    execute 'nnoremap <silent>' . m['lhs'] . ' ' . m['rhs']
 endfunc
 
 " Cool widget
@@ -161,6 +162,10 @@ function! s:altern (trigger)
     if has_key(km, 'post')
         execute km['post'] | end
 
+    call Log('MoreMsg', 'Toggled: ')
+    call Log('Normal', km['what'])
+    call Log('Comment', "(" . cmd . ")")
+
     return ''
 endfunc
 function! s:toggle (trigger, ...)
@@ -226,10 +231,12 @@ ToggleMap 'co',  'call colorizer#ColorToggle()'
 ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
 ToggleMap 'gu',  'GitGutterToggle'
 ToggleMap 'gs',  'GitGutterSignsEnable'
-call s:map_alternating('gg', 'Git integration', ['call git#Enable()', 'call git#Disable()'])
+
+AlternMap 'gg',  'Git integration', ['call git#Enable()', 'call git#Disable()']
+AlternMap 'al',  'ALE Linter',      ['ALEEnable', 'ALEDisable']
 
 ToggleMap 'gvr', 'ToggleGoldenViewAutoResize'
-ToggleMap 'sy',  'SyntasticToggleMode'
+ToggleMap 'y',   'SyntasticToggleMode'
 
 ToggleMap 'idg', 'IndentGuidesToggle'
 ToggleMap 'idl', 'IndentLinesToggle'

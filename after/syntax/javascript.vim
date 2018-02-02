@@ -45,6 +45,8 @@ hi! link jsModuleKeywords  Special
 
 hi! link jsGlobalNodeObjects Special
 
+hi! link jsxContentBraces TextSpecial
+
 "let g:javascript_conceal_function       = "ƒ"
 "let g:javascript_conceal_arrow_function = "⇒"
 unlet! g:javascript_conceal_function

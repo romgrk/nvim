@@ -5,6 +5,8 @@ setlocal foldmethod=syntax
 nmap <buffer> --d   i/***/<Left><Left><CR>
 nmap <buffer> +s    ggO'use strict';<ESC>
 
+nnoremap <buffer> g<A-'> I{/* <Esc>A */}<Esc>
+
 if !exists('*tern#Complete')
   nmap <buffer>       <F2>  :YcmCompleter RefactorRename<CR>
   nmap <buffer>        gd   :YcmCompleter GoTo<CR>
