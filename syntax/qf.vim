@@ -16,8 +16,8 @@ syn match	qfWarning	"warning"  contained
 " A bunch of useful C keywords
 syn match	qfFileName	"^[^|]*" contains=qfLineNr,qfDesc,qfError,qfWarning
 "syn match	qfSeparator	"|" nextgroup=qfLineNr contained conceal
-syn region	qfLineNr	start=/|/ end=/|/ nextgroup=qfDesc contains=qfError,qfWarning contained conceal concealends
-syn match	qfDesc		" [^:]*:" contains=qfError,qfWarning contained
+syn region	qfLineNr	start=/|/ end=/|/  contains=qfError,qfWarning
+"syn match	qfDesc		" [^:]*:" contains=qfError,qfWarning contained
 "syn match	qfLineNr	"[^|]*" nextgroup=qfSeparator contained contains=qfError
 
 syn region	qfLogs start=/^||/me=s end=/^[^|]/me=s-1 contains=qfEmpty,qfLog,qfPointer transparent fold
@@ -28,7 +28,7 @@ syn match	qfPointer	"\s*\^\s*" contained
 
 " The default highlighting.
 hi! link qfFileName	Comment
-hi! link qfLineNr	LineNr
+hi! link qfLineNr	Comment
 hi! link qfPointer	BoldDebug
 hi! link qfError	BoldError
 hi! link qfWarning	BoldWarning
