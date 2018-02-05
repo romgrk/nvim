@@ -5,6 +5,7 @@ nnoremap <buffer> <S-C-tab>   :wincmd p<CR><s-c-tab>
 nnoremap <buffer> gp :NERDTreeCWD<CR>
 nnoremap <buffer> gh :NERDTree <C-r>=expand('~')<CR><CR>
 
+nmap <buffer> <space> o
 nmap <buffer> a ma
 nmap <buffer> A ma/<Left>
 nmap <nowait><buffer> d md
