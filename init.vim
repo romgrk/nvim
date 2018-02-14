@@ -40,19 +40,17 @@ call s:source_rc('plugins.vim')
 call plug#begin($vim . '/bundle')
 
 
-" WATCHME
-" Plug 'tpope/vim-projectionist'
-
-" Editing                                                                    {{{
-Plug 'neomake/neomake'
-Plug 'sirver/UltiSnips'
+" Autocompletion
 if !has('win32')
 Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
 else
 Plug 'xleng/YCM_WIN_X86'
 Plug 'romgrk/AutoComplPop'
-Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
 end
+Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
+" Editing                                                                    {{{
+Plug 'neomake/neomake'
+Plug 'sirver/UltiSnips'
 Plug 'wellle/targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -100,12 +98,17 @@ end
 "Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
+Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
+Plug 'rhysd/vim-crystal'                                 , { 'for': 'crystal' }
+Plug 'vim-python/python-syntax'                          , { 'for': 'python' }
 Plug 'othree/xml.vim'
-Plug 'moll/vim-node'                                     , { 'for': 'javascript.node' }
+"Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript', 'do': 'npm install --update' }
+Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'neoclide/vim-jsx-improve'                          , { 'for': 'javascript.jsx' }
 Plug 'ianks/vim-tsx'                                     , { 'for': 'typescript.tsx' }
+Plug 'moll/vim-node'                                     , { 'for': 'javascript.node' }
 Plug 'Quramy/tsuquyomi'                                  , { 'on': 'TsuServerInfo' } " { 'for': 'typescript' }
 Plug 'kchmck/vim-coffee-script'                          , { 'for': 'coffee' }
 Plug 'plasticboy/vim-markdown'                           , { 'for': 'markdown' }
@@ -128,7 +131,6 @@ Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'sc
 "Plug 'kelan/gyp.vim'                                     , { 'for': 'gyp' }
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
-"Plug 'hdima/python-syntax'                               , { 'for': 'python' }
 Plug 'dzeban/vim-log-syntax'
 Plug 'elixir-lang/vim-elixir'                            , { 'for': 'elixir' }
 
@@ -190,7 +192,7 @@ end
 
 if argc() == 2 && argv(0) == 's'
     exe 'au VimEnter * OpenSession! ' . argv(1)
-    argdel *
+    call ClearArgs()
 end
 
 augroup RC_SETUP
