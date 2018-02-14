@@ -241,7 +241,7 @@ call hi#('TabLineSel',       theme.fg_subtle, theme.bg_dark)
 
 call hi#('Buffer',           theme.fg,        theme.bg_dark, '')
 call hi#('BufferCurrent',    theme.hl,        theme.bg,      '')
-call hi#('BufferActive',     theme.fg_subtle, theme.bg_dark, '')
+call hi#('BufferActive',     theme.hl,        theme.bg_dark, '')
 call hi#('BufferMod',        s:brightyellow,  theme.bg_dark, 'italic,bold')
 call hi#('BufferCurrentMod', s:yellow,        theme.bg,      'italic')
 call hi#('BufferActiveMod',  s:yellow,        theme.bg_dark, 'italic')
