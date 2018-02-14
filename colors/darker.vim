@@ -334,7 +334,7 @@ call hi#('PreProc',              '#668799', '',        'none')
 call hi#('Macro',                '#7597c6', '',        'bold')
 call hi#('Define',               '#668799', '',        'bold')
 call hi#('PreCondit',            '#7597c6', '',        'bold')
-call hi#('Include',              '#7597c6', '',        'bold')
+call hi#('Include',              '#a755df', '',        'bold')
 
 call hi#('Operator',             '#2d7cd0', '',        '')
 call hi#('Repeat',               '#2d7cd0', '',        '')

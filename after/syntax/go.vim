@@ -1,0 +1,1 @@
+hi! link goConstants Constant

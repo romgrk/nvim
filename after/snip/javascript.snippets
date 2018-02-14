@@ -17,26 +17,21 @@ snippet table "table" b
 </tbody>
 </table>
 endsnippet
-snippet cns "constructor" b
-constructor(props) {
-	super(props)
-	$0
-}
-endsnippet
-snippet cwrp "componentWillReceiveProps" b
-componentWillReceiveProps(props) {
-	$0
-}
-endsnippet
 snippet i "import" b
 import $1 from '${2:$1}'
 endsnippet
-
 snippet /// "comment" b
 /*
  * $0
  */
 endsnippet
+snippet rnp "new Promise"
+return new Promise((resolve, reject) => {
+	$0
+})
+endsnippet
+
+# React
 
 snippet mstp "mapStateToProps"
 const mapStateToProps = state => ({
@@ -46,11 +41,26 @@ const mapDispatchToProps = dispatch => ({
 })
 endsnippet
 
-snippet rnp "new Promise"
-return new Promise((resolve, reject) => {
+snippet cns "constructor" b
+constructor(props) {
+	super(props)
 	$0
-})
+}
 endsnippet
+
+snippet cwrp "componentWillReceiveProps" b
+componentWillReceiveProps(props) {
+	$0
+}
+endsnippet
+
+snippet ss "setState" b
+this.setState({ $0 })
+endsnippet
+
+
+
+# Other
 
 snippet ppl "log" 
 console.log(require('util').inspect($0, { colors: true, depth: 3 }))
