@@ -381,6 +381,11 @@ nnoremap [Space]gD         :YcmCompleter GoToDeclaration<CR>
 nnoremap [Space]I          :YcmCompleter GoToInclude<CR>
 nnoremap [Space]gr         :YcmCompleter RefactorRename<space>
 
+" Tern:
+nnoremap [Space]tt         :TernType<CR>
+nnoremap [Space]td         :TernDef<CR>
+nnoremap [Space]tp         :TernDefPreview<CR>
+
 "===============================================================================
 
 " Session management:
