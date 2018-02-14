@@ -151,8 +151,9 @@ let theme.fg_subtle             = '#c0c0c0'
 let theme.fg_verysubtle         = '#e0e0e0'
 let theme.fg_shaded             = '#24292e'
 let theme.fg_dark               = '#24292e'
-let theme.fg_widget             = '#efe3d5'
+let theme.fg_widget             = '#cad0d3'
 let theme.fg_overlay            = '#24292e'
+
 
 let theme.bg                    = '#ffffff'
 let theme.bg_subtle             = '#f0f0f0'
