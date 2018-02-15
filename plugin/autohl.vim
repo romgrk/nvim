@@ -27,6 +27,9 @@ function! AutoHighlightToggle()
 endfunction
 
 function! s:autoHighlight()
+  if &buftype != ''
+    return
+  end
   call s:deleteAutoHighlight()
   let w:auto_highlight_id = matchadd('highlight', '\V\<'.escape(expand('<cword>'), '\').'\>')
 endfunction
