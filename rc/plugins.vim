@@ -10,7 +10,7 @@ let javascript_plugin_jsdoc = 1
 "=============================================================================
 " Paths                                                                      {{{
 
-let $XDG_RUNTIME_DIR = $HOME . "/tmp"
+let $XDG_RUNTIME_DIR = $HOME . '/tmp'
 
 let local_vimrc            = {}
 let local_vimrc.names      = ['.vimrc', 'vimrc', '.localrc']
@@ -19,6 +19,9 @@ let local_vimrc.cache_file = path#Join([$XDG_CACHE_HOME, 'local_vimrc'])
 let bookmarks_file = path#Join([$XDG_CACHE_HOME, 'nvim', 'bookmarks'])
 
 let templates_directory = ['~/templates']
+
+" Miniyank
+let miniyank_filename = $XDG_CACHE_HOME . '/miniyank.mpack'
 
 " Notes
 let notes_directories = ['~/notes']
