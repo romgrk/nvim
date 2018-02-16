@@ -36,8 +36,6 @@ let mapleader = ','
 " <Esc>
 nnoremap <silent><expr> <Esc> (
             \   exists('b:esc') ? b:esc
-            \ : StopAutoHL()    ? ""
-            \ : ClearHighlights(v:count) ? ""
             \ : ":nohl<CR>" )
 
 " <CR>
