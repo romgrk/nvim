@@ -485,18 +485,19 @@ nnoremap <silent> <C-A-o>  :GitFiles<CR>
 nnoremap <silent> <A-w>      :GoNextListedWindow<CR>
 
 " Windows actions
-nnoremap <C-W>v     <C-W>v<C-W>l
-nnoremap <C-W>s     <C-W>s<C-W>j
-nnoremap <C-W>;     :split  <Bar> terminal<CR>
-nnoremap <C-W>:     :vsplit <Bar> terminal<CR>
-nnoremap <C-W><A-;> :tabedit term://bin/zsh<CR>
-nnoremap <C-W>y     :WindowYank<CR>
-nnoremap <C-W>g     :WindowPaste<CR>
-nnoremap <C-W><C-Y> :WindowCopyView<CR>
-nnoremap <C-W>\     :WindowFitText<CR>
+nnoremap <C-w>v     <C-w>v<C-w>l
+nnoremap <C-w>s     <C-w>s<C-w>j
+nnoremap <C-w>;     :split  <Bar> terminal<CR>
+nnoremap <C-w>:     :vsplit <Bar> terminal<CR>
+nnoremap <C-w><A-;> :tabedit term://bin/zsh<CR>
+nnoremap <C-w>y     :WindowYank<CR>
+nnoremap <C-w>g     :WindowPaste<CR>
+nnoremap <C-w><C-Y> :WindowCopyView<CR>
+nnoremap <C-w>\     :WindowFitText<CR>
+nnoremap <C-w>q     :BufferClose <Bar> wincmd c<CR>
 
-nnoremap <C-W><Tab> :tabedit <C-r>=bufname(buf#filter('&buflisted')[-1])<CR><CR>
-nnoremap <C-W>t     :tab split<CR>
+nnoremap <C-w><Tab> :tabedit <C-r>=bufname(buf#filter('&buflisted')[-1])<CR><CR>
+nnoremap <C-w>t     :tab split<CR>
 
 " Terminal navigation mappings down here. }}}1
 "===============================================================================
