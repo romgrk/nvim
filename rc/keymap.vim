@@ -116,6 +116,10 @@ nnoremap <CR>   o<Esc>
 nnoremap <A-CR> O<Esc>
 
 
+" Don't leave spaces when doing i, then <esc>
+nnoremap <expr>i empty(substitute(getline('.'), '^\s\+', '', '')) ? 'cc' : 'i'
+
+
 " Split line (as opposed to J)
 nnoremap <silent><C-J>  i<CR><Esc>:silent -DeleteTrailingWS<CR>
 
@@ -955,7 +959,7 @@ endfu
 " }}}1
 "===============================================================================
 " Quick Utils                                                               {{{1
-" @quick
+" @utils
 
 " File Explorer
 if has('win32')
@@ -977,9 +981,6 @@ inoremap <C-Y> <C-C>:let @z = @"<CR>mz
 " Fold around search patterns
 nnoremap <silent><expr>  [Space]zz  FS_ToggleFoldAroundSearch({'context':1})
 
-" Fixes something
-nnoremap <expr>i empty(substitute(getline('.'), '^\s\+', '', '')) ? 'cc' : 'i'
-
 
 nnoremap <C-r>   :e!<CR>
 
@@ -988,12 +989,9 @@ nnoremap =r      :call QuickReload()<CR>
 nnoremap gh      :call ReopenHelp()<CR>
 
 
-nmap gK  <Plug>Zeavim
-nmap gZK <Plug>ZVKeyDocset
-
 nnoremap <M-1> :SynStack<CR>
 nnoremap <M-3> :SynCurrentEdit<CR>
-nnoremap <M-4> :Fullfill<space>
+nnoremap <M-4> :Fullfill<space><C-R>=GetCurrentSyntaxGroup()<CR>
 
 
 " Copy current file path
