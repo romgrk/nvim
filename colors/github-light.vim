@@ -283,11 +283,9 @@ call hi#('Question',        '#65C254', '', '',     'Green', '')
 call hi#('Question2',       '#70b950', '', 'bold', 'Green', '')
 call hi#('Todo',            '#3b84ea', 'none', 'bold')
 
-call hi#('Directory',       '#bab075', '',     'bold')
-call hi#('Section',         '#bab075', '',     '')
-call hi#('Title',           '#bab075', '',     'bold')
-call hi#('Title2',          '#f0e930', '',     'bold')
-call hi#('Title3',          '#F9FA00', 'none', 'bold')
+call hi#('Directory',       '#3365CE', '',     'none')
+call hi#('Section',         '#3365CE', '',     'bold')
+call hi#('Title',           '#3365CE', '',     'bold')
 
 call hi#('Bold',            '', '', 'bold')
 
@@ -298,8 +296,8 @@ call hi#('Tag',                  '#80a0ff', '',        'underline')
 call hi#('Link',                 '#80a0ff', '',        'underline')
 call hi#('URL',                  '#80a0ff', '',        'underline')
 
-call hi#('Comment',              '#6a737d', '',        '')
-call hi#('BoldComment',          '#6a737d', '',        'bold')
+call hi#('Comment',              '#97a3b2', '',        '')
+call hi#('BoldComment',          '#97a3b2', '',        'bold')
 call hi#('SpecialComment',       '#7597c6', '',        'bold')
 call hi#('CommentLabel',         '#799d6a', '',        'bold')
 
