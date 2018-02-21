@@ -296,8 +296,8 @@ call hi#('Tag',                  '#80a0ff', '',        'underline')
 call hi#('Link',                 '#80a0ff', '',        'underline')
 call hi#('URL',                  '#80a0ff', '',        'underline')
 
-call hi#('Comment',              '#97a3b2', '',        '')
-call hi#('BoldComment',          '#97a3b2', '',        'bold')
+call hi#('Comment',              '#8f9aa9', '',        '')
+call hi#('BoldComment',          '#8f9aa9', '',        'bold')
 call hi#('SpecialComment',       '#7597c6', '',        'bold')
 call hi#('CommentLabel',         '#799d6a', '',        'bold')
 
