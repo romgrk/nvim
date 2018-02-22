@@ -109,6 +109,7 @@ nnoremap g] gt
 
 " Open
 nnoremap <silent>go :!xdg-open <C-R><C-A><CR>
+xnoremap <silent>go y:!xdg-open <C-R>"<CR>
 
 
 " Insert newline
@@ -375,13 +376,15 @@ nnoremap [Space]yr         :YcmRestartServer<CR>
 nnoremap [Space]yi         :YcmDebugInfo<CR>
 nnoremap [Space]yd         :YcmDiags<CR>
 nnoremap [Space]yy         :YcmForceCompileAndDiagnostics<CR>
+nnoremap [Space]yf         :YcmCompleter GoToReferences <Bar> copen<CR>
 nnoremap [Space]<A-d>      :YcmCompleter GetDoc<CR>
 nnoremap [Space]]          :YcmCompleter GoTo<CR>
 nnoremap [Space]}          :YcmCompleter GoToType<CR>
 nnoremap [Space]gd         :YcmCompleter GoToDefinition<CR>
-nnoremap [Space]gD         :YcmCompleter GoToDeclaration<CR>
-nnoremap [Space]I          :YcmCompleter GoToInclude<CR>
+nnoremap [Space]gd         :YcmCompleter GoToDeclaration<CR>
+nnoremap [Space]gi         :YcmCompleter GoToInclude<CR>
 nnoremap [Space]gr         :YcmCompleter RefactorRename<space>
+nnoremap        <F2>       :YcmCompleter RefactorRename<space>
 
 " Tern:
 nnoremap [Space]tt         :TernType<CR>
@@ -391,63 +394,63 @@ nnoremap [Space]tp         :TernDefPreview<CR>
 "===============================================================================
 
 " Session management:
-nnoremap      [Space]ss     :wall! <Bar> SaveSession<CR><Esc>
-nnoremap      [Space]sS     :SaveSession!<space>
-nnoremap      [Space]so     :call feedkeys(":OpenSession! \<C-D>", 't')<CR>
-nnoremap      [Space]sd     :OpenSession! default<CR>
-nnoremap      [Space]sc     :wall! <Bar> CloseSession<CR>
-nnoremap      [Space]sn     :SaveSession<space>
-nnoremap      [Space]si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
+nnoremap <expr>[Space]ss     xolox#session#find_current_session() != 'default' ?
+                              \ ":wall! \<Bar> SaveSession\<CR>\<Esc>" : ":wall! \<Bar> SaveSession\<space>"
+nnoremap       [Space]sS     :SaveSession!<space>
+nnoremap       [Space]so     :call feedkeys(":OpenSession! \<C-D>", 't')<CR>
+nnoremap       [Space]sd     :OpenSession! default<CR>
+nnoremap       [Space]sc     :wall! <Bar> CloseSession<CR>
+nnoremap       [Space]si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
 
-nnoremap      [Space]sl     :SourceLocalVimrc<CR>
-nnoremap      [Space]sn     :Note <C-R>=fnamemodify(v:this_session, ':t:r')<CR><CR>
+nnoremap       [Space]sl     :SourceLocalVimrc<CR>
+nnoremap       [Space]sn     :Edit .notes <Bar> setfiletype notes<CR>
 
 " Git:
 
-nnoremap      [Space]ma   :Magit<CR>
+nnoremap       [Space]ma   :Magit<CR>
 
-nnoremap      [Space]ga   :!git add %<CR>
-nnoremap      [Space]gc   :Gcommit -m ""<Left>
-nnoremap      [Space]g.   :Gcommit % -m ""<Left>
-nnoremap      [Space]gk   :Git checkout<space>
-nnoremap      [Space]gK   :Git checkout -b<space>
-nnoremap      [Space]gl   :Gpull<CR>
-nnoremap      [Space]gp   :Gpush<CR>
-nnoremap      [Space]gs   :Gstatus<CR>
-nnoremap      [Space]gu   :call GitOpenUnmergedFiles()<CR>
+nnoremap       [Space]ga   :!git add %<CR>
+nnoremap       [Space]gc   :Gcommit -m ""<Left>
+nnoremap       [Space]g.   :Gcommit % -m ""<Left>
+nnoremap       [Space]gk   :Git checkout<space>
+nnoremap       [Space]gK   :Git checkout -b<space>
+nnoremap       [Space]gl   :Gpull<CR>
+nnoremap       [Space]gp   :Gpush<CR>
+nnoremap       [Space]gs   :Gstatus<CR>
+nnoremap       [Space]gu   :call GitOpenUnmergedFiles()<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching
 
 " Files:
-nnoremap      [Space]md     :Mkdir! <C-D>
-nnoremap      [Space]mv     :Move <C-D>
-nnoremap      [Space]re     :Rename<space>
+nnoremap       [Space]md     :Mkdir! <C-D>
+nnoremap       [Space]mv     :Move <C-D>
+nnoremap       [Space]re     :Rename<space>
 
 " Search:
-nnoremap      [Space]ag     :Rg<space>
-nnoremap      [Space]aa     :Rg<CR>
+nnoremap       [Space]ag     :Rg<space>
+nnoremap       [Space]aa     :Rg<CR>
 
 "===============================================================================
 
 " Windows-things:
-nnoremap      [Space]w-   :call SizeDown()<CR>
-nnoremap      [Space]w+   :call SizeUp()<CR>
+nnoremap       [Space]w-   :call SizeDown()<CR>
+nnoremap       [Space]w+   :call SizeUp()<CR>
 
 "===============================================================================
 
 " Various:
 
-nnoremap      [Space]ca   :CtrlPClearAllCaches<CR>
+nnoremap       [Space]ca   :CtrlPClearAllCaches<CR>
 
-nnoremap      [Space]gf   :NERDTreeFind<CR>
+nnoremap       [Space]gf   :NERDTreeFind<CR>
 
-nnoremap      [Space]ret  :set et <Bar> ret<CR>
-nnoremap      [Space]ap   vip:EasyAlign<CR>
-" ArgWrap     foo(bwibble, wobble, wubble)
-nnoremap      [Space]arg  :ArgWrap<CR>
-nnoremap      [Space]ret  :set et <Bar> ret<CR>
-nnoremap      [Space]dws  :%DeleteTrailingWS<CR>
+nnoremap       [Space]ret  :set et <Bar> ret<CR>
+nnoremap       [Space]ap   vip:EasyAlign<CR>
+" ArgWrap      foo(bwibble, wobble, wubble)
+nnoremap       [Space]arg  :ArgWrap<CR>
+nnoremap       [Space]ret  :set et <Bar> ret<CR>
+nnoremap       [Space]dws  :%DeleteTrailingWS<CR>
 
 " Multi-Cursors:
 " (see: ./plugins/multiple-cursors.vim)
