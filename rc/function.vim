@@ -19,7 +19,12 @@ func! Edit(...) "                                                             {{
     call GoFirstListedWindow()
   end
   for pattern in a:000
-    call map(split(glob(pattern), '\n'), 'execute("edit " . v:val)')
+    let files = split(glob(pattern), '\n')
+    if len(files) > 0
+      call map(files, 'execute("edit " . v:val)')
+    else
+      execute 'edit ' . pattern
+    end
   endfor
 endfu "                                                                      }}}
 func! PreviewEdit(file)
