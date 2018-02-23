@@ -9,20 +9,18 @@ com! -nargs=* -complete=highlight EchonHL call EchonHL(<f-args>)
 com! -nargs=* -complete=highlight Echon   call Echon(<f-args>)
 
 " Syntax-editing/Filetype specific files
-com! -nargs=1 -complete=file Edit call Edit(<f-args>)
+com! -nargs=+ -complete=file Edit call Edit(<f-args>)
 com! -nargs=1 -complete=file PreviewEdit call PreviewEdit(<f-args>)
 com! EditFtplugin                 call Edit(FindFtPlugin())
 com! EditFtsyntax                 call Edit(FindFtSyntax())
 
-func! Edit(file) "                                                             {{{
+func! Edit(...) "                                                             {{{
   if !(win#info().listed)
     call GoFirstListedWindow()
   end
-  if _#isList(a:file)
-    call map(a:file, 'execute("edit " . v:val)')
-  else
-    execute 'edit ' . a:file
-  end
+  for pattern in a:000
+    call map(split(glob(pattern), '\n'), 'execute("edit " . v:val)')
+  endfor
 endfu "                                                                      }}}
 func! PreviewEdit(file)
     let saved_previewheight = &previewheight
@@ -537,13 +535,13 @@ fu! PrintWithoutNewlines(value) "                                            {{{
     echo join(strings, ', ')
 endfu "                                                                      }}}
 
-com! SynStack       call SyntaxStack()
-com! SynCurrent     call SynCurrent()
-com! SynCurrentEdit call SynCurrentEdit()
-com! ToggleSyntax   call ToggleSyntax()
-com! EditSyntax     call EditSyntax()
-fu! SynCurrent()
-    echo synIDattr(synID(line("."), col("."), 1), "name")
+com! SynStack              call SyntaxStack()
+com! GetCurrentSyntaxGroup Pp GetCurrentSyntaxGroup()
+com! SynCurrentEdit        call SynCurrentEdit()
+com! ToggleSyntax          call ToggleSyntax()
+com! EditSyntax            call EditSyntax()
+fu! GetCurrentSyntaxGroup()
+    return synIDattr(synID(line("."), col("."), 1), "name")
 endfu
 fu! SynCurrentEdit()
     let @h = synIDattr(synID(line("."), col("."), 1), "name")
