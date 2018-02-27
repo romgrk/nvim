@@ -4,15 +4,15 @@
 " Exec: !::exe [redraw | echo 'sourced' | source %]
 
 " Printing/logging
-com! -nargs=* -complete=highlight EchoHL  call EchoHL(<f-args>)
-com! -nargs=* -complete=highlight EchonHL call EchonHL(<f-args>)
-com! -nargs=* -complete=highlight Echon   call Echon(<f-args>)
+com! -bar -nargs=* -complete=highlight EchoHL  call EchoHL(<f-args>)
+com! -bar -nargs=* -complete=highlight EchonHL call EchonHL(<f-args>)
+com! -bar -nargs=* -complete=highlight Echon   call Echon(<f-args>)
 
 " Syntax-editing/Filetype specific files
-com! -nargs=+ -complete=file Edit call Edit(<f-args>)
-com! -nargs=1 -complete=file PreviewEdit call PreviewEdit(<f-args>)
-com! EditFtplugin                 call Edit(FindFtPlugin())
-com! EditFtsyntax                 call Edit(FindFtSyntax())
+com! -bar -nargs=+ -complete=file Edit call Edit(<f-args>)
+com! -bar -nargs=1 -complete=file PreviewEdit call PreviewEdit(<f-args>)
+com! -bar EditFtplugin                 call Edit(FindFtPlugin())
+com! -bar EditFtsyntax                 call Edit(FindFtSyntax())
 
 func! Edit(...) "                                                             {{{
   if !(win#info().listed)
