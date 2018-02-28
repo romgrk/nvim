@@ -455,7 +455,6 @@ nnoremap       [Space]ap   vip:EasyAlign<CR>
 nnoremap       [Space]ret  :set et <Bar> ret<CR>
 nnoremap       [Space]dws  :%DeleteTrailingWS<CR>
 
-nnoremap       [Space]ar   :AsyncRun<space>
 
 
 " Multi-Cursors:

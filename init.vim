@@ -68,7 +68,6 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'bfredl/nvim-miniyank'
