@@ -126,6 +126,7 @@ let ctrlp_buftag_types = {
 \ 'css':        '--language-force=css --css-types=tic',
 \ 'scss':       '--language-force=scss --scss-types=vmtic',
 \ 'vim':        '--language-force=vim --vim-kinds=acfv',
+\ 'proto':      '--language-force=protobuf --vim-kinds=pmfegs',
 \ 'javascript' : {
     \ 'bin': 'jsctags',
     \ 'args': '-f -',

@@ -14,6 +14,7 @@ let s:search = {}
 let s:searchMatches = {}
 let s:isSearchDone = v:false
 let s:isSearchMatchesDone = v:false
+let s:position = 'right'
 
 command! -nargs=* -complete=dir Search    :call <SID>runSearch(<f-args>)
 command! -nargs=1               Replace   :call <SID>runReplace(<f-args>)
@@ -166,33 +167,14 @@ function! s:onSearchDone()
     end
 
     if len(s:search) == 0
-        call s:echo('Normal', 'No match found for ')
-        call s:echo('Special', s:pattern)
+        call s:echo('WarningMsg', 'No match found for ')
+        call s:echo('Normal', s:pattern)
         return
     end
 
     let s:isSearching = v:true
 
-    " Open scratch buffer to display results
-    let height = len(s:search) + s:totalMatches
-    if height > 10
-        let height = 10
-    end
-
-    split
-    wincmd J
-    exe height . 'wincmd _'
-    enew
-    setlocal nonumber
-    setlocal buftype=nofile
-    file SearchReplace
-
-    " Create mappings
-    au BufLeave <buffer> bd
-    nnoremap                 <buffer><Esc> <C-W>p
-    nnoremap         <nowait><buffer><A-r> :Replace<space>
-    nnoremap         <nowait><buffer><CR>  :Replace<space>
-    nnoremap <silent><nowait><buffer>d     :call <SID>deleteLine()<CR>
+    call s:createSearchWindow()
 
     " Display content
     let lastFile = ''
@@ -237,6 +219,40 @@ function! s:onExitReplace(job)
     end
 
     call timer_start(100, function('s:displayDone'))
+endfunction
+
+function! s:createSearchWindow()
+    split
+
+    if s:position == 'bottom' || s:position == 'top'
+        if s:position == 'bottom'
+            wincmd J
+        elseif s:position == 'top'
+            wincmd K
+        end
+
+        let height = len(s:search) + s:totalMatches
+        if height > 10
+            let height = 10
+        end
+        exe height . 'wincmd _'
+    elseif s:position == 'right'
+        wincmd L
+    else " if s:position == 'left'
+        wincmd H
+    end
+
+    enew
+    setlocal nonumber
+    setlocal buftype=nofile
+    file SearchReplace
+
+    " Create mappings
+    au BufLeave <buffer> bd
+    nnoremap                 <buffer><Esc> <C-W>p
+    nnoremap         <nowait><buffer><A-r> :Replace<space>
+    nnoremap         <nowait><buffer><CR>  :Replace<space>
+    nnoremap <silent><nowait><buffer>d     :call <SID>deleteLine()<CR>
 endfunction
 
 function! s:displayDone(...)

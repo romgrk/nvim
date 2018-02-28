@@ -51,14 +51,11 @@ function! QuickFixOpen(type)
         lwindow
     end
 
+    wincmd J
+
     if (&bt ==# 'quickfix')
         let g:qf_win = winnr()
     end
-    "setlocal nobuflisted
-    "setlocal nofoldenable
-    "setlocal nonumber
-    "setlocal wrap
-    "normal! 5z
 
     "autocmd BufEnter <buffer> call QuickFixEnter()
     "autocmd BufLeave <buffer> call QuickFixLeave()

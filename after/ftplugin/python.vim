@@ -1,4 +1,4 @@
 setlocal sw=4
 setlocal ts=4
 
-nmap <buffer> K ,z
+nnoremap <buffer> K :YcmCompleter GetDoc<CR>

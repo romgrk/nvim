@@ -288,6 +288,7 @@ call hi#('LabelBlue',       [ theme.base, colors.brightblue,    'bold' ] )
 call hi#('LabelPurple',     [ theme.fg, colors.darkestpurple, 'bold' ] )
 
 call hi#('Search',          'none',    '#444444', 'none')
+"call hi#('Search',          '#000000', '#f0e930', 'none')
 call hi#('IncSearch',       '#870000', '#f2ad00', 'none')
 call hi#('IncSearchCursor', '',        '',        'reverse')
 
@@ -301,7 +302,8 @@ call hi#('SpecialOpt',      '#868680',       '#32363a', '')
 
 
 call hi#('AutoHL',          '',        theme.bg,  'none')
-call hi#('Highlight',       '#000000', '#f0e930', 'none')
+"call hi#('Highlight',       '#000000', '#f0e930', 'none')
+call hi#('Highlight',       'none',    '#393939', 'none')
 
 call hi#('Key',             '#799d6a', '', '')
 call hi#('Question',        '#65C254', '', '',     'Green', '')

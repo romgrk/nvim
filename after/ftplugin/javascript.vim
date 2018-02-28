@@ -21,6 +21,8 @@ else
 end
 
 
+nnoremap <buffer> K   :YcmCompleter GetDoc<CR>
+
 inoremap <A-8> /*<CR><CR>/<Up>
 
 if !filereadable('.tern-project') && filereadable('~/templates/tern-project')

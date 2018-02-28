@@ -1,2 +1,2 @@
-hi! link pythonImport     Special
+hi! link pythonImport     Keyword
 hi! link pythonBuiltinObj Type

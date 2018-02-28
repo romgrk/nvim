@@ -16,6 +16,8 @@ let bg_lighter = color#Lighten(bg_normal, '0.8')
 
 " General                                                                    {{{
 
+hi! link QuickFixLine Highlight
+
 "call hi#("Highlight", hi#("Search"))
 call hi#('AutoHL', 'none', bg_light, 'none')
 

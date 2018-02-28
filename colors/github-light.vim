@@ -275,6 +275,7 @@ call hi#('MatchParen',      '',              '#28485f', 'none')
 call hi#('SpecialOpt',      '#868680',       '#32363a', '')
 
 
+
 call hi#('AutoHL',          '',     theme.bg,  'none')
 call hi#('Highlight',       'none', theme.bg_selection_light, 'none')
 
@@ -336,6 +337,8 @@ call hi#('SpecialIdentifier',    '#9c5fff', '',        'none')
 
 call hi#('Special',              '#a755df', '',        'none')
 call hi#('SpecialDelimiter',     '#a040af', '',        'none')
+"call hi#('Special',              '#2073f8',       'none',    'none')
+"call hi#('TextSpecial',          '#2073f8',       'none',    'none')
 
 
 call hi#('Identifier',           theme.fg,  '',        'none')
