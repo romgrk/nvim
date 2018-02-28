@@ -409,8 +409,10 @@ nnoremap       [Space]sn     :Edit .notes <Bar> setfiletype notes<CR>
 
 nnoremap       [Space]ma     :Magit<CR>
 
-nnoremap       [Space]ga     :!git add %<CR>
-nnoremap       [Space]gc     :Gcommit -m ""<Left>
+nnoremap       [Space]gaa    :!git add --all<CR>
+nnoremap       [Space]ga.    :!git add %<CR>
+nnoremap       [Space]gcm    :Gcommit -m ""<Left>
+nnoremap       [Space]gcam   :Gcommit -am ""<Left>
 nnoremap       [Space]g.     :Gcommit % -m ""<Left>
 nnoremap       [Space]gk     :Git checkout<space>
 nnoremap       [Space]gK     :Git checkout -b<space>
