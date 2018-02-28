@@ -452,10 +452,11 @@ nnoremap       [Space]gf   :NERDTreeFind<CR>
 
 nnoremap       [Space]ret  :set et <Bar> ret<CR>
 nnoremap       [Space]ap   vip:EasyAlign<CR>
-" ArgWrap      foo(bwibble, wobble, wubble)
-nnoremap       [Space]arg  :ArgWrap<CR>
 nnoremap       [Space]ret  :set et <Bar> ret<CR>
 nnoremap       [Space]dws  :%DeleteTrailingWS<CR>
+
+nnoremap       [Space]ar   :AsyncRun<space>
+
 
 " Multi-Cursors:
 " (see: ./plugins/multiple-cursors.vim)

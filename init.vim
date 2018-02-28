@@ -68,7 +68,7 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'mattboehm/vim-unstack'
+Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'bfredl/nvim-miniyank'
@@ -102,6 +102,7 @@ Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
 Plug 'rhysd/vim-crystal'                                 , { 'for': 'crystal' }
 Plug 'vim-python/python-syntax'                          , { 'for': 'python' }
 Plug 'tmhedberg/SimpylFold'                              , { 'for': 'python' }
+Plug 'mattboehm/vim-unstack'                             , { 'for': 'python' }
 Plug 'othree/xml.vim'
 "Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript', 'do': 'npm install --update' }
 Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
