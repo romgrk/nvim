@@ -48,15 +48,21 @@ fu! FindFtSyntax(...) "                                                      {{{
     return ftdir
 endfu "                                                                      }}}
 
-function! ExecTerminal(command)
+function! ExecTerminal(command, arguments)
   split
   wincmd j
   15wincmd _
-  execute 'term ' . a:command
+  execute 'term ' . a:command . ' ' . s:quote_arguments(a:arguments)
   normal! i
 endfunction
+function! s:quote_arguments(list)
+  return join(map(copy(a:list), {key, val -> expand(val)}), ' ')
+endfunction
 
-com! GitOpenUnmergedFiles call GitOpenUnmergedFiles()
+com! -nargs=* GitOpenUnmergedFiles call GitOpenUnmergedFiles(<f-args>)
+com! -nargs=* GitPush              call GitPush(<f-args>)
+com! -nargs=* GitStatus            call GitStatus(<f-args>)
+com! -nargs=* GitDiff              call GitDiff(<f-args>)
 function! GitOpenUnmergedFiles()
   let cd = system('git rev-parse --show-cdup')[:-2]
   let files = systemlist('git diff --name-only --diff-filter=U')
@@ -66,17 +72,14 @@ function! GitOpenUnmergedFiles()
   end
   call Edit(files)
 endfunction
-com! GitPush call GitPush()
-function! GitPush()
-  call ExecTerminal('git push')
+function! GitPush(...)
+  call ExecTerminal('git push', a:000)
 endfunction
-com! GitStatus call GitStatus()
-function! GitStatus()
-  call ExecTerminal('git status')
+function! GitStatus(...)
+  call ExecTerminal('git status', a:000)
 endfunction
-com! GitDiff call GitDiff()
-function! GitDiff()
-  call ExecTerminal('git diff')
+function! GitDiff(...)
+  call ExecTerminal('git diff', a:000)
 endfunction
 
 

@@ -377,13 +377,13 @@ nnoremap [Space]yi         :YcmDebugInfo<CR>
 nnoremap [Space]yd         :YcmDiags<CR>
 nnoremap [Space]yy         :YcmForceCompileAndDiagnostics<CR>
 nnoremap [Space]yf         :YcmCompleter GoToReferences <Bar> copen<CR>
-nnoremap [Space]<A-d>      :YcmCompleter GetDoc<CR>
-nnoremap [Space]]          :YcmCompleter GoTo<CR>
-nnoremap [Space]}          :YcmCompleter GoToType<CR>
-nnoremap [Space]gd         :YcmCompleter GoToDefinition<CR>
-nnoremap [Space]gd         :YcmCompleter GoToDeclaration<CR>
-nnoremap [Space]gi         :YcmCompleter GoToInclude<CR>
-nnoremap [Space]gr         :YcmCompleter RefactorRename<space>
+nnoremap [Space]yk         :YcmCompleter GetDoc<CR>
+nnoremap [Space]ygo        :YcmCompleter GoTo<CR>
+nnoremap [Space]ygt        :YcmCompleter GoToType<CR>
+nnoremap [Space]ygd        :YcmCompleter GoToDefinition<CR>
+nnoremap [Space]ygD        :YcmCompleter GoToDeclaration<CR>
+nnoremap [Space]ygi        :YcmCompleter GoToInclude<CR>
+nnoremap [Space]ygr        :YcmCompleter RefactorRename<space>
 nnoremap        <F2>       :YcmCompleter RefactorRename<space>
 
 " Tern:
@@ -407,17 +407,20 @@ nnoremap       [Space]sn     :Edit .notes <Bar> setfiletype notes<CR>
 
 " Git:
 
-nnoremap       [Space]ma   :Magit<CR>
+nnoremap       [Space]ma     :Magit<CR>
 
-nnoremap       [Space]ga   :!git add %<CR>
-nnoremap       [Space]gc   :Gcommit -m ""<Left>
-nnoremap       [Space]g.   :Gcommit % -m ""<Left>
-nnoremap       [Space]gk   :Git checkout<space>
-nnoremap       [Space]gK   :Git checkout -b<space>
-nnoremap       [Space]gl   :Gpull<CR>
-nnoremap       [Space]gp   :Gpush<CR>
-nnoremap       [Space]gs   :Gstatus<CR>
-nnoremap       [Space]gu   :call GitOpenUnmergedFiles()<CR>
+nnoremap       [Space]ga     :!git add %<CR>
+nnoremap       [Space]gc     :Gcommit -m ""<Left>
+nnoremap       [Space]g.     :Gcommit % -m ""<Left>
+nnoremap       [Space]gk     :Git checkout<space>
+nnoremap       [Space]gK     :Git checkout -b<space>
+nnoremap       [Space]gl     :Gpull<CR>
+nnoremap       [Space]gp     :Gpush<CR>
+nnoremap       [Space]gs     :Gstatus<CR>
+nnoremap       [Space]gu     :GitOpenUnmergedFiles<CR>
+nnoremap       [Space]gd     :GitDiff<space>
+nnoremap       [Space]gdd    :GitDiff<CR>
+nnoremap       [Space]gd.    :GitDiff %<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching
