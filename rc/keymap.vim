@@ -6,26 +6,12 @@
 
 " Recent mappings:
 
-nnoremap <F12> :Goyo<CR>
-
-nnoremap ]a :ALENext<CR>zz
-nnoremap [a :ALEPrevious<CR>zz
-
 nnoremap g<C-k> zkzczz
 nnoremap g<C-j> zjzczz
-
-nnoremap <C-R> :e!<CR>
-nnoremap <C-F> :Search<space>
-
-nmap <A-=>  m`v<A-p><CR>=``
 
 nnoremap 8 *
 nnoremap g8 V*
 xnoremap 8 *
-
-if has('win32')
-  nnoremap <C-A> ggVG
-end
 
 
 "===============================================================================
@@ -320,6 +306,10 @@ xmap <A-e> E
 xnoremap iw iw
 
 " }}}
+
+" ALE
+nnoremap ]a :ALENext<CR>zz
+nnoremap [a :ALEPrevious<CR>zz
 
 " 1}}}
 "===============================================================================
@@ -841,12 +831,14 @@ nnoremap <A-a><A-;> vip:EasyAlign *:<CR>
 nnoremap <A-a><A-\> vip:EasyAlign *<Bar><CR>
 " align equal
 nnoremap <A-a><A-e> vip:EasyAlign *=<CR>
+nnoremap <A-=>      vip:EasyAlign *=<CR>
 " align word
 nnoremap <A-a><A-w> vip:EasyAlign *<space><CR>
 " align Last-Word
 nnoremap <A-a>lw    vip:EasyAlign -<space><CR>
 " align commas
 nnoremap ,,         vip:EasyAlign *,<CR>
+
 
 " EasyAlign                                                                  }}}
 
@@ -919,6 +911,9 @@ nmap <A-r><A-w> viw<C-F><A-r><A-l>
 nmap <A-r><A-p> m'viw<C-F><A-r><A-l><A-p><CR>''
 
 vmap <A-r>      :s///<left>
+
+" SearchReplace
+nnoremap <C-F> :Search<space>
 
 " }}}1
 "===============================================================================
@@ -1467,6 +1462,7 @@ nnoremap zM zm
 " Mappings to easily toggle fold levels
 nnoremap z0 :set foldlevel=0<CR>
 nnoremap z1 :set foldlevel=1<CR>
+nnoremap z2 :set foldlevel=2<CR>
 nnoremap z- :set foldlevel-=1 <Bar> call Info('&foldlevel = ' . &foldlevel)<CR>
 nnoremap z+ :set foldlevel+=1 <Bar> call Info('&foldlevel = ' . &foldlevel)<CR>
 
