@@ -41,6 +41,7 @@ hi! link CtrlPMatch              Error
 hi! link TagbarScope             Class
 hi! link TagbarFoldIcon          Comment
 
+hi! link SearchReplaceMatch      EasyMotionTargetDefault
 hi! link SneakLabel              EasyMotionTargetDefault
 hi! link SneakLabelMask          Noise
 

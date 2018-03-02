@@ -16,9 +16,16 @@ let s:isSearchDone = v:false
 let s:isSearchMatchesDone = v:false
 let s:position = 'right'
 
+if !exists('g:searchReplace_closeOnExit')
+    let g:searchReplace_closeOnExit = v:true
+end
+
 command! -nargs=* -complete=dir Search    :call <SID>runSearch(<f-args>)
 command! -nargs=1               Replace   :call <SID>runReplace(<f-args>)
 
+hi default link SearchReplaceMatch Search
+
+" runs a command then calls Fn handler
 function! s:run(cmd, cwd, Fn)
     let opts = {}
     let opts.cmd = a:cmd
@@ -66,6 +73,9 @@ function! s:runSearch(pattern, ...)
             \ "rg -nHo --column " . shellescape(s:pattern) . " " . join(s:paths),
             \ s:directory,
             \ function('s:onExitSearchMatches'))
+
+    call s:echo('WarningMsg', 'Running search for ')
+    call s:echo('Normal', s:pattern)
 endfunction
 
 function! s:runReplace(replacement)
@@ -125,7 +135,7 @@ function! s:onExitSearch(job)
         end
         let file = p[0]
         let line = p[1]
-        let text = substitute(join(p[2:], ':'), '^\s\+', '', '')
+        let text = join(p[2:], ':')
 
         if !has_key(s:search, file)
             let s:search[file] = []
@@ -196,7 +206,7 @@ function! s:onSearchDone()
 
             let pos = [lineNumber, sm.col + len(prefix), len(sm.text)]
 
-            call matchaddpos('SneakLabel', [pos])
+            call matchaddpos('SearchReplaceMatch', [pos])
         endfor
     endfor
     normal! dd
@@ -222,6 +232,19 @@ function! s:onExitReplace(job)
 endfunction
 
 function! s:createSearchWindow()
+    " Go to existing window if there is one
+    if bufnr('SearchReplace') != -1
+        let winids = win_findbuf(bufnr('SearchReplace'))
+        if len(winids) > 0
+            call win_gotoid(winids[0])
+            normal! ggdG
+            call clearmatches()
+            return
+        else
+            execute bufnr('SearchReplace') . 'bwipe!'
+        end
+    end
+
     split
 
     if s:position == 'bottom' || s:position == 'top'
@@ -246,9 +269,12 @@ function! s:createSearchWindow()
     setlocal nonumber
     setlocal buftype=nofile
     file SearchReplace
+    let s:lastBufnr = bufnr('%')
 
     " Create mappings
-    au BufLeave <buffer> bd
+    if g:searchReplace_closeOnExit
+        au BufLeave <buffer> bd
+    end
     nnoremap                 <buffer><Esc> <C-W>p
     nnoremap         <nowait><buffer><A-r> :Replace<space>
     nnoremap         <nowait><buffer><CR>  :Replace<space>
