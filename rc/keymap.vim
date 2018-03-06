@@ -665,16 +665,18 @@ fu! s:findQuote(...) " ( forward=1, action='m' )
 
     return CharAt(pos)
 endfu
-fu! s:findFunc (...)
-    let f = a:0 ? a:1 : 'bnc'
-    let fc = f =~# 'c' ? 'c' : ''
-    let fb = f =~# 'b' ? 'b' : ''
-    let fn = f =~# 'n' ? 'n' : ''
-    let visual = f =~# 'v' ? 1 : 0
+" Param {String} flags - same as search() (see vim help),
+"                       plus 'v' - visually select the function
+" Returns the [lnum, col] of the nearest function
+function! s:findFunc (flags, ...)
+    let fc = a:flags =~# 'c' ? 'c' : ''
+    let fb = a:flags =~# 'b' ? 'b' : ''
+    let fn = a:flags =~# 'n' ? 'n' : ''
+    let visual = a:flags =~# 'v' ? 1 : 0
 
     let pattern = '\(\k\|\i\|\f\|<\|>\|:\|\\\)\+\s*\ze('
-    if (a:0 == 2)
-        let pattern = a:2 | end
+    if (len(a:000) == 1)
+        let pattern = a:000[0] | end
 
     if (visual)
         let start = searchpos(pattern, fc . fb)
