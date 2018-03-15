@@ -245,7 +245,7 @@ call hi#('PmenuThumb',   ['#666660', '#666660'])
 " call hi#('Folded',       '#c9c9c0', theme.bg_subtle,      'none')
 call hi#('Folded',      'NONE',    theme.bg_verysubtle,      'none')
 call hi#('FoldColumn',  '#535D66', '#1f1f1f',            '')
-call hi#('SignColumn',  '',        theme.insensitive_bg, '')
+call hi#('SignColumn',  '',        theme.bg_widget,      '')
 call hi#('ColorColumn', '',        theme.insensitive_bg, '')
 
 
