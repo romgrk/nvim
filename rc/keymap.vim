@@ -6,8 +6,8 @@
 
 " Recent mappings:
 
-nnoremap g<C-k> zkzczz
-nnoremap g<C-j> zjzczz
+" Yank all
+nnoremap gya :keepmarks normal! m'ggVGy`'<CR>
 
 nnoremap 8 *
 nnoremap g8 V*
@@ -317,6 +317,9 @@ nnoremap [a :ALEPrevious<CR>zz
 
 nmap <PageUp>   <Plug>Sneak_S
 nmap <PageDown> <Plug>Sneak_s
+
+nmap gk         <Plug>Sneak_S
+nmap gj         <Plug>Sneak_s
 
 xmap <silent>    ;  <Plug>SneakNext
 xmap <silent> <A-;> <Plug>SneakPrevious
