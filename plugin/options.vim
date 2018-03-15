@@ -13,7 +13,7 @@ command! -bar -nargs=+ ToggleMap :call <SID>toggle_map(<args>)
 command! -bar -nargs=+ AlternMap :call <SID>map_alternating(<args>)
 
 function! s:toggle_map (...)
-    if _#isString(a:000[1]) && len(a:000) == 2
+    if type(a:000[1]) == 1 && len(a:000) == 2
         call s:map_toggle_cmd(
                     \ a:000[0],
                     \ a:000[1])
@@ -45,7 +45,7 @@ function! s:map_toggle_cmd (trigger, cmd, ... )
     let m['rhs'] = printf(":\<C-U>%s\<CR>", a:cmd)
     let m['cmd'] = a:cmd
     if (a:0)
-        call extend(m, _#isList(a:1) ? a:1 : a:000 )
+        call extend(m, type(a:1) == 3 ? a:1 : a:000 ) " list
     end
 
     let g:togglemap[a:trigger] = a:cmd
@@ -62,14 +62,14 @@ function! s:map_toggle_value (trigger, what, ...)
 
     if (a:0 == 0)
         " <nop>
-    elseif (a:0 == 1 && _#isObject(a:1))
+    elseif (a:0 == 1 && type(a:1) == 4) " object
         call extend(m, a:1)
 
-    elseif _#isList(a:1)
+    elseif type(a:1) == 3 " list
         let m['values'] = (a:1)
     end
 
-    if (a:0 == 2 && _#isObject(a:2))
+    if (a:0 == 2 && type(a:2) == 4) " object
         call extend(m, a:2)
     end
 
