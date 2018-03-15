@@ -327,7 +327,7 @@ function! s:deleteLine()
 endfunction
 
 function! s:escape(pattern)
-    return substitute(a:pattern, '/', '\/', 'g')
+    return substitute(a:pattern, '\/', '\\/', 'g')
 endfunction
 
 function! s:echo(hlgroup, ...)
