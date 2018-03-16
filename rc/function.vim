@@ -18,11 +18,18 @@ func! Edit(...) "                                                             {{
   if !(win#info().listed)
     call GoFirstListedWindow()
   end
-  for pattern in a:000
-    let files = split(glob(pattern), '\n')
+  for element in a:000
+    if type(element) == 1 " string
+      let files = split(glob(element), '\n')
+    elseif type(element) == 3 " list
+      let files = element
+    else
+      throw 'Unsupported type'
+    end
     if len(files) > 0
       call map(files, 'execute("edit " . v:val)')
     else
+      Pp a:000
       execute 'edit ' . pattern
     end
   endfor
@@ -64,7 +71,7 @@ com! -nargs=* GitPush              call GitPush(<f-args>)
 com! -nargs=* GitStatus            call GitStatus(<f-args>)
 com! -nargs=* GitDiff              call GitDiff(<f-args>)
 function! GitOpenUnmergedFiles()
-  let cd = system('git rev-parse --show-cdup')[:-2]
+  " let cd = system('git rev-parse --show-cdup')[:-2]
   let files = systemlist('git diff --name-only --diff-filter=U')
   if len(files) == 0
     echo 'No unmerged files to open'
