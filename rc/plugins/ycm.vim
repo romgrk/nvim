@@ -20,6 +20,7 @@ let ycm_use_ultisnips_completer = 0
 let ycm_semantic_triggers = get(g:, "ycm_semantic_triggers", {})
 let ycm_semantic_triggers['typescript'] = ['.']
 let ycm_semantic_triggers['elm'] = ['.']
+let ycm_semantic_triggers['css'] = [ 're!^\s{2}', 're!:\s+' ]
 
 let ycm_filetype_blacklist = {
 \ 'tagbar' : 1,
