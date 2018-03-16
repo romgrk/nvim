@@ -29,8 +29,7 @@ func! Edit(...) "                                                             {{
     if len(files) > 0
       call map(files, 'execute("edit " . v:val)')
     else
-      Pp a:000
-      execute 'edit ' . pattern
+      execute 'edit ' . element
     end
   endfor
 endfu "                                                                      }}}
