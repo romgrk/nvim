@@ -46,6 +46,8 @@ hi! link jsModuleKeywords  Special
 hi! link jsGlobalNodeObjects Special
 
 hi! link jsxContentBraces TextSpecial
+hi! link jsxIfOperator    Operator
+hi! link jsxElseOperator  Operator
 
 "let g:javascript_conceal_function       = "ƒ"
 "let g:javascript_conceal_arrow_function = "⇒"
