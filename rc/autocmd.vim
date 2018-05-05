@@ -8,7 +8,6 @@ exe 'augroup RC'
     au!
 
     au VimEnter * nested let g:previous_columns = &columns
-
     au VimResized * if (&columns < (g:previous_columns - 2) / 2)
                  \|   only
                  \|   let g:previous_columns = &columns

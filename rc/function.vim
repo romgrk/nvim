@@ -89,10 +89,19 @@ function! GitDiff(...)
 endfunction
 
 
+com! -bar BufferDelete     call BufferDeleteCurrent()
 com! -bar BufferClose      call BufferCloseCurrent()
 com! -bar BufferReopen     call BufferReopenClosed()
 com! -bar BufferWipeReopen call BufferWipeReopen()
 com! -bar BufferTabview    tab sview %
+fu! BufferDeleteCurrent()
+  let file = fnamemodify(bufname('%'),':p')
+  BufferClose
+  if !bufloaded(file) && delete(file)
+    echoerr 'Failed to delete "'.file.'"'
+  endif
+  unlet file
+endfu
 fu! BufferCloseCurrent ()
     let bufnum = bufnr("%")
     let altnum = bufnr("#")

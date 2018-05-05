@@ -289,8 +289,12 @@ xnoremap iw iw
 " }}}
 
 " ALE
-nnoremap ]a :ALENext<CR>zz
-nnoremap [a :ALEPrevious<CR>zz
+nnoremap <silent>]a  :ALENext<CR>zz
+nnoremap <silent>[a  :ALEPrevious<CR>zz
+
+" GitGutter hunks
+nnoremap <silent>[h  :GitGutterPrevHunk<CR>zz
+nnoremap <silent>]h  :GitGutterNextHunk<CR>zz
 
 " 1}}}
 "===============================================================================
@@ -331,8 +335,7 @@ omap U <Plug>Sneak_T
 
 " 1}}}
 "===============================================================================
-" Commands & Space maps                                                     {{{1
-" @space
+" Commands & Space maps                                              @space {{{1
 
 nnoremap <C-A-B>           :NeomakeSh make build<CR>
 
@@ -397,6 +400,11 @@ nnoremap       <leader>gu     :GitOpenUnmergedFiles<CR>
 nnoremap       <leader>gd     :GitDiff<space>
 nnoremap       <leader>gdd    :GitDiff<CR>
 nnoremap       <leader>gd.    :GitDiff %<CR>
+
+nnoremap       <leader>hh     :GitGutter
+nnoremap       <leader>hs     :GitGutterStageHunk<CR>
+nnoremap       <leader>hv     :GitGutterPreviewHunk<CR>
+nnoremap       <leader>hr     :GitGutterUndoHunk<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching
@@ -486,7 +494,7 @@ nnoremap <C-w>t     :tab split<CR>
 
 " Terminal navigation mappings down here. }}}1
 "===============================================================================
-" Terminal                                                          @term   {{{1
+" Terminal                                                            @term {{{1
 if has('nvim')
 
 " Panels/Navigation
