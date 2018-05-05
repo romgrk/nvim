@@ -68,6 +68,7 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'autozimu/LanguageClient-neovim'
 Plug 'sjl/gundo.vim'
 Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
