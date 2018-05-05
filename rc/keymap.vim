@@ -404,7 +404,7 @@ nnoremap       <leader>gd.    :GitDiff %<CR>
 " Files:
 nnoremap       <leader>md     :Mkdir! <C-D>
 nnoremap       <leader>mv     :Move <C-D>
-nnoremap       <leader>re     :Rename<space>
+nnoremap       <leader>rn     :Rename<space>
 
 " Search:
 nnoremap       <leader>ag     :Rg<space>
@@ -426,7 +426,6 @@ nnoremap       <leader>gf   :NERDTreeFind<CR>
 
 nnoremap       <leader>ret  :set et <Bar> ret<CR>
 nnoremap       <leader>ap   vip:EasyAlign<CR>
-nnoremap       <leader>ret  :set et <Bar> ret<CR>
 nnoremap       <leader>dws  :%DeleteTrailingWS<CR>
 
 

@@ -188,6 +188,8 @@ hi! link vimAutoEventList Type
 hi! link vimAutoEvent Type
 hi! link nvimAutoEvent Type
 
+hi! link nvimMap vimMap
+
 " hi! link vimSynMtchOpt vimSpecial
 hi! link vimBoolean    Boolean
 hi! link vimNull       Constant
