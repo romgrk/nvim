@@ -6,18 +6,14 @@
 
 " Recent mappings:
 
-" Yank all
-nnoremap gya :keepmarks normal! m'ggVGy`'<CR>
-
-nnoremap 8 *
-nnoremap g8 V*
-xnoremap 8 *
+nnoremap g/ *
+nnoremap g? #
 
 
 "===============================================================================
 " Major maps                                                                {{{1
 
-let mapleader = ','
+let mapleader = "\<space>"
 
 " <Esc>
 nnoremap <silent><expr> <Esc> (
@@ -33,20 +29,6 @@ nnoremap       v v
 xnoremap <expr>v
             \ (mode() ==# 'v' ? "\<C-V>"
             \ : mode() ==# 'V' ? 'v' : 'V')
-
-" <Space>[Space] prefix
-"nmap <expr>[Space]   SpaceDo()
-"nnoremap [Space]   :Commands<CR>
-nnoremap [Space]   <Nop>
-
-" Space/Alt+Space
-
-nmap <Space> [Space]
-            "\ (g:space.is_spacing ? SpaceDo()
-            "\ : '[Space]')
-            "" sneak#is_sneaking() ?  '<Plug>SneakNext'
-            "" : '<Plug>(space-do)'
-"nnoremap <M-Space> <Plug>(space-reverse)
 
 
 nnoremap Y  y$
@@ -244,6 +226,8 @@ nnoremap <A-b> B
 nnoremap <A-e> El
 onoremap <A-b> B
 onoremap <A-e> E
+xnoremap <A-b> B
+xnoremap <A-e> E
 
 
 " Column-edge
@@ -300,9 +284,6 @@ omap <silent> <A-w> <Plug>CamelCaseMotion_e
 
 xmap <silent> b     <Plug>CamelCaseMotion_b
 
-xmap <A-w> B
-xmap <A-e> E
-
 xnoremap iw iw
 
 " }}}
@@ -355,105 +336,105 @@ omap U <Plug>Sneak_T
 
 nnoremap <C-A-B>           :NeomakeSh make build<CR>
 
-nnoremap [Space]<space>    :Commands<CR>
+nnoremap <leader><space>    :Commands<CR>
 
-nmap     [Space]j         <Plug>Sneak_s
-nmap     [Space]k         <Plug>Sneak_S
+nmap     <leader>j         <Plug>Sneak_s
+nmap     <leader>k         <Plug>Sneak_S
 
 " ALE:
-nnoremap [Space]af         :ALEFix<CR>
+nnoremap <leader>af         :ALEFix<CR>
 
 
 " YCM:
-nnoremap [Space]yr         :YcmRestartServer<CR>
-nnoremap [Space]yi         :YcmDebugInfo<CR>
-nnoremap [Space]yd         :YcmDiags<CR>
-nnoremap [Space]yy         :YcmForceCompileAndDiagnostics<CR>
-nnoremap [Space]yf         :YcmCompleter GoToReferences <Bar> copen<CR>
-nnoremap [Space]yk         :YcmCompleter GetDoc<CR>
-nnoremap [Space]ygo        :YcmCompleter GoTo<CR>
-nnoremap [Space]ygt        :YcmCompleter GoToType<CR>
-nnoremap [Space]ygd        :YcmCompleter GoToDefinition<CR>
-nnoremap [Space]ygD        :YcmCompleter GoToDeclaration<CR>
-nnoremap [Space]ygi        :YcmCompleter GoToInclude<CR>
-nnoremap [Space]ygr        :YcmCompleter RefactorRename<space>
+nnoremap <leader>yr         :YcmRestartServer<CR>
+nnoremap <leader>yi         :YcmDebugInfo<CR>
+nnoremap <leader>yd         :YcmDiags<CR>
+nnoremap <leader>yy         :YcmForceCompileAndDiagnostics<CR>
+nnoremap <leader>yf         :YcmCompleter GoToReferences <Bar> copen<CR>
+nnoremap <leader>yk         :YcmCompleter GetDoc<CR>
+nnoremap <leader>ygo        :YcmCompleter GoTo<CR>
+nnoremap <leader>ygt        :YcmCompleter GoToType<CR>
+nnoremap <leader>ygd        :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>ygD        :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>ygi        :YcmCompleter GoToInclude<CR>
+nnoremap <leader>ygr        :YcmCompleter RefactorRename<space>
 nnoremap        <F2>       :YcmCompleter RefactorRename<space>
 
 " Tern:
-nnoremap [Space]tt         :TernType<CR>
-nnoremap [Space]td         :TernDef<CR>
-nnoremap [Space]tp         :TernDefPreview<CR>
+nnoremap <leader>tt         :TernType<CR>
+nnoremap <leader>td         :TernDef<CR>
+nnoremap <leader>tp         :TernDefPreview<CR>
 
 "===============================================================================
 
 " Session management:
-nnoremap <expr>[Space]ss     xolox#session#find_current_session() != 'default' ?
+nnoremap <expr><leader>ss     xolox#session#find_current_session() != 'default' ?
                               \ ":wall! \<Bar> SaveSession\<CR>\<Esc>" : ":wall! \<Bar> SaveSession\<space>"
-nnoremap       [Space]sS     :SaveSession!<space>
-nnoremap       [Space]so     :call feedkeys(":OpenSession! \<C-D>", 't')<CR>
-nnoremap       [Space]sd     :OpenSession! default<CR>
-nnoremap       [Space]sc     :wall! <Bar> CloseSession<CR>
-nnoremap       [Space]si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
+nnoremap       <leader>sS     :SaveSession!<space>
+nnoremap       <leader>so     :call feedkeys(":OpenSession! \<C-D>", 't')<CR>
+nnoremap       <leader>sd     :OpenSession! default<CR>
+nnoremap       <leader>sc     :wall! <Bar> CloseSession<CR>
+nnoremap       <leader>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
 
-nnoremap       [Space]sl     :SourceLocalVimrc<CR>
-nnoremap       [Space]sn     :Edit .notes <Bar> setfiletype notes<CR>
+nnoremap       <leader>sl     :SourceLocalVimrc<CR>
+nnoremap       <leader>sn     :Edit .notes <Bar> setfiletype notes<CR>
 
 " Git:
 
-nnoremap       [Space]ma     :Magit<CR>
+nnoremap       <leader>ma     :Magit<CR>
 
-nnoremap       [Space]gaa    :!git add --all<CR>
-nnoremap       [Space]ga.    :!git add %<CR>
-nnoremap       [Space]gcm    :Gcommit -m ""<Left>
-nnoremap       [Space]gcam   :Gcommit -am ""<Left>
-nnoremap       [Space]g.     :Gcommit % -m ""<Left>
-nnoremap       [Space]gk     :Git checkout<space>
-nnoremap       [Space]gK     :Git checkout -b<space>
-nnoremap       [Space]gl     :Gpull<CR>
-nnoremap       [Space]gp     :Gpush<CR>
-nnoremap       [Space]gs     :Gstatus<CR>
-nnoremap       [Space]gu     :GitOpenUnmergedFiles<CR>
-nnoremap       [Space]gd     :GitDiff<space>
-nnoremap       [Space]gdd    :GitDiff<CR>
-nnoremap       [Space]gd.    :GitDiff %<CR>
+nnoremap       <leader>gaa    :!git add --all<CR>
+nnoremap       <leader>ga.    :!git add %<CR>
+nnoremap       <leader>gcm    :Gcommit -m ""<Left>
+nnoremap       <leader>gcam   :Gcommit -am ""<Left>
+nnoremap       <leader>g.     :Gcommit % -m ""<Left>
+nnoremap       <leader>gk     :Git checkout<space>
+nnoremap       <leader>gK     :Git checkout -b<space>
+nnoremap       <leader>gl     :Gpull<CR>
+nnoremap       <leader>gp     :Gpush<CR>
+nnoremap       <leader>gs     :Gstatus<CR>
+nnoremap       <leader>gu     :GitOpenUnmergedFiles<CR>
+nnoremap       <leader>gd     :GitDiff<space>
+nnoremap       <leader>gdd    :GitDiff<CR>
+nnoremap       <leader>gd.    :GitDiff %<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching
 
 " Files:
-nnoremap       [Space]md     :Mkdir! <C-D>
-nnoremap       [Space]mv     :Move <C-D>
-nnoremap       [Space]re     :Rename<space>
+nnoremap       <leader>md     :Mkdir! <C-D>
+nnoremap       <leader>mv     :Move <C-D>
+nnoremap       <leader>re     :Rename<space>
 
 " Search:
-nnoremap       [Space]ag     :Rg<space>
-nnoremap       [Space]aa     :Rg<CR>
+nnoremap       <leader>ag     :Rg<space>
+nnoremap       <leader>aa     :Rg<CR>
 
 "===============================================================================
 
 " Windows-things:
-nnoremap       [Space]w-   :call SizeDown()<CR>
-nnoremap       [Space]w+   :call SizeUp()<CR>
+nnoremap       <leader>w-   :call SizeDown()<CR>
+nnoremap       <leader>w+   :call SizeUp()<CR>
 
 "===============================================================================
 
 " Various:
 
-nnoremap       [Space]ca   :CtrlPClearAllCaches<CR>
+nnoremap       <leader>ca   :CtrlPClearAllCaches<CR>
 
-nnoremap       [Space]gf   :NERDTreeFind<CR>
+nnoremap       <leader>gf   :NERDTreeFind<CR>
 
-nnoremap       [Space]ret  :set et <Bar> ret<CR>
-nnoremap       [Space]ap   vip:EasyAlign<CR>
-nnoremap       [Space]ret  :set et <Bar> ret<CR>
-nnoremap       [Space]dws  :%DeleteTrailingWS<CR>
+nnoremap       <leader>ret  :set et <Bar> ret<CR>
+nnoremap       <leader>ap   vip:EasyAlign<CR>
+nnoremap       <leader>ret  :set et <Bar> ret<CR>
+nnoremap       <leader>dws  :%DeleteTrailingWS<CR>
 
 
 
 " Multi-Cursors:
 " (see: ./plugins/multiple-cursors.vim)
-nnoremap      [Space]mw :.,.MultipleCursorsFind \S\+<CR>o<Esc>
-nnoremap      [Space]mW :.,.MultipleCursorsFind \w\+<CR>
+nnoremap      <leader>mw :.,.MultipleCursorsFind \S\+<CR>o<Esc>
+nnoremap      <leader>mW :.,.MultipleCursorsFind \w\+<CR>
 
 " }}}1
 "===============================================================================
@@ -969,6 +950,9 @@ endfu
 " Quick Utils                                                               {{{1
 " @utils
 
+" Yank all
+nnoremap gya :keepmarks normal! m'ggVGy`'<CR>
+
 " File Explorer
 if has('win32')
 nnoremap <F1> :silent !explorer .<CR>
@@ -987,7 +971,7 @@ inoremap <C-Y> <C-C>:let @z = @"<CR>mz
                 \`zp:let @" = @z<CR>a
 
 " Fold around search patterns
-nnoremap <silent><expr>  [Space]zz  FS_ToggleFoldAroundSearch({'context':1})
+nnoremap <silent><expr>  <leader>zz  FS_ToggleFoldAroundSearch({'context':1})
 
 
 nnoremap <C-r>   :e!<CR>

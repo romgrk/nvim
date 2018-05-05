@@ -12,8 +12,8 @@ nmap <buffer> <A-'>         <Plug>NERDCommenterToggle
 
 
 nmap     <buffer> <C-R>       <Plug>(TsuquyomiRenameSymbol)
-nnoremap <buffer> [Space]rr   :TsuRenameSymbol<CR>
-nnoremap <buffer> [Space]gr   :TsuReferences<CR>
+nnoremap <buffer> <leader>rr   :TsuRenameSymbol<CR>
+nnoremap <buffer> <leader>gr   :TsuReferences<CR>
 " nnoremap <buffer> <C-R>     :YcmCompleter RefactorRename<space>
 
 nnoremap <buffer> <leader>w :YcmCompleter GetType<CR>

@@ -5,4 +5,4 @@ setlocal foldlevel=1
 nnoremap <buffer> gh   :call ToggleHeader()<CR>
 nnoremap <buffer> <F4> :call ToggleHeader()<CR>
 
-nnoremap <buffer> [Space]yc :YcmCompleter<space>
+nnoremap <buffer> <leader>yc :YcmCompleter<space>

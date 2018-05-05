@@ -5,10 +5,10 @@ function! git#Enable ()
 " GitGutter TODO assert usage
 nnoremap <silent>[h  :GitGutterPrevHunk<CR>
 nnoremap <silent>]h  :GitGutterNextHunk<CR>
-nnoremap   [Space]hh :GitGutter
-nnoremap   [Space]hs :GitGutterStageHunk<CR>
-nnoremap   [Space]hv :GitGutterPreviewHunk<CR>
-nnoremap   [Space]hr :GitGutterUndoHunk<CR>
+nnoremap   <leader>hh :GitGutter
+nnoremap   <leader>hs :GitGutterStageHunk<CR>
+nnoremap   <leader>hv :GitGutterPreviewHunk<CR>
+nnoremap   <leader>hr :GitGutterUndoHunk<CR>
 nnoremap          -- :GitGutterUndoHunk<CR>
 nnoremap          \\ :GitGutterPreviewHunk<CR>
 nnoremap          ++ :GitGutterStageHunk<CR>
