@@ -143,7 +143,8 @@ function! s:show_toggle_input ()
             call Debug(condition, buffer, char)
             return
         elseif (len(remaining_options) == 1)
-            exe 'normal ' . g:togglekey . buffer
+            redraw
+            exe 'normal ' . g:togglekey . remaining_options[0]
             return
         end
     endwhile
@@ -278,3 +279,4 @@ function! s:setVerbose ()
 endfunc
 
 " vim: fdm=syntax
+"
