@@ -29,3 +29,7 @@ if !filereadable('.tern-project') && filereadable('~/templates/tern-project')
     silent !cp ~/templates/tern-project .tern-project
     Warn 'Created ' . fnamemodify('.tern-project', ':p')
 end
+
+
+let b:syng_str = ''
+let b:syng_strcom = ''

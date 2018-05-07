@@ -99,6 +99,7 @@ let xml_syntax_folding = 0
 let tex_fold_enabled   = 1
 let php_folding        = 1
 let perl_fold          = 1
+" let perl_fold_blocks   = 1
 
 let fastfold_savehook = 1
 let fastfold_fold_command_suffixes  = ['x','X','a','A','o','O','c','C']
@@ -125,6 +126,7 @@ let ctrlp_buftag_types = {
 \ 'typescript': '--language-force=typescript --typescript-types=niecamfpt',
 \ 'css':        '--language-force=css --css-types=tic',
 \ 'scss':       '--language-force=scss --scss-types=vmtic',
+\ 'less':       '--language-force=less --less-types=cmv',
 \ 'vim':        '--language-force=vim --vim-kinds=acfv',
 \ 'proto':      '--language-force=protobuf --vim-kinds=pmfegs',
 \ 'javascript' : {

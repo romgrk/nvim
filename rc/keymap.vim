@@ -396,7 +396,7 @@ nnoremap       [Space]sc     :wall! <Bar> CloseSession<CR>
 nnoremap       [Space]si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
 
 nnoremap       [Space]sl     :SourceLocalVimrc<CR>
-nnoremap       [Space]sn     :Edit .notes <Bar> setfiletype notes<CR>
+nnoremap       [Space]sn     :Note <C-R>=xolox#session#find_current_session()<CR><CR>
 
 " Git:
 
@@ -554,6 +554,12 @@ nnoremap <A-c>      :BufferClose<CR>
 nnoremap <A-C>      :BufferReopen<CR>
 nnoremap <C-A-c>    :BufferClose<CR><C-w>c
 nnoremap <C-A-q>    :BufferWipeReopen<CR>
+
+if exists('g:gui_oni')
+nnoremap <silent> <A-,> :tabprev<CR>
+nnoremap <silent> <A-.> :tabnext<CR>
+nnoremap <silent> <A-c> :tabclose<CR>
+end
 
 " }}}1
 "===============================================================================

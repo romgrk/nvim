@@ -102,3 +102,26 @@ augroup END
 augroup Colorizer
     au!
 augroup END
+
+
+" augroup inactive_win
+    " au!
+    " au ColorScheme *          call hi#('NormalWin', ['none', hi#bg('Normal')])
+    " au ColorScheme *          call hi#('InactiveWin', ['none', color#Lighten(hi#bg('Normal'), 0.1)])
+    " au FileType,BufWinEnter * call s:configure_winhighlight()
+    " au FocusGained *          call hi#('NormalWin', ['none', hi#bg('Normal')])
+    " au FocusLost *            call hi#('NormalWin', ['none', color#Lighten(hi#bg('Normal'), 0.1)])
+" augroup END
+
+" function! s:configure_winhighlight()
+    " let ft = &filetype
+    " let bt = &buftype
+    " " Check white/blacklist.
+    " if index(['dirvish'], ft) == -1
+                " \ && (index(['nofile', 'nowrite', 'acwrite', 'quickfix', 'help'], bt) != -1
+                " \     || index(['startify'], ft) != -1)
+        " set winhighlight=Normal:NormalWin,NormalNC:NormalWin
+    " else
+        " set winhighlight=Normal:NormalWin,NormalNC:InactiveWin
+    " endif
+" endfunction

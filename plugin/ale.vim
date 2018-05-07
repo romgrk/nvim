@@ -4,4 +4,5 @@ let ale_fix_on_save = 0
 
 let ale_fixers = {
 \   'javascript': ['eslint'],
+\   'python': ['autopep8'],
 \}
