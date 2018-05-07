@@ -1389,25 +1389,27 @@ cabbrev sudo    w !sudo tee % >/dev/null
 
 " Insert-like mappings
 " Movement functions
-let s:cmd_pairs = {
-\'(': ')',
-\'[': ']',
-\'{': '}',
-\'"': '"',
-\"'": "'"
-\}
-for k in keys(s:cmd_pairs)
-  let opening = k
-  let closing = s:cmd_pairs[k]
-  execute 'cnoremap ' . opening . ' ' . opening . closing .'<Left>'
-  if closing == '"'
-    execute "cnoremap <expr>" . closing . " <SID>cmdClosingPair('" . closing . "', '" . opening ."')"
-  else
-    execute 'cnoremap <expr>' . closing . ' <SID>cmdClosingPair("' . closing . '", "' . opening .'")'
-  end
-endfor
-cnoremap <expr><BS> <SID>cmdDeletePair("\<BS>")
-cnoremap <expr><C-h> <SID>cmdDeletePair("\<C-h>")
+function! s:mapCmdPairs()
+    let s:cmd_pairs = {
+    \'(': ')',
+    \'[': ']',
+    \'{': '}',
+    \'"': '"',
+    \"'": "'"
+    \}
+    for k in keys(s:cmd_pairs)
+    let opening = k
+    let closing = s:cmd_pairs[k]
+    execute 'cnoremap ' . opening . ' ' . opening . closing .'<Left>'
+    if closing == '"'
+        execute "cnoremap <expr>" . closing . " <SID>cmdClosingPair('" . closing . "', '" . opening ."')"
+    else
+        execute 'cnoremap <expr>' . closing . ' <SID>cmdClosingPair("' . closing . '", "' . opening .'")'
+    end
+    endfor
+    cnoremap <expr><BS>  <SID>cmdDeletePair("\<BS>")
+    cnoremap <expr><C-h> <SID>cmdDeletePair("\<C-h>")
+endfu
 function! s:cmdClosingPair (closing, opening)
     let pos  = getcmdpos()
     let line = getcmdline()
