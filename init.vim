@@ -47,7 +47,6 @@ else
 Plug 'xleng/YCM_WIN_X86'
 Plug 'romgrk/AutoComplPop'
 end
-Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 " Editing                                                                    {{{
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
@@ -68,7 +67,7 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'autozimu/LanguageClient-neovim'
+Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'sjl/gundo.vim'
 Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
@@ -96,7 +95,7 @@ Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
 end
 "Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
-Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
+"Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
 Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
@@ -147,19 +146,19 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-Plug 'kshenoy/vim-signature'                             , {'on': 'SignatureToggleSigns'}
-Plug 'nathanaelkane/vim-indent-guides'                   , {'on': 'IndentGuidesToggle'}
+"Plug 'kshenoy/vim-signature'                             , {'on': 'SignatureToggleSigns'}
+"Plug 'nathanaelkane/vim-indent-guides'                   , {'on': 'IndentGuidesToggle'}
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 "Plug 'Yggdroot/indentLine'
-Plug 'vim-airline/vim-airline'                           , {'on': 'AirlineToggle' }
-Plug 'vim-airline/vim-airline-themes'                    , {'on': 'AirlineToggle' }
+"Plug 'vim-airline/vim-airline'                           , {'on': 'AirlineToggle' }
+"Plug 'vim-airline/vim-airline-themes'                    , {'on': 'AirlineToggle' }
 Plug 'machakann/vim-highlightedyank'
 " }}}
 " Colors/Colorscheme                                                         {{{
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'lilydjwg/colorizer'
-Plug 'flazz/vim-colorschemes'
-Plug 'adelarsq/vim-grimmjow'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'adelarsq/vim-grimmjow'
 Plug 'airblade/vim-gitgutter'
 " }}}
 " Local (~/github/vim)                                                       {{{

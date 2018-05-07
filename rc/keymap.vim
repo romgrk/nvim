@@ -533,8 +533,8 @@ end "of has('nvim') }}}1
 "===============================================================================
 " Buffer navigation                                                         {{{1
 
-nnoremap <silent> <A-,> :Bprev<CR>
-nnoremap <silent> <A-.> :Bnext<CR>
+nnoremap <silent> <A-,> :PreviousBuffer<CR>
+nnoremap <silent> <A-.> :NextBuffer<CR>
 nnoremap <silent> <A-<> gT
 nnoremap <silent> <A->> gt
 
@@ -970,18 +970,12 @@ nnoremap <F3> :NERDTreeFind<CR>
 nnoremap <F5> :e!<CR>
 
 
-
 " Insert word of the line above
 inoremap <C-Y> <C-C>:let @z = @"<CR>mz
                 \:exec 'normal!' (col('.')==1 && col('$')==1 ? 'k' : 'kl')<CR>
                 \:exec (col('.')==col('$') - 1 ? 'let @" = @_' : 'normal! yw')<CR>
                 \`zp:let @" = @z<CR>a
 
-" Fold around search patterns
-nnoremap <silent><expr>  <leader>zz  FS_ToggleFoldAroundSearch({'context':1})
-
-
-nnoremap <C-r>   :e!<CR>
 
 nnoremap =r      :call QuickReload()<CR>
 
@@ -994,15 +988,10 @@ nnoremap <M-4> :Fullfill<space><C-R>=GetCurrentSyntaxGroup()<CR>
 
 
 " Copy current file path
-nmap <silent>y5  :let @+=expand("%") <Bar> call Warn('Yanked: ' . @+)<CR>
 nmap <silent>ycf :let @+=expand("%:~") <Bar> call Warn('Yanked: ' . @+)<CR>
 nmap <silent>ycd :let @+=expand("%:h") <Bar> call Warn('Yanked: ' . @+)<CR>
 nmap <silent>ycF :let @+=expand("%:p") <Bar> call Warn('Yanked: ' . @+)<CR>
 nmap <silent>ycD :let @+=expand("%:p:h") <Bar> call Warn('Yanked: ' . @+)<CR>
-
-
-" Insert 愛 (<S-F3>)
-imap <expr> <F1>  "\u611B"
 
 
 " Gtfo
@@ -1089,7 +1078,6 @@ xmap I     <Plug>(niceblock-I)
 xmap gI    <Plug>(niceblock-gI)
 xmap gi    <Plug>(niceblock-gI)
 xmap A     <Plug>(niceblock-A)
-xmap <C-a> <Plug>(niceblock-A)
 xmap ga    <Plug>(niceblock-A)
 ""}}}
 
@@ -1109,8 +1097,8 @@ map! <A-space> _
 map! <S-space> _
 
 " Paste @@
-cnoremap <A-p> <C-R>"
-inoremap <A-p> <C-R>"
+cnoremap <A-p> <C-R>+
+inoremap <A-p> <C-R>+
 
 " Section: Filename/path insertion {{{
 
@@ -1381,9 +1369,7 @@ cnoremap <A-u> <C-W><C-W>
 
 " Abbreviations: @cabbr
 
-cabbrev hh      vertical help
 cabbrev pp      Pp
-cabbrev ff      F
 cabbrev sudo    w !sudo tee % >/dev/null
 
 
@@ -1439,6 +1425,7 @@ function! s:cmdDeletePair (char)
     end
 endfu
 
+
 " 1}}}
 "===============================================================================
 " Folds, scroll                                                             {{{1
@@ -1461,6 +1448,7 @@ nnoremap zM zm
 nnoremap z0 :set foldlevel=0<CR>
 nnoremap z1 :set foldlevel=1<CR>
 nnoremap z2 :set foldlevel=2<CR>
+nnoremap z3 :set foldlevel=3<CR>
 nnoremap z- :set foldlevel-=1 <Bar> call Info('&foldlevel = ' . &foldlevel)<CR>
 nnoremap z+ :set foldlevel+=1 <Bar> call Info('&foldlevel = ' . &foldlevel)<CR>
 
