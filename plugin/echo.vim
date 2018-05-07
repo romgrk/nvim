@@ -46,9 +46,6 @@ endfu
 fu! Warning (...)
     call Log('WarningMsg', a:000)
 endfu
-fu! Err (...)
-    call Log('ErrorMsg', a:000)
-endfu
 fu! Error (...)
     call Log('ErrorMsg', a:000)
 endfu
