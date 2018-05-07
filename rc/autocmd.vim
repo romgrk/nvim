@@ -75,7 +75,6 @@ exe 'augroup RC'
     au BufNewFile,BufReadPost .babelrc setfiletype json
     au BufNewFile,BufReadPost .tern-project setfiletype json
 
-    "au BufWritePre,FileWritePre *.vim   ks|call LastMod()|'s
     au BufReadPost,BufNewFile * if (&omnifunc == "")
                              \|     setlocal omnifunc=syntaxcomplete#Complete
                              \| end
