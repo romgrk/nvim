@@ -124,18 +124,6 @@ for k in keys(s:)
     unlet c
 endfor
 
-if exists('*RandomColor')
-"call hi#('User1', '#202020', RandomColor(), '')
-"call hi#('User2', '#202020', RandomColor(), '')
-"call hi#('User3', '#202020', RandomColor(), '')
-"call hi#('User4', '#202020', RandomColor(), '')
-"call hi#('User5', '#202020', RandomColor(), '')
-"call hi#('User6', '#202020', RandomColor(), '')
-"call hi#('User7', '#202020', RandomColor(), '')
-"call hi#('User8', '#202020', RandomColor(), '')
-"call hi#('User9', '#202020', RandomColor(), '')
-end
-
 let log = {}
 let log.Info    = '#599eff'
 let log.Success = '#5faf00'

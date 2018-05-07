@@ -47,15 +47,14 @@ else
 Plug 'xleng/YCM_WIN_X86'
 Plug 'romgrk/AutoComplPop'
 end
-Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 " Editing                                                                    {{{
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
 Plug 'wellle/targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bkad/CamelCaseMotion'
-"Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 Plug 'romgrk/vim-sneak'
 Plug 'kana/vim-niceblock'
 Plug 'michaeljsmith/vim-indent-object'
@@ -68,6 +67,7 @@ Plug 'cohama/lexima.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'sjl/gundo.vim'
 Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
@@ -80,10 +80,9 @@ Plug 'tacahiroy/ctrlp-funky'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/fzf'                                      , {'dir': '~/.local/fzf'}
+Plug 'junegunn/fzf'                                      , { 'dir': '~/.local/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Konfekt/FastFold'
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'xolox/vim-misc'
@@ -95,7 +94,7 @@ Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
 end
 "Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
-Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
+"Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
 Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
@@ -115,7 +114,7 @@ Plug 'Quramy/tsuquyomi'                                  , { 'on': 'TsuServerInf
 Plug 'kchmck/vim-coffee-script'                          , { 'for': 'coffee' }
 Plug 'plasticboy/vim-markdown'                           , { 'for': 'markdown' }
 Plug 'tpope/vim-haml'                                    , { 'for': ['sass', 'scss', 'haml'] }
-Plug 'hail2u/vim-css3-syntax'                 "          , { 'for': 'sass' }
+Plug 'hail2u/vim-css3-syntax'                            , { 'for': ['css', 'sass', 'scss', 'less'] }
 Plug 'groenewege/vim-less'                               , { 'for': 'less' }
 Plug 'digitaltoad/vim-pug'                               , { 'for': ['jade', 'pug'] }
 Plug 'othree/html5.vim'                                  , { 'for': 'html' }
@@ -123,8 +122,6 @@ Plug 'othree/html5-syntax.vim'                           , { 'for': 'html' }
 Plug 'tpope/vim-liquid'                                  , { 'for': 'html' }
 Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'rstacruz/sparkup'                                  , { 'for': 'html', 'rtp': 'vim'}
-Plug 'mattn/emmet-vim'                                   , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
-Plug 'mattn/webapi-vim'                                  , { 'for': ['html', 'css', 'less', 'sass', 'scss'] }
 Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'scss'] }
 "Plug 'leafo/moonscript-vim'                              , { 'for': 'moonscript' }
 "Plug 'lukerandall/haskellmode-vim'                       , { 'for': 'haskell' }
@@ -146,19 +143,17 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
-Plug 'kshenoy/vim-signature'                             , {'on': 'SignatureToggleSigns'}
-Plug 'nathanaelkane/vim-indent-guides'                   , {'on': 'IndentGuidesToggle'}
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 "Plug 'Yggdroot/indentLine'
-Plug 'vim-airline/vim-airline'                           , {'on': 'AirlineToggle' }
-Plug 'vim-airline/vim-airline-themes'                    , {'on': 'AirlineToggle' }
+"Plug 'vim-airline/vim-airline'                           , {'on': 'AirlineToggle' }
+"Plug 'vim-airline/vim-airline-themes'                    , {'on': 'AirlineToggle' }
 Plug 'machakann/vim-highlightedyank'
 " }}}
 " Colors/Colorscheme                                                         {{{
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'lilydjwg/colorizer'
-Plug 'flazz/vim-colorschemes'
-Plug 'adelarsq/vim-grimmjow'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'adelarsq/vim-grimmjow'
 Plug 'airblade/vim-gitgutter'
 " }}}
 " Local (~/github/vim)                                                       {{{

@@ -89,10 +89,19 @@ function! GitDiff(...)
 endfunction
 
 
+com! -bar FileDelete       call FileDeleteCurrent()
 com! -bar BufferClose      call BufferCloseCurrent()
 com! -bar BufferReopen     call BufferReopenClosed()
 com! -bar BufferWipeReopen call BufferWipeReopen()
 com! -bar BufferTabview    tab sview %
+fu! FileDeleteCurrent()
+  let file = fnamemodify(bufname('%'),':p')
+  BufferClose
+  if !bufloaded(file) && delete(file)
+    echoerr 'Failed to delete "'.file.'"'
+  endif
+  unlet file
+endfu
 fu! BufferCloseCurrent ()
     let bufnum = bufnr("%")
     let altnum = bufnr("#")
@@ -250,8 +259,11 @@ fu! GetNewTerminalWindow(...) "                                              {{{
     return win
 endfu "                                                                      }}}
 
-com! NextTerminalBuffer     call GoNextTerminalBuffer()
-com! PreviousTerminalBuffer call GoNextTerminalBuffer(1)
+com! -bar NextBuffer     bnext
+com! -bar PreviousBuffer bprevious
+
+com! -bar NextTerminalBuffer     call GoNextTerminalBuffer()
+com! -bar PreviousTerminalBuffer call GoNextTerminalBuffer(1)
 fu! GoNextTerminalBuffer (...)                                              "{{{
     let backward = get(a:, 1, 0)
     if backward
@@ -595,24 +607,6 @@ function! Now()
 endfunc
 function! Today()
     return strftime("%e %B %Y")
-endfunc
-
-" Random color
-function! RandomColor () abort
-    let lines = readfile(path#Join([$HOME, 'local', 'colors']))
-    let out = system(printf('shuf -i 0-%i -n 1', len(lines)-1 ))
-    return lines[str2nr(out)]
-endfunc
-function! HlLastVisual ()
-    match LastVisual /\%'<\_.*\%'>./
-endfunc
-
-" Evaluates js expression
-function! JsEval (...)
-    let code = escape(
-                \ join(a:000, ";\n"), '"\')
-    return system(
-                \ printf('node -p "%s"', code))
 endfunc
 
 function! GetArgs()

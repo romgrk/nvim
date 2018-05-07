@@ -9,7 +9,6 @@
 let b:argwrap_line_prefix = '\'
 
 setlocal foldmethod=syntax
-setlocal keywordprg=:ZeavimSearch
 setlocal isident=@,48-57,_,192-255,#
 
 nnoremap <buffer> gdd         :Goto<space>
@@ -23,8 +22,6 @@ nnoremap <buffer> s<A-j>      A <Bar><Esc>J
 nnoremap <buffer> s<A-k>      $F<BAR>dwi<BS><CR><Esc>
 nmap     <buffer> sJ          s<A-j>
 nmap     <buffer> sK          s<A-k>
-
-nnoremap <buffer> [Space]lsmd :noautocmd call LastMod()<CR>
 
 function! s:imap (leader, key, val)
     let leader = a:leader
@@ -43,7 +40,7 @@ let    s:specialKeys = [
 \ ['<Tab>',   '<lt>Tab>'],
 \ ['<Esc>',   '<lt>Esc>'],
 \ ['<space>', '<lt>space>'],
-\ ['[',       '[Space]'],
+\ ['[',       '<leader>'],
 \ ['<BS>',    '<lt>BS>'],
 \ ['=',       '<lt>C-r>='],
 \ ['P',       '<lt>Plug>'],

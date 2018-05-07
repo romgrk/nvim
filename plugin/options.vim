@@ -11,6 +11,7 @@ let g:togglemap = { }
 
 command! -bar -nargs=+ ToggleMap :call <SID>toggle_map(<args>)
 command! -bar -nargs=+ AlternMap :call <SID>map_alternating(<args>)
+command! -bar   EditVerboseLevel :call <SID>setVerbose()
 
 function! s:toggle_map (...)
     if type(a:000[1]) == 1 && len(a:000) == 2
@@ -93,7 +94,7 @@ function! s:map_alternating (trigger, what, values, ...)
 endfunc
 
 " Cool widget
-nnoremap [Space]o   :call <SID>show_toggle_input()<CR>
+nnoremap <leader>o   :call <SID>show_toggle_input()<CR>
 
 function! s:show_toggle_input ()
     let buffer = ''
@@ -143,7 +144,8 @@ function! s:show_toggle_input ()
             call Debug(condition, buffer, char)
             return
         elseif (len(remaining_options) == 1)
-            exe 'normal ' . g:togglekey . buffer
+            redraw
+            exe 'normal ' . g:togglekey . remaining_options[0]
             return
         end
     endwhile
@@ -218,11 +220,11 @@ ToggleMap 'tl',  { 'value': '&showtabline' },      [0,     2]
 ToggleMap 'bl',  { 'value': '&buflisted' },        [0,     1]
 ToggleMap 'w',   { 'value': '&l:wrap' },           [0,     1]
 ToggleMap 'sn',  { 'value': 'g:sneak#streak' },    [0,     1]
-ToggleMap 'HI',  { 'value': 'g:high_contrast' },   [0,     1], { 'post': 'syn enable'}
 ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post':
             \ 'let &ts = &sw \| IndentGuidesToggle \| IndentGuidesToggle'
             \ . '\| silent! exe \"IndentLinesToggle\" \| silent! exe \"IndentLinesToggle\"' }
 
+ToggleMap 'vl',  'EditVerboseLevel'
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
 ToggleMap 'js',  'setfiletype javascript'
 ToggleMap 'jx',  'setfiletype javascript.jsx'
@@ -232,11 +234,8 @@ ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
 ToggleMap 'gu',  'GitGutterToggle'
 ToggleMap 'gs',  'GitGutterSignsEnable'
 
-AlternMap 'gg',  'Git integration', ['call git#Enable()', 'call git#Disable()']
+AlternMap 'gg',  'Git integration', ['GitGutterEnable', 'GitGutterDisable']
 AlternMap 'al',  'ALE Linter',      ['ALEEnable', 'ALEDisable']
-
-ToggleMap 'gvr', 'ToggleGoldenViewAutoResize'
-ToggleMap 'y',   'SyntasticToggleMode'
 
 ToggleMap 'idg', 'IndentGuidesToggle'
 ToggleMap 'idl', 'IndentLinesToggle'
@@ -252,8 +251,6 @@ nmap z;e :setlocal fdm=expr<CR>:setlocal foldexpr=
 
 
 " Cool widget
-nnoremap covl :call <SID>setVerbose()<CR>
-
 " Verbose options reference
 let s:verboseHelp = [
     \[1,	'When the shada file is read or written.' ],
