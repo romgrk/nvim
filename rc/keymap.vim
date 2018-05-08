@@ -505,23 +505,24 @@ nnoremap <C-W><space>   :ToggleTerminalWindow<CR>
 nnoremap <C-W><M-Space> :wincmd s \| NextTerminalBuffer<CR>
 
 
-tmap <A-,>          <C-\><C-N>:PreviousTerminalBuffer<CR>
-tmap <A-.>          <C-\><C-N>:NextTerminalBuffer<CR>
-tmap <C-A-,>        <C-\><C-N>:bp<CR>
-tmap <C-A-.>        <C-\><C-N>:bn<CR>
+tmap <A-,>          <C-\><C-n>:PreviousTerminalBuffer<CR>
+tmap <A-.>          <C-\><C-n>:NextTerminalBuffer<CR>
+tmap <C-A-,>        <C-\><C-n>:bp<CR>
+tmap <C-A-.>        <C-\><C-n>:bn<CR>
 
 " Close
-tnoremap <A-c>      <C-\><C-N>:bd!<CR>
+tnoremap <A-c>      <C-\><C-n>:bd!<CR>
 
 tnoremap <A-e>      <C-\><C-n>
-tnoremap <A-Tab>    <C-\><C-N>gt
+tnoremap <A-Tab>    <C-\><C-n>gt
 tnoremap <F12>      <C-\><C-n>
 
 " Navigation
-tnoremap ;         <C-\><C-N>:
+tnoremap ;         <C-\><C-n>:
 tnoremap <A-;>     <Esc>;
-tnoremap <A-w>     <C-\><C-N><A-w>
-tnoremap <A-2>     <C-\><C-N><C-W>w
+tnoremap <A-w>     <C-\><C-n><A-w>
+tnoremap <A-2>     <C-\><C-n><C-n>w
+tmap     <A-u>     <C-\><C-n><A-u>
 
 " Arrows
 tnoremap <A-j>     <Esc>j

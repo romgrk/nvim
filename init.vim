@@ -34,6 +34,7 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 call s:source_rc('settings.vim')
 call s:source_rc('plugins.vim')
+
 "                                                                          }}}
 "=============================================================================
 " Plugins                                                                  {{{
