@@ -345,6 +345,8 @@ nmap     <leader>j         <Plug>Sneak_s
 nmap     <leader>k         <Plug>Sneak_S
 
 " ALE:
+nnoremap <leader>al         :ALEToggle<CR>
+nnoremap <leader>a<a-l>     :ALEToggleBuffer<CR>
 nnoremap <leader>af         :ALEFix<CR>
 
 
@@ -381,6 +383,10 @@ nnoremap       <leader>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
 
 nnoremap       <leader>sl     :SourceLocalVimrc<CR>
 nnoremap       <leader>sn     :Note <C-R>=xolox#session#find_current_session()<CR><CR>
+
+
+nnoremap       <leader>np     :NewProject<space>
+
 
 " Git:
 

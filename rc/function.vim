@@ -54,16 +54,16 @@ fu! FindFtSyntax(...) "                                                      {{{
     return ftdir
 endfu "                                                                      }}}
 
+
 function! ExecTerminal(command, arguments)
+  let quoted_arguments = join(map(copy(a:list), {key, val -> expand(val)}), ' ')
   split
   wincmd j
   15wincmd _
   execute 'term ' . a:command . ' ' . s:quote_arguments(a:arguments)
   normal! i
 endfunction
-function! s:quote_arguments(list)
-  return join(map(copy(a:list), {key, val -> expand(val)}), ' ')
-endfunction
+
 
 com! -nargs=* GitOpenUnmergedFiles call GitOpenUnmergedFiles(<f-args>)
 com! -nargs=* GitPush              call GitPush(<f-args>)
@@ -87,6 +87,22 @@ endfunction
 function! GitDiff(...)
   call ExecTerminal('git diff', a:000)
 endfunction
+
+
+com! -nargs=1 NewProject   call NewProject(<f-args>)
+fu! NewProject(name)
+  wall!
+  CloseSession
+
+  let dir = $HOME . '/projects/' . a:name
+  let out = system('mkdir ' . dir)
+  if out != ''
+    echoerr out
+  end
+
+  execute 'cd ' . dir
+  execute 'SaveSession ' . a:name
+endfu
 
 
 com! -bar FileDelete       call FileDeleteCurrent()
@@ -161,6 +177,7 @@ fu! RestorePosition ()
         silent! normal! zO
     end
 endfunc
+
 
 let g:termsize = 10
 
@@ -259,6 +276,7 @@ fu! GetNewTerminalWindow(...) "                                              {{{
     return win
 endfu "                                                                      }}}
 
+
 com! -bar NextBuffer     bnext
 com! -bar PreviousBuffer bprevious
 
@@ -276,6 +294,7 @@ fu! GoNextTerminalBuffer (...)                                              "{{{
     end
     startinsert
 endfu                                                                       "}}}
+
 
 " Window navigation
 com! -bar WinMain              call GoFirstListedWindow()
@@ -315,6 +334,7 @@ fu! GoNextVimfilerWindow() "                                                 {{{
         execute 'wincmd w'
     endif
 endfu "                                                                      }}}
+
 
 " Window-resize
 function! SizeUp ()
@@ -401,36 +421,6 @@ fu! ReopenHelp() abort "                                                     {{{
     doautocmd Syntax
 endfu "                                                                      }}}
 
-function! Incremental_Y ()
-    " After the Y operator, read in the associated motion
-    let motion = nr2char(getchar())
-
-    " If it's a (slowly typed) YY, do the optimized version instead (see below)
-    if motion == 'Y'
-        call Incremental_YY()
-        return
-
-    " If it's a text object, read in the associated motion
-    elseif motion =~ '[ia]'
-        let motion .= nr2char(getchar())
-    " endif
-
-    " If it's a search, read in the associated pattern
-    elseif motion =~ '[/?]'
-        let motion .= input(motion) . "\<CR>"
-    endif
-
-    " Copy the current contents of the default register into the 'y register
-    let @y = getreg(v:register, 1)
-
-    " Return a command sequence that yanks into the 'Y register,
-    " then assigns that cumulative yank back to the default register
-    return '"Yy' . motion . ':let @' . v:register . ' = @y' . "\<CR>"
-endfunction
-function! Incremental_YY () range
-    " Grab all specified lines and append them to the default register
-    exe 'let @' . v:register . ' .= join(getline(a:firstline, a:lastline), "\n") . "\n"'
-endfunction
 
 function! ForAllMatches (command, options)
     " Remember where we parked...
@@ -561,6 +551,7 @@ fu! PrintWithoutNewlines(value) "                                            {{{
     echo join(strings, ', ')
 endfu "                                                                      }}}
 
+
 com! SynStack              call SyntaxStack()
 com! GetCurrentSyntaxGroup Pp GetCurrentSyntaxGroup()
 com! SynCurrentEdit        call SynCurrentEdit()
@@ -602,12 +593,14 @@ fu! QuickReload ()
     exe 'source ' . $vim . '/after/ftplugin/' . &ft . '.vim'
 endfu
 
+
 function! Now()
     return strftime("%H:%M")
 endfunc
 function! Today()
     return strftime("%e %B %Y")
 endfunc
+
 
 function! GetArgs()
   let args = []
@@ -622,6 +615,7 @@ function! ClearArgs()
     exe 'argdel ' . argv(argsLength - i - 1)
   endfor
 endfunction
+
 
 com! -bar          Hold   call GetChar()
 com! -bar          Redraw call Redraw()
