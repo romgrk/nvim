@@ -45,6 +45,17 @@ hi! link SearchReplaceMatch      EasyMotionTargetDefault
 hi! link SneakLabel              EasyMotionTargetDefault
 hi! link SneakLabelMask          Noise
 
+hi! link ALEErrorSign TextError
+hi! link ALEWarningSign TextWarning
+hi! link ALEInfoSign TextInfo
+silent call hi#fullfill('ALEErrorSign')
+silent call hi#fullfill('ALEWarningSign')
+silent call hi#fullfill('ALEInfoSign')
+silent call hi#bg('ALEErrorSign', hi#bg('LineNr'))
+silent call hi#bg('ALEWarningSign', hi#bg('LineNr'))
+silent call hi#bg('ALEInfoSign', hi#bg('LineNr'))
+
+
 if (&bg == 'light')
     let indentLine_color_gui ='#bebebe'
     hi! IndentGuidesEven guibg=#eeeeee

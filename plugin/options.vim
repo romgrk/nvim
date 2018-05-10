@@ -220,9 +220,7 @@ ToggleMap 'tl',  { 'value': '&showtabline' },      [0,     2]
 ToggleMap 'bl',  { 'value': '&buflisted' },        [0,     1]
 ToggleMap 'w',   { 'value': '&l:wrap' },           [0,     1]
 ToggleMap 'sn',  { 'value': 'g:sneak#streak' },    [0,     1]
-ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post':
-            \ 'let &ts = &sw \| IndentGuidesToggle \| IndentGuidesToggle'
-            \ . '\| silent! exe \"IndentLinesToggle\" \| silent! exe \"IndentLinesToggle\"' }
+ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post': 'let &ts = &sw' }
 
 ToggleMap 'vl',  'EditVerboseLevel'
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
@@ -236,6 +234,7 @@ ToggleMap 'gs',  'GitGutterSignsEnable'
 
 AlternMap 'gg',  'Git integration', ['GitGutterEnable', 'GitGutterDisable']
 AlternMap 'al',  'ALE Linter',      ['ALEEnable', 'ALEDisable']
+AlternMap 'lc',  'Language Client', ['LanguageClientStop', 'LanguageClientStart']
 
 ToggleMap 'idg', 'IndentGuidesToggle'
 ToggleMap 'idl', 'IndentLinesToggle'
