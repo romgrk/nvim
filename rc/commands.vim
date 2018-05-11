@@ -15,7 +15,7 @@ command! -nargs=1    Nwhich    :Pp maparg(<q-args>, 'n', 0, 1)
 
 
 " Highlight
-command! -bar -nargs=1 -complete=highlight Fullfill Pp hi#fullfill(<q-args>)
+command! -bar -nargs=1 -complete=highlight Fullfill call hi#fullfill(<q-args>)
 
 
 " Windows etc
