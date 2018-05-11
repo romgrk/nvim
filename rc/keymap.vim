@@ -465,13 +465,13 @@ nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 if has('win32') || get(g:, 'ctrlp_funky_enable', 0)
 nnoremap <silent> <A-i>    :CtrlPFunky<CR>
 else
-nnoremap <silent> <A-i>    :CtrlPBufTag<CR>
+nnoremap <silent> <A-i>    :BTags<CR>
 end
 
-nnoremap <silent> <A-S-I>  :CtrlPTag<CR>
+nnoremap <silent> <A-S-I>  :Tags<CR>
 
-nnoremap <silent> <A-o>    :CtrlP<CR>
-nnoremap <silent> <A-O>    :CtrlPMixed<CR>
+nnoremap <silent> <A-o>    :Files<CR>
+nnoremap <silent> <A-O>    :History<CR>
 nnoremap <silent> <C-S>    :CtrlPBuffer<CR>
 nnoremap <silent> <C-A-o>  :GitFiles<CR>
 
