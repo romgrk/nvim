@@ -95,10 +95,10 @@ fu! NewProject(name)
   CloseSession
 
   let dir = $HOME . '/projects/' . a:name
-  let out = system('mkdir ' . dir)
-  if out != ''
-    echoerr out
-  end
+
+  if !isdirectory(dir)
+      call mkdir(dir, 'p')
+  endif
 
   execute 'cd ' . dir
   execute 'SaveSession ' . a:name
