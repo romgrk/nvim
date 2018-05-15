@@ -1,8 +1,8 @@
 "let g:vim_markdown_frontmatter = 0
 "get(g:, 'vim_markdown_json_frontmatter', 0)
 setlocal conceallevel=0
-let &l:textwidth=80
-let &l:colorcolumn=80
+let &l:textwidth=120
+let &l:colorcolumn=120
 let b:mkd = 1
 
 
