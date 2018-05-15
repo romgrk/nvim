@@ -65,6 +65,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'cohama/lexima.vim'
+Plug 'AndrewRadev/sideways.vim'
 " }}}
 " General                                                                    {{{
 " @plugins

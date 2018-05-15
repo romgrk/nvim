@@ -6,8 +6,8 @@
 
 " Recent mappings:
 
-nnoremap g/ *
-nnoremap g? #
+nnoremap <C-X>h  :SidewaysLeft<CR>
+nnoremap <C-X>l  :SidewaysRight<CR>
 
 
 "===============================================================================
@@ -79,6 +79,10 @@ nnoremap g] gt
 nnoremap <silent>go :!xdg-open <C-R><C-A><CR>
 xnoremap <silent>go y:!xdg-open <C-R>"<CR>
 
+" Search
+nnoremap g/ *
+nnoremap g? #
+
 
 " Insert newline
 nnoremap <CR>   o<Esc>
@@ -140,17 +144,10 @@ endfunc
 
 " Local config
 nmap gslc           :Edit .vimrc<CR>
-nmap gsly           :Edit .ycm_extra_conf.py<CR>
-nmap gsyy           :Edit $rc/ycm.py<CR>
 
 " Files
-nnoremap gsrv       :Files $vim<CR>
-nnoremap gsvb       :Files $bundle<CR>
-nnoremap gsvp       :Files $vim/rc/plugin<CR>
 nnoremap gsrc       :Edit $MYVIMRC<CR>
 nnoremap gsm        :Edit $vim/rc/keymap.vim<CR>
-nnoremap gs<A-m>    :PreviewEdit $vim/rc/keymap.vim<CR>:silent! normal g;<CR>
-nnoremap gskm       :PreviewEdit $vim/rc/keymap.vim<CR>:silent! normal g;<CR>
 nnoremap gsko       :Edit $vim/plugin/options.vim<CR>
 nnoremap gsa        :Edit $vim/rc/autocmd.vim<CR>
 nnoremap gse        :Edit $vim/rc/events.vim<CR>
@@ -160,11 +157,9 @@ nnoremap gsc        :Edit $vim/rc/colors.vim<CR>
 nnoremap gsh        :Edit $vim/rc/highlight.vim<CR>
 nnoremap gso        :Edit $vim/rc/settings.vim<CR>
 nnoremap gsj        :Edit $vim/colors/darker.vim<CR>
-nnoremap gstl       :Edit $vim/rc/plugins/lightline.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
 nnoremap gsP        :Edit $vim/rc/plugins/
 nnoremap gs<A-p>    :Edit $vim/plugin/
-nnoremap gsg        :Edit $vim/autoload/git.vim<CR>
 
 nnoremap <C-n>      :Edit <C-R>=escape(expand("%:p:h"), ' ')<CR>/<C-D>
 
@@ -809,9 +804,9 @@ endfu
 " normal: s,ss,S        visual: s                                            {{{
 " unlet! m
 nmap s  <Plug>ReplaceOperator
-nmap ss V<C-S>
+nmap ss Vs
 nmap S  s$
-xmap s     <Plug>ReplaceOperator
+xmap s  <Plug>ReplaceOperator
 
 " TODO assess usage
 nmap X <Plug>ExchangeOperator
@@ -992,7 +987,6 @@ inoremap <C-Y> <C-C>:let @z = @"<CR>mz
 
 nnoremap =r      :call QuickReload()<CR>
 
-nnoremap gh      :call ReopenHelp()<CR>
 
 
 nnoremap <M-1> :SynStack<CR>
