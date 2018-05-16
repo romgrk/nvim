@@ -1312,9 +1312,8 @@ if !has('python3') | return 0 | end
 py3 << EOF
 import vim
 from UltiSnips import UltiSnips_Manager, _vim
-SM = UltiSnips_Manager
 before = _vim.buf.line_till_cursor
-sn=SM._snips(before, False)
+sn=UltiSnips_Manager._snips(before, False)
 vim.command('return %i' % len(sn))
 EOF
 endfunction
@@ -1324,8 +1323,7 @@ if !has('python3') | return 0 | end
 py3 << EOF
 import vim
 from UltiSnips import UltiSnips_Manager, _vim
-SM = UltiSnips_Manager
-if SM._cs:
+if UltiSnips_Manager._current_snippet:
     vim.command('return 1')
 else:
     vim.command('return 0')
@@ -1336,12 +1334,11 @@ function! Ulti_jump(dir)
 py3 << EOF
 import vim
 from UltiSnips import UltiSnips_Manager, _vim
-SM = UltiSnips_Manager
-if SM._cs:
+if UltiSnips_Manager._current_snippet:
     if vim.eval('a:dir') == '1':
-        SM._jump()
+        UltiSnips_Manager._jump()
     else:
-        SM._jump(True)
+        UltiSnips_Manager._jump(True)
 EOF
     return ""
 endfu
