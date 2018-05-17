@@ -30,7 +30,7 @@ function! s:opfunc (type, ...)
     else                       | silent exe "normal! `[v`]y"
     end
 
-    let @@ = g:transform[getreg('=')](@@)
+    let @@ = g:string_transform[getreg('=')](@@)
 
     normal! gv""p
 
@@ -39,11 +39,11 @@ function! s:opfunc (type, ...)
 endfunc
 
 
-let transform = {}
-function! transform.snake_case(string)
+let string_transform = {}
+function! string_transform.snake_case(string)
     return join(s:split_words(a:string), '_')
 endfu
-function! transform.camel_case(string)
+function! string_transform.camel_case(string)
     let words = s:split_words(a:string)
     let string = words[0]
     for word in words[1:]
@@ -51,13 +51,13 @@ function! transform.camel_case(string)
     endfor
     return string
 endfu
-function! transform.upper_camel_case(string)
+function! string_transform.upper_camel_case(string)
     return join(map(s:split_words(a:string), {key, word -> substitute(word, '\v^.', '\u\0', '')}), '')
 endfu
-function! transform.kebab_case(string)
+function! string_transform.kebab_case(string)
     return join(s:split_words(a:string), '-')
 endfu
-function! transform.start_case(string)
+function! string_transform.start_case(string)
     return join(map(s:split_words(a:string), {key, word -> substitute(word, '\v^\l', '\u\0', '')}), ' ')
 endfu
 
