@@ -511,8 +511,7 @@ function! FoldText()
     return text . repeat(' ', fillcharcount) . right_text
 endfunc
 function! FoldFunction(...) "                                                      {{{
-    let line    = substitute(getline(v:foldstart),
-    \                   '/\*\|\*/\|\("\s*\)\={[{]{\d\=', '', 'g')
+    let line    = substitute(getline(v:foldstart), '/\*\|\*/\|\("\s*\)\={[{]{\d\=', '', 'g')
     let nl      = v:foldend - v:foldstart
     if nl <= 9
         let prefix = "[" . nl . "]    "
