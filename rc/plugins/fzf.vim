@@ -27,8 +27,8 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 autocmd ColorScheme * call <SID>fzf_highlight()
 
 function! s:fzf_highlight()
-  call hi#('FZFStatusLineTitle',     theme.fg, hi#bg('StatusLine'), 'bold')
-  call hi#('FZFStatusLineSeparator', theme.fg, hi#bg('StatusLine'))
+  call hi#('FZFStatusLineTitle',     g:theme.fg, hi#bg('StatusLine'), 'bold')
+  call hi#('FZFStatusLineSeparator', g:theme.fg, hi#bg('StatusLine'))
 endfunc
 
 function! s:fzf_statusline()

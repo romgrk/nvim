@@ -4,7 +4,7 @@
 " Date: 14 Sep 2015
 " !::exe [so % ]
 
-augroup Colors
+augroup colors.vim
     au!
     " this one is which you're most likely to use?
     autocmd ColorScheme * exec 'source ' . expand('<sfile>')
