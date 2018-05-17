@@ -26,7 +26,6 @@ endfunc
 
 " Neovim setup
 let $NVIM_LISTEN_ADDRESS='127.0.0.1:6666'
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " }}}
 "=============================================================================

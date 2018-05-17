@@ -76,12 +76,14 @@ nnoremap g[ gT
 nnoremap g] gt
 
 " Open
-nnoremap <silent>go :!xdg-open <C-R><C-A><CR>
-xnoremap <silent>go y:!xdg-open <C-R>"<CR>
+nnoremap <silent>go  :silent !xdg-open <C-R><C-A><CR>
+xnoremap <silent>go y:silent !xdg-open <C-R>"<CR>
 
 " Search
 nnoremap g/ *
 nnoremap g? #
+
+nnoremap 8 iWRONG<Esc>OVERY WRONG<Esc>joVERY VERY WRONG<Esc>
 
 
 " Insert newline
@@ -501,7 +503,7 @@ if has('nvim')
 " Panels/Navigation
 nnoremap g:             :OpenTerminal<CR>
 nnoremap g<A-;>         :OpenTerminalHere<CR>
-nnoremap g<space>       :GoFirstTerminalWindow<CR>
+" nnoremap g<space>       :GoFirstTerminalWindow<CR>
 nnoremap <C-W><space>   :ToggleTerminalWindow<CR>
 nnoremap <C-W><M-Space> :wincmd s \| NextTerminalBuffer<CR>
 

@@ -56,11 +56,10 @@ endfu "                                                                      }}}
 
 
 function! ExecTerminal(command, arguments)
-  let quoted_arguments = join(map(copy(a:list), {key, val -> expand(val)}), ' ')
-  split
-  wincmd j
+  let quoted_arguments = join(map(copy(a:arguments), {key, val -> expand(val)}), ' ')
+  below split
   15wincmd _
-  execute 'term ' . a:command . ' ' . s:quote_arguments(a:arguments)
+  execute 'term ' . a:command . ' ' . quoted_arguments
   normal! i
 endfunction
 
