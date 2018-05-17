@@ -485,19 +485,30 @@ function! ForAllMatches (command, options)
 endfunction
 
 function! FoldText()
-    let line = getline(v:foldstart)
+    let line      = string#StripTrailing(getline(v:foldstart), " 	")
+    " let last_line = string#StripTrailing(getline(v:foldend), " 	")
 
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
+    let sign_list = split(execute('silent sign place buffer=' . bufnr('')), '\n')
+    let window_width = winwidth(0) - &numberwidth - &foldcolumn - (len(sign_list) > 2 ? 2 : 0)
 
     " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
+    let line = substitute(line, '\t', repeat(' ', &tabstop), 'g')
 
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
-    return line . ' …' . repeat(" ",fillcharcount) . foldedlinecount . ' '
+    let text = line
+
+    " let start_indent = matchstr(line, '\v^\s*')
+    " let end_indent   = matchstr(last_line, '\v^\s*')
+    " if len(end_indent) <= len(start_indent)
+      " let text .= '  …  ' . string#StripLeading(last_line, ' 	')
+    " end
+
+    let right_width = 7
+    let right_text = '(' . (v:foldend - v:foldstart) . ')'
+    let right_text = right_text . repeat(' ', right_width - len(right_text))
+
+    let fillcharcount = window_width - strdisplaywidth(text) - strdisplaywidth(right_text)
+
+    return text . repeat(' ', fillcharcount) . right_text
 endfunc
 function! FoldFunction(...) "                                                      {{{
     let line    = substitute(getline(v:foldstart),
