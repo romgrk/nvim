@@ -611,8 +611,9 @@ let surround_{char2nr("f")} = "\1func: \1(\r)"
 
 " }}}
 
-" Section: local text-objects
-" function definitions & search patterns TODO move to autoload               {{{
+" Functioncall: Text-Object                                                  {{{
+" change inside/all current/last/next fcall
+" function definitions & search patterns TODO move to autoload
 
 " function-call patterns
 let name_pattern = '\(\k\|\i\|\f\|<\|>\|:\|\\\)\+'
@@ -622,48 +623,6 @@ let fargs_pattern = name_pattern . '\s*(\zs' . args_pattern . '\ze\s*)'
 let func_pattern  = name_pattern . '\s*(' . args_pattern . '\s*)'
 
 
-fu! s:findQuote(...) " ( forward=1, action='m' )
-    " action:       m -> move cursor
-    "               p -> returns the character position [line, col]
-    "               c -> returns the matched character (' or ")
-
-    if (a:0 > 0) && (a:1==1 || a:1==0)
-        let dir   = a:1
-        let which = (a:0 > 1 ? a:2 : 'm')
-        let fb = (dir) ? '' : 'b'
-
-        if which =~ 'm'
-            call searchpos('\v["'']', fb)
-            return | end
-
-        if  which =~ 'p'
-            let pos = searchpos('\v["'']', fb . 'n')
-            return pos | end
-
-        if  which =~ 'c'
-            let pos = searchpos('\v["'']', fb . 'nc')
-            let ch = CharAt( [pos[0], pos[1]-1] )
-            return ch | end
-
-        return
-    end
-
-    let flags = a:0 ? a:1 : 'nc'
-    let cw = getcurpos()[1:2]
-    let fw = searchpos('\v["'']', flags)
-    let fw[1] -= 1
-    let bw = searchpos('\v["'']', 'b' . flags)
-    let bw[1] -= 1
-    if fw == cw
-        let pos = fw
-    else
-        let df = (fw[0] - cw[0]) * 80 + (fw[1] - cw[1])
-        let db = (cw[0] - bw[0]) * 80 + (cw[1] - bw[1])
-        let pos = df < db ? fw : bw
-    end
-
-    return CharAt(pos)
-endfu
 " Param {String} flags - same as search() (see vim help),
 "                       plus 'v' - visually select the function
 " Returns the [lnum, col] of the nearest function
@@ -742,37 +701,36 @@ fu! s:changeFunc(...)
 
     return ''
 endfu
-" }}}
 
-" Functioncall: Text-Object
-" change inside/all current/last/next fcall                                  {{{
-nmap cif    :call <SID>changeFunc('c')<CR>
-nmap cIf    :call <SID>changeFunc('ic')<CR>
-nmap caf    :call <SID>changeFunc('ac')<CR>
-nmap cnf    :call <SID>changeFunc('n')<CR>
-nmap cpf    :call <SID>changeFunc('l')<CR>
-"nmap cinf   :call <SID>changeFunc('in')<CR>
-"nmap cilf   :call <SID>changeFunc('il')<CR>
-"nmap canf   :call <SID>changeFunc('an')<CR>
-"nmap calf   :call <SID>changeFunc('al')<CR>
-
-nmap dsf  :call DSurroundFunc()<CR>
-nmap csf  :call CSurroundFunc()<CR>
-
-fu! DSurroundFunc()
-    call s:findFunc ('vbc')
+fu! s:deleteSurroundingFunc(flags)
+    call s:findFunc(a:flags)
     normal ddsb
 endfu
-fu! CSurroundFunc ()
+fu! s:changeSurroundingFunc ()
     let saved_cursor = getcurpos()
     call s:findFunc ('vbc') | redraw
-    let char = GetChar('TextWarning', 'Change surrounding func with: ')
+    let char = GetChar('Question', 'Change surrounding func with: ')
     if char != "\<Esc>"
         call feedkeys('dcsb' . char, '')
     else
         Reset saved_cursor
     end
 endfu
+
+nmap <silent>cif    :call <SID>changeFunc('c')<CR>
+nmap <silent>cIf    :call <SID>changeFunc('ic')<CR>
+nmap <silent>caf    :call <SID>changeFunc('ac')<CR>
+nmap <silent>cnf    :call <SID>changeFunc('n')<CR>
+nmap <silent>cpf    :call <SID>changeFunc('l')<CR>
+" nmap <silent>cinf   :call <SID>changeFunc('in')<CR>
+" nmap <silent>cilf   :call <SID>changeFunc('il')<CR>
+" nmap <silent>canf   :call <SID>changeFunc('an')<CR>
+" nmap <silent>calf   :call <SID>changeFunc('al')<CR>
+
+nmap <silent>dsf     :call <SID>deleteSurroundingFunc('vbc')<CR>
+nmap <silent>dsF     :call <SID>deleteSurroundingFunc('vb')<CR>
+nmap <silent>ds<A-f> :call <SID>deleteSurroundingFunc('vb')<CR>
+nmap <silent>csf     :call <SID>changeSurroundingFunc()<CR>
 " }}}
 
 " FindQuote:
@@ -780,24 +738,67 @@ endfu
 " cs''  toggles surrounding quotes
 " ds'   deletes surrounding quotes
 " f'    is equivalent to f' and/or f"
-nmap <silent><expr>f'   "<Plug>Sneak_f" . <SID>findQuote(1, 'c')
-nmap <silent><expr>F'   "<Plug>Sneak_F" . <SID>findQuote(0, 'c')
 
-" delete/change surrounding quotes
-nmap <expr>cs'  CSurroundQuotes()
-nmap <expr>ds'  DSurroundQuotes()
+fu! s:findQuote(...) " ( forward=1, action='m' )
+    " action:       m -> move cursor
+    "               p -> returns the character position [line, col]
+    "               c -> returns the matched character (' or ")
 
-fu! CSurroundQuotes()
+    if (a:0 > 0) && (a:1==1 || a:1==0)
+        let dir   = a:1
+        let which = (a:0 > 1 ? a:2 : 'm')
+        let fb = (dir) ? '' : 'b'
+
+        if which =~ 'm'
+            call searchpos('\v["'']', fb)
+            return | end
+
+        if  which =~ 'p'
+            let pos = searchpos('\v["'']', fb . 'n')
+            return pos | end
+
+        if  which =~ 'c'
+            let pos = searchpos('\v["'']', fb . 'nc')
+            let ch = CharAt( [pos[0], pos[1]-1] )
+            return ch | end
+
+        return
+    end
+
+    let flags = a:0 ? a:1 : 'nc'
+    let cw = getcurpos()[1:2]
+    let fw = searchpos('\v["'']', flags)
+    let fw[1] -= 1
+    let bw = searchpos('\v["'']', 'b' . flags)
+    let bw[1] -= 1
+    if fw == cw
+        let pos = fw
+    else
+        let df = (fw[0] - cw[0]) * 80 + (fw[1] - cw[1])
+        let db = (cw[0] - bw[0]) * 80 + (cw[1] - bw[1])
+        let pos = df < db ? fw : bw
+    end
+
+    return CharAt(pos)
+endfu
+fu! s:changeSurroundingQuotes()
     let qch = s:findQuote()
-    let char = GetChar('TextWarning', 'Change surrounding quotes with: ')
+    let char = GetChar('Question', 'Change surrounding quotes with: ')
     if char == "'"
         let char = (qch ==# "\"" ? "'" : "\"") | end
     return "\<Plug>Csurround" . qch . char
 endfu
-fu! DSurroundQuotes()
+fu! s:deleteSurroundingQuotes()
     return "\<Plug>Dsurround" . s:findQuote()
 endfu
 
+
+nmap <silent><expr>f'   "<Plug>Sneak_f" . <SID>findQuote(1, 'c')
+nmap <silent><expr>F'   "<Plug>Sneak_F" . <SID>findQuote(0, 'c')
+
+" delete/change surrounding quotes
+nmap <expr>cs'  <SID>changeSurroundingQuotes()
+nmap <expr>ds'  <SID>deleteSurroundingQuotes()
 " }}}
 
 " Substitute: operator (replace.vim)
@@ -856,23 +857,19 @@ vmap <A-'>      <Plug>NERDCommenterSexy
 " }}}
 
 " StringTransform:
-" gc,g_,--,-s,__                                                             {{{
-nmap gc <Plug>(camelCaseOperator)
-xmap gc <Plug>(camelCaseOperator)
-nmap _c <Plug>(camelCaseOperator)
-xmap _c <Plug>(camelCaseOperator)
-nmap _- <Plug>(camelCaseOperator)
-xmap _- <Plug>(camelCaseOperator)
-nmap g_ <Plug>(snakeCaseOperator)
-xmap g_ <Plug>(snakeCaseOperator)
-nmap __ <Plug>(snakeCaseOperator)
-xmap __ <Plug>(snakeCaseOperator)
-nmap -- <Plug>(kebabCaseOperator)
-xmap -- <Plug>(kebabCaseOperator)
-nmap _s <Plug>(startCaseOperator)
-xmap _s <Plug>(startCaseOperator)
-nmap -s <Plug>(startCaseOperator)
-xmap -s <Plug>(startCaseOperator)
+" gc, gC, --, -s, __                                                         {{{
+nmap gc <Plug>(camel_case_operator)
+xmap gc <Plug>(camel_case_operator)
+nmap gC <Plug>(upper_camel_case_operator)
+xmap gC <Plug>(upper_camel_case_operator)
+nmap __ <Plug>(snake_case_operator)
+xmap __ <Plug>(snake_case_operator)
+nmap -- <Plug>(kebab_case_operator)
+xmap -- <Plug>(kebab_case_operator)
+nmap _s <Plug>(start_case_operator)
+xmap _s <Plug>(start_case_operator)
+nmap -s <Plug>(start_case_operator)
+xmap -s <Plug>(start_case_operator)
 "}}}
 
 " }}}1

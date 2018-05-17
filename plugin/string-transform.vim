@@ -2,19 +2,18 @@
 " Author: romgrk
 " Date: 26 Mar 2016
 " Description:
-" !::exe [so %]
+" !::exe [So]
 
 function! s:mapfunc (method)
-    exec 'nmap <Plug>(' . a:method . 'Operator)  :set opfunc=<SID>opfunc<CR>"="' . a:method . '"<CR>g@'
-    exec 'vmap <Plug>(' . a:method . 'Operator)  :<C-U>call <SID>opfunc(visualmode(), "' . a:method . '")<CR>'
+    exec 'nmap <silent><Plug>(' . a:method . '_operator)  :set opfunc=<SID>opfunc<CR>"="' . a:method . '"<CR>g@'
+    exec 'vmap <silent><Plug>(' . a:method . '_operator)  :<C-U>call <SID>opfunc(visualmode(), "' . a:method . '")<CR>'
 endfunc
 
-call <SID>mapfunc('camelCase')
-call <SID>mapfunc('snakeCase')
-call <SID>mapfunc('startCase')
-call <SID>mapfunc('kebabCase')
-call <SID>mapfunc('lowerCase')
-call <SID>mapfunc('upperCase')
+call <SID>mapfunc('snake_case')
+call <SID>mapfunc('kebab_case')
+call <SID>mapfunc('start_case')
+call <SID>mapfunc('camel_case')
+call <SID>mapfunc('upper_camel_case')
 
 function! s:opfunc (type, ...)
     let sel_save = &selection
@@ -31,7 +30,7 @@ function! s:opfunc (type, ...)
     else                       | silent exe "normal! `[v`]y"
     end
 
-    let @@ = <SID>transform(get(a:, 1, getreg('=')), @@)
+    let @@ = g:transform[getreg('=')](@@)
 
     normal! gv""p
 
@@ -39,20 +38,43 @@ function! s:opfunc (type, ...)
     let @@         = reg_save
 endfunc
 
-function! s:transform (method, string)
-    let code =
-    \ 'require("lodash").' . a:method . '(process.argv[1])'
-    let out =  system(
-                \ 'node -p '
-                \ . shellescape(code) . ' '
-                \ . shellescape(a:string))
-    if (char2nr(out[-1:]) == 10)
-        let out = out[:-2] | end
-    return substitute(out, '\v^\s+|\s+$', '', 'g')
-endfunc
 
-function! s:SID()
-    return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
-endfun
+let transform = {}
+function! transform.snake_case(string)
+    return join(s:split_words(a:string), '_')
+endfu
+function! transform.camel_case(string)
+    let words = s:split_words(a:string)
+    let string = words[0]
+    for word in words[1:]
+        let string .= substitute(word, '\v^.', '\u\0', '')
+    endfor
+    return string
+endfu
+function! transform.upper_camel_case(string)
+    return join(map(s:split_words(a:string), {key, word -> substitute(word, '\v^.', '\u\0', '')}), '')
+endfu
+function! transform.kebab_case(string)
+    return join(s:split_words(a:string), '-')
+endfu
+function! transform.start_case(string)
+    return join(map(s:split_words(a:string), {key, word -> substitute(word, '\v^\l', '\u\0', '')}), ' ')
+endfu
 
 
+function! s:split_words(string)
+    let words = split(a:string, '\v_|-|(\u+\zs\ze\u\U)|(\U\zs\ze\u)')
+    let i = 0
+    for word in words
+        if word =~ '\v\u\U+'
+            let words[i] = substitute(word, '\v\u\U+', '\l\0', '')
+        end
+        let i += 1
+    endfor
+    return words
+endfu
+
+" let g:words = <SID>split_words('snake_case')
+" let g:words = <SID>split_words('camelCase')
+" let g:words = <SID>split_words('camelURLCase')
+" let g:words = <SID>split_words('kebab-case')
