@@ -52,9 +52,6 @@ set updatetime=2000
 "===============================================================================
 " Paths, session files & backups {{{
 
-"set tags=./.tags,.tags
-"set sessionoptions-=help
-
 set wildignore=node_modules,bower_components,package-lock.json,tags,*.pyc
 set wildignorecase " aka wic
 
@@ -77,6 +74,8 @@ else
 set undodir=$HOME/AppData/Local/nvim-data/undo
 set viewdir=$HOME/AppData/Local/nvim-data/views
 end
+
+set sessionoptions-=folds
 
 " IO & backups behavior
 set noswapfile
@@ -214,7 +213,8 @@ set shiftround
 set foldenable
 set foldcolumn=0
 set foldminlines=0
-set foldlevelstart=99
+set foldlevel=999
+set foldlevelstart=999
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set foldmethod=marker foldmarker={{{,}}}
 set foldtext=FoldText()
