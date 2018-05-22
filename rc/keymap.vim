@@ -439,6 +439,8 @@ nnoremap       <leader>ret  :set et <Bar> ret<CR>
 nnoremap       <leader>ap   vip:EasyAlign<CR>
 nnoremap       <leader>dws  :%DeleteTrailingWS<CR>
 
+nnoremap       <leader>how  :r !howdoi<space>
+
 
 
 " Multi-Cursors:
