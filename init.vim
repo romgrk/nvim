@@ -166,6 +166,8 @@ Plug 'romgrk/replace.vim'
 Plug 'romgrk/vim-exeline'
 Plug 'romgrk/winteract.vim'                        , {'on': 'InteractiveWindow'}
 " }}}
+"
+" Plug '~/github/tree-sitter.vim'
 
 call plug#end() " }}}
 "=============================================================================
