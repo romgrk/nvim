@@ -308,13 +308,13 @@ call hi#('Macro',                '#005cc5', '',        'bold')
 call hi#('Define',               '#005cc5', '',        'bold')
 call hi#('PreCondit',            '#005cc5', '',        'bold')
 call hi#('Include',              '#005cc5', '',        'bold')
+" #d73a49
+call hi#('Repeat',               '#C36558', '',        '')
+call hi#('Keyword',              '#C36558', '',        '')
+call hi#('Statement',            '#C36558', '',        'none')
+call hi#('Label',                '#C36558', '',        '')
 
-call hi#('Repeat',               '#d73a49', '',        '')
-call hi#('Keyword',              '#d73a49', '',        '')
-call hi#('Statement',            '#d73a49', '',        'none')
-call hi#('Label',                '#d73a49', '',        '')
-
-call hi#('Operator',             '#d73a49', '',        '')
+call hi#('Operator',             '#C36558', '',        '')
 "call hi#('Operator',             '#94afff', '',        '')
 
 call hi#('Constant',             '#005cc5', '',        'none')
@@ -358,11 +358,11 @@ call hi#('StaticFunc',           '#ffb964', '',        'none')
 call hi#('Property',             '#dea537', '',        'none')
 
 
-call hi#('Type',                 '#d73a49', '',        'none')
-call hi#('StorageClass',         '#d73a49', '',        'none')
-call hi#('Class',                '#d73a49', '',        'none')
-call hi#('Structure',            '#d73a49', '',        'none')
-call hi#('Typedef',              '#d73a49', '',        'none')
+call hi#('Type',                 '#C36558', '',        'none')
+call hi#('StorageClass',         '#C36558', '',        'none')
+call hi#('Class',                '#C36558', '',        'none')
+call hi#('Structure',            '#C36558', '',        'none')
+call hi#('Typedef',              '#C36558', '',        'none')
 
 call hi#('Regexp',               '#dd0093', 'none',        'none')
 call hi#('RegexpSpecial',        '#a40073', 'none',        'none')
