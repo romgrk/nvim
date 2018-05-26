@@ -15,23 +15,23 @@ com! -bar EditFtplugin                 call Edit(FindFtPlugin())
 com! -bar EditFtsyntax                 call Edit(FindFtSyntax())
 
 func! Edit(...) "                                                             {{{
-  if !(win#info().listed)
-    call GoFirstListedWindow()
-  end
-  for element in a:000
-    if type(element) == 1 " string
-      let files = split(glob(element), '\n')
-    elseif type(element) == 3 " list
-      let files = element
-    else
-      throw 'Unsupported type'
+    if !(win#info().listed)
+        call GoFirstListedWindow()
     end
-    if len(files) > 0
-      call map(files, 'execute("edit " . v:val)')
-    else
-      execute 'edit ' . element
-    end
-  endfor
+    for element in a:000
+        if type(element) == 1 " string
+            let files = split(glob(element), '\n')
+        elseif type(element) == 3 " list
+            let files = element
+        else
+            throw 'Unsupported type'
+        end
+        if len(files) > 0
+            call map(files, 'execute("edit " . v:val)')
+        else
+            execute 'edit ' . element
+        end
+    endfor
 endfu "                                                                      }}}
 func! PreviewEdit(file)
     let saved_previewheight = &previewheight
@@ -56,11 +56,11 @@ endfu "                                                                      }}}
 
 
 function! ExecTerminal(command, arguments)
-  let quoted_arguments = join(map(copy(a:arguments), {key, val -> expand(val)}), ' ')
-  below split
-  15wincmd _
-  execute 'term ' . a:command . ' ' . quoted_arguments
-  normal! i
+    let quoted_arguments = join(map(copy(a:arguments), {key, val -> expand(val)}), ' ')
+    below split
+    15wincmd _
+    execute 'term ' . a:command . ' ' . quoted_arguments
+    normal! i
 endfunction
 
 
@@ -69,38 +69,38 @@ com! -nargs=* GitPush              call GitPush(<f-args>)
 com! -nargs=* GitStatus            call GitStatus(<f-args>)
 com! -nargs=* GitDiff              call GitDiff(<f-args>)
 function! GitOpenUnmergedFiles()
-  " let cd = system('git rev-parse --show-cdup')[:-2]
-  let files = systemlist('git diff --name-only --diff-filter=U')
-  if len(files) == 0
-    echo 'No unmerged files to open'
-    return
-  end
-  call Edit(files)
+    " let cd = system('git rev-parse --show-cdup')[:-2]
+    let files = systemlist('git diff --name-only --diff-filter=U')
+    if len(files) == 0
+        echo 'No unmerged files to open'
+        return
+    end
+    call Edit(files)
 endfunction
 function! GitPush(...)
-  call ExecTerminal('git push', a:000)
+    call ExecTerminal('git push', a:000)
 endfunction
 function! GitStatus(...)
-  call ExecTerminal('git status', a:000)
+    call ExecTerminal('git status', a:000)
 endfunction
 function! GitDiff(...)
-  call ExecTerminal('git diff', a:000)
+    call ExecTerminal('git diff', a:000)
 endfunction
 
 
 com! -nargs=1 NewProject   call NewProject(<f-args>)
 fu! NewProject(name)
-  wall!
-  CloseSession
+    wall!
+    CloseSession
 
-  let dir = $HOME . '/projects/' . a:name
+    let dir = $HOME . '/projects/' . a:name
 
-  if !isdirectory(dir)
-      call mkdir(dir, 'p')
-  endif
+    if !isdirectory(dir)
+        call mkdir(dir, 'p')
+    endif
 
-  execute 'cd ' . dir
-  execute 'SaveSession ' . a:name
+    execute 'cd ' . dir
+    execute 'SaveSession ' . a:name
 endfu
 
 
@@ -110,27 +110,42 @@ com! -bar BufferReopen     call BufferReopenClosed()
 com! -bar BufferWipeReopen call BufferWipeReopen()
 com! -bar BufferTabview    tab sview %
 fu! FileDeleteCurrent()
-  let file = fnamemodify(bufname('%'),':p')
-  BufferClose
-  if !bufloaded(file) && delete(file)
-    echoerr 'Failed to delete "'.file.'"'
-  endif
-  unlet file
+    let file = fnamemodify(bufname('%'),':p')
+    BufferClose
+    if !bufloaded(file) && delete(file)
+        echoerr 'Failed to delete "'.file.'"'
+    endif
+    unlet file
 endfu
 fu! BufferCloseCurrent ()
-    let bufnum = bufnr("%")
-    let altnum = bufnr("#")
+    let current_buffer = bufnr("%")
 
-    if buflisted(altnum)
-        buffer #
-    else
-        bnext | end
+    let current_window = winnr()
 
-    if bufnum==bufnr('%')
-        enew | end
+    " Change buffer if it's displayed in window
+    for nr in range(winnr('$'))
+        execute  '' . (nr + 1) . 'wincmd w'
 
-    if bufexists(bufnum)
-        exe "bdelete! " . bufnum | end
+        if bufnr('%') != current_buffer
+            continue
+        end
+
+        if buflisted(bufnr("#"))
+            buffer #
+        else
+            bnext | end
+
+        if current_buffer == bufnr('%')
+            enew | end
+    endfor
+
+    " Go back to window
+    execute  '' . (current_window) . 'wincmd w'
+
+    " Delete buffer
+    if bufexists(current_buffer)
+        exe 'bdelete! ' . current_buffer
+    end
 
     doautocmd BufEnter
 endfu
@@ -142,17 +157,17 @@ fu! BufferReopenClosed()
         echom 'BufferReopen: no previously closed buffer'
         return
     end
-    let bufname = remove(g:session.closed_buffers, -1)
-    exe 'edit ' . bufname
-    exe 'EchoHL TextInfo ''restored buffer ' . bufname . ' from close-list'''
+    let buffer_name = remove(g:session.closed_buffers, -1)
+    exe 'edit ' . buffer_name
+    exe 'EchoHL TextInfo ''restored buffer ' . buffer_name . ' from close-list'''
 endfu
 fu! BufferWipeReopen(...)
-    let bufnum = (a:0==1) ? a:1 : bufnr('%')
-    let bufname = bufname(bufnum)
-    exe bufnum . 'bufdo w'
+    let buffer_nr = (a:0==1) ? a:1 : bufnr('%')
+    let buffer_name = bufname(buffer_nr)
+    exe buffer_nr . 'bufdo w'
     exe 'BufferClose'
-    exe bufnum . 'bw'
-    exe 'e ' . bufname
+    exe buffer_nr . 'bw'
+    exe 'e ' . buffer_name
 endfu
 fu! StoreBuffer(bufferName)
     if !buflisted(a:bufferName) | return | end
@@ -243,7 +258,7 @@ fu! ToggleTerminalWindow(nofocus,...) "                                         
 
 endfu "                                                                      }}}
 fu! GetTerminalWindow(...) "                                                 {{{
-" com! GetTerminalWindow       call GetTerminalWindow()
+    " com! GetTerminalWindow       call GetTerminalWindow()
     let terms = buf#filter('&bt=="terminal"')
     if !empty(terms)
         let cmd = 'b' . terms[0]
@@ -380,7 +395,7 @@ function! ToggleWindows ()
         end
     else
         call _#eachx(windows,
-                \ 'call win#close(v:val - v:key)')
+                    \ 'call win#close(v:val - v:key)')
     end
 endfunc
 
@@ -442,7 +457,7 @@ function! ForAllMatches (command, options)
     " Identify the lines to be operated on...
     exec 'silent lvimgrep /' . sensitive . @/ . '/j %'
     let matched_line_nums
-    \ = reverse(filter(map(getloclist(0), 'v:val.lnum'), 'start_line <= v:val && v:val <= end_line'))
+                \ = reverse(filter(map(getloclist(0), 'v:val.lnum'), 'start_line <= v:val && v:val <= end_line'))
 
     " Invert the list of lines, if requested...
     if inverted
@@ -498,7 +513,7 @@ function! FoldText()
     " let start_indent = matchstr(line, '\v^\s*')
     " let end_indent   = matchstr(last_line, '\v^\s*')
     " if len(end_indent) <= len(start_indent)
-      " let text .= '  …  ' . string#StripLeading(last_line, ' 	')
+    " let text .= '  …  ' . string#StripLeading(last_line, ' 	')
     " end
 
     let right_width = 7
@@ -543,7 +558,7 @@ fu! PrintChars(start, end, ...) "                                               
 
     while (i < end)
         execute
-            \ 'let res .="\u' . printf(format, (i)) .'"'
+                    \ 'let res .="\u' . printf(format, (i)) .'"'
         let res .= sep
         let i = i + 1
     endwhile
@@ -587,11 +602,11 @@ fu! SyntaxStack() "                                                          {{{
     echohl None
 endfu "                                                                      }}}
 fu! ToggleSyntax()
-   if exists("g:syntax_on")
-      syntax off
-   else
-      syntax enable
-   endif
+    if exists("g:syntax_on")
+        syntax off
+    else
+        syntax enable
+    endif
 endfu
 fu! EditSyntax (...)
     let file = findfile('syntax/'. &ft . '.vim', &rtp)
@@ -612,17 +627,17 @@ endfunc
 
 
 function! GetArgs()
-  let args = []
-  for i in range(argc())
-    call add(args, argv(i))
-  endfor
-  return args
+    let args = []
+    for i in range(argc())
+        call add(args, argv(i))
+    endfor
+    return args
 endfunction
 function! ClearArgs()
-  let argsLength = argc()
-  for i in range(argsLength)
-    exe 'argdel ' . argv(argsLength - i - 1)
-  endfor
+    let argsLength = argc()
+    for i in range(argsLength)
+        exe 'argdel ' . argv(argsLength - i - 1)
+    endfor
 endfunction
 
 

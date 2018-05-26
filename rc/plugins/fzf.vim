@@ -41,3 +41,7 @@ function! s:fzf_redraw(timer)
   setlocal laststatus=2
   tnoremap <buffer> <a-u> <a-u>
 endfunction
+
+
+
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)

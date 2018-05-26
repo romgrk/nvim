@@ -80,8 +80,8 @@ nnoremap <silent>go  :silent !xdg-open <C-R><C-A><CR>
 xnoremap <silent>go y:silent !xdg-open <C-R>"<CR>
 
 " Search
-nnoremap g/ *
-nnoremap g? #
+nnoremap g/ *zvzz
+nnoremap g? #zvzz
 
 nnoremap 8 iWRONG<Esc>OVERY WRONG<Esc>joVERY VERY WRONG<Esc>
 
@@ -438,6 +438,8 @@ nnoremap       <leader>gf   :NERDTreeFind<CR>
 nnoremap       <leader>ret  :set et <Bar> ret<CR>
 nnoremap       <leader>ap   vip:EasyAlign<CR>
 nnoremap       <leader>dws  :%DeleteTrailingWS<CR>
+
+nnoremap       <leader>how  :r !howdoi<space>
 
 
 
