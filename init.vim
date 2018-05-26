@@ -68,6 +68,7 @@ Plug 'AndrewRadev/sideways.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'wsdjeg/vim-fetch'
 Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'sjl/gundo.vim'
 Plug 'w0rp/ale'
@@ -166,6 +167,8 @@ Plug 'romgrk/replace.vim'
 Plug 'romgrk/vim-exeline'
 Plug 'romgrk/winteract.vim'                        , {'on': 'InteractiveWindow'}
 " }}}
+
+" Plug '~/github/tree-sitter.vim'
 
 call plug#end() " }}}
 "=============================================================================
