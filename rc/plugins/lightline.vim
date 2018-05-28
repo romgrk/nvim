@@ -106,17 +106,36 @@ fu! SessionLine (...)
 endfu
 fu! BufferLine ()
     let result = []
-    for num in buf#filter('&buflisted', '!empty(bufname(v:val))')
-        let type = buf#activity(0+num)
 
-        let hl   = s:bufHL[type]
-        let hl  .= buf#modF(0+num) ? 'Mod' : ''
+    let bufferNames = {}
+    let buffers = buf#filter('&buflisted', '!empty(bufname(v:val))')
+    let buffers = map(buffers, {k, number -> { 'number': number, 'name': buf#tail(number) }})
+    for i in range(len(buffers))
+      let buffer = buffers[i]
+      if !has_key(bufferNames, buffer.name)
+        let bufferNames[buffer.name] = i
+      else
+        let other = bufferNames[buffer.name]
+        let name = buffer.name
+        let buffer.name = bufname(buffer.number)
+        let buffers[other].name = bufname(buffers[other].number)
+        let bufferNames[buffer.name] = buffer
+        let bufferNames[buffers[other].name] = buffers[other]
+        call remove(bufferNames, name)
+      end
+    endfor
+
+    for buffer in buffers
+        let type = buf#activity(0+buffer.number)
+
+        let hl  = s:bufHL[type]
+        let hl .= buf#modF(0+buffer.number) ? 'Mod' : ''
 
         let hlprefix   = '%#'. hl .'#'
         " let iconprefix = '%#'. s:bufHL[type] .'Icon#'
         " let iconExpr  = '%{FtIcon("'. bufname(num) .'")}'
         " let result += [iconprefix . iconExpr]
-        let bufExpr = '%{buf#tail('. num .')}'
+        let bufExpr = '%{"'. buffer.name .'"}'
         let sep = '%( %)'
         let result += [hlprefix . sep . bufExpr . sep]
     endfor
