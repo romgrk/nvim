@@ -9,6 +9,7 @@
 nnoremap <C-X>h  :SidewaysLeft<CR>
 nnoremap <C-X>l  :SidewaysRight<CR>
 
+nnoremap gg ggzz
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -407,7 +408,7 @@ nnoremap       <leader>gd.    :GitDiff %<CR>
 nnoremap       <leader>hh     :GitGutter
 nnoremap       <leader>hs     :GitGutterStageHunk<CR>
 nnoremap       <leader>hv     :GitGutterPreviewHunk<CR>
-nnoremap       <leader>hr     :GitGutterUndoHunk<CR>
+nnoremap       <leader>hu     :GitGutterUndoHunk<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching
