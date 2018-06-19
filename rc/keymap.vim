@@ -84,8 +84,6 @@ xnoremap <silent>go y:silent !xdg-open <C-R>"<CR>
 nnoremap g/ *zvzz
 nnoremap g? #zvzz
 
-nnoremap 8 iWRONG<Esc>OVERY WRONG<Esc>joVERY VERY WRONG<Esc>
-
 
 " Insert newline
 nnoremap <CR>   o<Esc>
