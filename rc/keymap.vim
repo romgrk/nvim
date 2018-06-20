@@ -9,6 +9,7 @@
 nnoremap <C-X>h  :SidewaysLeft<CR>
 nnoremap <C-X>l  :SidewaysRight<CR>
 
+nnoremap gg ggzz
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -82,8 +83,6 @@ xnoremap <silent>go y:silent !xdg-open <C-R>"<CR>
 " Search
 nnoremap g/ *zvzz
 nnoremap g? #zvzz
-
-nnoremap 8 iWRONG<Esc>OVERY WRONG<Esc>joVERY VERY WRONG<Esc>
 
 
 " Insert newline
@@ -407,7 +406,7 @@ nnoremap       <leader>gd.    :GitDiff %<CR>
 nnoremap       <leader>hh     :GitGutter
 nnoremap       <leader>hs     :GitGutterStageHunk<CR>
 nnoremap       <leader>hv     :GitGutterPreviewHunk<CR>
-nnoremap       <leader>hr     :GitGutterUndoHunk<CR>
+nnoremap       <leader>hu     :GitGutterUndoHunk<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching
