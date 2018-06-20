@@ -285,12 +285,12 @@ xnoremap iw iw
 " }}}
 
 " ALE
-nnoremap <silent>]a  :ALENext<CR>zz
-nnoremap <silent>[a  :ALEPrevious<CR>zz
+nnoremap <silent>]a  :ALENext<CR>zvzz
+nnoremap <silent>[a  :ALEPrevious<CR>zvzz
 
 " GitGutter hunks
-nnoremap <silent>[h  :GitGutterPrevHunk<CR>zz
-nnoremap <silent>]h  :GitGutterNextHunk<CR>zz
+nnoremap <silent>[h  :GitGutterPrevHunk<CR>zvzz
+nnoremap <silent>]h  :GitGutterNextHunk<CR>zvzz
 
 " 1}}}
 "===============================================================================
@@ -883,8 +883,8 @@ xmap -s <Plug>(start_case_operator)
 nmap / <Plug>(incsearch-forward)
 nmap ? <Plug>(incsearch-backward)
 
-nmap n  <Plug>(incsearch-nohl-n)zz
-nmap N  <Plug>(incsearch-nohl-N)zz
+nmap n  <Plug>(incsearch-nohl-n)zvzz
+nmap N  <Plug>(incsearch-nohl-N)zvzz
 nmap *  <Plug>(incsearch-nohl-*)
 nmap #  <Plug>(incsearch-nohl-#)
 
