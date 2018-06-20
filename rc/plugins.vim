@@ -119,6 +119,8 @@ let NERDCreateDefaultMappings = 0
 
 let columnMove_mappings = 0
 
+let unstack_mapkey = '<F9>'
+
 " }}}
 "=============================================================================
 " Syntax, Folding                                                           {{{
