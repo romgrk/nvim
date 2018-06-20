@@ -8,6 +8,6 @@ nnoremap <buffer> <F4> :call ToggleHeader()<CR>
 
 nnoremap <buffer> <leader>yc :YcmCompleter<space>
 
-nnoremap <buffer> gd   :YcmCompleter GoTo<CR>
-nnoremap <buffer> gD   :YcmCompleter GoToDefinition<CR>
-nnoremap <buffer> K    :YcmCompleter GetDoc<CR>
+nnoremap <buffer><silent> gd   :YcmCompleter GoTo<CR>
+nnoremap <buffer><silent> gD   :YcmCompleter GoToDefinition<CR>
+nnoremap <buffer><silent> K    :YcmCompleter GetDoc<CR>
