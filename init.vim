@@ -48,7 +48,7 @@ Plug 'xleng/YCM_WIN_X86'
 Plug 'romgrk/AutoComplPop'
 end
 " Editing                                                                    {{{
-" Plug 'neomake/neomake'
+Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
 Plug 'wellle/targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
@@ -106,7 +106,7 @@ Plug 'tmhedberg/SimpylFold'                              , { 'for': 'python' }
 Plug 'mattboehm/vim-unstack'                             , { 'for': 'python' }
 Plug 'othree/xml.vim'
 "Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript', 'do': 'npm install --update' }
-Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
+"Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'neoclide/vim-jsx-improve'                          , { 'for': 'javascript.jsx' }
@@ -129,7 +129,7 @@ Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'sc
 "Plug 'lukerandall/haskellmode-vim'                       , { 'for': 'haskell' }
 "Plug 'eagletmt/neco-ghc'                                 , { 'for': 'haskell' }
 "Plug 'eagletmt/ghcmod-vim'                               , { 'for': 'haskell' }
-"Plug 'kelan/gyp.vim'                                     , { 'for': 'gyp' }
+Plug 'kelan/gyp.vim'                                     , { 'for': 'gyp' }
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
 Plug 'dzeban/vim-log-syntax'
