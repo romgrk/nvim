@@ -88,19 +88,22 @@ function! GitDiff(...)
 endfunction
 
 
-com! -nargs=1 NewProject   call NewProject(<f-args>)
-fu! NewProject(name)
+com! -nargs=+ NewProject   call NewProject(<f-args>)
+fu! NewProject(...)
+    let name = a:000[0]
+    let folder = len(a:000) > 1 ? a:000[1] : 'projects'
+
     wall!
     CloseSession
 
-    let dir = $HOME . '/projects/' . a:name
+    let dir = $HOME . '/' . folder . '/' . name
 
     if !isdirectory(dir)
         call mkdir(dir, 'p')
     endif
 
     execute 'cd ' . dir
-    execute 'SaveSession ' . a:name
+    execute 'SaveSession ' . name
 endfu
 
 
