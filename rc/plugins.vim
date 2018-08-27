@@ -7,7 +7,7 @@
 let jsx_ext_required        = 1 " Allow JSX in normal JS files
 let javascript_plugin_jsdoc = 1
 
-let ale_sign_error = '⨯ ' " ✖
+let ale_sign_error   = '⨯ ' " ✖
 let ale_sign_warning = '· ' " ⚠
 
 let LanguageClient_diagnosticsDisplay = {
@@ -20,7 +20,7 @@ let LanguageClient_diagnosticsDisplay = {
 \ 2: {
 \     "name": "Warning",
 \     "texthl": "ALEWarning",
-\     "signText": "··",
+\     "signText": "·",
 \     "signTexthl": "ALEWarningSign",
 \ },
 \ 3: {

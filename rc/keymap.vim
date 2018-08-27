@@ -417,8 +417,8 @@ nnoremap       <leader>mv     :Move <C-D>
 nnoremap       <leader>rn     :Rename<space>
 
 " Search:
-nnoremap       <leader>ag     :Rg<space>
-nnoremap       <leader>aa     :Rg<CR>
+nnoremap       <leader>ag     :FzfRg<space>
+nnoremap       <leader>aa     :FzfRg <C-r><C-w><CR>
 
 "===============================================================================
 

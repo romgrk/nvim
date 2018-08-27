@@ -45,3 +45,22 @@ endfunction
 
 
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)
+
+command! -bang -nargs=* FzfRg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '
+  \         . '--colors="path:fg:yellow" '
+  \         . '--colors="path:style:bold" '
+  \         . '--colors="line:fg:white" '
+  \         . '--colors="line:style:bold" '
+  \         . '--colors="match:fg:red" '
+  \         . '--colors="match:style:bold" '
+  \         . shellescape(<q-args>),
+  \   1,
+  \   extend(
+  \       { 'down': '20%' },
+  \       <bang>0 ? fzf#vim#with_preview('up:60%')
+  \               : fzf#vim#with_preview('right:40%:hidden', '?')
+  \   ),
+  \   <bang>0
+  \ )
