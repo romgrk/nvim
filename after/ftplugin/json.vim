@@ -7,6 +7,9 @@ setlocal formatprg=json_pp
 nmap <buffer> ]] h/"[^"]*"<CR><Esc><right>
 nmap <buffer> [[ h?"[^"]*"<CR><Esc><right>
 
+" inoremap <expr><buffer> ' lexima#expand('"', 'i')
+" inoremap <expr><buffer> " lexima#expand("'", 'i')
+
 "nnoremap <buffer> <Tab>        :call <SID>nextField()<CR>
 "vnoremap <buffer> <Tab>   <Esc>:call <SID>nextField()<CR>
 "inoremap <buffer> <A-tab> <Esc>:call <SID>nextField()<CR>
