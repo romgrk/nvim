@@ -68,6 +68,9 @@ set cdpath+=$HOME/projects
 
 set undofile
 if !has('win32')
+if !exists('$XDG_CACHE_HOME')
+  let $XDG_CACHE_HOME = $HOME . '/.cache'
+end
 set undodir=$XDG_CACHE_HOME/vim_undo
 set viewdir=$XDG_CACHE_HOME/vim_views
 else
