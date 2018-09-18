@@ -8,5 +8,5 @@ nnoremap <buffer><silent> gd    :call LanguageClient#textDocument_definition()<C
 nnoremap <buffer><silent> <F2>  :call LanguageClient#textDocument_rename()<CR>
 nnoremap <buffer><silent> <F3>  :call LanguageClient#textDocument_references()<CR>
 
-iabbrev false False
-iabbrev true True
+iabbrev <buffer> false False
+iabbrev <buffer> true True

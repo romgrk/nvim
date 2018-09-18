@@ -35,6 +35,8 @@ if !filereadable('.tern-project') && filereadable('~/templates/tern-project')
     Warn 'Created ' . fnamemodify('.tern-project', ':p')
 end
 
+iabbrev <buffer> cosnt const
+
 
 let b:syng_str = ''
 let b:syng_strcom = ''
