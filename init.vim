@@ -124,7 +124,7 @@ Plug 'othree/html5-syntax.vim'                           , { 'for': 'html' }
 Plug 'tpope/vim-liquid'                                  , { 'for': 'html' }
 Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'rstacruz/sparkup'                                  , { 'for': 'html', 'rtp': 'vim'}
-Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'scss'] }
+"Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'scss'] }
 "Plug 'leafo/moonscript-vim'                              , { 'for': 'moonscript' }
 "Plug 'lukerandall/haskellmode-vim'                       , { 'for': 'haskell' }
 "Plug 'eagletmt/neco-ghc'                                 , { 'for': 'haskell' }
