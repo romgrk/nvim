@@ -149,6 +149,7 @@ let theme.fg                    = '#e4e4e4'
 let theme.fg_subtle             = '#d0d0d0'
 let theme.fg_shaded             = '#a8a8a8'
 let theme.fg_dark               = '#666666'
+let theme.fg_whitespace         = '#303030'
 let theme.fg_widget             = '#4d5656'
 let theme.fg_overlay            = '#f3f3f2'
 
@@ -282,11 +283,12 @@ call hi#('IncSearchCursor', '',        '',        'reverse')
 
 " hi! NonText gui=none guibg=none guifg=grey40
 " hi! Conceal gui=none guibg=none guifg=grey20
-call hi#('Conceal',         '#393939',       'none',    '')
-call hi#('SpecialKey',      '#333333',       'none',    '')
-call hi#('NonText',         theme.fg_subtle, '',        'bold')
-call hi#('MatchParen',      '',              '#28485f', 'none')
-call hi#('SpecialOpt',      '#868680',       '#32363a', '')
+call hi#('Conceal',         '#393939',           'none',    '')
+call hi#('SpecialKey',      '#333333',           'none',    '')
+call hi#('NonText',         theme.fg_subtle,     '',        'bold')
+call hi#('Whitespace',      theme.fg_whitespace, '',        '')
+call hi#('MatchParen',      '',                  '#28485f', 'none')
+call hi#('SpecialOpt',      '#868680',           '#32363a', '')
 
 
 call hi#('AutoHL',          '',        theme.bg,  'none')
