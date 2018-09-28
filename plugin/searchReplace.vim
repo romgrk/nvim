@@ -16,6 +16,9 @@ let s:isSearchDone = v:false
 let s:isSearchMatchesDone = v:false
 let s:position = 'right'
 
+let s:command = v:null
+let s:commandWithColumns = v:null
+
 if !exists('g:searchReplace_closeOnExit')
     let g:searchReplace_closeOnExit = v:true
 end
@@ -65,12 +68,15 @@ function! s:runSearch(pattern, ...)
     let s:isSearchDone = v:false
     let s:isSearchMatchesDone = v:false
 
+    let s:command = "rg -nH " . shellescape(s:pattern) . " " . join(s:paths)
+    let s:commandWithColumns = "rg -nHo --column " . shellescape(s:pattern) . " " . join(s:paths)
+
     call s:run(
-            \ "rg -nH " . shellescape(s:pattern) . " " . join(s:paths),
+            \ s:command,
             \ s:directory,
             \ function('s:onExitSearch'))
     call s:run(
-            \ "rg -nHo --column " . shellescape(s:pattern) . " " . join(s:paths),
+            \ s:commandWithColumns,
             \ s:directory,
             \ function('s:onExitSearchMatches'))
 
