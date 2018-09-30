@@ -235,6 +235,7 @@ function! s:createSearchWindow()
     if g:searchReplace_closeOnExit
         au BufLeave <buffer> bd
     end
+    nnoremap                 <buffer>q     <C-W>p
     nnoremap                 <buffer><Esc> <C-W>p
     nnoremap   <expr><nowait><buffer><A-r> <SID>replaceMapping()
     nnoremap   <expr><nowait><buffer><CR>  <SID>replaceMapping()
