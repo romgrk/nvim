@@ -117,13 +117,14 @@ function! s:onStdout(jobID, data, event) dict
             let text .= s:job.buffer
             let s:job.buffer = v:null
         end
+        let jsonData = v:null
         try
-            call json_decode(m)
+            let jsonData = json_decode(m)
         catch
             let s:job.buffer = m
             return
         endtry
-        call s:appendMatch(json_decode(m))
+        call s:appendMatch(jsonData)
     endfor
 endfunction
 
