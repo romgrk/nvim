@@ -6,9 +6,6 @@ let &l:colorcolumn=120
 let b:mkd = 1
 
 
-inoremap <buffer>``  ```<CR>```<C-O>k
-
-
 " au! Mkd
 " au BufWritePost <buffer> call GFM()
 "function! GFM()
