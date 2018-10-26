@@ -84,7 +84,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf'                                      , { 'dir': '~/.local/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Konfekt/FastFold'
+" Plug 'Konfekt/FastFold'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'xolox/vim-misc'
@@ -92,7 +92,8 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 if !has('win32')
-Plug 'xolox/vim-easytags'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
 end
 "Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
@@ -122,7 +123,6 @@ Plug 'digitaltoad/vim-pug'                               , { 'for': ['jade', 'pu
 Plug 'othree/html5.vim'                                  , { 'for': 'html' }
 Plug 'othree/html5-syntax.vim'                           , { 'for': 'html' }
 Plug 'tpope/vim-liquid'                                  , { 'for': 'html' }
-Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'rstacruz/sparkup'                                  , { 'for': 'html', 'rtp': 'vim'}
 "Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'scss'] }
 "Plug 'leafo/moonscript-vim'                              , { 'for': 'moonscript' }
@@ -150,6 +150,8 @@ Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnab
 "Plug 'vim-airline/vim-airline'                           , {'on': 'AirlineToggle' }
 "Plug 'vim-airline/vim-airline-themes'                    , {'on': 'AirlineToggle' }
 Plug 'machakann/vim-highlightedyank'
+Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
+" Plug 'andymass/vim-matchup'
 " }}}
 " Colors/Colorscheme                                                         {{{
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
