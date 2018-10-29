@@ -68,6 +68,8 @@ Plug 'AndrewRadev/sideways.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+" Plug 'fidian/hexmode'
+Plug '~/github/hexmode'
 Plug 'wsdjeg/vim-fetch'
 Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'sjl/gundo.vim'
