@@ -4,19 +4,19 @@ let fzf_layout = { 'window': 'belowright 15split enew' }
 
 " Customize fzf colors to match your color scheme
 let fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-\ 'bg':      ['bg', 'Normal'],
-\ 'hl':      ['fg', 'Sneak'],
-\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-\ 'hl+':     ['fg', 'Sneak'],
-\ 'info':    ['fg', 'PreProc'],
-\ 'border':  ['fg', 'Ignore'],
-\ 'prompt':  ['fg', 'Conditional'],
-\ 'pointer': ['fg', 'Exception'],
-\ 'marker':  ['fg', 'Keyword'],
-\ 'spinner': ['fg', 'Label'],
-\ 'header':  ['fg', 'Comment'] }
+\{ 'fg':      ['fg', 'Normal'],
+\  'bg':      ['bg', 'Normal'],
+\  'hl':      ['fg', 'Sneak'],
+\  'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\  'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+\  'hl+':     ['fg', 'Sneak'],
+\  'info':    ['fg', 'PreProc'],
+\  'border':  ['fg', 'Ignore'],
+\  'prompt':  ['fg', 'Conditional'],
+\  'pointer': ['fg', 'Exception'],
+\  'marker':  ['fg', 'Keyword'],
+\  'spinner': ['fg', 'Label'],
+\  'header':  ['fg', 'Comment'] }
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -46,15 +46,42 @@ endfunction
 
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)
 
+
+function! s:color_to_fzf (color)
+  let r = '0x' . strpart(a:color, 1, 2)
+  let g = '0x' . strpart(a:color, 3, 2)
+  let b = '0x' . strpart(a:color, 5, 2)
+  return join([r, g, b], ',')
+endfunc
+
+function! s:get_fzf_rg_colors ()
+  if &bg == 'dark'
+    let fzf_rg_colors_dark =
+      \           '--colors="path:fg:yellow" '
+      \         . '--colors="path:style:bold" '
+      \         . '--colors="line:fg:white" '
+      \         . '--colors="line:style:bold" '
+      \         . '--colors="match:fg:red" '
+      \         . '--colors="match:style:bold" '
+
+    return endiffzf_rg_colors_dark
+  end
+
+  let fzf_rg_colors_light =
+    \           '--colors="path:fg:' . s:color_to_fzf(hi#fg('directory')) . '" '
+    \         . '--colors="path:style:bold" '
+    \         . '--colors="line:fg:0x30,0x30,0x30" '
+    \         . '--colors="line:style:bold" '
+    \         . '--colors="match:fg:red" '
+    \         . '--colors="match:style:bold" '
+
+  return fzf_rg_colors_light
+endfunc
+
 command! -bang -nargs=* FzfRg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '
-  \         . '--colors="path:fg:yellow" '
-  \         . '--colors="path:style:bold" '
-  \         . '--colors="line:fg:white" '
-  \         . '--colors="line:style:bold" '
-  \         . '--colors="match:fg:red" '
-  \         . '--colors="match:style:bold" '
+  \         . s:get_fzf_rg_colors()
   \         . shellescape(<q-args>),
   \   1,
   \   extend(
