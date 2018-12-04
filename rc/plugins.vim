@@ -242,6 +242,11 @@ let easytags_languages = {
 "=============================================================================
 " Various                                                                   {{{1
 
+let miniyank_maxitems = 100
+
+let hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.wasm'
+let hexmode_xxd_options = '-g 1'
+
 let colorizer_maxlines = -1
 let colorizer_startup  = 0
 

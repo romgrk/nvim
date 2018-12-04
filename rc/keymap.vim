@@ -430,6 +430,8 @@ nnoremap       <leader>w+   :call SizeUp()<CR>
 
 " Various:
 
+nnoremap       <leader>p    :VCoolor<CR>
+
 nnoremap       <leader>ca   :CtrlPClearAllCaches<CR>
 
 nnoremap       <leader>gf   :NERDTreeFind<CR>

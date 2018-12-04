@@ -68,8 +68,8 @@ Plug 'AndrewRadev/sideways.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
-" Plug 'fidian/hexmode'
-Plug '~/github/hexmode'
+Plug 'fidian/hexmode'
+" Plug 'zxqfl/tabnine-vim'
 Plug 'wsdjeg/vim-fetch'
 Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'sjl/gundo.vim'
@@ -143,6 +143,7 @@ end
 
 " }}}
 " UI                                                                         {{{
+Plug 'KabbAmine/vCoolor.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
