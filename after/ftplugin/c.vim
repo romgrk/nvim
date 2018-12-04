@@ -1,11 +1,19 @@
 runtime! syntax/comment.vim
 syntax cluster cCommentGroup add=@comments
-syntax match   cBang /!=\@!/
-hi! link cBang b_pink
 
 setlocal foldmethod=syntax
 
-nnoremap <silent><buffer> gh  :call ToggleHeader()<CR>
+nnoremap <buffer> gh   :call ToggleHeader()<CR>
+nnoremap <buffer> <F4> :call ToggleHeader()<CR>
+
+nnoremap <buffer> <leader>yc :YcmCompleter<space>
+
+nnoremap <buffer><silent> gd   :YcmCompleter GoTo<CR>
+nnoremap <buffer><silent> gD   :YcmCompleter GoToDefinition<CR>
+nnoremap <buffer><silent> K    :YcmCompleter GetDoc<CR>
+
+
+
 if !exists('*ToggleHeader')
 function! ToggleHeader ()
     if expand('%:e') == 'h'

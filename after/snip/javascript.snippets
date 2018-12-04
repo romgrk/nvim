@@ -163,6 +163,10 @@ snippet "([\w_0-9]+)\?" "if exist" r
 ${1:`!p snip.rv = match.group(1)`} !== null && $1 !== undefined
 endsnippet
 
+snippet exit "process.exit" b
+process.exit(${1:0})
+endsnippet
+
 ### Functions:
 
 # call
