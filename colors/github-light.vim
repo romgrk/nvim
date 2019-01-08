@@ -273,7 +273,7 @@ call hi#('IncSearchCursor', '',        '',        'reverse')
 call hi#('Conceal',         '#393939',       'none',    '')
 call hi#('SpecialKey',      '#333333',       'none',    '')
 call hi#('NonText',         theme.fg_subtle, '',        'bold')
-call hi#('MatchParen',      '',              '#28485f', 'none')
+call hi#('MatchParen',      '',              '#A9D0EC', 'none')
 call hi#('SpecialOpt',      '#868680',       '#32363a', '')
 call hi#('Whitespace',      '#8f9aa9',       '',        '')
 
