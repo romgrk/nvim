@@ -7,5 +7,6 @@ let LanguageClient_serverCommands = {
 \ 'less':   ['css-languageserver', '--stdio'],
 \ 'javascript': ['javascript-typescript-stdio'],
 \ 'javascript.jsx': ['javascript-typescript-stdio'],
+\ 'typescript': ['javascript-typescript-stdio'],
 \ 'python': ['pyls'],
 \}

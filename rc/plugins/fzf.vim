@@ -42,6 +42,18 @@ function! s:fzf_redraw(timer)
   tnoremap <buffer> <a-u> <a-u>
 endfunction
 
+let fzf_btags_command = {}
+" let fzf_btags_command = {
+" \ 'javascript': 'jsctags %s -f',
+" \ 'javascript.jsx': 'jsctags %s -f',
+" \ }
+
+command! -bang -nargs=* BTags
+  \  if has_key(g:fzf_btags_command, &filetype)
+  \|   call fzf#vim#buffer_tags(<q-args>, printf(g:fzf_btags_command[&filetype], shellescape(expand('%'))), <bang>0)
+  \| else
+  \|   call fzf#vim#buffer_tags(<q-args>, <bang>0)
+  \| endif
 
 
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview('right:50%'), <bang>0)
