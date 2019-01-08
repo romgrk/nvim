@@ -4,6 +4,14 @@
 " Last Modified:  5 May 2016
 " Exec: !::exe [So]
 
+function! s:onTermOpen ()
+    setfiletype terminal
+    setlocal nocursorline nocursorcolumn
+    if hi#exists('TermNormal')
+        set winhl=Normal:TermNormal,NormalNC:TermNormalNC
+    end
+endfunc
+
 exe 'augroup RC'
     au!
 
@@ -35,8 +43,8 @@ exe 'augroup RC'
 
     " Terminal
     if has('nvim')
-    au TermOpen * setfiletype terminal
     au TermOpen * au BufEnter <buffer=abuf> startinsert
+    au TermOpen * call <SID>onTermOpen()
     end
 
     " Cmdwin in ./cmdwin.vim
@@ -48,9 +56,9 @@ exe 'augroup RC'
     au BufReadPost,BufNewFile * call BufferReadHandler()
 
     " CursorLine & CursorColumn
-    au WinLeave * setlocal nocursorline nocursorcolumn
-    au WinEnter * let &l:cul = &g:cul
-    au WinEnter * let &l:cuc = &g:cuc
+    au WinLeave * if &bt == '' | exe 'setlocal nocursorline nocursorcolumn' | end
+    au WinEnter * if &bt == '' | let &l:cul = &g:cul | end
+    au WinEnter * if &bt == '' | let &l:cuc = &g:cuc | end
 
     " Colors
     au FileType css,scss,sass,less call colorizer#ColorHighlight(1)

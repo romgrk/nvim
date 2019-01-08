@@ -206,8 +206,11 @@ call hi#('CursorColumn',     '',              theme.bg_verysubtle)
 call hi#('CursorLineNr',     theme.hl,        theme.bg_verysubtle, 'none')
 call hi#('LineNr',           theme.fg_widget, theme.bg_widget, 'none')
 
-call hi#('TermCursor',       '',                    theme.base,           '')
-call hi#('TermCursorNC',     '',                    theme.unfocused_base, '')
+call hi#('TermCursor',       theme.bg,        'none',            'reverse')
+call hi#('TermCursorNC',     theme.bg_dark,   'none',            'reverse')
+call hi#('TermNormal',       theme.bg,        theme.base,    '')
+call hi#link('TermNormalNC', 'TermNormal')
+
 
 call hi#('Visual',           theme.selection)
 call hi#('LastVisual',       '',              theme.bg_selection_dark, '')
@@ -222,6 +225,7 @@ call hi#('PmenuSel',         theme.fg, theme.bg_selection)
 call hi#('PmenuSbar',        '',       theme.bg_dark)
 call hi#('PmenuThumb',       '#666660', '#666660')
 call hi#('Terminal',         s:white,  s:_black, 'bold'  )
+
 
 call hi#('Folded',           'none',          theme.bg_verysubtle,  'none')
 call hi#('FoldColumn',       theme.fg_subtle, theme.bg_widget,      '')
@@ -245,8 +249,6 @@ call hi#('BufferActive',     theme.hl,        theme.bg_dark, '')
 call hi#('BufferMod',        s:brightyellow,  theme.bg_dark, 'italic,bold')
 call hi#('BufferCurrentMod', s:yellow,        theme.bg,      'italic')
 call hi#('BufferActiveMod',  s:yellow,        theme.bg_dark, 'italic')
-
-call hi#('Terminal',    [ s:white, s:_black, '', '' ] )
 
 " }}}
 " Search, Highlight, Conceal, Messages                                               {{{

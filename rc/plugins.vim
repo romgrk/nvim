@@ -242,6 +242,8 @@ let easytags_languages = {
 "=============================================================================
 " Various                                                                   {{{1
 
+let vcoolor_disable_mappings = 1
+
 let miniyank_maxitems = 100
 
 let hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.wasm'
