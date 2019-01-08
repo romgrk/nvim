@@ -4,22 +4,19 @@ let NERDDelimiterMap['typescript'] =
 setlocal foldmethod=syntax
 " setlocal omnifunc=tsuquyomi#complete
 setlocal completeopt=menu,menuone,preview
-setlocal keywordprg=:ZeavimSearch
-" nnoremap <buffer> K :Zeavim<CR>
+
+nnoremap <buffer> K :YcmCompleter GetDoc<CR>
+nnoremap <buffer> <leader>w :YcmCompleter GetType<CR>
 
 vmap <buffer> <A-'>         <Plug>NERDCommenterSexy
 nmap <buffer> <A-'>         <Plug>NERDCommenterToggle
 
 
-nmap     <buffer> <C-R>       <Plug>(TsuquyomiRenameSymbol)
-nnoremap <buffer> <leader>rr   :TsuRenameSymbol<CR>
-nnoremap <buffer> <leader>gr   :TsuReferences<CR>
 " nnoremap <buffer> <C-R>     :YcmCompleter RefactorRename<space>
 
-nnoremap <buffer> <leader>w :YcmCompleter GetType<CR>
-inoremap <buffer> <A-h>     <Esc>:Info ' => ' . tsuquyomi#hint()<CR>a
 " inoremap <buffer> <A-h>     <Esc>:YcmCompleter GetType<CR>a
 
+nnoremap <buffer> gd                    :YcmCompleter GoToDefinition<CR>
 nnoremap <buffer> <C-W>d    <C-W>v<C-W>l:YcmCompleter GoToDefinition<CR>
 nnoremap <buffer> <C-W>]    <C-W>v<C-W>l:YcmCompleter GoToType<CR>
 
