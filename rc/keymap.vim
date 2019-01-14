@@ -516,6 +516,9 @@ tmap <A-.>          <C-\><C-n>:NextTerminalBuffer<CR>
 tmap <C-A-,>        <C-\><C-n>:bp<CR>
 tmap <C-A-.>        <C-\><C-n>:bn<CR>
 
+" Paste
+tnoremap <A-p>      <C-\><C-n>pi
+
 " Close
 tnoremap <A-c>      <C-\><C-n>:bd!<CR>
 
