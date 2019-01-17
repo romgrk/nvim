@@ -20,8 +20,6 @@ function! s:opfunc (type, ...)
     let &selection = "inclusive"
     let reg_save = @@
 
-    echom string(a:000)
-
     " If invoked from Visual mode, use '< and '> marks.
 
         if (!empty(a:000))     | silent exe "normal! `<" . a:type . "`>y"
@@ -30,7 +28,9 @@ function! s:opfunc (type, ...)
     else                       | silent exe "normal! `[v`]y"
     end
 
-    let @@ = g:string_transform[getreg('=')](@@)
+    let method = !empty(a:000) ? a:000[0] : getreg('=')
+
+    let @@ = g:string_transform[method](@@)
 
     normal! gv""p
 
