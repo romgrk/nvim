@@ -92,8 +92,8 @@ function! s:exchange_selection()
 endfunc
 
 function! s:reset_selection()
-  let s:has_selection = v:true
-  let s:selection = s:get_current_selection()
+  let s:has_selection = v:false
+  let s:selection = v:null
   let s:mode = v:null
 
   for matchID in s:matches
