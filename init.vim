@@ -143,6 +143,7 @@ end
 
 " }}}
 " UI                                                                         {{{
+Plug 'RRethy/vim-illuminate'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
