@@ -348,7 +348,7 @@ call hi#('SpecialDelimiter',     '#a040af', '',        'none')
 
 call hi#('Identifier',           theme.fg,  '',        'none')
 call hi#('Variable',             '#ffe790', '',        'none')
-call hi#('Argument',             '#dea537', '',        'none')
+call hi#('Argument',             '',        '',        'none')
 
 " func name
 call hi#('Function',             '#6f42c1', '',        'none')
