@@ -61,7 +61,7 @@ if (&bg == 'light')
     hi! IndentGuidesEven guibg=#eeeeee
     hi! link IndentGuidesOdd  Folded
 
-    hi! link MatchParen          bg_brightteal
+    " hi! link MatchParen          bg_brightteal
     hi! link hiPairs_matchPair   bg_brightteal
     hi! link hiPairs_unmatchPair bg_brightteal
 
