@@ -173,6 +173,7 @@ let theme.fg_selection          = 'none'
 let theme.bg_selection          = '#d7d4ef'
 let theme.bg_selection_dark     = '#d7d4ef'
 let theme.bg_selection_light    = '#DEEBFE'
+let theme.bg_selection_very_light = '#E9F2FF'
 let theme.selection_dark        = ['none', '#d7d4ef']
 let theme.selection             = ['none', '#d7d4ef']
 let theme.selection_light       = ['none', '#d7d4ef']
@@ -207,7 +208,7 @@ call hi#('CursorLineNr',     theme.hl,        theme.bg_verysubtle, 'none')
 call hi#('LineNr',           theme.fg_widget, theme.bg_widget, 'none')
 
 call hi#('TermCursor',       theme.bg,        'none',            'reverse')
-call hi#('TermCursorNC',     theme.bg_dark,   'none',            'reverse')
+call hi#('TermCursorNC',     theme.fg_hl,     'none',            'reverse')
 call hi#('TermNormal',       theme.bg,        theme.base,    '')
 call hi#link('TermNormalNC', 'TermNormal')
 
@@ -280,7 +281,8 @@ call hi#('Whitespace',      '#8f9aa9',       '',        '')
 
 
 call hi#('AutoHL',          '',     theme.bg,  'none')
-call hi#('Highlight',       'none', theme.bg_selection_light, 'none')
+call hi#('Highlight',       'none', theme.bg_selection_light,       'none')
+call hi#('HighlightSubtle', 'none', theme.bg_selection_very_light, 'none')
 
 call hi#('Key',             '#799d6a', '', '')
 call hi#('Question',        '#65C254', '', '',     'Green', '')
