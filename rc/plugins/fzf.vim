@@ -69,23 +69,23 @@ endfunc
 function! s:get_fzf_rg_colors ()
   if &bg == 'dark'
     let fzf_rg_colors_dark =
-      \           '--colors="path:fg:yellow" '
-      \         . '--colors="path:style:bold" '
-      \         . '--colors="line:fg:white" '
-      \         . '--colors="line:style:bold" '
-      \         . '--colors="match:fg:red" '
-      \         . '--colors="match:style:bold" '
+      \   '--colors="path:fg:yellow" '
+      \ . '--colors="path:style:bold" '
+      \ . '--colors="line:fg:white" '
+      \ . '--colors="line:style:bold" '
+      \ . '--colors="match:fg:red" '
+      \ . '--colors="match:style:bold" '
 
     return endiffzf_rg_colors_dark
   end
 
   let fzf_rg_colors_light =
-    \           '--colors="path:fg:' . s:color_to_fzf(hi#fg('directory')) . '" '
-    \         . '--colors="path:style:bold" '
-    \         . '--colors="line:fg:0x30,0x30,0x30" '
-    \         . '--colors="line:style:bold" '
-    \         . '--colors="match:fg:red" '
-    \         . '--colors="match:style:bold" '
+    \   '--colors="path:fg:' . s:color_to_fzf(hi#fg('directory')) . '" '
+    \ . '--colors="path:style:bold" '
+    \ . '--colors="line:fg:0x30,0x30,0x30" '
+    \ . '--colors="line:style:bold" '
+    \ . '--colors="match:fg:red" '
+    \ . '--colors="match:style:bold" '
 
   return fzf_rg_colors_light
 endfunc

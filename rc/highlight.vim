@@ -9,26 +9,15 @@ au ColorScheme * exe 'source ' . expand('<sfile>:p')
 au VimEnter * :call pp#prettyTheme()
 exe 'augroup END'
 
-let bg_normal  = hi#bg('Normal')
-let bg_normal  = (bg_normal[0] != '#') ? '#282828' : bg_normal
-let bg_light   = color#Lighten(bg_normal, '0.3')
-let bg_lighter = color#Lighten(bg_normal, '0.8')
-
 " General                                                                    {{{
 
 hi! link QuickFixLine Highlight
 
 "call hi#("Highlight", hi#("Search"))
-call hi#('AutoHL', 'none', bg_light, 'none')
 
 hi! link    Noise          Comment
-hi!         FoldedLineNr   guifg=#599eff
 
-call hi#('MediumGreen',  ['#005f00', '#afdf00'] )
-call hi#('MediumOrange', ['#870000', '#ffb700'] )
 call hi#('SessionTab',   ['#ffb700', colors.base02, 'none' ] )
-call hi#('cFunctionTag', hi#fg('Function'), bg_light, 'none')
-call hi#('cTypeTag',     hi#fg('Type'),     bg_light, 'none')
 
 " }}}
 " Plugin specific                                                            {{{
@@ -45,22 +34,19 @@ hi! link SearchReplaceMatch      EasyMotionTargetDefault
 hi! link SneakLabel              EasyMotionTargetDefault
 hi! link SneakLabelMask          Noise
 
-hi! link ALEErrorSign TextError
+hi! link ALEErrorSign   TextError
 hi! link ALEWarningSign TextWarning
-hi! link ALEInfoSign TextInfo
+hi! link ALEInfoSign    TextInfo
+
 silent call hi#fullfill('ALEErrorSign')
 silent call hi#fullfill('ALEWarningSign')
 silent call hi#fullfill('ALEInfoSign')
-silent call hi#bg('ALEErrorSign', hi#bg('LineNr'))
+silent call hi#bg('ALEErrorSign',   hi#bg('LineNr'))
 silent call hi#bg('ALEWarningSign', hi#bg('LineNr'))
-silent call hi#bg('ALEInfoSign', hi#bg('LineNr'))
+silent call hi#bg('ALEInfoSign',    hi#bg('LineNr'))
 
 
 if (&bg == 'light')
-    let indentLine_color_gui ='#bebebe'
-    hi! IndentGuidesEven guibg=#eeeeee
-    hi! link IndentGuidesOdd  Folded
-
     hi! link MatchParen          bg_brightteal
     hi! link hiPairs_matchPair   bg_brightteal
     hi! link hiPairs_unmatchPair bg_brightteal
@@ -68,16 +54,12 @@ if (&bg == 'light')
     hi! link HighlightedyankRegion Highlight
 
     " GitGutter                                                                  {{{
-    hi! link GitGutterAdd DiffAdded
-    hi! link GitGutterDelete DiffRemoved
-    hi! link GitGutterChange DiffModified
+    hi! link GitGutterAdd          DiffAdded
+    hi! link GitGutterDelete       DiffRemoved
+    hi! link GitGutterChange       DiffModified
     hi! link GitGutterChangeDelete DiffRemoved
     " }}}
 else
-    let indentLine_color_gui ='#303030'
-    hi! IndentGuidesEven guibg=#212121
-    hi! IndentGuidesOdd  guibg=#2d2d2d
-
     hi! link MatchParen          b_brightteal
     hi! link hiPairs_matchPair   b_brightteal
     hi! link hiPairs_unmatchPair b_brightteal
@@ -100,16 +82,7 @@ hi! link multiple_cursors_visual visual
 " }}}
 " Notes, notation, etc.                                                      {{{
 hi! link vifmNotation        OldSpecial
-hi! link notesXXX            ErrorMsg
+hi! link notesXXX            TextError
 hi! link notesDoneMarker     TextSuccess
 hi! link notesTODO           TextWarning
 " }}}
-
-if get(g:, 'colors_name') is 'materialtheme'
-    hi Folded guibg=#2f3e46 guifg=none
-    hi! link BufferActive Normal
-    hi! link BufferActiveMod Type
-    hi! link TabLineFill CursorLine
-    hi! link CursorLineNr Delimiter
-    hi! Visual guibg=#3a4d56
-end
