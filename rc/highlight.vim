@@ -47,7 +47,7 @@ silent call hi#bg('ALEInfoSign',    hi#bg('LineNr'))
 
 
 if (&bg == 'light')
-    hi! link MatchParen          bg_brightteal
+    " hi! link MatchParen          bg_brightteal
     hi! link hiPairs_matchPair   bg_brightteal
     hi! link hiPairs_unmatchPair bg_brightteal
 

@@ -42,11 +42,11 @@ function! s:fzf_redraw(timer)
   tnoremap <buffer> <a-u> <a-u>
 endfunction
 
-let fzf_btags_command = {}
-" let fzf_btags_command = {
+let fzf_btags_command = {
+\ 'scss': 'scss-ctags -f- %s',
+\ }
 " \ 'javascript': 'jsctags %s -f',
 " \ 'javascript.jsx': 'jsctags %s -f',
-" \ }
 
 command! -bang -nargs=* BTags
   \  if has_key(g:fzf_btags_command, &filetype)
