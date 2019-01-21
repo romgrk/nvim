@@ -17,6 +17,8 @@ let s:hl_groups = ['Buffer', 'BufferActive', 'BufferCurrent']
 " Current buffers in tabline (ordered)
 let s:buffers = []
 
+let g:buffer_line = s:
+
 fu! TabLineUpdate ()
     let &tabline = BufferLine() . '%=' . TablineSession() . Tabpages()
 endfu
@@ -28,6 +30,7 @@ fu! BufferLine ()
 
     for i in range(len(bufferDetails))
       let buffer = bufferDetails[i]
+
       if !has_key(bufferNames, buffer.name)
         let bufferNames[buffer.name] = i
       else
@@ -124,8 +127,7 @@ function! s:goto_buffer (direction)
         let idx = idx + a:direction
     end
 
-    echom 'buffer' . s:buffers[idx]
-    execute 'buffer' . s:buffers[idx]
+    silent execute 'buffer' . s:buffers[idx]
 endfunc
 
 " Helpers
@@ -134,18 +136,17 @@ function! s:get_updated_buffers ()
     let current_buffers = buf#filter('&buflisted', '!empty(bufname(v:val))')
     let new_buffers =
         \ filter(
-        \   current_buffers,
-        \   {i, bufnr -> !s:contains(s:buffers, bufnr)}
+        \   copy(current_buffers),
+        \   {i, bufnr -> !Contains(s:buffers, bufnr)}
         \ )
     " Remove closed buffers
-    let s:buffers =
-        \ filter(s:buffers, {i, bufnr -> !s:contains(current_buffers, bufnr)})
+    call filter(s:buffers, {i, bufnr -> Contains(current_buffers, bufnr)})
     " Add new buffers
     call extend(s:buffers, new_buffers)
     return copy(s:buffers)
 endfunc
 
-function! s:contains(list, value)
+function! Contains(list, value)
     for element in a:list
         try
             if element == a:value
@@ -161,16 +162,16 @@ function! s:contains(list, value)
 endfunction
 
 function! s:get_unique_name (first, second)
-    let first_parts  = split(a:first, '/')
-    let second_parts = split(a:second, '/')
+    let first_parts  = path#Split(a:first)
+    let second_parts = path#Split(a:second)
 
     let length = 1
-    let first_result  = first_parts[-length:]
-    let second_result = second_parts[-length:]
+    let first_result  = path#Join(first_parts[-length:])
+    let second_result = path#Join(second_parts[-length:])
     while first_result == second_result && length < max([len(first_parts), len(second_parts)])
         let length = length + 1
-        let first_result  = join(first_parts[-min([len(first_parts), length]):], '/')
-        let second_result = join(second_parts[-min([len(second_parts), length]):], '/')
+        let first_result  = path#Join(first_parts[-min([len(first_parts), length]):])
+        let second_result = path#Join(second_parts[-min([len(second_parts), length]):])
     endwhile
 
     return [first_result, second_result]
