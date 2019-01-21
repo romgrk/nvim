@@ -543,10 +543,10 @@ end "of has('nvim') }}}1
 "===============================================================================
 " Buffer navigation                                                         {{{1
 
-nnoremap <silent> <A-,> :PreviousBuffer<CR>
-nnoremap <silent> <A-.> :NextBuffer<CR>
-nnoremap <silent> <A-<> gT
-nnoremap <silent> <A->> gt
+nnoremap <silent> <A-,> :BufferPrevious<CR>
+nnoremap <silent> <A-.> :BufferNext<CR>
+nnoremap <silent> <A-<> :BufferMovePrevious<CR>
+nnoremap <silent> <A->>  :BufferMoveNext<CR>
 
 nnoremap <A-c>      :BufferClose<CR>
 nnoremap <A-C>      :BufferReopen<CR>

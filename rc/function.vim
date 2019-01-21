@@ -148,6 +148,7 @@ fu! BufferCloseCurrent ()
     " Delete buffer
     if bufexists(current_buffer)
         exe 'bdelete! ' . current_buffer
+        exe 'bwipeout ' . current_buffer
     end
 
     doautocmd BufEnter
@@ -293,9 +294,6 @@ fu! GetNewTerminalWindow(...) "                                              {{{
     return win
 endfu "                                                                      }}}
 
-
-com! -bar NextBuffer     bnext
-com! -bar PreviousBuffer bprevious
 
 com! -bar NextTerminalBuffer     call GoNextTerminalBuffer()
 com! -bar PreviousTerminalBuffer call GoNextTerminalBuffer(1)
