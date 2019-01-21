@@ -206,7 +206,7 @@ end
 
 augroup RC_SETUP
 au!
-au VimEnter * colorscheme darker
+au VimEnter * colorscheme github-light
 au VimEnter * call s:source_rc('colors.vim')
 au VimEnter * call s:source_rc('highlight.vim')
 augroup END
