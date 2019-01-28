@@ -5,6 +5,9 @@
 syn keyword typescriptSource require
             \ containedin=ALLBUT,typescriptDotNotation
 
+hi! link typescriptSource Special
+hi! link typescriptHtmlElemProperties Normal
+
 hi! link typescriptGlobal       Global
 hi! link typescriptEndColons    Comment
 hi! link typescriptFuncKeyword  Keyword
