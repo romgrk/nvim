@@ -26,7 +26,7 @@ fu! BufferLine ()
     let result = []
 
     let bufferNames = {}
-    let bufferDetails = map(s:get_updated_buffers(), {k, number -> { 'number': number, 'name': buf#tail(number) }})
+    let bufferDetails = map(s:get_updated_buffers(), {k, number -> { 'number': number, 'name': s:get_buffer_name(number) }})
 
     for i in range(len(bufferDetails))
       let buffer = bufferDetails[i]
@@ -133,20 +133,20 @@ endfunc
 " Helpers
 
 function! s:get_updated_buffers ()
-    let current_buffers = buf#filter('&buflisted', '!empty(bufname(v:val))')
+    let current_buffers = buf#filter('&buflisted')
     let new_buffers =
         \ filter(
         \   copy(current_buffers),
-        \   {i, bufnr -> !Contains(s:buffers, bufnr)}
+        \   {i, bufnr -> !s:contains(s:buffers, bufnr)}
         \ )
     " Remove closed buffers
-    call filter(s:buffers, {i, bufnr -> Contains(current_buffers, bufnr)})
+    call filter(s:buffers, {i, bufnr -> s:contains(current_buffers, bufnr)})
     " Add new buffers
     call extend(s:buffers, new_buffers)
     return copy(s:buffers)
 endfunc
 
-function! Contains(list, value)
+function! s:contains(list, value)
     for element in a:list
         try
             if element == a:value
@@ -160,6 +160,13 @@ function! Contains(list, value)
     endfor
     return 0
 endfunction
+
+function! s:get_buffer_name (number)
+    if empty(bufname(a:number))
+        return '[buffer ' . a:number . ']'
+    end
+    return buf#tail(a:number)
+endfunc
 
 function! s:get_unique_name (first, second)
     let first_parts  = path#Split(a:first)
