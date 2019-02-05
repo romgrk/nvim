@@ -204,7 +204,8 @@ set  shiftwidth=4
 
 set expandtab  smarttab
 
-set autoindent smartindent
+set autoindent
+"set smartindent
 "set copyindent
 
 set shiftround

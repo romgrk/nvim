@@ -34,6 +34,9 @@ let $NVIM_LISTEN_ADDRESS='127.0.0.1:6666'
 call s:source_rc('settings.vim')
 call s:source_rc('plugins.vim')
 
+" Plugin settings (before loading):
+call s:source_plugins()
+
 "                                                                          }}}
 "=============================================================================
 " Plugins                                                                  {{{
@@ -63,7 +66,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'cohama/lexima.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/sideways.vim'
 " }}}
 " General                                                                    {{{
@@ -187,8 +190,9 @@ call s:source_rc('colors.vim')
 call s:source_rc('highlight.vim')
 call s:source_rc('keymap.vim')
 
-" Settings (after plugins):
-call s:source_plugins()
+" Plugin settings (after loading):
+autocmd User PluginsLoaded :
+doautocmd User PluginsLoaded
 
 " Local settings:
 if filereadable($vim . '/local.vim')
