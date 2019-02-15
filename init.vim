@@ -189,6 +189,7 @@ call s:source_rc('commands.vim')
 call s:source_rc('colors.vim')
 call s:source_rc('highlight.vim')
 call s:source_rc('keymap.vim')
+call s:source_rc('abbrev.vim')
 
 " Plugin settings (after loading):
 autocmd User PluginsLoaded :
