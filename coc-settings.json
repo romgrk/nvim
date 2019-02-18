@@ -1,0 +1,46 @@
+{
+
+  "coc.preferences.snippetIndicator": "•",
+
+  "languageserver": {
+
+    "ocaml-and-reason": {
+      "command": "ocaml-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["reason", "ocaml"],
+      // "cwd": "./src",
+    },
+
+    "css-and-friends": {
+      "command": "css-languageserver",
+      "args": ["--stdio"],
+      "filetypes": ["css", "scss", "sass", "less"],
+      // "cwd": "./src",
+    },
+
+    /* "javascript-typescript": {
+      "command": "javascript-typescript-stdio",
+      "args": [],
+      "filetypes": ["javascript", "javascript.jsx", "typescript"],
+      // "cwd": "./src",
+    }, */
+
+    "python": {
+      "command": "pyls",
+      "args": [],
+      "filetypes": ["python"],
+      // "cwd": "./src",
+    },
+
+    "cquery": {
+      "command": "cquery",
+      "args": ["--log-file=/tmp/cq.log"],
+      "filetypes": ["c", "cpp"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".cquery"],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/cquery"
+      }
+    }
+
+  },
+}

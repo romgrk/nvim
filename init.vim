@@ -44,12 +44,13 @@ call plug#begin($vim . '/bundle')
 
 
 " Autocompletion
-if !has('win32')
-Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
-else
-Plug 'xleng/YCM_WIN_X86'
-Plug 'romgrk/AutoComplPop'
-end
+" if !has('win32')
+" Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
+" else
+" Plug 'xleng/YCM_WIN_X86'
+" Plug 'romgrk/AutoComplPop'
+" end
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " Editing                                                                    {{{
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
@@ -74,7 +75,7 @@ Plug 'AndrewRadev/sideways.vim'
 Plug 'fidian/hexmode'
 " Plug 'zxqfl/tabnine-vim'
 Plug 'wsdjeg/vim-fetch'
-Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
+" Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'sjl/gundo.vim'
 Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
@@ -105,6 +106,7 @@ end
 "Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
+Plug 'neoclide/jsonc.vim'
 Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
 Plug 'rhysd/vim-crystal'                                 , { 'for': 'crystal' }
 Plug 'vim-python/python-syntax'                          , { 'for': 'python' }

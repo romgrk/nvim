@@ -45,7 +45,7 @@ else
   set clipboard=unnamedplus
 end
 
-set updatetime=2000
+set updatetime=300
 
 
 " }}}
@@ -113,6 +113,7 @@ set showtabline=2 " TODO set according to editor-mode (single vs multiEdit)
 
 set number numberwidth=4
 set colorcolumn=
+set signcolumn=yes
 
 
 set noshowcmd noshowmatch noshowmode

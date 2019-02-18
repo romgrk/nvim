@@ -46,6 +46,14 @@ silent call hi#bg('ALEWarningSign', hi#bg('LineNr'))
 silent call hi#bg('ALEInfoSign',    hi#bg('LineNr'))
 
 
+hi! CocInfoSign                       guifg=#0E8FFF
+hi! CocInfoHighlight    gui=undercurl guisp=#0E8FFF
+hi! CocWarningSign                    guifg=#FF9F0E
+hi! CocWarningHighlight gui=undercurl guisp=#FF9F0E
+hi! CocErrorSign                      guisp=#ff1010
+hi! CocErrorHighlight   gui=undercurl guisp=#ff1010
+
+
 if (&bg == 'light')
     " hi! link MatchParen          bg_brightteal
     hi! link hiPairs_matchPair   bg_brightteal
