@@ -168,6 +168,7 @@ let theme.bg_hl                 = '#404040'
 let theme.hover                 = '#505050'
 
 let theme.hl                    = '#599eff'
+let theme.hl_fg                 = '#ffffff'
 
 let theme.fg_selection          = 'none'
 let theme.bg_selection          = '#d7d4ef'
@@ -222,7 +223,7 @@ call hi#('Separator',        '#4c4c4c',       'none',                  '')
 call hi#('VertSplit',        theme.fg_subtle, theme.bg_widget,         'none')
 
 call hi#('Pmenu',            theme.fg_overlay, theme.bg_overlay)
-call hi#('PmenuSel',         theme.fg_overlay, theme.hl)
+call hi#('PmenuSel',         theme.hl_fg,      theme.hl)
 call hi#('PmenuSbar',        '',       theme.bg_dark)
 call hi#('PmenuThumb',       '#666660', '#666660')
 
