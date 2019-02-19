@@ -152,14 +152,14 @@ let theme.fg_verysubtle         = '#e0e0e0'
 let theme.fg_shaded             = '#24292e'
 let theme.fg_dark               = '#24292e'
 let theme.fg_widget             = '#cad0d3'
-let theme.fg_overlay            = '#24292e'
+let theme.fg_overlay            = '#f0f0f0'
 
 
 let theme.bg                    = '#ffffff'
 let theme.bg_subtle             = '#f0f0f0'
 let theme.bg_verysubtle         = '#f5f5f5'
 let theme.bg_widget             = '#ffffff'
-let theme.bg_overlay            = '#e9e9e9'
+let theme.bg_overlay            = '#121212'
 let theme.bg_dark               = '#d0d0d0'
 
 let theme.fg_hl                 = '#a3a3a3'
@@ -216,16 +216,21 @@ call hi#link('TermNormalNC', 'TermNormal')
 call hi#('Visual',           theme.selection)
 call hi#('LastVisual',       '',              theme.bg_selection_dark, '')
 call hi#('WildMenu',         theme.fg,        theme.bg_selection)
-call hi#('StatusLine',       theme.fg,        theme.bg_dark,           'NONE')
-call hi#('StatusLineNC',     '#1f1f1f',       theme.bg_dark,           'NONE')
+call hi#('StatusLine',       theme.fg,        theme.bg_dark,           'none')
+call hi#('StatusLineNC',     '#1f1f1f',       theme.bg_dark,           'none')
 call hi#('Separator',        '#4c4c4c',       'none',                  '')
 call hi#('VertSplit',        theme.fg_subtle, theme.bg_widget,         'none')
 
-call hi#('Pmenu',            theme.fg, theme.bg_overlay)
-call hi#('PmenuSel',         theme.fg, theme.bg_selection)
+call hi#('Pmenu',            theme.fg_overlay, theme.bg_overlay)
+call hi#('PmenuSel',         theme.fg_overlay, theme.hl)
 call hi#('PmenuSbar',        '',       theme.bg_dark)
 call hi#('PmenuThumb',       '#666660', '#666660')
-call hi#('Terminal',         s:white,  s:_black, 'bold'  )
+
+if exists('&pumblend')
+  set pumblend=20
+end
+
+call hi#('Terminal',         s:white,  s:_black, '')
 
 
 call hi#('Folded',           'none',          theme.bg_verysubtle,  'none')
