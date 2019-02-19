@@ -11,12 +11,12 @@
       // "cwd": "./src",
     },
 
-    "css-and-friends": {
-      "command": "css-languageserver",
-      "args": ["--stdio"],
-      "filetypes": ["css", "scss", "sass", "less"],
-      // "cwd": "./src",
-    },
+    /* "css-and-friends": {
+     *   "command": "css-languageserver",
+     *   "args": ["--stdio"],
+     *   "filetypes": ["css", "scss", "sass", "less"],
+     *   // "cwd": "./src",
+     * }, */
 
     /* "javascript-typescript": {
       "command": "javascript-typescript-stdio",
@@ -25,12 +25,12 @@
       // "cwd": "./src",
     }, */
 
-    "python": {
-      "command": "pyls",
-      "args": [],
-      "filetypes": ["python"],
-      // "cwd": "./src",
-    },
+    /* "python": {
+     *   "command": "pyls",
+     *   "args": [],
+     *   "filetypes": ["python"],
+     *   // "cwd": "./src",
+     * }, */
 
     "cquery": {
       "command": "cquery",
@@ -41,6 +41,13 @@
         "cacheDirectory": "/tmp/cquery"
       }
     }
+
+    // CocInstall coc-tsserver
+    // CocInstall coc-css
+    // CocInstall coc-html
+    // CocInstall coc-json
+    // CocInstall coc-pyls
+    // CocInstall coc-tag
 
   },
 }
