@@ -7,6 +7,7 @@
 function! s:onTermOpen ()
     setfiletype terminal
     setlocal nocursorline nocursorcolumn
+    setlocal signcolumn=no
     if hi#exists('TermNormal')
         set winhl=Normal:TermNormal,NormalNC:TermNormalNC
     end
