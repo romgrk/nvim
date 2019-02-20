@@ -4,7 +4,7 @@
 
   "languageserver": {
 
-    "ocaml-and-reason": {
+    "ocaml": {
       "command": "ocaml-language-server",
       "args": ["--stdio"],
       "filetypes": ["reason", "ocaml"],
