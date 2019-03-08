@@ -50,7 +50,8 @@ call plug#begin($vim . '/bundle')
 " Plug 'xleng/YCM_WIN_X86'
 " Plug 'romgrk/AutoComplPop'
 " end
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'floating', 'do': { -> coc#util#build()}}
 " Editing                                                                    {{{
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
@@ -107,7 +108,8 @@ end
 " }}}
 " Language                                                                   {{{
 Plug 'neoclide/jsonc.vim'
-Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
+" Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
+Plug 'jordwalke/vim-reasonml'                            , { 'for': 'reason' }
 Plug 'rhysd/vim-crystal'                                 , { 'for': 'crystal' }
 Plug 'vim-python/python-syntax'                          , { 'for': 'python' }
 Plug 'tmhedberg/SimpylFold'                              , { 'for': 'python' }
@@ -148,6 +150,7 @@ end
 
 " }}}
 " UI                                                                         {{{
+Plug 'rhysd/git-messenger.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'scrooloose/nerdtree'

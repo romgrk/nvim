@@ -340,8 +340,8 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gD <Plug>(coc-implementation)
+nmap <silent> gR <Plug>(coc-references)
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -358,7 +358,7 @@ endfunction
 nmap <F2> <Plug>(coc-rename)
 
 " Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
+vmap gq         <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup CocEvents
@@ -370,7 +370,7 @@ augroup CocEvents
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
+" vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -453,6 +453,10 @@ nnoremap       <leader>gd     :GitDiff<space>
 nnoremap       <leader>gdd    :GitDiff<CR>
 nnoremap       <leader>gd.    :GitDiff %<CR>
 
+" GitMessenger:
+nnoremap       <leader>gm     :GitMessenger<CR>
+
+" GitGutter:
 nnoremap       <leader>hh     :GitGutter
 nnoremap       <leader>hs     :GitGutterStageHunk<CR>
 nnoremap       <leader>hv     :GitGutterPreviewHunk<CR>
