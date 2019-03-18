@@ -195,6 +195,7 @@ set completeopt+=longest,noselect
 set wildmenu
 set wildmode=longest:full,list:full
 set wildoptions=tagfile
+set wildoptions+=pum
 
 " }}}
 "===============================================================================
