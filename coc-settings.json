@@ -1,6 +1,7 @@
 {
 
   "coc.preferences.snippetIndicator": "•",
+  "coc.preferences.signatureHelpTarget": "float",
 
   "languageserver": {
 

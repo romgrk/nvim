@@ -50,8 +50,7 @@ call plug#begin($vim . '/bundle')
 " Plug 'xleng/YCM_WIN_X86'
 " Plug 'romgrk/AutoComplPop'
 " end
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-Plug 'neoclide/coc.nvim', {'branch': 'floating', 'do': { -> coc#util#build()}}
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 " Editing                                                                    {{{
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'

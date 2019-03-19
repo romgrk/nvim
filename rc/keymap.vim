@@ -333,6 +333,11 @@ omap U <Plug>Sneak_T
 "===============================================================================
 " Intellisense (coc.nvim)                                                   {{{1
 
+
+nmap <silent> <F2> :call CocAction('rename')<CR>
+nmap <silent> <leader>K :call CocAction('doHover')<CR>
+
+
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
