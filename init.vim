@@ -69,6 +69,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/sideways.vim'
+Plug 'tommcdo/vim-ninja-feet'
 " }}}
 " General                                                                    {{{
 " @plugins
