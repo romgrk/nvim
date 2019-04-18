@@ -88,6 +88,7 @@ nnoremap g? #zvzz
 " Insert newline
 nnoremap <CR>   o<Esc>
 nnoremap <A-CR> O<Esc>
+nnoremap g<CR>  o<Esc>cc<Esc>
 
 
 " Don't leave spaces when doing i, then <esc>
@@ -390,7 +391,8 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 nnoremap <C-A-B>           :NeomakeSh make build<CR>
 
-nnoremap <leader><space>    :Commands<CR>
+nnoremap <leader><space>   :Denite buffer -split=floating -winrow=1<CR>
+
 
 nmap     <leader>j         <Plug>Sneak_s
 nmap     <leader>k         <Plug>Sneak_S
@@ -402,19 +404,19 @@ nnoremap <leader>af         :ALEFix<CR>
 
 
 " YCM:
-nnoremap <leader>yr         :YcmRestartServer<CR>
-nnoremap <leader>yi         :YcmDebugInfo<CR>
-nnoremap <leader>yd         :YcmDiags<CR>
-nnoremap <leader>yy         :YcmForceCompileAndDiagnostics<CR>
-nnoremap <leader>yf         :YcmCompleter GoToReferences <Bar> copen<CR>
-nnoremap <leader>yk         :YcmCompleter GetDoc<CR>
-nnoremap <leader>ygo        :YcmCompleter GoTo<CR>
-nnoremap <leader>ygt        :YcmCompleter GoToType<CR>
-nnoremap <leader>ygd        :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>ygD        :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>ygi        :YcmCompleter GoToInclude<CR>
-nnoremap <leader>ygr        :YcmCompleter RefactorRename<space>
-nnoremap        <F2>       :YcmCompleter RefactorRename<space>
+" nnoremap <leader>yr         :YcmRestartServer<CR>
+" nnoremap <leader>yi         :YcmDebugInfo<CR>
+" nnoremap <leader>yd         :YcmDiags<CR>
+" nnoremap <leader>yy         :YcmForceCompileAndDiagnostics<CR>
+" nnoremap <leader>yf         :YcmCompleter GoToReferences <Bar> copen<CR>
+" nnoremap <leader>yk         :YcmCompleter GetDoc<CR>
+" nnoremap <leader>ygo        :YcmCompleter GoTo<CR>
+" nnoremap <leader>ygt        :YcmCompleter GoToType<CR>
+" nnoremap <leader>ygd        :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>ygD        :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>ygi        :YcmCompleter GoToInclude<CR>
+" nnoremap <leader>ygr        :YcmCompleter RefactorRename<space>
+" nnoremap        <F2>       :YcmCompleter RefactorRename<space>
 
 " Tern:
 nnoremap <leader>tt         :TernType<CR>
@@ -533,6 +535,14 @@ nnoremap <silent> <A-o>    :Files<CR>
 nnoremap <silent> <A-O>    :History<CR>
 nnoremap <silent> <C-S>    :CtrlPBuffer<CR>
 nnoremap <silent> <C-A-o>  :GitFiles<CR>
+
+" Denite
+
+call denite#custom#map('insert', '<A-j>',   '<denite:move_to_next_line>',     'noremap')
+call denite#custom#map('insert', '<A-k>',   '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('insert', '<tab>',   '<denite:move_to_next_line>',     'noremap')
+call denite#custom#map('insert', '<s-tab>', '<denite:move_to_previous_line>', 'noremap')
+
 
 " }}}1
 "===============================================================================

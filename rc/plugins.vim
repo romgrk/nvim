@@ -252,18 +252,6 @@ let hexmode_xxd_options = '-g 1'
 let colorizer_maxlines = -1
 let colorizer_startup  = 0
 
-let NERDTreeIndicatorMapCustom = {
-\   'Modified'  : '✹',
-\   'Staged'    : '✚',
-\   'Untracked' : '✭',
-\   'Renamed'   : '➜',
-\   'Unmerged'  : '═',
-\   'Deleted'   : '✖',
-\   'Dirty'     : '✹',
-\   'Clean'     : '✔︎',
-\   'Unknown'   : '?'
-\ }
-
 " }}}1
 "=============================================================================
 " EOF

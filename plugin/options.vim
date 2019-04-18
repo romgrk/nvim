@@ -235,6 +235,7 @@ ToggleMap 'gs',  'GitGutterSignsEnable'
 AlternMap 'gg',  'Git integration', ['GitGutterEnable', 'GitGutterDisable']
 AlternMap 'al',  'ALE Linter',      ['ALEEnable', 'ALEDisable']
 AlternMap 'lc',  'Language Client', ['LanguageClientStop', 'LanguageClientStart']
+AlternMap 'vm',  'Vimade',          ['VimadeDisable', 'VimadeEnable']
 
 ToggleMap 'idg', 'IndentGuidesToggle'
 ToggleMap 'idl', 'IndentLinesToggle'
