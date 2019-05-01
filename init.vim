@@ -73,6 +73,7 @@ Plug 'tommcdo/vim-ninja-feet'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'AndrewRadev/tagalong.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'fidian/hexmode'
 " Plug 'zxqfl/tabnine-vim'
