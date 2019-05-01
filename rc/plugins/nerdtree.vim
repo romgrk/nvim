@@ -35,8 +35,8 @@ let NERDTreeIndicatorMapCustom = {
 \ }
 
 let webdevicons_enable_nerdtree = 1
-" let webdevicons_conceal_nerdtree_brackets = 1
+let webdevicons_conceal_nerdtree_brackets = 1
 let WebDevIconsUnicodeDecorateFolderNodes = 1
-
 let WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+
 let DevIconsDefaultFolderOpenSymbol = ''
