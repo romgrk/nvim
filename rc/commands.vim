@@ -9,7 +9,7 @@ command! -bar   Scratch        vnew | setlocal nobuflisted buftype=nofile bufhid
 
 " Generics
 
-command! -bar -range DeleteTrailingWS noautocmd silent! exe '<line1>,<line2>s/\s\+$//g'
+command! -bar -range DeleteTrailingWS noautocmd silent! exe 'keeppatterns <line1>,<line2>s/\s\+$//g'
 command! -bar        UpdateTerminalSize silent resize +1 | silent resize -1
 command! -nargs=1    Nwhich    :Pp maparg(<q-args>, 'n', 0, 1)
 

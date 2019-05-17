@@ -23,6 +23,7 @@ call hi#('SessionTab',   ['#ffb700', colors.base02, 'none' ] )
 " Plugin specific                                                            {{{
 
 hi! link NERDtreeDir Directory
+hi! link NERDtreeCWD Special
 
 hi! link CtrlPTagKind            Delimiter
 hi! link CtrlPMatch              Error
@@ -52,6 +53,10 @@ hi! CocWarningSign                    guifg=#FF9F0E
 hi! CocWarningHighlight gui=undercurl guisp=#FF9F0E
 hi! CocErrorSign                      guisp=#ff1010
 hi! CocErrorHighlight   gui=undercurl guisp=#ff1010
+
+hi! CocInfoFloat                      guifg=white
+hi! CocWarningFloat                   guifg=#FFDD86
+hi! CocErrorFloat                     guifg=#FDC1C1
 
 
 if (&bg == 'light')

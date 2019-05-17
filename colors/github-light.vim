@@ -297,7 +297,8 @@ call hi#('Todo',            '#3b84ea', 'none', 'bold')
 
 call hi#('Directory',       '#3365CE', '',     'none')
 call hi#('Section',         '#3365CE', '',     'bold')
-call hi#('Title',           '#3365CE', '',     'bold')
+" call hi#('Title',           '#3365CE', '',     'bold')
+hi! link Title Special
 
 call hi#('Bold',            '', '', 'bold')
 

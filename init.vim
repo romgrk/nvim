@@ -74,6 +74,8 @@ Plug 'tommcdo/vim-ninja-feet'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'Shougo/denite.nvim'
 Plug 'fidian/hexmode'
 " Plug 'zxqfl/tabnine-vim'
 Plug 'wsdjeg/vim-fetch'
@@ -108,6 +110,7 @@ end
 "Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
+Plug 'keith/swift.vim'
 Plug 'neoclide/jsonc.vim'
 " Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
 Plug 'jordwalke/vim-reasonml'                            , { 'for': 'reason' }
@@ -151,12 +154,13 @@ end
 
 " }}}
 " UI                                                                         {{{
+Plug 'TaDaa/vimade'
 Plug 'rhysd/git-messenger.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 "Plug 'Yggdroot/indentLine'
