@@ -1,11 +1,36 @@
 " !::exe [So]
 
-let fzf_layout = { 'window': 'belowright 15split enew' }
+" let fzf_layout = { 'window': 'belowright 15split enew' }
+
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let fzf_layout = { 'window': 'call CreateFZFWindow()' }
+
+function! CreateFZFWindow()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+
+  let padding = 5
+  let height = &lines - 3 - (2 * padding)
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  let col = float2nr((&columns - width) / 2)
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': 1 + padding,
+        \ 'col': col,
+        \ 'width': width,
+        \ 'height': height
+        \ }
+
+  call nvim_open_win(buf, v:true, opts)
+  " set winhl=Normal:NormalFloat
+endfunction
+
 
 " Customize fzf colors to match your color scheme
 let fzf_colors =
 \{ 'fg':      ['fg', 'Normal'],
-\  'bg':      ['bg', 'Normal'],
+\  'bg':      ['bg', 'NormalPopup'],
 \  'hl':      ['fg', 'Sneak'],
 \  'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
 \  'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
@@ -103,3 +128,4 @@ command! -bang -nargs=* FzfRg
   \   ),
   \   <bang>0
   \ )
+

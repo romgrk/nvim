@@ -199,6 +199,7 @@ let theme.folded_fg             = '#999999'
 call hi#('Normal',           theme.fg,        theme.bg, '')
 call hi#('Shaded',           theme.fg_shaded, '',       '')
 call hi#('EndOfBuffer',      theme.fg_widget, theme.bg, '')
+call hi#('NormalPopup',      theme.fg,        theme.bg_subtle, '')
 
 call hi#('Cursor',           '', theme.base,  'reverse')
 call hi#('SecondaryCursor',  '', theme.bg_hl, 'none')
