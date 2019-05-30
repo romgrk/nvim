@@ -55,6 +55,7 @@ Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
 Plug 'wellle/targets.vim'
+Plug 'wellle/line-targets.vim'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bkad/CamelCaseMotion'
