@@ -1042,6 +1042,9 @@ endfu
 " Yank all
 nnoremap gya :keepmarks normal! m'ggVGy`'<CR>
 
+" Exchange lhs-rhs
+nmap gx= vihgxvilgx
+
 " File Explorer
 if has('win32')
 nnoremap <F1> :silent !explorer .<CR>
