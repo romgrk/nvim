@@ -1048,6 +1048,8 @@ nmap gx= vihgxvilgx
 " File Explorer
 if has('win32')
 nnoremap <F1> :silent !explorer .<CR>
+else
+nnoremap <F1> :silent !nautilus .<CR>
 end
 
 nnoremap <F3> :NERDTreeFind<CR>
