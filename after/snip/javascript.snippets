@@ -79,6 +79,11 @@ snippet ppl "log"
 console.log(require('util').inspect($0, { colors: true, depth: 3 }))
 endsnippet
 
+snippet utilcolor "desc" 
+const util = require('util')
+util.inspect.defaultOptions =  { colors: true, depth: 3 }
+endsnippet
+
 snippet $ "query"
 document.querySelector($0)
 endsnippet
