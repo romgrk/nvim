@@ -2,8 +2,13 @@
 
   "suggest.enablePreview": true,
 
-  "coc.preferences.snippetIndicator": "•",
-  "coc.preferences.signatureHelpTarget": "float",
+  "suggest.snippetIndicator": "•",
+  "signature.target": "float",
+
+  "diagnostic.errorSign": "⨯ ",
+  "diagnostic.warningSign": "⚠ ",
+  "diagnostic.infoSign": "\\ ●",
+  "diagnostic.hintSign": "\\ ?",
 
   "languageserver": {
 

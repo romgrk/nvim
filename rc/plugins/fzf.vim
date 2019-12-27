@@ -2,21 +2,22 @@
 
 " let fzf_layout = { 'window': 'belowright 15split enew' }
 
-let $FZF_DEFAULT_OPTS='--layout=reverse'
+let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . '--layout=reverse'
 let fzf_layout = { 'window': 'call CreateFZFWindow()' }
 
 function! CreateFZFWindow()
   let buf = nvim_create_buf(v:false, v:true)
   call setbufvar(buf, '&signcolumn', 'no')
 
-  let padding = 5
-  let height = &lines - 3 - (2 * padding)
+  let padding = { 'top': 5, 'bottom': 0 }
+  " let height = &lines - 3 - (padding.top + padding.bottom)
+  let height = 25
   let width = float2nr(&columns - (&columns * 2 / 10))
   let col = float2nr((&columns - width) / 2)
 
   let opts = {
         \ 'relative': 'editor',
-        \ 'row': 1 + padding,
+        \ 'row': 1 + padding.top,
         \ 'col': col,
         \ 'width': width,
         \ 'height': height

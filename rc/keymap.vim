@@ -344,9 +344,9 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gD <Plug>(coc-implementation)
+nmap <silent> gd <Plug>(coc-definition)zz
+nmap <silent> gy <Plug>(coc-type-definition)zz
+nmap <silent> gD <Plug>(coc-implementation)zz
 nmap <silent> gR <Plug>(coc-references)
 
 " Use K for show documentation in preview window
@@ -1042,9 +1042,14 @@ endfu
 " Yank all
 nnoremap gya :keepmarks normal! m'ggVGy`'<CR>
 
+" Exchange lhs-rhs
+nmap gx= vihgxvilgx
+
 " File Explorer
 if has('win32')
 nnoremap <F1> :silent !explorer .<CR>
+else
+nnoremap <F1> :silent !nautilus .<CR>
 end
 
 nnoremap <F3> :NERDTreeFind<CR>
@@ -1385,8 +1390,8 @@ function! Ulti_canExpand()
 if !has('python3') | return 0 | end
 py3 << EOF
 import vim
-from UltiSnips import UltiSnips_Manager, _vim
-before = _vim.buf.line_till_cursor
+from UltiSnips import UltiSnips_Manager, vim_helper
+before = vim_helper.buf.line_till_cursor
 sn=UltiSnips_Manager._snips(before, False)
 vim.command('return %i' % len(sn))
 EOF
@@ -1396,7 +1401,7 @@ function! Ulti_canJump()
 if !has('python3') | return 0 | end
 py3 << EOF
 import vim
-from UltiSnips import UltiSnips_Manager, _vim
+from UltiSnips import UltiSnips_Manager
 if UltiSnips_Manager._current_snippet:
     vim.command('return 1')
 else:
@@ -1407,7 +1412,7 @@ endfunction
 function! Ulti_jump(dir)
 py3 << EOF
 import vim
-from UltiSnips import UltiSnips_Manager, _vim
+from UltiSnips import UltiSnips_Manager
 if UltiSnips_Manager._current_snippet:
     if vim.eval('a:dir') == '1':
         UltiSnips_Manager._jump()
