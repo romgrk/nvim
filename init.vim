@@ -78,6 +78,7 @@ Plug 'puremourning/vimspector'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'fidian/hexmode'
+Plug 'vim-scripts/loremipsum'
 " Plug 'zxqfl/tabnine-vim'
 Plug 'wsdjeg/vim-fetch'
 " Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
