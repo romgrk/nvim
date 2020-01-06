@@ -231,6 +231,7 @@ ToggleMap 'co',  'call colorizer#ColorToggle()'
 ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
 ToggleMap 'gu',  'GitGutterToggle'
 ToggleMap 'gs',  'GitGutterSignsEnable'
+ToggleMap 'il',  'IlluminationToggle'
 
 AlternMap 'gg',  'Git integration', ['GitGutterEnable', 'GitGutterDisable']
 AlternMap 'al',  'ALE Linter',      ['ALEEnable', 'ALEDisable']

@@ -74,7 +74,8 @@ Plug 'tommcdo/vim-ninja-feet'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'puremourning/vimspector'
+Plug 'liuchengxu/vim-clap'
+" Plug 'puremourning/vimspector'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'fidian/hexmode'
@@ -156,7 +157,7 @@ end
 
 " }}}
 " UI                                                                         {{{
-Plug 'TaDaa/vimade'
+" Plug 'TaDaa/vimade'
 Plug 'rhysd/git-messenger.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'KabbAmine/vCoolor.vim'

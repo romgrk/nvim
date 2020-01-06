@@ -2,7 +2,7 @@
 
 " let fzf_layout = { 'window': 'belowright 15split enew' }
 
-let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . '--layout=reverse'
+let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --layout=reverse'
 let fzf_layout = { 'window': 'call CreateFZFWindow()' }
 
 function! CreateFZFWindow()
