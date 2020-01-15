@@ -140,7 +140,8 @@ set wrapmargin=0
 set nowrap
 
 set linebreak
-set showbreak=…\                " NonText
+" set showbreak=…\                " NonText
+set showbreak=                    " NonText
 set breakindent
 
 " }}}

@@ -9,8 +9,11 @@ function! s:onTermOpen ()
     setfiletype terminal
     setlocal nocursorline nocursorcolumn
     setlocal signcolumn=no
-    if hi#exists('TermNormal')
+
+    if hi#exists('TermNormal') && !exists('b:fzf')
         set winhl=Normal:TermNormal,NormalNC:TermNormalNC
+    else
+        set winhl=Normal:Normal,NormalNC:NormalNC
     end
 endfunc
 
