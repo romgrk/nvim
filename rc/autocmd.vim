@@ -5,6 +5,7 @@
 " Exec: !::exe [So]
 
 function! s:onTermOpen ()
+    au BufEnter <buffer> startinsert
     setfiletype terminal
     setlocal nocursorline nocursorcolumn
     setlocal signcolumn=no
@@ -44,7 +45,6 @@ exe 'augroup RC'
 
     " Terminal
     if has('nvim')
-    au TermOpen * au BufEnter <buffer=abuf> startinsert
     au TermOpen * call <SID>onTermOpen()
     end
 
