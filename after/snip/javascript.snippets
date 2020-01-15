@@ -17,9 +17,17 @@ snippet table "table" b
 </tbody>
 </table>
 endsnippet
+
 snippet i "import" b
 import $1 from '${2:$1}'
 endsnippet
+snippet cx "classname"
+import cx from 'classname'
+endsnippet
+snippet proptypes "proptypes"
+import PropTypes from 'prop-types'
+endsnippet
+
 snippet * "comment" b
 /*
  * $0
@@ -65,11 +73,6 @@ endsnippet
 
 snippet ss "setState" b
 this.setState({ $0 })
-endsnippet
-
-
-snippet cx "import cx" b
-import cx from 'classname'
 endsnippet
 
 
