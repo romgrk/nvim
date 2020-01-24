@@ -531,10 +531,16 @@ end
 
 nnoremap <silent> <A-S-I>  :Tags<CR>
 
-nnoremap <silent> <A-o>    :Files<CR>
-nnoremap <silent> <A-O>    :History<CR>
-nnoremap <silent> <C-S>    :CtrlPBuffer<CR>
-nnoremap <silent> <C-A-o>  :GitFiles<CR>
+nnoremap <silent> <A-o>    :Clap files<CR>
+nnoremap <silent> <C-A-o>  :Clap files <C-R>=expand('%:h:~')<CR><CR>
+" nnoremap <silent> <A-o>    :Files<CR>
+nnoremap <silent> <A-O>    :Clap history<CR>
+nnoremap <silent> <C-S>    :Clap buffers<CR>
+" nnoremap <silent> <C-A-o>  :GitFiles<CR>
+
+" Clap
+
+" see ../syntax/clap_input.vim
 
 " Denite
 
