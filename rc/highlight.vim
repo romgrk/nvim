@@ -64,6 +64,7 @@ hi! CocErrorFloat                     guifg=#FDC1C1
 hi! link ClapCurrentSelection Visual
 hi! link ClapPopupCursor      Visual
 hi! link ClapInput            NormalPopup
+hi! link ClapSearchText       NormalPopup
 hi! link ClapDisplay          NormalPopup
 hi! link ClapMatches          EasyMotionTargetDefault
 hi! link ClapPreview          StatusLine
