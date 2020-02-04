@@ -121,8 +121,6 @@ let g:quickmap = {
 \ "\<C-F>": ':Files',
 \ "\<A-;>": 'q:":P',
 \ "\<A-s>": ":set ?\<Left>",
-\ "\<A-o>": ":CtrlPMRU\<CR>",
-\ 'b':      ':CtrlPBuffer',
 \}
 
 function! CmdJump ()
@@ -493,8 +491,6 @@ nnoremap       <leader>w+   :call SizeUp()<CR>
 
 nnoremap       <leader>p    :VCoolor<CR>
 
-nnoremap       <leader>ca   :CtrlPClearAllCaches<CR>
-
 nnoremap       <leader>gf   :NERDTreeFind<CR>
 
 nnoremap       <leader>ret  :set et <Bar> ret<CR>
@@ -512,7 +508,7 @@ nnoremap      <leader>mW :.,.MultipleCursorsFind \w\+<CR>
 
 " }}}1
 "===============================================================================
-" Panels, File navigation, FZF & CtrlP                                      {{{1
+" Panels, File navigation, FZF & Clap                                       {{{1
 
 
 nnoremap <silent><A-\>   :NERDTreeFocus<CR>
@@ -522,13 +518,7 @@ nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
 
-
-if has('win32') || get(g:, 'ctrlp_funky_enable', 0)
-nnoremap <silent> <A-i>    :CtrlPFunky<CR>
-else
 nnoremap <silent> <A-i>    :BTags<CR>
-end
-
 nnoremap <silent> <A-S-I>  :Tags<CR>
 
 nnoremap <silent> <A-o>    :Clap files<CR>
