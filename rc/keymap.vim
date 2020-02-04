@@ -542,14 +542,6 @@ nnoremap <silent> <C-S>    :Clap buffers<CR>
 
 " see ../syntax/clap_input.vim
 
-" Denite
-
-call denite#custom#map('insert', '<A-j>',   '<denite:move_to_next_line>',     'noremap')
-call denite#custom#map('insert', '<A-k>',   '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<tab>',   '<denite:move_to_next_line>',     'noremap')
-call denite#custom#map('insert', '<s-tab>', '<denite:move_to_previous_line>', 'noremap')
-
-
 " }}}1
 "===============================================================================
 " Window & Tabs navigation                                                  {{{1
