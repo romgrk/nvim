@@ -42,16 +42,8 @@ call s:source_plugins()
 " Plugins                                                                  {{{
 call plug#begin($vim . '/bundle')
 
-
-" Autocompletion
-" if !has('win32')
-" Plug 'Valloric/YouCompleteMe'                   "        , {'on': 'YcmCompleter'}
-" else
-" Plug 'xleng/YCM_WIN_X86'
-" Plug 'romgrk/AutoComplPop'
-" end
-Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 " Editing                                                                    {{{
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
 Plug 'wellle/targets.vim'
