@@ -94,8 +94,6 @@ Plug 'xolox/vim-shell'
 if !has('win32')
 Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
 end
-"Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
-"Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
 Plug 'thyrgle/vim-dyon'
