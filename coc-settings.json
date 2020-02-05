@@ -7,7 +7,7 @@
 
   "diagnostic.errorSign": "⨯ ",
   "diagnostic.warningSign": "⚠ ",
-  "diagnostic.infoSign": "\\ ●",
+  "diagnostic.infoSign": "\\ ∙",
   "diagnostic.hintSign": "\\ ?",
 
   "languageserver": {
