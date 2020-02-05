@@ -50,7 +50,7 @@ call plug#begin($vim . '/bundle')
 " Plug 'xleng/YCM_WIN_X86'
 " Plug 'romgrk/AutoComplPop'
 " end
-" Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 " Editing                                                                    {{{
 Plug 'neomake/neomake'
 Plug 'sirver/UltiSnips'
@@ -79,9 +79,7 @@ Plug 'liuchengxu/vim-clap'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'fidian/hexmode'
 Plug 'vim-scripts/loremipsum'
-" Plug 'zxqfl/tabnine-vim'
 Plug 'wsdjeg/vim-fetch'
-" Plug 'autozimu/LanguageClient-neovim'                   , { 'branch': 'next', 'do': 'bash install.sh', }
 Plug 'sjl/gundo.vim'
 Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
@@ -102,8 +100,6 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 if !has('win32')
-" Plug 'ludovicchabant/vim-gutentags'
-" Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
 end
 "Plug 'cohama/agit.vim'                                   , {'on': 'Agit'}
@@ -120,8 +116,6 @@ Plug 'vim-python/python-syntax'                          , { 'for': 'python' }
 Plug 'tmhedberg/SimpylFold'                              , { 'for': 'python' }
 Plug 'mattboehm/vim-unstack'                             , { 'for': 'python' }
 Plug 'othree/xml.vim'
-"Plug 'bigfish/vim-js-context-coloring'                   , { 'for': 'javascript', 'do': 'npm install --update' }
-"Plug 'ternjs/tern_for_vim'                               , { 'do': 'npm install' }
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'neoclide/vim-jsx-improve'                          , { 'for': 'javascript.jsx' }
@@ -165,8 +159,6 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 "Plug 'Yggdroot/indentLine'
-"Plug 'vim-airline/vim-airline'                           , {'on': 'AirlineToggle' }
-"Plug 'vim-airline/vim-airline-themes'                    , {'on': 'AirlineToggle' }
 Plug 'machakann/vim-highlightedyank'
 Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 " Plug 'andymass/vim-matchup'
@@ -174,8 +166,6 @@ Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 " Colors/Colorscheme                                                         {{{
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'lilydjwg/colorizer'
-"Plug 'flazz/vim-colorschemes'
-"Plug 'adelarsq/vim-grimmjow'
 Plug 'airblade/vim-gitgutter'
 " }}}
 " Local (~/github/vim)                                                       {{{
