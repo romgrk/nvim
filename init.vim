@@ -110,6 +110,7 @@ end
 "Plug 'jreybert/vimagit'                                  , {'on': 'Magit'}
 " }}}
 " Language                                                                   {{{
+Plug 'thyrgle/vim-dyon'
 Plug 'keith/swift.vim'
 Plug 'neoclide/jsonc.vim'
 " Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
