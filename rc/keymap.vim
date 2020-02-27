@@ -518,7 +518,7 @@ nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
 
-nnoremap <silent> <A-i>    :BTags<CR>
+nnoremap <silent> <A-i>    :Clap tags<CR>
 nnoremap <silent> <A-S-I>  :Tags<CR>
 
 nnoremap <silent> <A-o>    :Clap files<CR>

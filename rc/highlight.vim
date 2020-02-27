@@ -94,6 +94,8 @@ hi! link ClapFuzzyMatches8 EasyMotionTargetDefault
 hi! link ClapFuzzyMatches9 EasyMotionTargetDefault
 hi! link ClapFuzzyMatches10 EasyMotionTargetDefault
 
+hi! link ClapVistaTag         Normal
+
 " By default ClapQuery will use the bold fg of Normal and the same bg of ClapInput
 
 hi default link ClapPreview          ClapDefaultPreview

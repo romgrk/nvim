@@ -1,4 +1,6 @@
 
+" mappings: ../../syntax/clap_input.vim
+
 " 
 
 let clap_enable_icon = 0
