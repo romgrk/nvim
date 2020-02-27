@@ -437,6 +437,27 @@ fu! ReopenHelp() abort "                                                     {{{
 endfu "                                                                      }}}
 
 
+com! -nargs=* OpenURLOrSearch call OpenURLOrSearch(<q-args>)
+function! OpenURLOrSearch (...)
+  let input = a:0 == 1 ? a:1 : v:null
+  let uri = v:null
+
+  if !empty(input)
+    if match(input, '[a-z]*:\/\/[^ >,;]*') != -1
+      let uri = input
+    else
+      let uri = 'https://google.com/search?q=' . url#encode(input)
+    endif
+  else
+    let uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+    if uri == ""
+      let uri = 'https://google.com/search?q=' . url#encode(expand('<cword>'))
+    endif
+  endif
+  let escapedUri = escape(uri, '%')
+  silent exec "!xdg-open '" . escapedUri . "'"
+endfunc
+
 function! ForAllMatches (command, options)
     " Remember where we parked...
     let orig_pos = getpos('.')

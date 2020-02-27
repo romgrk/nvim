@@ -77,8 +77,8 @@ nnoremap g[ gT
 nnoremap g] gt
 
 " Open
-nnoremap <silent>go  :silent !xdg-open <C-R><C-A><CR>
-xnoremap <silent>go y:silent !xdg-open <C-R>"<CR>
+nnoremap <silent> go  :<C-U>OpenURLOrSearch<CR>
+xnoremap <silent> go y:<C-U>OpenURLOrSearch <C-R>"<CR>
 
 " Search
 nnoremap g/ *zvzz
@@ -394,6 +394,14 @@ nnoremap <leader><space>   :Denite buffer -split=floating -winrow=1<CR>
 
 nmap     <leader>j         <Plug>Sneak_s
 nmap     <leader>k         <Plug>Sneak_S
+
+" CoC:
+xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> gme    :<C-u>CocCommand actions.open<CR>
+
+nunmap <leader>ac
+nunmap <leader>a
+
 
 " ALE:
 nnoremap <leader>al         :ALEToggle<CR>
