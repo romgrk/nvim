@@ -153,6 +153,7 @@ let theme.fg_shaded             = '#24292e'
 let theme.fg_dark               = '#24292e'
 let theme.fg_widget             = '#cad0d3'
 let theme.fg_overlay            = '#f0f0f0'
+let theme.fg_comment            = '#8f9aa9'
 
 
 let theme.bg                    = '#ffffff'
@@ -249,14 +250,16 @@ call hi#('TabLine',          '#a8a89e',        theme.bg_dark, 'none')
 call hi#('TabLineFill',      '#4e4e48',        theme.bg_dark, 'none')
 call hi#('TabLine',          '#1f1f1f',        theme.bg_dark, '')
 call hi#('TabLineFill',      '#1f1f1f',        theme.bg_dark, '')
-call hi#('TabLineSel',       theme.fg_subtle, theme.bg_dark)
+call hi#('TabLineSel',       theme.fg_subtle,  theme.bg_dark)
 
-call hi#('Buffer',           theme.fg,        theme.bg_dark, '')
-call hi#('BufferCurrent',    theme.hl,        theme.bg,      '')
-call hi#('BufferActive',     theme.hl,        theme.bg_dark, '')
-call hi#('BufferMod',        s:brightyellow,  theme.bg_dark, 'italic,bold')
-call hi#('BufferCurrentMod', s:yellow,        theme.bg,      'italic')
-call hi#('BufferActiveMod',  s:yellow,        theme.bg_dark, 'italic')
+call hi#('Buffer',            theme.fg,         theme.bg_dark, 'none')
+call hi#('BufferCurrent',     theme.hl,         theme.bg,      'none')
+call hi#('BufferActive',      theme.hl,         theme.bg_dark, 'none')
+call hi#('BufferMod',         s:brightyellow,   theme.bg_dark, 'bold')
+call hi#('BufferCurrentMod',  s:yellow,         theme.bg,      'none')
+call hi#('BufferActiveMod',   s:yellow,         theme.bg_dark, 'none')
+call hi#('BufferSign',        theme.fg_comment, theme.bg_dark, 'none')
+call hi#('BufferSignCurrent', theme.fg_comment, theme.bg,      'none')
 
 " }}}
 " Search, Highlight, Conceal, Messages                                               {{{

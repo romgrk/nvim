@@ -611,7 +611,17 @@ end "of has('nvim') }}}1
 nnoremap <silent> <A-,> :BufferPrevious<CR>
 nnoremap <silent> <A-.> :BufferNext<CR>
 nnoremap <silent> <A-<> :BufferMovePrevious<CR>
-nnoremap <silent> <A->>  :BufferMoveNext<CR>
+nnoremap <silent> <A->> :BufferMoveNext<CR>
+
+nnoremap <silent> <A-1> :BufferJump 1<CR>
+nnoremap <silent> <A-2> :BufferJump 2<CR>
+nnoremap <silent> <A-3> :BufferJump 3<CR>
+nnoremap <silent> <A-4> :BufferJump 4<CR>
+nnoremap <silent> <A-5> :BufferJump 5<CR>
+nnoremap <silent> <A-6> :BufferJump 6<CR>
+nnoremap <silent> <A-7> :BufferJump 7<CR>
+nnoremap <silent> <A-8> :BufferJump 8<CR>
+nnoremap <silent> <A-9> :BufferLast<CR>
 
 nnoremap <A-c>      :BufferClose<CR>
 nnoremap <A-C>      :BufferReopen<CR>
@@ -1062,11 +1072,6 @@ inoremap <C-Y> <C-C>:let @z = @"<CR>mz
 
 nnoremap =r      :call QuickReload()<CR>
 
-
-
-nnoremap <M-1> :SynStack<CR>
-nnoremap <M-3> :SynCurrentEdit<CR>
-nnoremap <M-4> :Fullfill<space><C-R>=GetCurrentSyntaxGroup()<CR>
 
 
 " Copy current file path

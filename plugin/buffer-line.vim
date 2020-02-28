@@ -5,8 +5,11 @@
 " !::exe [So]
 
 
-command! BufferNext     call s:goto_buffer(+1)
-command! BufferPrevious call s:goto_buffer(-1)
+command! BufferNext     call s:goto_buffer_relative(+1)
+command! BufferPrevious call s:goto_buffer_relative(-1)
+
+command! -nargs=1 BufferJump  call s:goto_buffer(<f-args>)
+command!          BufferLast  call s:goto_buffer(-1)
 
 command! BufferMoveNext     call s:move_current_buffer(+1)
 command! BufferMovePrevious call s:move_current_buffer(-1)
@@ -22,11 +25,12 @@ let g:buffer_line = s:
 fu! TabLineUpdate ()
     let &tabline = BufferLine() . '%=' . TablineSession() . Tabpages()
 endfu
-fu! BufferLine ()
-    let result = []
 
+let s:SPACE = '%( %)'
+
+fu! BufferLine ()
     let bufferNames = {}
-    let bufferDetails = map(s:get_updated_buffers(), {k, number -> { 'number': number, 'name': s:get_buffer_name(number) }})
+    let bufferDetails = map(s:get_updated_buffers(), {k, number -> { 'number': 0+number, 'name': s:get_buffer_name(number) }})
 
     for i in range(len(bufferDetails))
       let buffer = bufferDetails[i]
@@ -47,21 +51,28 @@ fu! BufferLine ()
       end
     endfor
 
-    for buffer in bufferDetails
+    let currentnr = bufnr()
+
+    let result = ''
+
+    for i in range(len(bufferDetails))
+        let buffer = bufferDetails[i]
         let type = buf#activity(0+buffer.number)
+        let isCurrent = currentnr == buffer.number
 
         let hl  = s:hl_groups[type]
         let hl .= buf#modF(0+buffer.number) ? 'Mod' : ''
 
+        let numberPrefix = s:hl('BufferSign' . (isCurrent ? 'Current' : ''), i + 1)
+
         let hlprefix   = '%#'. hl .'#'
-        let bufExpr = '%{"'. buffer.name .'"}'
-        let sep = '%( %)'
-        let result += [hlprefix . sep . bufExpr . sep]
+        let bufExpr = '%{"' . buffer.name .'"}'
+        let result .= hlprefix . s:SPACE . numberPrefix . s:SPACE . hlprefix . bufExpr . s:SPACE
     endfor
 
-    let part = join(result, '') . s:hl('TabLineFill')
+    let result .= s:hl('TabLineFill')
 
-    return part
+    return result
 endfu
 fu! TablineSession (...)
     let name = ''
@@ -113,7 +124,19 @@ function! s:move_current_buffer (direction)
     call TabLineUpdate()
 endfunc
 
-function! s:goto_buffer (direction)
+function! s:goto_buffer (number)
+    call s:get_updated_buffers()
+
+    if a:number == -1
+        let idx = len(s:buffers)-1
+    else
+        let idx = a:number - 1
+    end
+
+    silent execute 'buffer' . s:buffers[idx]
+endfunc
+
+function! s:goto_buffer_relative (direction)
     call s:get_updated_buffers()
 
     let currentnr = bufnr('%')
