@@ -94,7 +94,7 @@ function! s:map_alternating (trigger, what, values, ...)
 endfunc
 
 " Cool widget
-nnoremap <leader>o   :call <SID>show_toggle_input()<CR>
+command! -bar OptionsWidget call <SID>show_toggle_input()
 
 function! s:show_toggle_input ()
     let buffer = ''

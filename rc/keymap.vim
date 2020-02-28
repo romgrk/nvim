@@ -389,11 +389,11 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 
 nnoremap <C-A-B>           :NeomakeSh make build<CR>
 
-nnoremap <leader><space>   :Denite buffer -split=floating -winrow=1<CR>
-
-
 nmap     <leader>j         <Plug>Sneak_s
 nmap     <leader>k         <Plug>Sneak_S
+
+" OptionsWidget:
+nnoremap <leader>co        :OptionsWidget<CR>
 
 " CoC:
 xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
@@ -525,9 +525,8 @@ nnoremap <silent><C-A-\> :NERDTreeFind<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
-
-nnoremap <silent> <A-i>    :Clap tags<CR>
-nnoremap <silent> <A-S-I>  :Tags<CR>
+nnoremap <leader>o         :Clap files<CR>
+nnoremap <leader><space>   :Clap files<CR>
 
 nnoremap <silent> <A-o>    :Clap files<CR>
 nnoremap <silent> <C-A-o>  :Clap files <C-R>=expand('%:h:~')<CR><CR>
@@ -536,7 +535,10 @@ nnoremap <silent> <A-O>    :Clap history<CR>
 nnoremap <silent> <C-S>    :Clap buffers<CR>
 " nnoremap <silent> <C-A-o>  :GitFiles<CR>
 
-" Clap
+nnoremap <silent> <A-i>    :Clap tags<CR>
+nnoremap <silent> <A-S-I>  :Tags<CR>
+
+" Clap input
 
 " see ../syntax/clap_input.vim
 
