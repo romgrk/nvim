@@ -9,6 +9,8 @@
 let g:togglekey = 'co'
 let g:togglemap = { }
 
+command! -bar OptionsWidget call <SID>show_toggle_input()
+
 command! -bar -nargs=+ ToggleMap :call <SID>toggle_map(<args>)
 command! -bar -nargs=+ AlternMap :call <SID>map_alternating(<args>)
 command! -bar   EditVerboseLevel :call <SID>setVerbose()
@@ -92,9 +94,6 @@ function! s:map_alternating (trigger, what, values, ...)
     let g:togglemap[a:trigger] = l:m
     execute 'nnoremap <silent>' . m['lhs'] . ' ' . m['rhs']
 endfunc
-
-" Cool widget
-command! -bar OptionsWidget call <SID>show_toggle_input()
 
 function! s:show_toggle_input ()
     let buffer = ''
