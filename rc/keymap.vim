@@ -484,7 +484,7 @@ nnoremap       <leader>mv     :Move <C-D>
 nnoremap       <leader>rn     :Rename<space>
 
 " Search:
-nnoremap       <leader>ag     :FzfRg<space>
+nnoremap       <leader>ag     :FzfRg<CR>
 nnoremap       <leader>aa     :FzfRg <C-r><C-w><CR>
 
 "===============================================================================
