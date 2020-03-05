@@ -1418,9 +1418,9 @@ import vim
 from UltiSnips import UltiSnips_Manager
 if UltiSnips_Manager._current_snippet:
     if vim.eval('a:dir') == '1':
-        UltiSnips_Manager._jump()
+        UltiSnips_Manager.jump_forwards()
     else:
-        UltiSnips_Manager._jump(True)
+        UltiSnips_Manager.jump_backwards()
 EOF
     return ""
 endfu
