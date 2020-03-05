@@ -21,6 +21,9 @@ let s:commandWithColumns = v:null
 if !exists('g:searchReplace_closeOnExit')
     let g:searchReplace_closeOnExit = v:true
 end
+if !exists('g:searchReplace_editCommand')
+    let g:searchReplace_editCommand = 'edit'
+end
 
 command! -nargs=* -complete=dir Search    :call <SID>runSearch(<f-args>)
 command! -nargs=1               Replace   :call <SID>runReplace(<f-args>)
@@ -201,9 +204,9 @@ function! s:createSearchWindow()
             normal! ggdG
             call clearmatches()
             return
-        else
-            execute bufnr('SearchReplace') . 'bwipe!'
         end
+
+        execute bufnr('SearchReplace') . 'bwipe!'
     end
 
     split
@@ -229,6 +232,7 @@ function! s:createSearchWindow()
     enew
     setlocal nonumber
     setlocal buftype=nofile
+    setlocal nobuflisted
     file SearchReplace
     let s:lastBufnr = bufnr('%')
 
@@ -241,6 +245,7 @@ function! s:createSearchWindow()
     nnoremap   <expr><nowait><buffer><A-r> <SID>replaceMapping()
     nnoremap   <expr><nowait><buffer><CR>  <SID>replaceMapping()
     nnoremap <silent><nowait><buffer>d     :call <SID>deleteLine()<CR>
+    nnoremap <silent><nowait><buffer>o     :call <SID>openLine()<CR>
 
     " Add highlights
     call matchadd('Comment', '###')
@@ -308,6 +313,22 @@ function! s:deleteLine()
     end
 endfunction
 
+function! s:openLine()
+    let text = getline('.')
+    let firstLine = line('.')
+    if text =~ '^###'
+        let filename = s:extractFilename(text)
+        execute g:searchReplace_editCommand . ' ' . filename
+    elseif text =~ '^\d\+:'
+        let lineNumber = s:extractLineNumber(getline('.'))
+        let previousFilenameLine = search('### .* ###', 'nb')
+        let filenameLine = getline(previousFilenameLine)
+        let filename = s:extractFilename(filenameLine)
+        execute g:searchReplace_editCommand . ' ' . filename
+        execute 'normal! ' . lineNumber . 'ggzz'
+    end
+endfunction
+
 function! s:filterData(data)
     return filter(a:data, "v:val != ''")
 endfunction
@@ -320,6 +341,14 @@ function! s:echo(hlgroup, ...)
     exe ':echohl ' . a:hlgroup
     echon join(a:000)
 endfunction
+
+function! s:extractFilename (line)
+    return substitute(substitute(a:line, '### ', '', ''), ' ###', '', '')
+endfunc
+
+function! s:extractLineNumber (line)
+    return substitute(a:line, ':.*', '', '')
+endfunc
 
 " runs a command then calls Fn handler
 function! s:run(cmd, cwd, Fn)
