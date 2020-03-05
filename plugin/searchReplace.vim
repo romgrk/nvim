@@ -1,4 +1,4 @@
-"!::exe [So]
+" !::exe [So]
 
 let s:isSearching = v:false
 let s:directory = '.'
@@ -80,8 +80,8 @@ function! s:runReplace(replacement)
     let currentFile = ''
     for n in range(1, line('$'))
         let text = getline(n)
-        if text =~ '^###'
-            let currentFile = text[4:-5]
+        if text =~ '^> '
+            let currentFile = s:extractFilename(text)
             let matches[currentFile] = []
         else
             let line = matchstr(text, '\v\d+:@=')
@@ -153,9 +153,10 @@ endfunction
 function! s:appendMatch(match)
     if a:match.type == 'begin'
         if len(s:matches) == 0
-            call setline(1, '### ' . (a:match.data.path.text) . ' ###')
+            call setline(1, '> ' . (a:match.data.path.text))
         else
-            call append(line('$'), '### ' . (a:match.data.path.text) . ' ###')
+            call append(line('$'), '')
+            call append(line('$'), '> ' . (a:match.data.path.text))
         end
         return
     end
@@ -169,7 +170,7 @@ function! s:appendMatch(match)
     let prefix = '' . a:match.data.line_number . ': '
     let lineNumber = line('$')
 
-    call append(lineNumber, prefix . (a:match.data.lines.text))
+    call append(lineNumber, prefix . substitute(a:match.data.lines.text, '\n', '', ''))
 
     for submatch in a:match.data.submatches
         let lineNumber = line('$')
@@ -234,13 +235,14 @@ function! s:createSearchWindow()
     setlocal buftype=nofile
     setlocal nobuflisted
     file SearchReplace
-    let s:lastBufnr = bufnr('%')
+
+    let s:searchWindowId = win_getid()
 
     " Create mappings
     if g:searchReplace_closeOnExit
         au BufLeave <buffer> bd
     end
-    nnoremap                 <buffer>q     <C-W>p
+    nnoremap                 <buffer>q     <C-W>c
     nnoremap                 <buffer><Esc> <C-W>p
     nnoremap   <expr><nowait><buffer><A-r> <SID>replaceMapping()
     nnoremap   <expr><nowait><buffer><CR>  <SID>replaceMapping()
@@ -248,16 +250,24 @@ function! s:createSearchWindow()
     nnoremap <silent><nowait><buffer>o     :call <SID>openLine()<CR>
 
     " Add highlights
-    call matchadd('Comment', '###')
-    call matchadd('Directory', '\v(###)@<=.*(###)@=')
-    call matchadd('Label', '\v^\d+:')
+    call matchadd('Comment', '^> ')
+    call matchadd('Directory', '\v(\> )@<=.*')
+    call matchadd('LineNr', '\v^\d+:')
 endfunction
 
 function! s:closeSearchWindow ()
-    " Buffer will be deleted by autocmd
-    wincmd p
+    if s:searchWindowId == v:null
+        return
+    end
+
+    if !win_gotoid(s:searchWindowId)
+        return
+    end
+
+    wincmd c
 
     let s:isSearching = v:false
+    let s:searchWindowId = v:null
 endfunction
 
 function! s:replaceMapping()
@@ -302,13 +312,13 @@ endfunction
 function! s:deleteLine()
     let text = getline('.')
     let firstLine = line('.')
-    if text =~ '^###'
-        let lastLine = searchpos('^###', 'n')[0] - 1
+    if text =~ '^> '
+        let lastLine = searchpos('^> ', 'n')[0] - 1
         if lastLine == 0
             let lastLine = line('$')
         end
         execute firstLine . ',' . lastLine . 'delete _'
-    else
+    elseif text =~ '^\d\+:'
         execute firstLine . 'delete _'
     end
 endfunction
@@ -316,12 +326,12 @@ endfunction
 function! s:openLine()
     let text = getline('.')
     let firstLine = line('.')
-    if text =~ '^###'
+    if text =~ '^> '
         let filename = s:extractFilename(text)
         execute g:searchReplace_editCommand . ' ' . filename
     elseif text =~ '^\d\+:'
         let lineNumber = s:extractLineNumber(getline('.'))
-        let previousFilenameLine = search('### .* ###', 'nb')
+        let previousFilenameLine = search('^> .*', 'nb')
         let filenameLine = getline(previousFilenameLine)
         let filename = s:extractFilename(filenameLine)
         execute g:searchReplace_editCommand . ' ' . filename
@@ -343,7 +353,7 @@ function! s:echo(hlgroup, ...)
 endfunction
 
 function! s:extractFilename (line)
-    return substitute(substitute(a:line, '### ', '', ''), ' ###', '', '')
+    return a:line[2:]
 endfunc
 
 function! s:extractLineNumber (line)
@@ -377,4 +387,4 @@ function! s:on_exit(...) dict
 endfunction
 
 
-let g:SearchReplace = s:
+let g:searchReplace = s:
