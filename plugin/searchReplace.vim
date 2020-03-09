@@ -324,6 +324,7 @@ function! s:createPromptWindow()
     inoremap                 <buffer><C-c> <Esc>
     inoremap                 <buffer><CR>  <Esc>:call <SID>prompt_enter()<CR>
     inoremap                 <buffer><TAB> <Esc>:call <SID>prompt_tab()<CR>
+    inoremap                 <buffer><C-u> <Esc>:call <SID>prompt_clearLine()<CR>
 
     nnoremap                 <buffer>o     <Nop>
     nnoremap                 <buffer>O     <Nop>
@@ -420,6 +421,13 @@ function! s:prompt_tab ()
     let newLine = currentLine == 1 ? 2 : 1
     Pp [0, newLine, newCol, 0]
     call setpos('.', [0, newLine, 1, 0])
+    call feedkeys('A', 'n')
+endfunc
+
+function! s:prompt_clearLine ()
+    let currentLine = line('.')
+    let text = currentLine == 1 ? s:promptPattern : s:promptDirectories
+    call setline(currentLine, text)
     call feedkeys('A', 'n')
 endfunc
 
