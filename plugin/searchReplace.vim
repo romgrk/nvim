@@ -320,8 +320,8 @@ function! s:createPromptWindow()
 
     " Create mappings
     nnoremap                 <buffer><Esc> <C-w>c
-    inoremap                 <buffer><Esc> <Esc>
-    inoremap                 <buffer><C-c> <Esc><C-w>c
+    inoremap                 <buffer><Esc> <Esc><C-w>c
+    inoremap                 <buffer><C-c> <Esc>
     inoremap                 <buffer><CR>  <Esc>:call <SID>prompt_enter()<CR>
     inoremap                 <buffer><TAB> <Esc>:call <SID>prompt_tab()<CR>
 
