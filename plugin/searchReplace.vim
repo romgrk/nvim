@@ -231,10 +231,12 @@ function! s:createSearchWindow()
     end
 
     enew
+    file SearchReplace
     setlocal nonumber
     setlocal buftype=nofile
     setlocal nobuflisted
-    file SearchReplace
+    setlocal foldmethod=expr
+    setlocal foldexpr=SearchWindowFoldLevel(v:lnum)
 
     let s:searchWindowId = win_getid()
 
@@ -244,10 +246,11 @@ function! s:createSearchWindow()
     end
     nnoremap                 <buffer>q     <C-W>c
     nnoremap                 <buffer><Esc> <C-W>p
-    nnoremap   <expr><nowait><buffer><A-r> <SID>replaceMapping()
-    nnoremap   <expr><nowait><buffer><CR>  <SID>replaceMapping()
     nnoremap <silent><nowait><buffer>d     :call <SID>deleteLine()<CR>
     nnoremap <silent><nowait><buffer>o     :call <SID>openLine()<CR>
+    nnoremap <silent><nowait><buffer><CR>  :call <SID>openLine()<CR>
+    nnoremap   <expr><nowait><buffer><A-r> <SID>replaceMapping()
+    nnoremap   <expr><nowait><buffer><C-r> <SID>replaceMapping()
 
     " Add highlights
     call matchadd('Comment', '^> ')
@@ -358,6 +361,14 @@ endfunc
 
 function! s:extractLineNumber (line)
     return substitute(a:line, ':.*', '', '')
+endfunc
+
+function! SearchWindowFoldLevel (lnum)
+    let line = getline(a:lnum)
+    if len(line) == 0
+        return 0
+    end
+    return 1
 endfunc
 
 " runs a command then calls Fn handler
