@@ -2,8 +2,8 @@
 
 let s:isSearching = v:false
 let s:directory = '.'
-let s:paths = ['.']
 let s:pattern = ''
+let s:paths = []
 let s:replacement = ''
 let s:totalMatches = 0
 let s:waitingCount = 0
@@ -15,8 +15,16 @@ let s:search = {}
 let s:matches = []
 let s:position = 'right'
 
+let s:promptWindowId = v:null
+let s:searchWindowId = v:null
+
+let s:promptPattern     = 'Pattern      '
+let s:promptDirectories = 'Directories  '
+
 let s:command = v:null
 let s:commandWithColumns = v:null
+
+let s:hlNamespace = nvim_create_namespace('SearchReplace')
 
 if !exists('g:searchReplace_closeOnExit')
     let g:searchReplace_closeOnExit = v:true
@@ -25,14 +33,24 @@ if !exists('g:searchReplace_editCommand')
     let g:searchReplace_editCommand = 'edit'
 end
 
-command! -nargs=* -complete=dir Search    :call <SID>runSearch(<f-args>)
+command! -nargs=* -complete=dir Search    :call <SID>searchCommand(<f-args>)
 command! -nargs=1               Replace   :call <SID>runReplace(<f-args>)
 
 hi default link SearchReplaceMatch Search
 
-function! s:runSearch(pattern, ...)
-    let s:paths = a:000
-    let s:pattern = a:pattern
+function! s:searchCommand (...)
+    if a:0 > 1
+        let s:pattern = a:000[0]
+        let s:paths   = a:000[1:]
+        call s:runSearch()
+    else
+        call s:createPromptWindow()
+    end
+endfunc
+
+function! s:runSearch()
+    " global s:pattern
+    " global s:paths
     let s:replacement = ''
     let s:totalMatches = 0
     let s:waitingCount = 0
@@ -42,7 +60,10 @@ function! s:runSearch(pattern, ...)
     let s:search = {}
     let s:matches = []
 
-    let s:command = "rg --json " . shellescape(s:pattern) . " " . join(s:paths)
+    let s:command =
+        \ "rg --json "
+        \ . join(map(copy(s:paths), {_,v -> '--glob ' . shellescape(v)}), " ")
+        \ . " " . shellescape(s:pattern)
 
     let s:job = {}
     let s:job.cmd = s:command
@@ -173,10 +194,14 @@ function! s:appendMatch(match)
     call append(lineNumber, prefix . substitute(a:match.data.lines.text, '\n', '', ''))
 
     for submatch in a:match.data.submatches
-        let lineNumber = line('$')
-        let pos = [lineNumber, submatch.start + 1 + len(prefix), len(submatch.match.text)]
+        let lineNumber = line('$') - 1
+        let length = len(submatch.match.text)
+        let columnStart = submatch.start + len(prefix)
+        let columnEnd = columnStart + length
 
-        call matchaddpos('SearchReplaceMatch', [pos])
+        call nvim_buf_add_highlight(
+            \ 0, s:hlNamespace, 'SearchReplaceMatch',
+            \ lineNumber, columnStart, columnEnd)
     endfor
 endfunction
 
@@ -203,7 +228,7 @@ function! s:createSearchWindow()
         if len(winids) > 0
             call win_gotoid(winids[0])
             normal! ggdG
-            call clearmatches()
+            call nvim_buf_clear_namespace(0, s:hlNamespace, 0, -1)
             return
         end
 
@@ -246,16 +271,73 @@ function! s:createSearchWindow()
     end
     nnoremap                 <buffer>q     <C-W>c
     nnoremap                 <buffer><Esc> <C-W>p
-    nnoremap <silent><nowait><buffer>d     :call <SID>deleteLine()<CR>
-    nnoremap <silent><nowait><buffer>o     :call <SID>openLine()<CR>
-    nnoremap <silent><nowait><buffer><CR>  :call <SID>openLine()<CR>
+    nnoremap <silent><nowait><buffer>d     :call <SID>search_deleteLine()<CR>
+    nnoremap <silent><nowait><buffer>o     :call <SID>search_openLine()<CR>
+    nnoremap <silent><nowait><buffer><CR>  :call <SID>search_openLine()<CR>
     nnoremap   <expr><nowait><buffer><A-r> <SID>replaceMapping()
     nnoremap   <expr><nowait><buffer><C-r> <SID>replaceMapping()
 
     " Add highlights
-    call matchadd('Comment', '^> ')
-    call matchadd('Directory', '\v(\> )@<=.*')
-    call matchadd('LineNr', '\v^\d+:')
+    call matchadd('Comment', '^> ', 0)
+    call matchadd('Directory', '\v(\> )@<=.*', 0)
+    call matchadd('LineNr', '\v^\d+:', 0)
+endfunction
+
+function! s:createPromptWindow()
+    " Go to existing window if there is one
+    if bufnr('SearchReplace__prompt') != -1
+        let winids = win_findbuf(bufnr('SearchReplace__prompt'))
+        if len(winids) > 0
+            call win_gotoid(winids[0])
+            call feedkeys('ggA', 'n')
+            return
+        end
+
+        execute bufnr('SearchReplace__prompt') . 'bwipe!'
+    end
+
+    let width = &columns
+    let col = (&columns - width)
+    let row = &lines - &cmdheight - 1
+    let s:promptWindowId = nvim_open_win(0, v:true, {
+    \   'style': 'minimal',
+    \   'anchor': 'SE',
+    \   'relative': 'editor',
+    \   'row': row,
+    \   'col': col,
+    \   'width': width,
+    \   'height': 2
+    \ })
+
+    enew
+    file SearchReplace__prompt
+    " setlocal nonumber
+    setlocal buftype=nofile
+    setlocal nobuflisted
+    setlocal winhl=Normal:NormalPopup,EndOfBuffer:NormapPopup
+
+    au BufLeave <buffer> bd
+
+    " Create mappings
+    nnoremap                 <buffer><Esc> <C-w>c
+    inoremap                 <buffer><Esc> <Esc>
+    inoremap                 <buffer><C-c> <Esc><C-w>c
+    inoremap                 <buffer><CR>  <Esc>:call <SID>prompt_enter()<CR>
+    inoremap                 <buffer><TAB> <Esc>:call <SID>prompt_tab()<CR>
+
+    nnoremap                 <buffer>o     <Nop>
+    nnoremap                 <buffer>O     <Nop>
+    nnoremap                 <buffer>dd    <Nop>
+
+    " Add highlights
+    call matchadd('StatusLine', s:promptPattern)
+    call matchadd('StatusLine', s:promptDirectories)
+
+    " Add text
+    call append(0, s:promptPattern . s:pattern)
+    call append(1, s:promptDirectories . join(s:paths, ', '))
+
+    call feedkeys('ggA', 'n')
 endfunction
 
 function! s:closeSearchWindow ()
@@ -269,8 +351,22 @@ function! s:closeSearchWindow ()
 
     wincmd c
 
-    let s:isSearching = v:false
     let s:searchWindowId = v:null
+    let s:isSearching = v:false
+endfunction
+
+function! s:closePromptWindow ()
+    if s:promptWindowId == v:null
+        return
+    end
+
+    if !win_gotoid(s:promptWindowId)
+        return
+    end
+
+    wincmd c
+
+    let s:promptWindowId = v:null
 endfunction
 
 function! s:replaceMapping()
@@ -312,7 +408,22 @@ function! s:displayDone(...)
     call s:echo('Normal', ' files )')
 endfunction
 
-function! s:deleteLine()
+function! s:prompt_enter ()
+    let s:pattern = s:extractPattern(getline(1))
+    let s:paths   = s:extractDirectories(getline(2))
+    call s:closePromptWindow()
+    call s:runSearch()
+endfunc
+
+function! s:prompt_tab ()
+    let currentLine = line('.')
+    let newLine = currentLine == 1 ? 2 : 1
+    Pp [0, newLine, newCol, 0]
+    call setpos('.', [0, newLine, 1, 0])
+    call feedkeys('A', 'n')
+endfunc
+
+function! s:search_deleteLine()
     let text = getline('.')
     let firstLine = line('.')
     if text =~ '^> '
@@ -326,7 +437,7 @@ function! s:deleteLine()
     end
 endfunction
 
-function! s:openLine()
+function! s:search_openLine()
     let text = getline('.')
     let firstLine = line('.')
     if text =~ '^> '
@@ -361,6 +472,16 @@ endfunc
 
 function! s:extractLineNumber (line)
     return substitute(a:line, ':.*', '', '')
+endfunc
+
+function! s:extractPattern (line)
+    return substitute(a:line, s:promptPattern, '', '')
+endfunc
+
+function! s:extractDirectories (line)
+    let input = substitute(a:line, s:promptDirectories, '', '')
+    let dirs = split(input, '\s*,\s*')
+    return dirs
 endfunc
 
 function! SearchWindowFoldLevel (lnum)
