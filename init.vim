@@ -67,6 +67,7 @@ Plug 'tommcdo/vim-ninja-feet'
 " General                                                                    {{{
 " @plugins
 Plug 'liuchengxu/vim-clap'
+Plug 'liuchengxu/vista.vim'
 " Plug 'puremourning/vimspector'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'fidian/hexmode'
@@ -91,11 +92,9 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
-if !has('win32')
-Plug 'majutsushi/tagbar'                       "         , {'on': ['Tagbar', 'TagbarToggle'] }
-end
 " }}}
 " Language                                                                   {{{
+Plug 'justinmk/vim-syntax-extra'
 Plug 'thyrgle/vim-dyon'
 Plug 'keith/swift.vim'
 Plug 'neoclide/jsonc.vim'
@@ -166,6 +165,7 @@ Plug 'romgrk/pp.vim'
 Plug 'romgrk/replace.vim'
 Plug 'romgrk/vim-exeline'
 Plug 'romgrk/winteract.vim'                        , {'on': 'InteractiveWindow'}
+Plug 'romgrk/searchReplace.vim'
 " }}}
 
 call plug#end() " }}}
