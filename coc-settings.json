@@ -54,7 +54,7 @@
     // CocInstall coc-css
     // CocInstall coc-html
     // CocInstall coc-json
-    // CocInstall coc-pyls
+    // CocInstall coc-python
     // CocInstall coc-tag
     // CocInstall coc-actions
 
