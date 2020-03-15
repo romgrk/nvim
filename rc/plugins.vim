@@ -50,7 +50,7 @@ let local_vimrc.cache_file = path#Join([$XDG_CACHE_HOME, 'local_vimrc'])
 
 let bookmarks_file = path#Join([$XDG_CACHE_HOME, 'nvim', 'bookmarks'])
 
-let templates_directory = ['~/templates']
+let templates_directory = path#Join([$vim, 'templates'])
 
 " Miniyank
 let miniyank_filename = $XDG_CACHE_HOME . '/miniyank.mpack'
