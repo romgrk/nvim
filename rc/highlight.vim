@@ -58,6 +58,7 @@ hi! CocInfoFloat                      guifg=white
 hi! CocWarningFloat                   guifg=#FFDD86
 hi! CocErrorFloat                     guifg=#FDC1C1
 
+hi link gitmessengerHeader Normalfloat
 
 " === Clap ===
 
