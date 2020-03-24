@@ -47,6 +47,8 @@ end
 
 set updatetime=300
 
+set title
+set titlestring=%(%{xolox#session#find_current_session()}%)%(\ %a%)
 
 " }}}
 "===============================================================================
