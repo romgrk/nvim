@@ -455,7 +455,7 @@ function! OpenURLOrSearch (...)
     endif
   endif
   let escapedUri = escape(uri, '%')
-  silent exec "!xdg-open '" . escapedUri . "'"
+  call system("xdg-open '" . escapedUri . "'")
 endfunc
 
 function! ForAllMatches (command, options)
