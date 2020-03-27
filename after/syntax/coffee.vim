@@ -12,4 +12,4 @@ hi! link coffeeCurly        Delimiter
 hi! link coffeeParen        Delimiter
 hi! link coffeeSpecialOp    StringDelimiter
 hi! link coffeeSpecialVar   Identifier
-hi! link coffeeSpecialIdent Variable
+hi! link coffeeSpecialIdent Function
