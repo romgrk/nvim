@@ -237,8 +237,8 @@ vmap  <A-S-K>       <Plug>ColumnMoveUp
 
 
 " Jumps:
-nnoremap H <C-O>
-nnoremap L <C-I>
+nnoremap H <C-O>zz
+nnoremap L <C-I>zz
 
 
 " no noremap: remapped to matchit
