@@ -435,7 +435,7 @@ nnoremap <leader>tp         :TernDefPreview<CR>
 nnoremap <expr><leader>ss     xolox#session#find_current_session() != 'default' ?
                               \ ":wall! \<Bar> SaveSession\<CR>\<Esc>" : ":wall! \<Bar> SaveSession\<space>"
 nnoremap       <leader>sS     :SaveSession!<space>
-nnoremap       <leader>so     :call feedkeys(":OpenSession! \<C-D>", 't')<CR>
+nnoremap       <leader>so     :Clap session<CR>
 nnoremap       <leader>sd     :OpenSession! default<CR>
 nnoremap       <leader>sc     :wall! <Bar> CloseSession<CR>
 nnoremap       <leader>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
