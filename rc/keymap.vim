@@ -143,6 +143,7 @@ endfunc
 
 " Local config
 nmap gslc           :Edit .vimrc<CR>
+nmap gsln           :execute 'Note ' . GetCurrentSession()<CR>
 
 " Files
 nnoremap gsrc       :Edit $MYVIMRC<CR>

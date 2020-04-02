@@ -662,6 +662,9 @@ function! ClearArgs()
     endfor
 endfunction
 
+function! GetCurrentSession ()
+  return xolox#session#find_current_session()
+endfunc
 
 com! -bar          Hold   call GetChar()
 com! -bar          Redraw call Redraw()

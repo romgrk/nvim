@@ -74,7 +74,6 @@ Plug 'fidian/hexmode'
 Plug 'vim-scripts/loremipsum'
 Plug 'wsdjeg/vim-fetch'
 Plug 'sjl/gundo.vim'
-Plug 'w0rp/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'bfredl/nvim-miniyank'
 Plug 'justinmk/vim-syntax-extra'
@@ -145,7 +144,6 @@ Plug 'KabbAmine/vCoolor.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 "Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-highlightedyank'
@@ -156,6 +154,7 @@ Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'lilydjwg/colorizer'
 Plug 'airblade/vim-gitgutter'
+Plug 'ryanoasis/vim-devicons'
 " }}}
 " Local (~/github/vim)                                                       {{{
 Plug 'romgrk/equal.operator'
