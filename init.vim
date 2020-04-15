@@ -138,6 +138,7 @@ end
 " }}}
 " UI                                                                         {{{
 " Plug 'TaDaa/vimade'
+Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'KabbAmine/vCoolor.vim'
