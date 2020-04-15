@@ -11,3 +11,8 @@ let clap_forerunner_status_sign_running = '⧗ '
 let clap_forerunner_status_sign_done    = '  '
 
 let clap_current_selection_sign = { 'text': '➔ ', 'texthl': 'ClapCurrentSelection', 'linehl': 'ClapCurrentSelection' }
+
+let clap_provider_session = {
+\ 'source': {-> xolox#session#complete_names('', 0, 0)},
+\ 'sink': 'OpenSession',
+\ }
