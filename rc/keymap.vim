@@ -446,6 +446,8 @@ nnoremap       <leader>sn     :Note <C-R>=xolox#session#find_current_session()<C
 
 nnoremap       <leader>np     :NewProject<space>
 
+" Notes:
+nnoremap       <leader>no     :Clap note<CR>
 
 " Git:
 

@@ -16,3 +16,8 @@ let clap_provider_session = {
 \ 'source': {-> xolox#session#complete_names('', 0, 0)},
 \ 'sink': 'OpenSession',
 \ }
+
+let clap_provider_note = {
+\ 'source': {-> xolox#notes#cmd_complete('', 'Note ', 0)},
+\ 'sink': 'Note',
+\ }
