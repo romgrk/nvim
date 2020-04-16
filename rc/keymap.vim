@@ -943,18 +943,16 @@ vmap <A-'>      <Plug>NERDCommenterSexy
 
 " StringTransform:
 " gc, gC, --, -s, __                                                         {{{
-nmap gc <Plug>(camel_case_operator)
-xmap gc <Plug>(camel_case_operator)
-nmap gC <Plug>(upper_camel_case_operator)
-xmap gC <Plug>(upper_camel_case_operator)
-nmap __ <Plug>(snake_case_operator)
-xmap __ <Plug>(snake_case_operator)
-nmap -- <Plug>(kebab_case_operator)
-xmap -- <Plug>(kebab_case_operator)
-nmap _s <Plug>(start_case_operator)
-xmap _s <Plug>(start_case_operator)
-nmap -s <Plug>(start_case_operator)
-xmap -s <Plug>(start_case_operator)
+nmap gcc <Plug>(camel_case_operator)
+xmap gcc <Plug>(camel_case_operator)
+nmap gcC <Plug>(upper_camel_case_operator)
+xmap gcC <Plug>(upper_camel_case_operator)
+nmap gc_ <Plug>(snake_case_operator)
+xmap gc_ <Plug>(snake_case_operator)
+nmap gc- <Plug>(kebab_case_operator)
+xmap gc- <Plug>(kebab_case_operator)
+nmap gcs <Plug>(start_case_operator)
+xmap gcs <Plug>(start_case_operator)
 "}}}
 
 " }}}1
