@@ -658,7 +658,7 @@ endfunction
 function! ClearArgs()
     let argsLength = argc()
     for i in range(argsLength)
-        exe 'argdel ' . argv(argsLength - i - 1)
+        exe 'argdel ' . escape(argv(argsLength - i - 1), ' ')
     endfor
 endfunction
 
