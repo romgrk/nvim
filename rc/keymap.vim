@@ -5,6 +5,9 @@
 
 " Recent mappings:
 
+nnoremap -  <C-x>
+nnoremap +  <C-a>
+
 nnoremap <C-X>h  :SidewaysLeft<CR>
 nnoremap <C-X>l  :SidewaysRight<CR>
 
