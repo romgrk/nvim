@@ -524,9 +524,9 @@ nnoremap      <leader>mW :.,.MultipleCursorsFind \w\+<CR>
 " Panels, File navigation, FZF & Clap                                       {{{1
 
 
-nnoremap <silent><A-\>   :NERDTreeFocus<CR>
-nnoremap <silent><C-\>   :NERDTreeToggle<CR>
-nnoremap <silent><C-A-\> :NERDTreeFind<CR>
+" nnoremap <silent><A-\>   :NERDTreeFocus<CR>
+nnoremap <silent><C-\>   :LuaTreeToggle<CR>
+nnoremap <silent><C-A-\> :LuaTreeFindFile<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
