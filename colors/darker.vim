@@ -144,7 +144,6 @@ let theme = {}
 let theme.base                  = '#202020'
 let theme.insensitive_base      = '#282828'
 
-let theme.fg_text               = '#dddddc'
 let theme.fg                    = '#e4e4e4'
 let theme.fg_subtle             = '#d0d0d0'
 let theme.fg_shaded             = '#a8a8a8'

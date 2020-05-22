@@ -114,15 +114,15 @@ let s:brightgreen     = '#afdf00'
 unlet! colors
 let colors = {}
 for k in keys(s:)
-    let g:colors[k] = s:{k}
+  let g:colors[k] = s:{k}
 
-    let c = s:{k}
-    if _#isString(c)
-        call hi#('fg_' . k  ,  c   ,  ''  ,  '')
-        call hi#('bg_' . k  ,  ''  ,  c   ,  '')
-        call hi#('b_'  . k  ,  c   ,  ''  ,  'bold')
-    end
-    unlet c
+  let c = s:{k}
+  if _#isString(c)
+    call hi#('fg_' . k  ,  c   ,  ''  ,  '')
+    call hi#('bg_' . k  ,  ''  ,  c   ,  '')
+    call hi#('b_'  . k  ,  c   ,  ''  ,  'bold')
+  end
+  unlet c
 endfor
 
 let log = {}
@@ -133,9 +133,9 @@ let log.Debug   = '#f0c904'
 let log.Error   = '#ef2021'
 let log.Special = '#9c5fff'
 for key in keys(log)
-    call hi#('Text' . key, log[key], '', '')
-    call hi#('Bold' . key, log[key], '', 'bold')
-    call hi#link(key,      'Text' . key)
+  call hi#('Text' . key, log[key], '', '')
+  call hi#('Bold' . key, log[key], '', 'bold')
+  call hi#link(key,      'Text' . key)
 endfor
 
 " }}}
@@ -145,15 +145,15 @@ let theme = {}
 let theme.base                  = '#202020'
 let theme.insensitive_base      = '#282828'
 
-let theme.fg_text               = '#24292e'
 let theme.fg                    = '#24292e'
+let theme.fg_light              = '#495058'
 let theme.fg_subtle             = '#c0c0c0'
-let theme.fg_verysubtle         = '#e0e0e0'
-let theme.fg_shaded             = '#24292e'
 let theme.fg_dark               = '#24292e'
 let theme.fg_widget             = '#cad0d3'
+let theme.fg_conceal            = '#e2e8eb'
 let theme.fg_overlay            = '#f0f0f0'
-let theme.fg_comment            = '#8f9aa9'
+let theme.fg_widget_dark        = '#8f9aa9'
+let theme.fg_widget_alt   = '#ffffff'
 
 
 let theme.bg                    = '#ffffff'
@@ -162,6 +162,8 @@ let theme.bg_verysubtle         = '#f5f5f5'
 let theme.bg_widget             = '#ffffff'
 let theme.bg_overlay            = '#121212'
 let theme.bg_dark               = '#d0d0d0'
+let theme.bg_light              = '#e5e7e9'
+let theme.bg_widget_alt         = '#4c4c4c'
 
 let theme.fg_hl                 = '#a3a3a3'
 let theme.bg_hl                 = '#404040'
@@ -174,15 +176,13 @@ let theme.hl_fg                 = '#ffffff'
 let theme.fg_selection          = 'none'
 let theme.bg_selection          = '#d7d4ef'
 let theme.bg_selection_dark     = '#d7d4ef'
-let theme.bg_selection_light    = '#DEEBFE'
-let theme.bg_selection_very_light = '#E9F2FF'
+let theme.bg_selection_light    = '#deebfe'
+let theme.bg_selection_very_light = '#e9f2ff'
 let theme.selection_dark        = ['none', '#d7d4ef']
 let theme.selection             = ['none', '#d7d4ef']
 let theme.selection_light       = ['none', '#d7d4ef']
 
 "let theme.insensitive          = '#515a5a'
-let theme.insensitive_bg        = '#ffffff'
-let theme.insensitive_fg        = '#949796'
 let theme.unfocused_fg          = '#949796'
 let theme.unfocused_text        = '#eeeeec'
 let theme.unfocused_bg          = '#393f3f'
@@ -198,7 +198,6 @@ let theme.folded_fg             = '#999999'
 " General UI                                                                 {{{
 
 call hi#('Normal',           theme.fg,        theme.bg, '')
-call hi#('Shaded',           theme.fg_shaded, '',       '')
 call hi#('EndOfBuffer',      theme.fg_widget, theme.bg, '')
 call hi#('NormalPopup',      theme.fg,        theme.bg_subtle, '')
 
@@ -216,13 +215,14 @@ call hi#('TermNormal',       theme.bg,        theme.base,    '')
 call hi#link('TermNormalNC', 'TermNormal')
 
 
-call hi#('Visual',           theme.selection)
-call hi#('LastVisual',       '',              theme.bg_selection_dark, '')
-call hi#('WildMenu',         theme.fg,        theme.bg_selection)
-call hi#('StatusLine',       theme.fg,        theme.bg_dark,           'none')
-call hi#('StatusLineNC',     '#1f1f1f',       theme.bg_dark,           'none')
-call hi#('Separator',        '#4c4c4c',       'none',                  '')
-call hi#('VertSplit',        theme.fg_subtle, theme.bg_widget,         'none')
+call hi#('Visual',         theme.selection)
+call hi#('LastVisual',     '',                  theme.bg_selection_dark, '')
+call hi#('WildMenu',       theme.fg,            theme.bg_selection)
+call hi#('StatusLine',     theme.fg_light,      theme.bg_dark,          'none')
+call hi#('StatusLineNC',   theme.fg_light,      theme.bg_dark,          'none')
+call hi#('StatusLinePart', theme.fg_widget_alt, theme.bg_widget_alt,     'bold')
+call hi#('Separator',      '#4c4c4c',           'none',                  '')
+call hi#('VertSplit',      theme.fg_subtle,     theme.bg_widget,         'none')
 
 call hi#('Pmenu',            theme.fg_overlay, theme.bg_overlay)
 call hi#('PmenuSel',         theme.hl_fg,      theme.hl)
@@ -238,12 +238,12 @@ call hi#('Terminal',         s:white,  s:_black, '')
 
 call hi#('Folded',           'none',          theme.bg_verysubtle,  'none')
 call hi#('FoldColumn',       theme.fg_subtle, theme.bg_widget,      '')
-call hi#('SignColumn',       '',              theme.insensitive_bg, '')
-call hi#('ColorColumn',      '',              theme.insensitive_bg, '')
+call hi#('SignColumn',       '',              theme.bg_widget, '')
+call hi#('ColorColumn',      '',              theme.bg_widget, '')
 
 
-call hi#('IndentGuidesEven', '#404040', '',        '')
-call hi#('IndentGuidesOdd',  '',        '#2a2a2a', '')
+call hi#('IndentGuidesEven', theme.fg_widget, '', '')
+call hi#('IndentGuidesOdd',  theme.fg_widget, '', '')
 
 
 call hi#('TabLine',          '#a8a89e',        theme.bg_dark, 'none')
@@ -255,11 +255,11 @@ call hi#('TabLineSel',       theme.fg_subtle,  theme.bg_dark)
 call hi#('Buffer',            theme.fg,         theme.bg_dark, 'none')
 call hi#('BufferCurrent',     theme.hl,         theme.bg,      'none')
 call hi#('BufferActive',      theme.hl,         theme.bg_dark, 'none')
-call hi#('BufferMod',         s:brightyellow,   theme.bg_dark, 'bold')
-call hi#('BufferCurrentMod',  s:yellow,         theme.bg,      'none')
-call hi#('BufferActiveMod',   s:yellow,         theme.bg_dark, 'none')
-call hi#('BufferSign',        theme.fg_comment, theme.bg_dark, 'none')
-call hi#('BufferSignCurrent', theme.fg_comment, theme.bg,      'none')
+call hi#('BufferMod',         s:darkyellow,     theme.bg_dark, 'bold')
+call hi#('BufferCurrentMod',  s:darkyellow,     theme.bg,      'bold')
+call hi#('BufferActiveMod',   s:darkyellow,     theme.bg_dark, 'bold')
+call hi#('BufferSign',        theme.fg_widget_dark, theme.bg_dark, 'none')
+call hi#('BufferSignCurrent', theme.fg_widget_dark, theme.bg,      'none')
 
 " }}}
 " Search, Highlight, Conceal, Messages                                               {{{
@@ -281,12 +281,12 @@ call hi#('IncSearchCursor', '',        '',        'reverse')
 
 " hi! NonText gui=none guibg=none guifg=grey40
 " hi! Conceal gui=none guibg=none guifg=grey20
-call hi#('Conceal',         '#393939',       'none',    '')
-call hi#('SpecialKey',      '#333333',       'none',    '')
-call hi#('NonText',         theme.fg_subtle, '',        'bold')
-call hi#('MatchParen',      '',              '#BCE3FF', 'none')
-call hi#('SpecialOpt',      '#868680',       '#32363a', '')
-call hi#('Whitespace',      '#8f9aa9',       '',        '')
+call hi#('Conceal',         theme.fg_conceal, 'none',    '')
+call hi#('SpecialKey',      '#333333',        'none',    '')
+call hi#('NonText',         theme.fg_subtle,  '',        'bold')
+call hi#('MatchParen',      '',               '#BCE3FF', 'none')
+call hi#('SpecialOpt',      '#868680',        '#32363a', '')
+call hi#('Whitespace',      '#8f9aa9',        '',        '')
 
 
 
