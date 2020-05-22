@@ -5,12 +5,7 @@
 "=============================================================================
 " Vim setup                                                                {{{
 
-set path=,,./*;,**2;,/usr/include
-
-let $vimrc  = $MYVIMRC
-let $vim    = fnamemodify($vimrc, ':h')
-let $bundle = $vim . '/bundle'
-let $rc     = $vim . '/rc'
+let $vim = stdpath('config')
 
 " Load one file from ./rc/
 function! s:source_rc(file)
@@ -27,9 +22,6 @@ function! s:source_plugins()
         exe 'source ' . file
     endfor
 endfunc
-
-" Neovim setup
-let $NVIM_LISTEN_ADDRESS='127.0.0.1:6666'
 
 " }}}
 "=============================================================================
@@ -70,6 +62,9 @@ Plug 'tommcdo/vim-ninja-feet'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'neovim/nvim-lsp'
+Plug 'itchyny/vim-gitbranch'
+Plug 'wbthomason/lsp-status.nvim'
 Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vista.vim'
 " Plug 'puremourning/vimspector'
@@ -152,7 +147,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
-"Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-highlightedyank'
 Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 " Plug 'andymass/vim-matchup'
@@ -189,7 +184,6 @@ call s:source_rc('keymap.vim')
 call s:source_rc('abbrev.vim')
 
 " Plugin settings (after loading):
-autocmd User PluginsLoaded :
 doautocmd User PluginsLoaded
 
 " Local settings:
