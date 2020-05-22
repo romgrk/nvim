@@ -46,11 +46,13 @@ function! s:setup_colors() abort
   let s:statuslineNCFg = hi#fg('StatusLineNC')
   " let s:statuslineBg = hi#bg('StatusLine')
   let s:statuslineBg = '#d0d0d0'
-  let s:statuslineBgDark = '#5B5B5B'
+  let s:statuslineBgDark = '#9D9D9D'
 
 
   call hi#('StatuslineNormal',     ['#e9e9e9',      s:statuslineBg, 'none'])
   call hi#('StatuslineAccent',     ['none',         'none',         'bold'])
+  call hi#('StatuslinePart',       hi#('StatusLinePart'))
+  call hi#('StatuslinePartNC',     hi#('StatusLinePartNC'))
   call hi#('StatuslineFiletype',   [s:statuslineFg, s:statuslineBg, 'none'])
   call hi#('StatuslineModified',   [s:modifiedFg,   s:statuslineBg, 'bold'])
   call hi#('StatuslineFilename',   [s:statuslineFg, s:statuslineBg, 'bold'])
@@ -81,23 +83,32 @@ augroup END
 function! statusline#active () abort
   let is_normal = !(&bt =~# '\vno(file|write)')
 
+  " Left side items
+
   let content = '%{UpdateColors(mode())}'
 
-  " Left side items
-  let content .= '%#StatuslineAccent# %{statusline#get_mode(mode())} '
-
-  " Filetype icon
-  let content .= '%#StatuslineFiletype# %{statusline#filetype_icon()}'
-
-  " Modified + Filename + Readonly
-  let content .= '%#StatuslineFilename#'
-  let content .= '%{statusline#modified(&modified)} '
-  let content .= '%{statusline#filename()} %<'
-  let content .= '%{&readonly?"' . icon#name('lock') . '":" "}'
-
-  let content .= '%=' " Right side items
+  if !is_normal
+    let content .= '%#StatuslineAccent# '
+    let content .= statusline#get_special_name() . ' '
+    let content .= '%#StatuslineFilename#'
+  end
 
   if is_normal
+    " Mode
+    let content .= '%#StatuslineAccent# '
+    let content .= '%{statusline#get_mode(mode())} '
+
+    " Filetype icon
+    let content .= '%#StatuslineFiletype# %{statusline#filetype_icon()}'
+
+    " Modified + Filename + Readonly
+    let content .= '%#StatuslineFilename#'
+    let content .= '%{statusline#modified(&modified)} '
+    let content .= '%{statusline#filename()} %<'
+    let content .= '%{&readonly?"' . icon#name('lock') . '":" "}'
+
+    let content .= '%=' " Right side items
+
     " Line and Column
     let content .= '%#StatuslineLineCol#%l:%c | %L lines %<'
 
@@ -121,18 +132,24 @@ function! statusline#inactive () abort
 
   let content = ''
 
- " Filetype icon
-  let content .= '%#StatuslineFiletype# %{statusline#filetype_icon()}'
-
-  " Modified + Filename + Readonly
-  let content .= '%#StatuslineFilenameNC#'
-  let content .= '%{statusline#modified(&modified)} '
-  let content .= '%{statusline#filename()} %<'
-  let content .= '%{&readonly?"' . icon#name('lock') . '":" "}'
-
-  let content .= '%=' " Right side items
+  if !is_normal
+    let content .= '%#StatuslinePartNC# '
+    let content .= statusline#get_special_name() . ' '
+    let content .= '%#StatuslineFilenameNC#'
+  end
 
   if is_normal
+    " Filetype icon
+    let content .= '%#StatuslineFiletype# %{statusline#filetype_icon()}'
+
+    " Modified + Filename + Readonly
+    let content .= '%#StatuslineFilenameNC#'
+    let content .= '%{statusline#modified(&modified)} '
+    let content .= '%{statusline#filename()} %<'
+    let content .= '%{&readonly?"' . icon#name('lock') . '":" "}'
+
+    let content .= '%=' " Right side items
+
     " Line and Column
     let content .= '%#StatuslineLineCol#%l:%c | %L lines %<'
 
@@ -146,6 +163,22 @@ endfunc
 "===============================================================================
 " Statusline functions
 
+let g:spinner_frames = ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷']
+
+function! statusline#get_special_name() abort
+  let name_by_filetype = {
+  \ 'fugitive': ' FUGITIVE',
+  \ 'LuaTree':  ' FILES',
+  \ 'nerdtree': ' FILES',
+  \}
+
+  if has_key(name_by_filetype, &filetype)
+    return name_by_filetype[&filetype]
+  end
+
+  return bufname()
+endfunction
+
 function! statusline#modified(modified) abort
   if a:modified == 1
     return '  ●'
@@ -156,8 +189,6 @@ endfunction
 function! statusline#filetype_icon() abort
   return icon#file(fnamemodify(bufname('%'), ':h'), &filetype)
 endfunction
-
-let g:spinner_frames = ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷']
 
 function! statusline#gutentags_enabled() abort
   return exists('g:gutentags_enabled') && g:gutentags_enabled == 1 && gutentags#statusline() !=# ''

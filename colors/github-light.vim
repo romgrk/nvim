@@ -154,7 +154,8 @@ let theme.fg_widget             = '#cad0d3'
 let theme.fg_conceal            = '#e2e8eb'
 let theme.fg_overlay            = '#f0f0f0'
 let theme.fg_widget_dark        = '#8f9aa9'
-let theme.fg_widget_alt   = '#ffffff'
+let theme.fg_widget_alt         = '#ffffff'
+let theme.fg_widget_alt_nc      = '#333333'
 
 
 let theme.bg                    = '#ffffff'
@@ -166,6 +167,7 @@ let theme.bg_overlay            = '#121212'
 let theme.bg_dark               = '#d0d0d0'
 let theme.bg_light              = '#e5e7e9'
 let theme.bg_widget_alt         = '#4c4c4c'
+let theme.bg_widget_alt_nc      = '#aaaaaa'
 
 let theme.fg_hl                 = '#a3a3a3'
 let theme.bg_hl                 = '#404040'
@@ -224,6 +226,7 @@ call hi#('WildMenu',       theme.fg,            theme.bg_selection)
 call hi#('StatusLine',     theme.fg_light,      theme.bg_dark,          'none')
 call hi#('StatusLineNC',   theme.fg_lighter,    theme.bg_dark,          'none')
 call hi#('StatusLinePart', theme.fg_widget_alt, theme.bg_widget_alt,     'bold')
+call hi#('StatusLinePartNC', theme.fg_widget_alt_nc, theme.bg_widget_alt_nc,     'bold')
 call hi#('Separator',      '#4c4c4c',           'none',                  '')
 call hi#('VertSplit',      theme.fg_subtle,     theme.bg_widget,         'none')
 
