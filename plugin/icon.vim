@@ -15,6 +15,8 @@ let icons.by_name = {
 \}
 
 let icons.by_filetype = {
+\  'default':      '',
+\
 \  'ai':           '',
 \  'apache':       '',
 \  'awk':          '',
@@ -50,7 +52,6 @@ let icons.by_filetype = {
 \  'd':            '',
 \  'dart':         '',
 \  'db':           '',
-\  'default':      '',
 \  'diff':         '',
 \  'dockerfile':   '',
 \  'dump':         '',
