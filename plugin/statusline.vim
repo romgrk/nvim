@@ -33,7 +33,7 @@ function! s:update_inactive_windows()
   endfor
 endfunction
 
-function! UpdateColors(mode) abort
+function! statusline#update_colors(mode) abort
   call hi#('StatuslineAccent', get(s:color_by_mode, a:mode, s:color_by_mode.default))
   call hi#fg('StatuslineFilename', &modified ? s:modifiedFg : s:statuslineFg)
   return ''
@@ -85,7 +85,7 @@ function! statusline#active () abort
 
   " Left side items
 
-  let content = '%{UpdateColors(mode())}'
+  let content = '%{statusline#update_colors(mode())}'
 
   if !is_normal
     let content .= '%#StatuslineAccent# '
@@ -167,6 +167,7 @@ let g:spinner_frames = ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷']
 
 function! statusline#get_special_name() abort
   let name_by_filetype = {
+  \ 'vista':    ' VISTA',
   \ 'fugitive': ' FUGITIVE',
   \ 'LuaTree':  ' FILES',
   \ 'nerdtree': ' FILES',

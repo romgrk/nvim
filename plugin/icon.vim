@@ -1,8 +1,6 @@
 "!::exe [So]
 
-let icons = {}
-
-let icons.by_name = {
+let s:by_name = {
 \ 'lock':     '',
 \ 'checking': '',
 \ 'warning':  '',
@@ -14,7 +12,7 @@ let icons.by_name = {
 \ 'separator-right': '',
 \}
 
-let icons.by_filetype = {
+let s:by_filetype = {
 \  'default':      '',
 \
 \  'ai':           '',
@@ -188,7 +186,7 @@ let icons.by_filetype = {
 \  'zsh':          '',
 \}
 
-let icons.by_filename = {
+let s:by_filename = {
 \  'gruntfile.coffee': '',
 \  'gruntfile.js': '',
 \  'gruntfile.ls': '',
@@ -217,17 +215,23 @@ let icons.by_filename = {
 \  'docker-compose.yml': '',
 \}
 
+let s:icons = {
+\  'by_name': s:by_name,
+\  'by_filename': s:by_filename,
+\  'by_filetype': s:by_filetype
+\}
+
 function! icon#file(filename, filetype)
   return get(
-  \ g:icons.by_filename,
+  \ s:icons['by_filename'],
   \ a:filename,
-  \ get(g:icons.by_filetype, a:filetype, g:icons.by_filetype.default)
+  \ get(s:icons['by_filetype'], a:filetype, s:icons['by_filetype']['default'])
   \)
 endfunction
 
 function! icon#name(name)
   return get(
-  \ g:icons.by_name,
+  \ s:icons['by_name'],
   \ a:name,
   \ '[INVALID_NAME]'
   \)
