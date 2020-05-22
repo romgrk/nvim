@@ -147,6 +147,7 @@ let theme.insensitive_base      = '#282828'
 
 let theme.fg                    = '#24292e'
 let theme.fg_light              = '#495058'
+let theme.fg_lighter            = '#666D74'
 let theme.fg_subtle             = '#c0c0c0'
 let theme.fg_dark               = '#24292e'
 let theme.fg_widget             = '#cad0d3'
@@ -221,7 +222,7 @@ call hi#('Visual',         theme.selection)
 call hi#('LastVisual',     '',                  theme.bg_selection_dark, '')
 call hi#('WildMenu',       theme.fg,            theme.bg_selection)
 call hi#('StatusLine',     theme.fg_light,      theme.bg_dark,          'none')
-call hi#('StatusLineNC',   theme.fg_light,      theme.bg_dark,          'none')
+call hi#('StatusLineNC',   theme.fg_lighter,    theme.bg_dark,          'none')
 call hi#('StatusLinePart', theme.fg_widget_alt, theme.bg_widget_alt,     'bold')
 call hi#('Separator',      '#4c4c4c',           'none',                  '')
 call hi#('VertSplit',      theme.fg_subtle,     theme.bg_widget,         'none')
@@ -301,8 +302,9 @@ call hi#('Question',        '#65C254', '', '',     'Green', '')
 call hi#('Question2',       '#70b950', '', 'bold', 'Green', '')
 call hi#('Todo',            '#3b84ea', 'none', 'bold')
 
-call hi#('Directory',       '#3365CE', '',     'none')
+call hi#('Directory',       theme.fg, '',     'bold')
 call hi#('Section',         '#3365CE', '',     'bold')
+" call hi#('Directory',       '#3365CE', '',     'bold')
 " call hi#('Title',           '#3365CE', '',     'bold')
 hi! link Title Special
 
