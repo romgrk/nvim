@@ -163,7 +163,6 @@ fu! BufferReopenClosed()
     end
     let buffer_name = remove(g:session.closed_buffers, -1)
     exe 'edit ' . buffer_name
-    exe 'EchoHL TextInfo ''restored buffer ' . buffer_name . ' from close-list'''
 endfu
 fu! BufferWipeReopen(...)
     let buffer_nr = (a:0==1) ? a:1 : bufnr('%')
