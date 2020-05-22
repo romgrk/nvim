@@ -1,7 +1,7 @@
-" File: bugger-line.vim
+" File: bufferline.vim
 " Author: romgrk
 " Description: Buffer line
-" Date: 10 Sep 2015
+" Date: Fri 22 May 2020 02:22:36 AM EDT
 " !::exe [So]
 
 
@@ -19,8 +19,6 @@ let s:hl_groups = ['Buffer', 'BufferActive', 'BufferCurrent']
 
 " Current buffers in tabline (ordered)
 let s:buffers = []
-
-let g:buffer_line = s:
 
 fu! TabLineUpdate ()
     let &tabline = BufferLine() . '%=' . TablineSession() . Tabpages()
@@ -156,7 +154,7 @@ endfunc
 " Helpers
 
 function! s:get_updated_buffers ()
-    let current_buffers = buf#filter('&buflisted')
+    let current_buffers = buf#filter('&buflisted && &buftype == ""')
     let new_buffers =
         \ filter(
         \   copy(current_buffers),
@@ -253,3 +251,5 @@ fu! s:gitBranch (dir)
     end
     return ''
 endfu
+
+let g:buffer_line = s:
