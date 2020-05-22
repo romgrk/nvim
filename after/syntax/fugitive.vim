@@ -1,0 +1,2 @@
+
+nmap <buffer> c. acc
