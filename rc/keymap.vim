@@ -159,9 +159,9 @@ nnoremap gsd        :Edit $vim/rc/commands.vim<CR>
 nnoremap gsc        :Edit $vim/rc/colors.vim<CR>
 nnoremap gsh        :Edit $vim/rc/highlight.vim<CR>
 nnoremap gso        :Edit $vim/rc/settings.vim<CR>
-nnoremap gsj        :Edit $vim/colors/darker.vim<CR>
+nnoremap gsj        :Edit $vim/colors/github-light.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
-nnoremap gsP        :Edit $vim/rc/plugins/
+nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
 nnoremap gs<A-p>    :Edit $vim/plugin/
 
 nnoremap <C-n>      :Edit <C-R>=escape(expand("%:p:h"), ' ')<CR>/<C-D>
