@@ -454,10 +454,9 @@ nnoremap       <leader>no     :Clap note<CR>
 
 " Git:
 
-nnoremap       <leader>ma     :Magit<CR>
-
-nnoremap       <leader>gaa    :!git add --all<CR>
-nnoremap       <leader>ga.    :!git add %<CR>
+nnoremap       <leader>gg     :Git<CR>
+nnoremap       <leader>gaa    :Git add --all<CR>
+nnoremap       <leader>ga.    :Git add %<CR>
 nnoremap       <leader>gcm    :Gcommit -m ""<Left>
 nnoremap       <leader>gcam   :Gcommit -am ""<Left>
 nnoremap       <leader>g.     :Gcommit % -m ""<Left>
@@ -467,9 +466,9 @@ nnoremap       <leader>gl     :Gpull<CR>
 nnoremap       <leader>gp     :Gpush<CR>
 nnoremap       <leader>gs     :Gstatus<CR>
 nnoremap       <leader>gu     :GitOpenUnmergedFiles<CR>
-nnoremap       <leader>gd     :GitDiff<space>
-nnoremap       <leader>gdd    :GitDiff<CR>
+nnoremap       <leader>gda    :GitDiff<CR>
 nnoremap       <leader>gd.    :GitDiff %<CR>
+nnoremap       <leader>gdd    :GitDiff<space>
 
 " GitMessenger:
 nnoremap       <leader>gm     :GitMessenger<CR>
@@ -535,10 +534,8 @@ nnoremap <leader><space>   :Clap files<CR>
 
 nnoremap <silent> <A-o>    :Clap files<CR>
 nnoremap <silent> <C-A-o>  :Clap files <C-R>=expand('%:h:~')<CR><CR>
-" nnoremap <silent> <A-o>    :Files<CR>
 nnoremap <silent> <A-O>    :Clap history<CR>
 nnoremap <silent> <C-S>    :Clap buffers<CR>
-" nnoremap <silent> <C-A-o>  :GitFiles<CR>
 
 nnoremap <silent> <A-i>    :Clap tags<CR>
 nnoremap <silent> <A-S-I>  :Tags<CR>
