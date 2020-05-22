@@ -97,6 +97,7 @@ Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 " }}}
 " Language                                                                   {{{
+Plug 'tbastos/vim-lua'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'thyrgle/vim-dyon'
 Plug 'keith/swift.vim'
