@@ -54,14 +54,13 @@ set titlestring=%(%{xolox#session#find_current_session()}%)%(\ %a%)
 "===============================================================================
 " Paths, session files & backups {{{
 
+set path=,,./*;,**2;,/usr/include
+
 set wildignore=node_modules,bower_components,package-lock.json,tags,*.pyc
 set wildignorecase " aka wic
 
-
 set history=500
 set undolevels=500
-
-set directory=$HOME/tmp
 
 set cdpath=.,,
 set cdpath+=$HOME

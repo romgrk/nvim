@@ -62,42 +62,41 @@ Plug 'tommcdo/vim-ninja-feet'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'neovim/nvim-lsp'
-Plug 'itchyny/vim-gitbranch'
-Plug 'wbthomason/lsp-status.nvim'
-Plug 'liuchengxu/vim-clap'
-Plug 'liuchengxu/vista.vim'
-" Plug 'puremourning/vimspector'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'AndrewRadev/tagalong.vim'
-Plug 'fidian/hexmode'
-Plug 'vim-scripts/loremipsum'
-Plug 'wsdjeg/vim-fetch'
-Plug 'sjl/gundo.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'bfredl/nvim-miniyank'
-Plug 'justinmk/vim-syntax-extra'
-Plug 'honza/vim-snippets'
 Plug 'aperezdc/vim-template'
-Plug 'MarcWeber/vim-addon-local-vimrc'
+Plug 'bfredl/nvim-miniyank'
+Plug 'fidian/hexmode'
 Plug 'haya14busa/incsearch.vim'
-Plug 'junegunn/vim-easy-align'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/vim-gitbranch'
+Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf'                                      , { 'dir': '~/.local/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'Konfekt/FastFold'
+Plug 'junegunn/vim-easy-align'
+Plug 'justinmk/vim-syntax-extra'
+Plug 'liuchengxu/vim-clap'
+Plug 'liuchengxu/vista.vim'
+Plug 'MarcWeber/vim-addon-local-vimrc'
+Plug 'neovim/nvim-lsp'
+" Plug 'puremourning/vimspector'
+Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
+Plug 'vim-scripts/loremipsum'
+Plug 'wbthomason/lsp-status.nvim'
+Plug 'wsdjeg/vim-fetch'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-shell'
 " }}}
 " Language                                                                   {{{
-Plug 'tbastos/vim-lua'
-Plug 'justinmk/vim-syntax-extra'
-Plug 'thyrgle/vim-dyon'
-Plug 'keith/swift.vim'
 Plug 'neoclide/jsonc.vim'
-" Plug 'reasonml-editor/vim-reason-plus'                   , { 'for': 'reason' }
+Plug 'justinmk/vim-syntax-extra'
+Plug 'tbastos/vim-lua'                                   , { 'for': 'lua' }
+Plug 'thyrgle/vim-dyon'                                  , { 'for': 'dyon' }
+Plug 'keith/swift.vim'                                   , { 'for': 'swift' }
 Plug 'jordwalke/vim-reasonml'                            , { 'for': 'reason' }
 Plug 'rhysd/vim-crystal'                                 , { 'for': 'crystal' }
 Plug 'vim-python/python-syntax'                          , { 'for': 'python' }
@@ -120,16 +119,11 @@ Plug 'othree/html5.vim'                                  , { 'for': 'html' }
 Plug 'othree/html5-syntax.vim'                           , { 'for': 'html' }
 Plug 'tpope/vim-liquid'                                  , { 'for': 'html' }
 Plug 'rstacruz/sparkup'                                  , { 'for': 'html', 'rtp': 'vim'}
-"Plug 'shmargum/vim-sass-colors'                          , { 'for': ['sass', 'scss'] }
-"Plug 'leafo/moonscript-vim'                              , { 'for': 'moonscript' }
-"Plug 'lukerandall/haskellmode-vim'                       , { 'for': 'haskell' }
-"Plug 'eagletmt/neco-ghc'                                 , { 'for': 'haskell' }
-"Plug 'eagletmt/ghcmod-vim'                               , { 'for': 'haskell' }
 Plug 'kelan/gyp.vim'                                     , { 'for': 'gyp' }
 Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
-Plug 'dzeban/vim-log-syntax'
 Plug 'elixir-lang/vim-elixir'                            , { 'for': 'elixir' }
+Plug 'dzeban/vim-log-syntax'                             , { 'for': 'log' }
 
 if exists('$VIFM')
     set runtimepath+=/usr/share/vifm/vim-doc
