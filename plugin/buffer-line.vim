@@ -85,7 +85,7 @@ fu! TablineSession (...)
         let name = substitute(getcwd(), $HOME, '~', '')
     end
 
-    return '%#SessionTab#%( ' . name . ' %)'
+    return '%#StatusLinePart#%( ' . name . ' %)'
 endfunc
 fu! Tabpages ()
     if tabpagenr('$') == 1
