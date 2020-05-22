@@ -1,7 +1,6 @@
-hi! link LuaTreeFolderName Directory
-hi! LuaTreeFolderIcon guifg=#EBAD0D
 
-hi! NERDTreeFlags    guifg=#EBAD0D
+hi! link LuaTreeFolderName Directory
+hi!      LuaTreeFolderIcon guifg=#EBAD0D
 
 let lua_tree_show_icons = {
 \ 'git': 1,
