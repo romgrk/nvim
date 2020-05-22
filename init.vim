@@ -39,29 +39,30 @@ call s:source_plugins()
 call plug#begin($vim . '/bundle')
 
 " Editing                                                                    {{{
-Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
-Plug 'neomake/neomake'
-Plug 'sirver/UltiSnips'
-Plug 'wellle/targets.vim'
-Plug 'wellle/line-targets.vim'
-Plug 'coderifous/textobj-word-column.vim'
+Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bkad/CamelCaseMotion'
+Plug 'coderifous/textobj-word-column.vim'
+Plug 'jiangmiao/auto-pairs'
 " Plug 'justinmk/vim-sneak'
 Plug 'romgrk/vim-sneak'
 Plug 'kana/vim-niceblock'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
+Plug 'sirver/UltiSnips'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tommcdo/vim-ninja-feet'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
-Plug 'AndrewRadev/sideways.vim'
-Plug 'tommcdo/vim-ninja-feet'
+Plug 'wellle/line-targets.vim'
+Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'ripxorip/aerojump.nvim'                            , { 'do': ':UpdateRemotePlugins' }
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'aperezdc/vim-template'
