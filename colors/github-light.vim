@@ -158,6 +158,7 @@ let theme.fg_widget_alt   = '#ffffff'
 
 let theme.bg                    = '#ffffff'
 let theme.bg_subtle             = '#f0f0f0'
+let theme.bg_popover            = '#e0e0e0'
 let theme.bg_verysubtle         = '#f5f5f5'
 let theme.bg_widget             = '#ffffff'
 let theme.bg_overlay            = '#121212'
@@ -197,9 +198,10 @@ let theme.folded_fg             = '#999999'
 " }}}
 " General UI                                                                 {{{
 
-call hi#('Normal',           theme.fg,        theme.bg, '')
-call hi#('EndOfBuffer',      theme.fg_widget, theme.bg, '')
-call hi#('NormalPopup',      theme.fg,        theme.bg_subtle, '')
+call hi#('Normal',           theme.fg,        theme.bg)
+call hi#('EndOfBuffer',      theme.fg_widget, theme.bg)
+call hi#('NormalPopup',      theme.fg,        theme.bg_subtle)
+call hi#('NormalPopover',    theme.fg,        theme.bg_popover)
 
 call hi#('Cursor',           '', theme.base,  'reverse')
 call hi#('SecondaryCursor',  '', theme.bg_hl, 'none')
