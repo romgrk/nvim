@@ -14,7 +14,11 @@ let $rc     = $vim . '/rc'
 
 " Load one file from ./rc/
 function! s:source_rc(file)
-    execute 'source ' . fnameescape($vim . '/rc/' . a:file)
+    if a:file =~# '.lua$'
+        execute 'luafile ' . fnameescape($vim . '/rc/' . a:file)
+    else
+        execute 'source ' . fnameescape($vim . '/rc/' . a:file)
+    end
 endfu
 
 " Load all files from ./rc/plugins/
