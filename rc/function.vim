@@ -122,16 +122,12 @@ fu! FileDeleteCurrent()
 endfu
 fu! BufferCloseCurrent ()
     let current_buffer = bufnr("%")
-
     let current_window = win_getid()
+    let windows = win_findbuf(current_buffer)
 
     " Change buffer if it's displayed in window
-    for nr in range(winnr('$'))
-        execute  '' . (nr + 1) . 'wincmd w'
-
-        if bufnr('%') != current_buffer
-            continue
-        end
+    for winid in windows
+        execute  '' . (win_id2win(winid)) . 'wincmd w'
 
         if buflisted(bufnr("#"))
             buffer #
