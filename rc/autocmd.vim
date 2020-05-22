@@ -104,8 +104,6 @@ augroup DeleteTrailingWS
     au!
     " Auto-delete whitespaces at EOL
     au BufWritePre *.py       %DeleteTrailingWS
-    au BufWritePre *.vim      %DeleteTrailingWS
-    au BufWritePre *.coffee   %DeleteTrailingWS
     au BufWritePre *.[cc,cpp] %DeleteTrailingWS
 augroup END
 
