@@ -123,7 +123,7 @@ endfu
 fu! BufferCloseCurrent ()
     let current_buffer = bufnr("%")
 
-    let current_window = winnr()
+    let current_window = win_getid()
 
     " Change buffer if it's displayed in window
     for nr in range(winnr('$'))
@@ -143,7 +143,7 @@ fu! BufferCloseCurrent ()
     endfor
 
     " Go back to window
-    execute  '' . (current_window) . 'wincmd w'
+    call win_gotoid(current_window)
 
     " Delete buffer
     if bufexists(current_buffer)
