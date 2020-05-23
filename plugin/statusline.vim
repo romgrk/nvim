@@ -1,16 +1,16 @@
 "!::exe [So]
 
 let s:color_by_mode = {
-\  'n': ['#e9f2ff', '#599eff'],
-\  'i': ['#6d5d08', '#ffcf00'],
-\  'R': ['#e9e9e9', '#afaf00'],
-\  'c': ['#e9e9e9', '#599eff'],
-\  't': ['#e9e9e9', '#6f6f6f'],
-\  'v': ['#e9e9e9', '#875fdf'],
-\  'V': ['#e9e9e9', '#875fdf'],
+\  'n':  ['#e9f2ff', '#599eff'],
+\  'i':  ['#6d5d08', '#ffcf00'],
+\  'R':  ['#e9e9e9', '#afaf00'],
+\  'c':  ['#e9f2ff', '#599eff'],
+\  't':  ['#e9e9e9', '#d75f5f'],
+\  'v':  ['#e9e9e9', '#875fdf'],
+\  'V':  ['#e9e9e9', '#875fdf'],
 \  '': ['#e9e9e9', '#875fdf'],
 \
-\  'default': ['#e9e9e9', '#d75f5f'],
+\  'default': ['#e9f2ff', '#599eff'],
 \}
 
 let s:statuslineFg = hi#fg('StatusLine')
