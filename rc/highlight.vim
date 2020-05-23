@@ -20,30 +20,9 @@ hi! link    Noise          Comment
 " }}}
 " Plugin specific                                                            {{{
 
-hi! link NERDtreeDir Directory
-hi! link NERDtreeCWD Special
-
-hi! link CtrlPTagKind            Delimiter
-hi! link CtrlPMatch              Error
-
-hi! link TagbarScope             Class
-hi! link TagbarFoldIcon          Comment
-
 hi! link SearchReplaceMatch      EasyMotionTargetDefault
 hi! link SneakLabel              EasyMotionTargetDefault
 hi! link SneakLabelMask          Noise
-
-hi! link ALEErrorSign   TextError
-hi! link ALEWarningSign TextWarning
-hi! link ALEInfoSign    TextInfo
-
-silent call hi#fullfill('ALEErrorSign')
-silent call hi#fullfill('ALEWarningSign')
-silent call hi#fullfill('ALEInfoSign')
-silent call hi#bg('ALEErrorSign',   hi#bg('LineNr'))
-silent call hi#bg('ALEWarningSign', hi#bg('LineNr'))
-silent call hi#bg('ALEInfoSign',    hi#bg('LineNr'))
-
 
 hi! CocInfoSign                       guifg=#0E8FFF
 hi! CocInfoHighlight    gui=undercurl guisp=#0E8FFF

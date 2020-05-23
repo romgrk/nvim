@@ -12,7 +12,7 @@ let Illuminate_ftHighlightGroups = {
 
 " illuminate can also be disabled for various filetypes using the following:
 
-let Illuminate_ftblacklist = ['nerdtree', 'terminal', 'cocactions', 'help', 'todoist']
+let Illuminate_ftblacklist = g:exclude_filetypes
 
 " Lastly, by default the highlighting will be done with the hl-group CursorLine since that is in
 " my opinion the nicest. It can however be overridden using the following or something similar:

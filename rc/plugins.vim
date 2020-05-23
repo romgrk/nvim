@@ -4,6 +4,16 @@
 " Last: 5 April 2016
 " !::exe [so %]
 
+" Excludes:, non-code buffers, shared by various plugins
+
+let exclude_filetypes =
+    \ ['nerdtree', 'terminal', 'cocactions', 'help', 'todoist', 'fugitive']
+
+let exclude_buftypes =
+    \ ['help', 'terminal']
+
+" Settings:
+
 let jsx_ext_required        = 1 " Allow JSX in normal JS files
 let javascript_plugin_jsdoc = 1
 

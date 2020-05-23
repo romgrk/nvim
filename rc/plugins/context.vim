@@ -6,7 +6,7 @@ let context_max_height = 2
 let context_highlight_normal = 'NormalPopover'
 let context_highlight_border = '<hide>'
 
-let context_filetype_blacklist = ['help']
+let context_filetype_blacklist = g:exclude_filetypes
 
 let context_add_mappings = 0
 

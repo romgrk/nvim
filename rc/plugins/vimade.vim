@@ -5,7 +5,7 @@ let g:vimade = {
   \ 'normalncid': '',
   \ 'basefg': '',
   \ 'basebg': '',
-  \ 'fadelevel': 0.4,
+  \ 'fadelevel': 0.5,
   \ 'colbufsize': 15,
   \ 'rowbufsize': 15,
   \ 'checkinterval': 100,

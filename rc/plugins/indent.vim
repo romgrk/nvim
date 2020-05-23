@@ -4,8 +4,8 @@ let indentLine_char = '│' " | ┆
 let indentLine_leadingSpaceChar = '·'
 let indentLine_leadingSpaceEnabled = 0
 let indentLine_showFirstIndentLevel = 0
-let indentLine_fileTypeExclude = ['help', 'nerdtree', 'terminal', 'todoist']
-let indentLine_bufTypeExclude  = ['help', 'terminal']
+let indentLine_fileTypeExclude = g:exclude_filetypes
+let indentLine_bufTypeExclude  = g:exclude_buftypes
 
 let indentLine_setColors  = 0
 let indentLine_setConceal = 0
