@@ -513,6 +513,8 @@ nnoremap       <leader>how  :r !howdoi<space>
 
 nnoremap       <leader>sy   :SynStack<CR>
 
+nnoremap       <leader>ti   :TodoistInit<CR>
+
 
 
 " Multi-Cursors:
