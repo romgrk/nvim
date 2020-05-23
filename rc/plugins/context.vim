@@ -1,6 +1,7 @@
 "!::exe [So]
 
 let context_presenter = 'nvim-float'
+let context_max_height = 2
 
 let context_highlight_normal = 'NormalPopover'
 let context_highlight_border = '<hide>'

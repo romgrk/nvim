@@ -89,7 +89,8 @@ Plug 'wbthomason/lsp-status.nvim'
 Plug 'wsdjeg/vim-fetch'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-Plug 'xolox/vim-session'
+" Plug 'xolox/vim-session'
+Plug 'romgrk/vim-session'
 Plug 'xolox/vim-shell'
 " }}}
 " Language                                                                   {{{
@@ -162,6 +163,8 @@ Plug 'romgrk/replace.vim'
 Plug 'romgrk/vim-exeline'
 Plug 'romgrk/winteract.vim'                        , {'on': 'InteractiveWindow'}
 Plug 'romgrk/searchReplace.vim'
+
+Plug '/home/romgrk/github/todoist.vim'
 " }}}
 
 call plug#end() " }}}

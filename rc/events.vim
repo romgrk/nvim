@@ -6,23 +6,6 @@
 " !::exe [So]
 "============================================================================
 
-function! BufferReadHandler()
-   if (&bt == '')
-      augroup BUFFER_MOD
-      au!
-      au BufWritePost <buffer> call BufferModChanged()
-      au TextChanged  <buffer> call BufferModChanged()
-      au TextChangedI <buffer> call BufferModChanged()
-      augroup END
-   end
-endfunc
-function! BufferModChanged()
-   if (&modified != get(b:,'checked'))
-      let b:checked = &modified
-      call TabLineUpdate()
-   end
-endfunc
-
 function! PreviewOpen()
    if (expand('%') =~ '/tmp')
         set nobuflisted

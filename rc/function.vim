@@ -374,7 +374,8 @@ endfunc
 function! ToggleWindows ()
     let currentWindow = winnr()
 
-    let windows = win#filter('&bt ==# "quickfix" || &pvw')
+    let windows = win#filter(
+      \ '&bt ==# "quickfix" || &pvw || &bt ==# "nofile"')
 
     if len(windows) == 0
         try

@@ -5,6 +5,13 @@
 " !::exe [So]
 
 
+augroup bufferline
+    au!
+    " Modified-buffer styling
+    au BufReadPost,BufNewFile * call BufferReadHandler()
+augroup END
+
+
 command! BufferNext     call s:goto_buffer_relative(+1)
 command! BufferPrevious call s:goto_buffer_relative(-1)
 
@@ -100,6 +107,24 @@ fu! Tabpages ()
     return tabpart
 endfu
 
+function! BufferReadHandler()
+   if (&bt == '')
+      augroup BUFFER_MOD
+      au!
+      au BufWritePost <buffer> call BufferModChanged()
+      au TextChanged  <buffer> call BufferModChanged()
+      au TextChangedI <buffer> call BufferModChanged()
+      augroup END
+   end
+endfunc
+
+function! BufferModChanged()
+   if (&modified != get(b:,'checked'))
+      let b:checked = &modified
+      call TabLineUpdate()
+   end
+endfunc
+
 " Buffer movement
 
 function! s:move_current_buffer (direction)
@@ -154,7 +179,14 @@ endfunc
 " Helpers
 
 function! s:get_updated_buffers ()
-    let current_buffers = buf#filter('&buflisted && &buftype == ""')
+   if exists('g:session.buffers')
+      let s:buffers = g:session.buffers
+   elseif exists('g:session')
+      let g:session.buffers = []
+      let s:buffers = g:session.buffers
+   end
+
+    let current_buffers = buf#filter('&buflisted')
     let new_buffers =
         \ filter(
         \   copy(current_buffers),

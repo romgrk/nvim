@@ -15,6 +15,8 @@ function! s:onTermOpen ()
     else
         set winhl=Normal:Normal,NormalNC:NormalNC
     end
+
+    startinsert
 endfunc
 
 exe 'augroup RC'
@@ -31,15 +33,11 @@ exe 'augroup RC'
                  \|   let g:previous_columns = &columns
                  \| end
 
-    "au FocusLost * wa!
-    au VimLeave *  SaveSession!
-    au QuitPre  *  SaveSession!
+    " Session
+    au VimLeave *        :ContextDisable | SaveSession!
+    au QuitPre  *        :SaveSession!
+    au SessionLoadPost * :SourceLocalVimrc
 
-    au SessionLoadPost * SourceLocalVimrc
-
-    " Save/load current view
-    "au VimLeave ?* mkview!
-    "au VimEnter ?* silent loadview
 
     " Jump back at last pos
     au BufReadPost * call RestorePosition()
@@ -53,11 +51,7 @@ exe 'augroup RC'
 
     " Cmdwin in ./cmdwin.vim
 
-
     " Styling listeners:
-
-    " Modified-buffer styling
-    au BufReadPost,BufNewFile * call BufferReadHandler()
 
     " CursorLine & CursorColumn
     au WinLeave * if &bt == '' | exe 'setlocal nocursorline nocursorcolumn' | end
