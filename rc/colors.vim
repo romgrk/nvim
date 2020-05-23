@@ -80,21 +80,3 @@ for k in keys(colors)
     end
     unlet c
 endfor
-
-let text_colors = {}
-let text_colors.Info    = "#599eff"
-let text_colors.Success = "#42E968"
-let text_colors.Warning = "#efa025"
-let text_colors.Debug   = "#F9FA00"
-let text_colors.Error   = "#ef2021"
-let text_colors.Special = "#9c5fff"
-for key in keys(text_colors)
-    call hi#('Text' . key, text_colors[key], '', '')
-    call hi#('Bold' . key, text_colors[key], '', 'bold')
-endfor
-
-" hi! link Msg        TextSuccess
-" hi! link MoreMsg    TextInfo
-" hi! link WarningMsg TextWarning
-" hi! link ErrorMsg   TextError
-" hi! link ModeMsg    BoldSpecial
