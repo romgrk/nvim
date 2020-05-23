@@ -4,12 +4,6 @@
 " Date: 14 Sep 2015
 " !::exe [so % ]
 
-augroup colors.vim
-    au!
-    autocmd ColorScheme * exec 'source ' . expand('<sfile>')
-augroup end
-
-
 " Colors {{{
 
 unlet! colors
@@ -71,12 +65,4 @@ let colors.green           = '#209f20'
 let colors.mediumgreen     = '#5faf00'
 let colors.brightgreen     = '#afdf00'
 
-for k in keys(colors)
-    let c = colors[k]
-    if _#isString(c)
-        call hi#('fg_' . k  ,  c   ,  ''  ,  '')
-        call hi#('bg_' . k  ,  ''  ,  c   ,  '')
-        call hi#('b_'  . k  ,  c   ,  ''  ,  'bold')
-    end
-    unlet c
-endfor
+" }}}

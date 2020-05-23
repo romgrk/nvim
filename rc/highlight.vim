@@ -17,8 +17,6 @@ hi! link QuickFixLine Highlight
 
 hi! link    Noise          Comment
 
-call hi#('SessionTab',   ['#ffb700', colors.base02, 'none' ] )
-
 " }}}
 " Plugin specific                                                            {{{
 
@@ -116,27 +114,12 @@ if (&bg == 'light')
     hi! link hiPairs_unmatchPair bg_brightteal
 
     hi! link HighlightedyankRegion Highlight
-
-    " GitGutter                                                                  {{{
-    hi! link GitGutterAdd          DiffAdded
-    hi! link GitGutterDelete       DiffRemoved
-    hi! link GitGutterChange       DiffModified
-    hi! link GitGutterChangeDelete DiffRemoved
-    " }}}
 else
     hi! link MatchParen          b_brightteal
     hi! link hiPairs_matchPair   b_brightteal
     hi! link hiPairs_unmatchPair b_brightteal
 
     hi! link HighlightedyankRegion Search
-
-    " GitGutter                                                                  {{{
-    let s:bg = hi#bg('LineNr')
-    call hi#('GitGutterAdd',          hi#fg('TextSuccess'), s:bg, '')
-    call hi#('GitGutterDelete',       hi#fg('TextError'),   s:bg, '')
-    call hi#('GitGutterChange',       hi#fg('TextInfo'),    s:bg, '')
-    call hi#('GitGutterChangeDelete', hi#fg('TextWarning'), s:bg, '')
-    " }}}
 end
 
 call hi#('multiple_cursors_cursor', colors.darkred, colors.pink, 'bold')

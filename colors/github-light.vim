@@ -115,27 +115,19 @@ unlet! colors
 let colors = {}
 for k in keys(s:)
   let g:colors[k] = s:{k}
-
-  let c = s:{k}
-  if _#isString(c)
-    call hi#('fg_' . k  ,  c   ,  ''  ,  '')
-    call hi#('bg_' . k  ,  ''  ,  c   ,  '')
-    call hi#('b_'  . k  ,  c   ,  ''  ,  'bold')
-  end
-  unlet c
 endfor
 
-let log = {}
-let log.Info    = '#599eff'
-let log.Success = '#5faf00'
-let log.Warning = '#ff8700'
-let log.Debug   = '#f0c904'
-let log.Error   = '#ef2021'
-let log.Special = '#9c5fff'
-for key in keys(log)
-  call hi#('Text' . key, log[key], '', '')
-  call hi#('Bold' . key, log[key], '', 'bold')
-  call hi#link(key,      'Text' . key)
+let s:text_colors = {
+\'Info':    '#599eff',
+\'Success': '#5faf00',
+\'Warning': '#ff8700',
+\'Debug':   '#f0c904',
+\'Error':   '#ef2021',
+\'Special': '#9c5fff',
+\}
+for key in keys(s:text_colors)
+  call hi#('Text' . key, s:text_colors[key], '', '')
+  call hi#('Bold' . key, s:text_colors[key], '', 'bold')
 endfor
 
 " }}}
@@ -276,11 +268,6 @@ hi! link WarningMsg TextWarning
 hi! link ErrorMsg   TextError
 hi! link ModeMsg    TextSpecial
 
-call hi#('LabelOrange',     [ theme.base, colors.brightorange,  'bold' ] )
-call hi#('LabelGreen',      [ theme.base, colors.mediumgreen,   'bold' ] )
-call hi#('LabelBlue',       [ theme.base, colors.brightblue,    'bold' ] )
-call hi#('LabelPurple',     [ theme.fg, colors.darkestpurple, 'bold' ] )
-
 call hi#('Search',          '#000000', '#ffff00', 'none')
 call hi#('IncSearch',       '#000000', '#fb8f33', 'none')
 call hi#('IncSearchCursor', '',        '',        'reverse')
@@ -302,7 +289,6 @@ call hi#('HighlightSubtle', 'none', theme.bg_selection_very_light, 'none')
 
 call hi#('Key',             '#799d6a', '', '')
 call hi#('Question',        '#65C254', '', '',     'Green', '')
-call hi#('Question2',       '#70b950', '', 'bold', 'Green', '')
 call hi#('Todo',            '#3b84ea', 'none', 'bold')
 
 call hi#('Directory',       theme.fg, '',     'bold')
@@ -323,7 +309,9 @@ call hi#('URL',                  '#80a0ff', '',        'underline')
 call hi#('Comment',              '#8f9aa9', '',        '')
 call hi#('BoldComment',          '#8f9aa9', '',        'bold')
 call hi#('SpecialComment',       '#7597c6', '',        'bold')
-call hi#('CommentLabel',         '#799d6a', '',        'bold')
+hi! link CommentLabel   SpecialBold
+hi! link CommentSection SpecialBold
+hi! link Noise Comment
 
 call hi#('Global',               '#005cc5', '',        'none')
 call hi#('PreProc',              '#005cc5', '',        'none')
@@ -359,6 +347,7 @@ call hi#('Character',            '#238fff', '',        'bold')
 call hi#('SpecialIdentifier',    '#9c5fff', '',        'none')
 
 call hi#('Special',              '#a755df', '',        'none')
+call hi#('SpecialBold',          '#a755df', '',        'bold')
 call hi#('SpecialDelimiter',     '#a040af', '',        'none')
 "call hi#('Special',              '#2073f8',       'none',    'none')
 "call hi#('TextSpecial',          '#2073f8',       'none',    'none')
@@ -395,18 +384,26 @@ call hi#('RegexpKey',            '#5f0041', 'none',        'bold')
 " }}}
 " Diff                                                                       {{{
 
+call hi#('diffLine',             '#404040', 'none', 'bold')
+call hi#('diffSubName',          '#a755df', 'none', 'bold')
+
 hi! clear DiffAdd
 hi! clear DiffChange
 hi! clear DiffText
 hi! clear DiffDelete
 
-call hi#('DiffAdd',      '',              '#e6ffed', '')
-call hi#('DiffChange',   '',              '#e6ffed', '')
-call hi#('DiffText',     '',              '#acf2bd', '')
-call hi#('DiffDelete',   '',              '#ffeef0', '')
-call hi#('DiffModified', theme.fg_subtle, '#DEEBFE', '')
-call hi#('DiffAdded',    theme.fg_subtle, '#cdffd8', '')
-call hi#('DiffRemoved',  theme.fg_subtle, '#ffdce0', '')
+call hi#('DiffAdd',      '',             '#e6ffed')
+call hi#('DiffChange',   '',             '#e6ffed')
+call hi#('DiffText',     '',             '#acf2bd')
+call hi#('DiffDelete',   '',             '#ffeef0')
+
+call hi#('DiffAdded',    theme.fg_light, '#cdffd8')
+call hi#('DiffModified', theme.fg_light, '#deebfe')
+call hi#('DiffRemoved',  theme.fg_light, '#ffdce0')
+
+call hi#('DiffAddedSubtle',    '#1cad3c', '#cdffd8')
+call hi#('DiffModifiedSubtle', '#3c71be', '#deebfe')
+call hi#('DiffRemovedSubtle',  '#c03545', '#ffdce0')
 
 "                                                                            }}}
 " Additionnal/Common groups                                         {{{1
@@ -427,8 +424,6 @@ call hi#('SneakStreakMask', hi#('EasyMotionShadeDefault'))
 " }}}
 
 " Languages/Others                                                    {{{1
-
-call hi#('vimSpecial',           '#799d6a', '',        '')
 
 " Help                                                                      {{{2
 

@@ -177,7 +177,7 @@ hi! link vimMapModKey  Special
 hi! link vimMapMod     SpecialDelimiter
 
 hi! link vimNotation   vimSpecial
-hi! link vimContinue   vimSpecial
+hi! link vimContinue   Comment
 hi! link vimSynRegPat  Regexp
 hi! link vimSynRegOpt  vimSpecial
 hi! link vimSynKeyOpt  vimSpecial
@@ -211,5 +211,3 @@ call hi#('vimScriptFuncNameTag',  hi#fg('StaticFunc'), s:hl_bg, 'none')
 "call hi#('vimUserFunc',           hi#fg('Type'),       '',      'bold')
 
 " syn sync linecont	"^\s\+\\"
-
-

@@ -37,7 +37,7 @@ syntax cluster comments contains=
 
 hi def link commentTag     Tag
 hi def link commentSection CommentTitle
-hi def link commentLabel   BoldComment
+hi def link commentLabel   CommentTitle
 hi def link commentDoc     SpecialComment
 hi def link commentDesc    Comment
 hi def link commentTitle   Title
