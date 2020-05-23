@@ -221,27 +221,25 @@ ToggleMap 'w',   { 'value': '&l:wrap' },           [0,     1]
 ToggleMap 'sn',  { 'value': 'g:sneak#streak' },    [0,     1]
 ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post': 'let &ts = &sw' }
 
-ToggleMap 'vl',  'EditVerboseLevel'
+ToggleMap 'cn',  'ContextToggle'
+ToggleMap 'co',  'call colorizer#ColorToggle()'
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
+ToggleMap 'gs',  'GitGutterSignsEnable'
+ToggleMap 'gu',  'GitGutterToggle'
+ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
+ToggleMap 'id',  'IndentLinesToggle'
+ToggleMap 'il',  'IlluminationToggle'
+ToggleMap 'jn',  'setfiletype javascript.node'
 ToggleMap 'js',  'setfiletype javascript'
 ToggleMap 'jx',  'setfiletype javascript.jsx'
-ToggleMap 'jn',  'setfiletype javascript.node'
-ToggleMap 'co',  'call colorizer#ColorToggle()'
-ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
-ToggleMap 'gu',  'GitGutterToggle'
-ToggleMap 'gs',  'GitGutterSignsEnable'
-ToggleMap 'il',  'IlluminationToggle'
-ToggleMap 'cn',  'ContextToggle'
+ToggleMap 'vl',  'EditVerboseLevel'
+ToggleMap 'vm',  'VimadeToggle'
 
 AlternMap 'gg',  'Git integration', ['GitGutterEnable', 'GitGutterDisable']
 AlternMap 'al',  'ALE Linter',      ['ALEEnable', 'ALEDisable']
 AlternMap 'lc',  'Language Client', ['LanguageClientStop', 'LanguageClientStart']
-AlternMap 'vm',  'Vimade',          ['VimadeDisable', 'VimadeEnable']
 AlternMap 'coc', 'CoC',             ['CocDisable', 'CocEnable']
 
-ToggleMap 'idg', 'IndentGuidesToggle'
-ToggleMap 'idl', 'IndentLinesToggle'
-"ToggleMap 'lds', 'LeadingSpaceToggle'
 
 
 " Foldmethod
