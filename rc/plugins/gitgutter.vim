@@ -1,6 +1,6 @@
 " !::exe [so %]
 
-let gitgutter_enabled = 0
+let gitgutter_enabled = 1
 let gitgutter_map_keys = 0
 
 "let gitgutter_realtime = 0

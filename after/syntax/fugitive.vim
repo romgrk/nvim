@@ -1,7 +1,7 @@
-
 setlocal nonumber
 
 nmap <buffer> c. acc
+
 
 hi! link fugitiveHash TextWarning
 

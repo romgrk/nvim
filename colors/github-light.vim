@@ -307,10 +307,10 @@ call hi#('Link',                 '#80a0ff', '',        'underline')
 call hi#('URL',                  '#80a0ff', '',        'underline')
 
 call hi#('Comment',              '#8f9aa9', '',        '')
-call hi#('BoldComment',          '#8f9aa9', '',        'bold')
+call hi#('CommentBold',          '#8f9aa9', '',        'bold')
 call hi#('SpecialComment',       '#7597c6', '',        'bold')
-hi! link CommentLabel   SpecialBold
-hi! link CommentSection SpecialBold
+hi! link CommentLabel   CommentBold
+hi! link CommentSection CommentBold
 hi! link Noise Comment
 
 call hi#('Global',               '#005cc5', '',        'none')
@@ -319,7 +319,7 @@ call hi#('Macro',                '#005cc5', '',        'bold')
 call hi#('Define',               '#005cc5', '',        'bold')
 call hi#('PreCondit',            '#005cc5', '',        'bold')
 call hi#('Include',              '#005cc5', '',        'bold')
-" #d73a49
+
 call hi#('Repeat',               '#C36558', '',        '')
 call hi#('Keyword',              '#C36558', '',        '')
 call hi#('Statement',            '#C36558', '',        'none')

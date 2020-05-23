@@ -318,7 +318,7 @@ call hi#('Link',                 '#80a0ff', '',        'underline')
 call hi#('URL',                  '#80a0ff', '',        'underline')
 
 call hi#('Comment',              '#777777', '',        '')
-call hi#('BoldComment',          '#777777', '',        'bold')
+call hi#('CommentBold',          '#777777', '',        'bold')
 call hi#('SpecialComment',       '#7597c6', '',        'bold')
 call hi#('CommentLabel',         '#799d6a', '',        'bold')
 

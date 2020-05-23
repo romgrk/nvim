@@ -12,9 +12,6 @@ exe 'augroup END'
 " General                                                                    {{{
 
 hi! link QuickFixLine Highlight
-
-"call hi#("Highlight", hi#("Search"))
-
 hi! link    Noise          Comment
 
 " }}}
@@ -35,7 +32,7 @@ hi! CocInfoFloat                      guifg=white
 hi! CocWarningFloat                   guifg=#FFDD86
 hi! CocErrorFloat                     guifg=#FDC1C1
 
-hi link gitmessengerHeader Normalfloat
+hi link gitmessengerHeader NormalFloat
 
 " === Clap ===
 
