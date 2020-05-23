@@ -133,22 +133,16 @@ end
 
 " }}}
 " UI                                                                         {{{
-" Plug 'TaDaa/vimade'
+Plug 'TaDaa/vimade'
 Plug 'wellle/context.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'RRethy/vim-illuminate'
 Plug 'KabbAmine/vCoolor.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-highlightedyank'
 Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
-" Plug 'andymass/vim-matchup'
-" }}}
-" Colors/Colorscheme                                                         {{{
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'lilydjwg/colorizer'
 Plug 'airblade/vim-gitgutter'
@@ -161,10 +155,9 @@ Plug 'romgrk/lib.kom'
 Plug 'romgrk/pp.vim'
 Plug 'romgrk/replace.vim'
 Plug 'romgrk/vim-exeline'
-Plug 'romgrk/winteract.vim'                        , {'on': 'InteractiveWindow'}
+Plug 'romgrk/winteract.vim'                              , {'on': 'InteractiveWindow'}
 Plug 'romgrk/searchReplace.vim'
-
-Plug '/home/romgrk/github/todoist.vim'
+Plug 'romgrk/todoist.nvim'                               , {'do': 'UpdateRemotePlugins'}
 " }}}
 
 call plug#end() " }}}
