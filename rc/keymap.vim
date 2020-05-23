@@ -503,13 +503,15 @@ nnoremap       <leader>w+   :call SizeUp()<CR>
 
 nnoremap       <leader>p    :VCoolor<CR>
 
-nnoremap       <leader>gf   :NERDTreeFind<CR>
+nnoremap       <leader>gf   :LuaTreeFindFile<CR>
 
 nnoremap       <leader>ret  :set et <Bar> ret<CR>
 nnoremap       <leader>ap   vip:EasyAlign<CR>
 nnoremap       <leader>dws  :%DeleteTrailingWS<CR>
 
 nnoremap       <leader>how  :r !howdoi<space>
+
+nnoremap       <leader>sy   :SynStack<CR>
 
 
 
@@ -523,7 +525,6 @@ nnoremap      <leader>mW :.,.MultipleCursorsFind \w\+<CR>
 " Panels, File navigation, FZF & Clap                                       {{{1
 
 
-" nnoremap <silent><A-\>   :NERDTreeFocus<CR>
 nnoremap <silent><C-\>   :LuaTreeToggle<CR>
 nnoremap <silent><C-A-\> :LuaTreeFindFile<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
@@ -1049,6 +1050,7 @@ endfu
 
 " Yank all
 nnoremap gya :keepmarks normal! m'ggVGy`'<CR>
+nnoremap dya ggdG
 
 " Exchange lhs-rhs
 nmap gx= vihgxvilgx
@@ -1060,10 +1062,7 @@ else
 nnoremap <F1> :silent !nautilus .<CR>
 end
 
-nnoremap <F3> :NERDTreeFind<CR>
-
 nnoremap <F5> :e!<CR>
-
 
 " Insert word of the line above
 inoremap <C-Y> <C-C>:let @z = @"<CR>mz
