@@ -61,6 +61,7 @@ function! s:setup_colors() abort
   call hi#('StatuslineLineCol',    [s:statuslineFg, s:statuslineBg, 'none'])
   call hi#('StatuslinePercentage', ['#dab997',      s:statuslineBg, 'none'])
   call hi#('StatuslineVC',         [s:statuslineFg, s:statuslineBg, 'none'])
+  call hi#('StatuslineHeart',      ['#d75f5f',      s:statuslineBg, 'none'])
 
   call hi#('StatuslineLintWarn',     ['#ffcf00',      s:statuslineBg, 'none'])
   call hi#('StatuslineLintChecking', ['#458588',      s:statuslineBg, 'none'])
@@ -113,7 +114,13 @@ function! statusline#active () abort
     let content .= '%#StatuslineLineCol#%l:%c | %L lines %<'
 
     " VCS
-    let content .= '%#StatuslineVC#| %{statusline#vc_status()}'
+    let vc_status = statusline#vc_status()
+    if len(vc_status)
+      let content .= '%#StatuslineVC#| %{statusline#vc_status()}'
+    end
+
+    " Heart
+    let content .= '%#StatuslineHeart# '
 
     " Gutentags status
     " let content .= '%{statusline#gutentags_enabled()?" ":""}%(%#StatuslineLint#%{statusline#gutentags()}%)'
@@ -154,7 +161,13 @@ function! statusline#inactive () abort
     let content .= '%#StatuslineLineCol#%l:%c | %L lines %<'
 
     " VCS
-    let content .= '%#StatuslineVC#| %{statusline#vc_status()}'
+    let vc_status = statusline#vc_status()
+    if len(vc_status)
+      let content .= '%#StatuslineVC#| %{statusline#vc_status()}'
+    end
+
+    " Heart
+    let content .= '%#StatuslineVC#  '
   end
 
   return content
