@@ -2,6 +2,8 @@
 hi! link LuaTreeFolderName Directory
 hi!      LuaTreeFolderIcon guifg=#EBAD0D
 
+let lua_tree_size = 25
+
 let lua_tree_show_icons = {
 \ 'git': 1,
 \ 'folders': 1,
