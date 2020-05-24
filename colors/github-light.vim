@@ -1,57 +1,9 @@
 " !::exe [so % | call colorizer#ColorHighlight(1)]
-"set background=dark
+
 if &bg != 'light'
   set background=light
 end
 let colors_name = 'github-light'
-
-" Definitions:                                                               {{{
-"
-" *Comment	any comment
-"
-" *Constant	any constant
-"  String		a string constant 'this is a string'
-"  Character	a character constant 'c', '\n'
-"  Number		a number constant 234, 0xff
-"  Boolean	    a boolean constant TRUE, false
-"  Float		a floating point constant 2.3e10
-"
-" *Identifier	any variable name
-"  Function	    function name (also methods for classes)
-"
-" *Statement	any statement
-"  Conditional	if, then, else, endif, switch, etc.
-"  Repeat		for, do, while, etc.
-"  Label		case, default, etc.
-"  Operator	'sizeof', '+', '*', etc.
-"  Keyword	any other keyword
-"  Exception	try, catch, throw
-"
-" *PreProc	generic Preprocessor
-"  Include	preprocessor #include
-"  Define		preprocessor #define
-"  Macro		same as Define
-"  PreCondit	preprocessor #if, #else, #endif, etc.
-"
-" *Type		int, long, char, etc.
-"  StorageClass	static, register, volatile, etc.
-"  Structure	struct, union, enum, etc.
-"  Typedef	A typedef
-"
-" *Special	any special symbol
-"  SpecialChar	special character in a constant
-"  Tag		you can use CTRL-] on this
-"  Delimiter	character that needs attention
-"  SpecialComment	special things inside a comment
-"  Debug		debugging statements
-"
-" *Underlined	text that stands out, HTML links
-" *Ignore		left blank, hidden  |hl-Ignore|
-" *Error		any erroneous construct
-"
-" *Todo		anything that needs extra attention; mostly the
-" 		keywords TODO FIXME and XXX
-" }}}
 
 " Colors                                                                     {{{
 
@@ -73,12 +25,12 @@ let s:gh_search_dark = '#EDB34D'
 
 
 let s:text_colors = {
-\'Info':    '#599eff',
-\'Success': '#5faf00',
-\'Warning': '#ff8700',
-\'Debug':   '#f0c904',
-\'Error':   '#ef2021',
-\'Special': '#9c5fff',
+\ 'Info':    '#599eff',
+\ 'Success': '#5faf00',
+\ 'Warning': '#ff8700',
+\ 'Debug':   '#f0c904',
+\ 'Error':   '#ef2021',
+\ 'Special': '#9c5fff',
 \}
 for key in keys(s:text_colors)
   call hi#('Text' . key, s:text_colors[key], '', '')
