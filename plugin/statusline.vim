@@ -43,25 +43,26 @@ endfunction
 function! s:setup_colors() abort
 
   let s:statuslineFg = hi#fg('StatusLine')
+  let s:statuslineFgLight = color#lighten(s:statuslineFg, 0.9)
   let s:statuslineNCFg = hi#fg('StatusLineNC')
   " let s:statuslineBg = hi#bg('StatusLine')
   let s:statuslineBg = '#d0d0d0'
   let s:statuslineBgDark = '#9D9D9D'
 
 
-  call hi#('StatuslineNormal',     ['#e9e9e9',      s:statuslineBg, 'none'])
-  call hi#('StatuslineAccent',     ['none',         'none',         'bold'])
+  call hi#('StatuslineNormal',     ['#e9e9e9',           s:statuslineBg, 'none'])
+  call hi#('StatuslineAccent',     ['none',              'none',         'bold'])
   call hi#('StatuslinePart',       hi#('StatusLinePart'))
   call hi#('StatuslinePartNC',     hi#('StatusLinePartNC'))
-  call hi#('StatuslineFiletype',   [s:statuslineFg, s:statuslineBg, 'none'])
-  call hi#('StatuslineModified',   [s:modifiedFg,   s:statuslineBg, 'bold'])
-  call hi#('StatuslineFilename',   [s:statuslineFg, s:statuslineBg, 'bold'])
-  call hi#('StatuslineFilenameNC', [s:statuslineNCFg, s:statuslineBg, 'bold'])
-  call hi#('StatuslineSeparator',  [s:statuslineBg, 'none',         'none'])
-  call hi#('StatuslineLineCol',    [s:statuslineFg, s:statuslineBg, 'none'])
-  call hi#('StatuslinePercentage', ['#dab997',      s:statuslineBg, 'none'])
-  call hi#('StatuslineVC',         [s:statuslineFg, s:statuslineBg, 'none'])
-  call hi#('StatuslineHeart',      ['#d75f5f',      s:statuslineBg, 'none'])
+  call hi#('StatuslineFiletype',   [s:statuslineFg,      s:statuslineBg, 'none'])
+  call hi#('StatuslineModified',   [s:modifiedFg,        s:statuslineBg, 'bold'])
+  call hi#('StatuslineFilename',   [s:statuslineFg,      s:statuslineBg, 'bold'])
+  call hi#('StatuslineFilenameNC', [s:statuslineNCFg,    s:statuslineBg, 'bold'])
+  call hi#('StatuslineSeparator',  [s:statuslineFgLight, s:statuslineBg, 'none'])
+  call hi#('StatuslineLineCol',    [s:statuslineFg,      s:statuslineBg, 'none'])
+  call hi#('StatuslinePercentage', ['#dab997',           s:statuslineBg, 'none'])
+  call hi#('StatuslineVC',         [s:statuslineFg,      s:statuslineBg, 'none'])
+  call hi#('StatuslineHeart',      ['#d75f5f',           s:statuslineBg, 'none'])
 
   call hi#('StatuslineLintWarn',     ['#ffcf00',      s:statuslineBg, 'none'])
   call hi#('StatuslineLintChecking', ['#458588',      s:statuslineBg, 'none'])
@@ -111,12 +112,15 @@ function! statusline#active () abort
     let content .= '%=' " Right side items
 
     " Line and Column
-    let content .= '%#StatuslineLineCol#%l:%c | %L lines %<'
+    let content .= '%#StatuslineLineCol#%l:%c '
+    let content .= '%#StatuslineSeparator#| '
+    let content .= '%#StatuslineLineCol#%L lines %<'
 
     " VCS
     let vc_status = statusline#vc_status()
     if len(vc_status)
-      let content .= '%#StatuslineVC#| %{statusline#vc_status()}'
+      let content .= '%#StatuslineSeparator#| '
+      let content .= '%#StatuslineVC#%{statusline#vc_status()}'
     end
 
     " Heart
