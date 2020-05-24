@@ -223,10 +223,10 @@ ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post': 'let &t
 
 ToggleMap 'cn',  'ContextToggle'
 ToggleMap 'co',  'call colorizer#ColorToggle()'
+ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
 ToggleMap 'gs',  'GitGutterSignsEnable'
 ToggleMap 'gu',  'GitGutterToggle'
-ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
 ToggleMap 'id',  'IndentLinesToggle'
 ToggleMap 'il',  'IlluminationToggle'
 ToggleMap 'jn',  'setfiletype javascript.node'
