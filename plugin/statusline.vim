@@ -43,7 +43,7 @@ endfunction
 function! s:setup_colors() abort
 
   let s:statuslineFg = hi#fg('StatusLine')
-  let s:statuslineFgLight = color#lighten(s:statuslineFg, 0.9)
+  let s:statuslineFgLight = color#lighten(s:statuslineFg, '110%')
   let s:statuslineNCFg = hi#fg('StatusLineNC')
   " let s:statuslineBg = hi#bg('StatusLine')
   let s:statuslineBg = '#d0d0d0'
@@ -162,12 +162,15 @@ function! statusline#inactive () abort
     let content .= '%=' " Right side items
 
     " Line and Column
-    let content .= '%#StatuslineLineCol#%l:%c | %L lines %<'
+    let content .= '%#StatuslineLineCol#%l:%c '
+    let content .= '%#StatuslineSeparator#| '
+    let content .= '%#StatuslineLineCol#%L lines %<'
 
     " VCS
     let vc_status = statusline#vc_status()
     if len(vc_status)
-      let content .= '%#StatuslineVC#| %{statusline#vc_status()}'
+      let content .= '%#StatuslineSeparator#| '
+      let content .= '%#StatuslineVC#%{statusline#vc_status()}'
     end
 
     " Heart
