@@ -159,7 +159,7 @@ nnoremap gsd        :Edit $vim/rc/commands.vim<CR>
 nnoremap gsc        :Edit $vim/rc/colors.vim<CR>
 nnoremap gsh        :Edit $vim/rc/highlight.vim<CR>
 nnoremap gso        :Edit $vim/rc/settings.vim<CR>
-nnoremap gsj        :Edit $vim/colors/github-light.vim<CR>
+nnoremap gsj        :Edit $HOME/github/github-light.vim/colors/github-light.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
 nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
 nnoremap gs<A-p>    :Edit $vim/plugin/
