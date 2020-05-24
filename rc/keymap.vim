@@ -114,15 +114,15 @@ vnoremap <A-m> :<C-U>call multiple_cursors#new('v', 0)<CR>
 " Semicolon Quickmap                                                        {{{1
 
 " Semicolon key
-nmap <expr>   ;     CmdJump()
+nmap <silent><expr>   ;    CmdJump()
 
-let g:quickmap = {
-\ 'w':      ":w\<CR>",
-\ '<':      ':messages',
-\ ';':      ":\<Up>",
-\ "\<C-F>": ':Files',
-\ "\<A-;>": 'q:":P',
-\ "\<A-s>": ":set ?\<Left>",
+let quickmap = {
+\ 'w':       ":w\<CR>",
+\ '<':       ':messages',
+\ ';':       ":\<Up>",
+\ "\<C-F>":  ':Files',
+\ "\<A-;>":  'q:":P',
+\ "\<A-s>":  ":set ?\<Left>",
 \}
 
 function! CmdJump ()
@@ -396,7 +396,7 @@ nmap     <leader>j         <Plug>Sneak_s
 nmap     <leader>k         <Plug>Sneak_S
 
 " OptionsWidget:
-nnoremap <leader>co        :OptionsWidget<CR>
+nnoremap <silent><leader>co        :OptionsWidget<CR>
 
 " CoC:
 xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
@@ -406,117 +406,91 @@ nunmap <leader>ac
 nunmap <leader>a
 
 
-" ALE:
-nnoremap <leader>al         :ALEToggle<CR>
-nnoremap <leader>a<a-l>     :ALEToggleBuffer<CR>
-nnoremap <leader>af         :ALEFix<CR>
-
-
-" YCM:
-" nnoremap <leader>yr         :YcmRestartServer<CR>
-" nnoremap <leader>yi         :YcmDebugInfo<CR>
-" nnoremap <leader>yd         :YcmDiags<CR>
-" nnoremap <leader>yy         :YcmForceCompileAndDiagnostics<CR>
-" nnoremap <leader>yf         :YcmCompleter GoToReferences <Bar> copen<CR>
-" nnoremap <leader>yk         :YcmCompleter GetDoc<CR>
-" nnoremap <leader>ygo        :YcmCompleter GoTo<CR>
-" nnoremap <leader>ygt        :YcmCompleter GoToType<CR>
-" nnoremap <leader>ygd        :YcmCompleter GoToDefinition<CR>
-" nnoremap <leader>ygD        :YcmCompleter GoToDeclaration<CR>
-" nnoremap <leader>ygi        :YcmCompleter GoToInclude<CR>
-" nnoremap <leader>ygr        :YcmCompleter RefactorRename<space>
-" nnoremap        <F2>       :YcmCompleter RefactorRename<space>
-
-" Tern:
-nnoremap <leader>tt         :TernType<CR>
-nnoremap <leader>td         :TernDef<CR>
-nnoremap <leader>tp         :TernDefPreview<CR>
-
 "===============================================================================
 
 " Session management:
 nnoremap <expr><leader>ss     xolox#session#find_current_session() != 'default' ?
                               \ ":wall! \<Bar> SaveSession\<CR>\<Esc>" : ":wall! \<Bar> SaveSession\<space>"
-nnoremap       <leader>sS     :SaveSession!<space>
-nnoremap       <leader>so     :Clap session<CR>
-nnoremap       <leader>sd     :OpenSession! default<CR>
-nnoremap       <leader>sc     :wall! <Bar> CloseSession<CR>
-nnoremap       <leader>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
+nnoremap <silent><leader>sS     :SaveSession!<space>
+nnoremap <silent><leader>so     :Clap session<CR>
+nnoremap <silent><leader>sd     :OpenSession! default<CR>
+nnoremap <silent><leader>sc     :wall! <Bar> CloseSession<CR>
+nnoremap <silent><leader>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
 
-nnoremap       <leader>sl     :SourceLocalVimrc<CR>
-nnoremap       <leader>sn     :Note <C-R>=xolox#session#find_current_session()<CR><CR>
+nnoremap <silent><leader>sl     :SourceLocalVimrc<CR>
+nnoremap <silent><leader>sn     :Note <C-R>=xolox#session#find_current_session()<CR><CR>
 
 
-nnoremap       <leader>np     :NewProject<space>
+nnoremap <silent><leader>np     :NewProject<space>
 
 " Notes:
-nnoremap       <leader>no     :Clap note<CR>
+nnoremap <silent><leader>no     :Clap note<CR>
 
 " Git:
 
-nnoremap       <leader>gg     :Git<CR>
-nnoremap       <leader>gaa    :Git add --all<CR>
-nnoremap       <leader>ga.    :Git add %<CR>
-nnoremap       <leader>gcm    :Gcommit -m ""<Left>
-nnoremap       <leader>gcam   :Gcommit -am ""<Left>
-nnoremap       <leader>g.     :Gcommit % -m ""<Left>
-nnoremap       <leader>gk     :Git checkout<space>
-nnoremap       <leader>gK     :Git checkout -b<space>
-nnoremap       <leader>gl     :Gpull<CR>
-nnoremap       <leader>gp     :Gpush<CR>
-nnoremap       <leader>gs     :Gstatus<CR>
-nnoremap       <leader>gu     :GitOpenUnmergedFiles<CR>
-nnoremap       <leader>gda    :GitDiff<CR>
-nnoremap       <leader>gd.    :GitDiff %<CR>
-nnoremap       <leader>gdd    :GitDiff<space>
+nnoremap <silent><leader>gg     :Git<CR>
+nnoremap <silent><leader>gaa    :Git add --all<CR>
+nnoremap <silent><leader>ga.    :Git add %<CR>
+nnoremap <silent><leader>gcm    :Gcommit -m ""<Left>
+nnoremap <silent><leader>gcam   :Gcommit -am ""<Left>
+nnoremap <silent><leader>g.     :Gcommit % -m ""<Left>
+nnoremap <silent><leader>gk     :Git checkout<space>
+nnoremap <silent><leader>gK     :Git checkout -b<space>
+nnoremap <silent><leader>gl     :Gpull<CR>
+nnoremap <silent><leader>gp     :Gpush<CR>
+nnoremap <silent><leader>gs     :Gstatus<CR>
+nnoremap <silent><leader>gu     :GitOpenUnmergedFiles<CR>
+nnoremap <silent><leader>gda    :GitDiff<CR>
+nnoremap <silent><leader>gd.    :GitDiff %<CR>
+nnoremap <silent><leader>gdd    :GitDiff<space>
 
 " GitMessenger:
-nnoremap       <leader>gm     :GitMessenger<CR>
+nnoremap <silent><leader>gm     :GitMessenger<CR>
 
 " GitGutter:
-nnoremap       <leader>hh     :GitGutter
-nnoremap       <leader>hs     :GitGutterStageHunk<CR>
-nnoremap       <leader>hv     :GitGutterPreviewHunk<CR>
-nnoremap       <leader>hu     :GitGutterUndoHunk<CR>
+nnoremap <silent><leader>hh     :GitGutter
+nnoremap <silent><leader>hs     :GitGutterStageHunk<CR>
+nnoremap <silent><leader>hv     :GitGutterPreviewHunk<CR>
+nnoremap <silent><leader>hu     :GitGutterUndoHunk<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching
 
 " Files:
-nnoremap       <leader>md     :Mkdir! <C-D>
-nnoremap       <leader>mv     :Move <C-D>
-nnoremap       <leader>rn     :Rename<space>
+nnoremap <silent><leader>md     :Mkdir! <C-D>
+nnoremap <silent><leader>mv     :Move <C-D>
+nnoremap <silent><leader>rn     :Rename<space>
 
 " Search:
-nnoremap       <leader>ag     :FzfRg<CR>
-nnoremap       <leader>aa     :FzfRg <C-r><C-w><CR>
+nnoremap <silent><leader>ag     :FzfRg<CR>
+nnoremap <silent><leader>aa     :FzfRg <C-r><C-w><CR>
 
 "===============================================================================
 
 " Windows-things:
-nnoremap       <leader>w-   :call SizeDown()<CR>
-nnoremap       <leader>w+   :call SizeUp()<CR>
+nnoremap <silent><leader>w-   :call SizeDown()<CR>
+nnoremap <silent><leader>w+   :call SizeUp()<CR>
 
 "===============================================================================
 
 " Various:
 
-nnoremap       <leader>cp   :VCoolor<CR>
-nnoremap <expr><leader>c-   '"_ciw' . color#Darken(expand('<cword>')) . "\<Esc>"
-nnoremap <expr><leader>c=   '"_ciw' . color#Lighten(expand('<cword>')) . "\<Esc>"
+nnoremap <silent><leader>cp   :VCoolor<CR>
+nnoremap   <expr><leader>c-   '"_ciw' . color#Darken(expand('<cword>')) . "\<Esc>"
+nnoremap   <expr><leader>c=   '"_ciw' . color#Lighten(expand('<cword>')) . "\<Esc>"
 
-nnoremap       <leader>gf   :LuaTreeFindFile<CR>
+nnoremap <silent><leader>gf   :LuaTreeFindFile<CR>
 
-nnoremap       <leader>ret  :set et <Bar> ret<CR>
-nnoremap       <leader>ap   vip:EasyAlign<CR>
-nnoremap       <leader>dws  :%DeleteTrailingWS<CR>
+nnoremap <silent><leader>ret  :set et <Bar> ret<CR>
+nnoremap <silent><leader>ap   vip:EasyAlign<CR>
+nnoremap <silent><leader>dws  :%DeleteTrailingWS<CR>
 
-nnoremap       <leader>how  :r !howdoi<space>
+nnoremap <silent><leader>how  :r !howdoi<space>
 
-nnoremap       <leader>syv  :SynStack<CR>
-nnoremap       <leader>sye  :SynCurrentEdit<CR>
+nnoremap <silent><leader>syv  :SynStack<CR>
+nnoremap <silent><leader>sye  :SynCurrentEdit<CR>
 
-nnoremap       <leader>ti   :TodoistInit<CR>
+nnoremap <silent><leader>ti   :TodoistInit<CR>
 
 
 
