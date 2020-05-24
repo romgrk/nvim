@@ -513,8 +513,8 @@ nnoremap       <leader>dws  :%DeleteTrailingWS<CR>
 
 nnoremap       <leader>how  :r !howdoi<space>
 
-nnoremap       <leader>sy   :SynStack<CR>
-nnoremap       <leader>sc   :SynCurrentEdit<CR>
+nnoremap       <leader>syv  :SynStack<CR>
+nnoremap       <leader>sye  :SynCurrentEdit<CR>
 
 nnoremap       <leader>ti   :TodoistInit<CR>
 
