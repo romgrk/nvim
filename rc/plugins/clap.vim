@@ -29,8 +29,6 @@ let clap_provider_note = {
 " Highlight
 "
 
-" hi Selection guibg=#
-
 hi! link ClapCurrentSelection Visual
 hi! link ClapPopupCursor      Visual
 
