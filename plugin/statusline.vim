@@ -13,7 +13,9 @@ let s:color_by_mode = {
 \  'default': ['#e9f2ff', '#599eff'],
 \}
 
-let s:statuslineFg = hi#fg('StatusLine')
+" let s:statuslineFg = hi#fg('StatusLine')
+" let s:statuslineBg = hi#bg('StatusLine')
+let s:statuslineFg = '#495058'
 let s:statuslineBg = '#d0d0d0'
 
 let s:modifiedFg = '#d75f5f'
@@ -42,7 +44,8 @@ endfunction
 " Setup the colors
 function! s:setup_colors() abort
 
-  let s:statuslineFg = hi#fg('StatusLine')
+  " let s:statuslineFg = hi#fg('StatusLine')
+  let s:statuslineFg = '#495058'
   let s:statuslineFgLight = color#lighten(s:statuslineFg, '110%')
   let s:statuslineNCFg = hi#fg('StatusLineNC')
   " let s:statuslineBg = hi#bg('StatusLine')
