@@ -7,20 +7,15 @@ hi! link jsNodeVars        Special
 
 hi! link jsFuncBraces      Delimiter
 hi! link jsBraces          Delimiter
-hi! link jsBrackets        Delimiter2
+hi! link jsBrackets        DelimiterAlt
 
 hi! link jsExport          Special
 hi! link jsImport          Special
 hi! link jsModuleAs        Special
 hi! link jsFrom            Special
 hi! link jsThis            jsPrototype
-if (&bg == 'light')
-  hi! link jsPrototype       Keyword
-  hi! link jsObjectKey       Property
-else
-  hi! link jsPrototype     Special
-  hi! link jsObjectKey       Property
-end
+hi! link jsPrototype       Keyword
+hi! link jsObjectKey       Property
 hi! link jsFunction        Keyword
 hi! link jsFuncCall        Function
 hi! link jsFuncAssignIdent Function
@@ -40,12 +35,14 @@ hi! link jsTemplateVar     Normal
 hi! link jsTernaryIfOperator jsOperator
 hi! link jsTaggedTemplate Function
 
+hi! link jsOperatorKeyword Keyword
+
 hi! link jsModuleOperators Special
 hi! link jsModuleKeywords  Special
 
 hi! link jsGlobalNodeObjects Special
 
-hi! link jsxContentBraces TextSpecial
+hi! link jsxContentBraces Special
 hi! link jsxIfOperator    Operator
 hi! link jsxElseOperator  Operator
 
@@ -62,9 +59,3 @@ unlet! g:javascript_conceal_null
 unlet! g:javascript_conceal_prototype
 unlet! g:javascript_conceal_static
 unlet! g:javascript_conceal_super
-
-"syntax clear jsCommentTodo
-"runtime! syntax/comment.vim
-"syn region jsComment start=+\/\/+ end=/$/  keepend extend contains=jsCommentTodo,@Comments
-"syn region jsComment matchgroup=jsComment start=+/\*\s*+ end=+\*/+  fold contains=jsDocTags,jsCommentTodo,jsCvsTag,@jsHtml,@Comments
-
