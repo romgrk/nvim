@@ -55,67 +55,22 @@ let colors_name = 'github-light'
 
 " Colors                                                                     {{{
 
-let s:base03 = '#151515'
-let s:base02 = '#30302a'
-let s:base01 = '#4e4e48'
-let s:base00 = '#666660'
-
-let s:base0 = '#808078'
-let s:base1 = '#949489'
-let s:base2 = '#a8a89e'
-let s:base3 = '#e8e8d7'
-let s:baseF = '#f8fbf1'
-
-let s:_black     = '#000000'
-let s:black      = '#070707'
-let s:darkgray   = '#1f1f1f'
-let s:gray       = '#2c2c2c'
-let s:lightgray  = '#404040'
-let s:brightgray = '#515151'
+let s:black     = '#000000'
 let s:white      = '#f4fbfe'
 
-let s:beige           = '#bab075'
 let s:darkyellow      = '#c59000'
-let s:yellow          = '#eab700'
-let s:brightyellow    = '#ffe914'
-let s:darkorange      = '#c7800a'
-let s:orange          = '#f5871f'
-let s:mediumorange    = '#ff8700'
-let s:brightorange    = '#ffb700'
-let s:brightestorange = '#ffaf00'
-let s:darkestred      = '#5f0000'
-let s:darkred         = '#870000'
-let s:mediumred       = '#af0000'
-let s:brightred       = '#df0000'
-let s:brightestred    = '#ff0000'
-let s:red             = '#dc322f'
-let s:lightred        = '#ff9a9c'
-let s:pink            = '#f92672'
-let s:darkestpurple   = '#5f00af'
-let s:mediumpurple    = '#875fdf'
-let s:magenta         = '#8959a8'
-let s:darkestblue     = '#121448'
-let s:darkblue        = '#052350'
-let s:blue            = '#345fa8'
-let s:blue2           = '#10479f'
-let s:brightblue      = '#599eff'
-let s:lightblue       = '#94afff'
-let s:darkteal        = '#005f5f'
-let s:tealblue        = '#005f87'
-let s:teal            = '#0087af'
-let s:lightteal       = '#80d3f2'
-let s:brightteal      = '#87dfff'
-let s:darkestgreen    = '#005f00'
-let s:darkgreen       = '#008700'
-let s:green           = '#209f20'
-let s:mediumgreen     = '#5faf00'
-let s:brightgreen     = '#afdf00'
 
-unlet! colors
-let colors = {}
-for k in keys(s:)
-  let g:colors[k] = s:{k}
-endfor
+let s:gh_grey   = '#8f9aa9'
+let s:gh_red    = '#DB524E'
+let s:gh_orange = '#e98642'
+let s:gh_blue0  = '#0d33a5'
+let s:gh_blue1  = '#2076d8'
+let s:gh_purple = '#6f42c1'
+let s:gh_url    = '#80a0ff'
+
+let s:gh_search      = '#FFEEB9'
+let s:gh_search_dark = '#EDB34D'
+
 
 let s:text_colors = {
 \'Info':    '#599eff',
@@ -138,7 +93,7 @@ let theme.base                  = '#202020'
 let theme.insensitive_base      = '#282828'
 
 let theme.fg                    = '#24292e'
-let theme.fg_light              = '#495058'
+let theme.fg_light              = '#454B53'
 let theme.fg_lighter            = '#666D74'
 let theme.fg_subtle             = '#c0c0c0'
 let theme.fg_dark               = '#24292e'
@@ -231,7 +186,7 @@ if exists('&pumblend')
   set pumblend=20
 end
 
-call hi#('Terminal',         s:white,  s:_black, '')
+call hi#('Terminal',         s:white,  s:black, '')
 
 
 call hi#('Folded',           'none',          theme.bg_verysubtle,  'none')
@@ -262,18 +217,10 @@ call hi#('BufferSignCurrent', theme.fg_widget_dark, theme.bg,      'none')
 " }}}
 " Search, Highlight, Conceal, Messages                                               {{{
 
-hi! link Msg        TextSuccess
-hi! link MoreMsg    TextInfo
-hi! link WarningMsg TextWarning
-hi! link ErrorMsg   TextError
-hi! link ModeMsg    TextSpecial
+call hi#('Search',          'none', s:gh_search,      'none')
+call hi#('IncSearch',       'none', s:gh_search_dark, 'none')
+call hi#('IncSearchCursor', '',     '',               'reverse')
 
-call hi#('Search',          '#000000', '#ffff00', 'none')
-call hi#('IncSearch',       '#000000', '#fb8f33', 'none')
-call hi#('IncSearchCursor', '',        '',        'reverse')
-
-" hi! NonText gui=none guibg=none guifg=grey40
-" hi! Conceal gui=none guibg=none guifg=grey20
 call hi#('Conceal',         theme.fg_conceal, 'none',    '')
 call hi#('SpecialKey',      '#333333',        'none',    '')
 call hi#('NonText',         theme.fg_subtle,  '',        'bold')
@@ -297,48 +244,55 @@ call hi#('Section',         '#3365CE', '',     'bold')
 " call hi#('Title',           '#3365CE', '',     'bold')
 hi! link Title Special
 
-call hi#('Bold',            '', '', 'bold')
+call hi#('Bold', '', '', 'bold')
+
+hi! link Msg        TextSuccess
+hi! link MoreMsg    TextInfo
+hi! link WarningMsg TextWarning
+hi! link ErrorMsg   TextError
+hi! link ModeMsg    TextSpecial
+
 
 " }}}
 " Main Syntax                                                               {{{1
 
-call hi#('Tag',                  '#80a0ff', '',        'underline')
-call hi#('Link',                 '#80a0ff', '',        'underline')
-call hi#('URL',                  '#80a0ff', '',        'underline')
+call hi#('Tag',                  s:gh_url, '',        'underline')
+call hi#('Link',                 s:gh_url, '',        'underline')
+call hi#('URL',                  s:gh_url, '',        'underline')
 
-call hi#('Comment',              '#8f9aa9', '',        '')
-call hi#('CommentBold',          '#8f9aa9', '',        'bold')
+call hi#('Comment',              s:gh_grey, '',        '')
+call hi#('CommentBold',          s:gh_grey, '',        'bold')
 call hi#('SpecialComment',       '#7597c6', '',        'bold')
 hi! link CommentLabel   CommentBold
 hi! link CommentSection CommentBold
 hi! link Noise Comment
 
-call hi#('Global',               '#005cc5', '',        'none')
-call hi#('PreProc',              '#005cc5', '',        'none')
-call hi#('Macro',                '#005cc5', '',        'bold')
-call hi#('Define',               '#005cc5', '',        'bold')
-call hi#('PreCondit',            '#005cc5', '',        'bold')
-call hi#('Include',              '#005cc5', '',        'bold')
+call hi#('Global',               s:gh_blue1, '',        'none')
+call hi#('PreProc',              s:gh_blue1, '',        'none')
+call hi#('Macro',                s:gh_blue1, '',        'bold')
+call hi#('Define',               s:gh_blue1, '',        'bold')
+call hi#('PreCondit',            s:gh_blue1, '',        'bold')
+call hi#('Include',              s:gh_blue1, '',        'bold')
 
-call hi#('Repeat',               '#C36558', '',        '')
-call hi#('Keyword',              '#C36558', '',        '')
-call hi#('Statement',            '#C36558', '',        'none')
-call hi#('Label',                '#C36558', '',        '')
+call hi#('Repeat',               s:gh_red, '',        '')
+call hi#('Keyword',              s:gh_red, '',        '')
+call hi#('Statement',            s:gh_red, '',        'none')
+call hi#('Label',                s:gh_red, '',        '')
 
-call hi#('Operator',             '#C36558', '',        '')
+call hi#('Operator',             s:gh_blue1, '',        '')
 "call hi#('Operator',             '#94afff', '',        '')
 
-call hi#('Constant',             '#005cc5', '',        'none')
-call hi#('Number',               '#005cc5', '',        'none')
-call hi#('Float',                '#005cc5', '',        'none')
-call hi#('Boolean',              '#005cc5', '',        'none')
-call hi#('Enum',                 '#005cc5', '',        'none')
+call hi#('Constant',             s:gh_blue1, '',        'none')
+call hi#('Number',               s:gh_blue1, '',        'none')
+call hi#('Float',                s:gh_blue1, '',        'none')
+call hi#('Boolean',              s:gh_blue1, '',        'none')
+call hi#('Enum',                 s:gh_blue1, '',        'none')
 
 call hi#('Delimiter',            '#668799', '',        'none')
-call hi#('Delimiter2',           '#799033', '',        'none')
+call hi#('DelimiterAlt',         '#799033', '',        'none')
 call hi#('SpecialChar',          '#799d6a', '',        'bold')
 
-call hi#('String',               '#032fb2', '',        'none')
+call hi#('String',               s:gh_blue0, '',        'none')
 call hi#('StringDelimiter',      '#032f62', '',        'bold')
 
 call hi#('Character',            '#238fff', '',        'bold')
@@ -349,32 +303,29 @@ call hi#('SpecialIdentifier',    '#9c5fff', '',        'none')
 call hi#('Special',              '#a755df', '',        'none')
 call hi#('SpecialBold',          '#a755df', '',        'bold')
 call hi#('SpecialDelimiter',     '#a040af', '',        'none')
-"call hi#('Special',              '#2073f8',       'none',    'none')
-"call hi#('TextSpecial',          '#2073f8',       'none',    'none')
 
 
 call hi#('Identifier',           theme.fg,  '',        'none')
 call hi#('Variable',             '#ffe790', '',        'none')
-call hi#('Argument',             '',        '',        'none')
+call hi#('Argument',             theme.fg,  '',        'none')
 
-" func name
-call hi#('Function',             '#6f42c1', '',        'none')
-call hi#('Method',               '#6f42c1', '',        'bold')
+call hi#('Function',             s:gh_purple, '',        'none')
+call hi#('Method',               s:gh_purple, '',        'bold')
 
-call hi#('Symbol',               '#005cc5', '',        'none')
-call hi#('Control',              '#005cc5', '',        'none')
-call hi#('PredefinedIdentifier', '#005cc5', '',        'none')
-call hi#('Predefined',           '#005cc5', '',        'none')
+call hi#('Symbol',               s:gh_blue1, '',        'none')
+call hi#('Control',              s:gh_blue1, '',        'none')
+call hi#('PredefinedIdentifier', s:gh_blue1, '',        'none')
+call hi#('Predefined',           s:gh_blue1, '',        'none')
 
 call hi#('StaticFunc',           '#ffb964', '',        'none')
-call hi#('Property',             '#dea537', '',        'none')
+call hi#('Property',             s:gh_orange, '',        'none')
 
 
-call hi#('Type',                 '#C36558', '',        'none')
-call hi#('StorageClass',         '#C36558', '',        'none')
-call hi#('Class',                '#C36558', '',        'none')
-call hi#('Structure',            '#C36558', '',        'none')
-call hi#('Typedef',              '#C36558', '',        'none')
+call hi#('Type',                 s:gh_red, '',        'none')
+call hi#('StorageClass',         s:gh_red, '',        'none')
+call hi#('Class',                s:gh_red, '',        'none')
+call hi#('Structure',            s:gh_red, '',        'none')
+call hi#('Typedef',              s:gh_red, '',        'none')
 
 call hi#('Regexp',               '#dd0093', 'none',        'none')
 call hi#('RegexpSpecial',        '#a40073', 'none',        'none')
@@ -384,8 +335,12 @@ call hi#('RegexpKey',            '#5f0041', 'none',        'bold')
 " }}}
 " Diff                                                                       {{{
 
-call hi#('diffLine',             '#404040', 'none', 'bold')
-call hi#('diffSubName',          '#a755df', 'none', 'bold')
+let s:gh_info_bg0 = '#D8EEFD'
+let s:gh_info_bg1 = '#E6F3FE'
+
+
+call hi#('diffLine',    s:gh_grey, s:gh_info_bg1, 'none')
+call hi#('diffSubName', s:gh_grey, s:gh_info_bg1, 'none')
 
 hi! clear DiffAdd
 hi! clear DiffChange

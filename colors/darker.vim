@@ -348,7 +348,7 @@ call hi#('Boolean',              '#eab700', '',        'bold')
 call hi#('Enum',                 '#efaa2c', '',        '')
 
 call hi#('Delimiter',            '#668799', '',        '')
-call hi#('Delimiter2',           '#799033', '',        '')
+call hi#('DelimiterAlt',         '#799033', '',        '')
 call hi#('SpecialChar',          '#799d6a', '',        'bold')
 
 call hi#('String1',              '#acd279', '',        'none')
