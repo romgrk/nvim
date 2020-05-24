@@ -22,7 +22,7 @@ command! BufferMoveNext     call s:move_current_buffer(+1)
 command! BufferMovePrevious call s:move_current_buffer(-1)
 
 " Hl groups used for coloring
-let s:hl_groups = ['Buffer', 'BufferActive', 'BufferCurrent']
+let s:hl_groups = ['Buffer', 'BufferVisible', 'BufferCurrent']
 
 " Current buffers in tabline (ordered)
 let s:buffers = []
@@ -63,12 +63,14 @@ fu! BufferLine ()
     for i in range(len(bufferDetails))
         let buffer = bufferDetails[i]
         let type = buf#activity(0+buffer.number)
-        let isCurrent = currentnr == buffer.number
+        let is_visible = type == 1
+        let is_current = currentnr == buffer.number
 
         let hl  = s:hl_groups[type]
         let hl .= buf#modF(0+buffer.number) ? 'Mod' : ''
 
-        let numberPrefix = s:hl('BufferSign' . (isCurrent ? 'Current' : ''), i + 1)
+        let numberPrefix = s:hl('BufferSign' . 
+            \ (is_current ? 'Current' : is_visible ? 'Visible' : ''), i + 1)
 
         let hlprefix   = '%#'. hl .'#'
         let bufExpr = '%{"' . buffer.name .'"}'
@@ -90,7 +92,7 @@ fu! TablineSession (...)
         let name = substitute(getcwd(), $HOME, '~', '')
     end
 
-    return '%#StatusLinePart#%( ' . name . ' %)'
+    return '%#BufferPart#%( ' . name . ' %)'
 endfunc
 fu! Tabpages ()
     if tabpagenr('$') == 1

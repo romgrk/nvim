@@ -158,6 +158,7 @@ Plug 'romgrk/vim-exeline'
 Plug 'romgrk/winteract.vim'                              , {'on': 'InteractiveWindow'}
 Plug 'romgrk/searchReplace.vim'
 Plug 'romgrk/todoist.nvim'                               , {'do': 'UpdateRemotePlugins'}
+Plug 'romgrk/github-light.vim'
 " }}}
 
 call plug#end() " }}}
