@@ -501,7 +501,9 @@ nnoremap       <leader>w+   :call SizeUp()<CR>
 
 " Various:
 
-nnoremap       <leader>p    :VCoolor<CR>
+nnoremap       <leader>cp   :VCoolor<CR>
+nnoremap <expr><leader>c-   '"_ciw' . color#Darken(expand('<cword>')) . "\<Esc>"
+nnoremap <expr><leader>c=   '"_ciw' . color#Lighten(expand('<cword>')) . "\<Esc>"
 
 nnoremap       <leader>gf   :LuaTreeFindFile<CR>
 
