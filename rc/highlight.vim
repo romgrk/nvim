@@ -34,69 +34,8 @@ hi! CocErrorFloat                     guifg=#FDC1C1
 
 hi link gitmessengerHeader NormalFloat
 
-" === Clap ===
 
-hi! link ClapCurrentSelection Visual
-hi! link ClapPopupCursor      Visual
-hi! link ClapInput            NormalPopup
-hi! link ClapSearchText       NormalPopup
-hi! link ClapDisplay          NormalPopup
-hi! link ClapMatches          EasyMotionTargetDefault
-hi! link ClapPreview          StatusLine
-hi! link ClapSpinner          StatusLine
-hi! link ClapQuery            Normal
-
-hi! link ClapFile             NormalPopup
-
-hi! link ClapMatches1 EasyMotionTargetDefault
-hi! link ClapMatches2 EasyMotionTargetDefault
-hi! link ClapMatches3 EasyMotionTargetDefault
-hi! link ClapMatches4 EasyMotionTargetDefault
-hi! link ClapMatches5 EasyMotionTargetDefault
-hi! link ClapMatches6 EasyMotionTargetDefault
-hi! link ClapMatches7 EasyMotionTargetDefault
-hi! link ClapMatches8 EasyMotionTargetDefault
-hi! link ClapMatches9 EasyMotionTargetDefault
-hi! link ClapMatches10 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches1 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches2 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches3 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches4 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches5 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches6 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches7 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches8 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches9 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches10 EasyMotionTargetDefault
-
-hi! link ClapVistaTag         Normal
-
-" By default ClapQuery will use the bold fg of Normal and the same bg of ClapInput
-
-hi default link ClapPreview          ClapDefaultPreview
-hi default link ClapSelected         ClapDefaultSelected
-hi default link ClapCurrentSelection ClapDefaultCurrentSelection
-
-" hi! ClapDefaultPreview          ctermbg=237 guibg=#3E4452
-" hi! ClapDefaultSelected         cterm=bold,underline gui=bold,underline ctermfg=80 guifg=#5fd7d7
-hi! link ClapDefaultSelected Visual
-hi! link ClapDefaultCurrentSelection Visual
-
-
-
-if (&bg == 'light')
-    " hi! link MatchParen          bg_brightteal
-    hi! link hiPairs_matchPair   bg_brightteal
-    hi! link hiPairs_unmatchPair bg_brightteal
-
-    hi! link HighlightedyankRegion Highlight
-else
-    hi! link MatchParen          b_brightteal
-    hi! link hiPairs_matchPair   b_brightteal
-    hi! link hiPairs_unmatchPair b_brightteal
-
-    hi! link HighlightedyankRegion Search
-end
+hi! link HighlightedyankRegion Highlight
 
 call hi#('multiple_cursors_cursor', colors.darkred, colors.pink, 'bold')
 hi! link multiple_cursors_visual visual

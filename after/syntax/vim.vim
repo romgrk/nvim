@@ -177,7 +177,7 @@ hi! link vimMapModKey  Special
 hi! link vimMapMod     SpecialDelimiter
 
 hi! link vimNotation   SpecialComment
-hi! link vimContinue   Comment
+hi! link vimContinue   Conceal
 hi! link vimSynRegPat  Regexp
 hi! link vimSynRegOpt  vimSpecial
 hi! link vimSynKeyOpt  vimSpecial
