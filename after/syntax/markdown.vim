@@ -1,1 +1,1 @@
-hi link mkdHeading Special
+hi link mkdHeading Title
