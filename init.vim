@@ -64,7 +64,6 @@ Plug 'wellle/targets.vim'
 " @plugins
 Plug 'ripxorip/aerojump.nvim'                            , { 'do': ':UpdateRemotePlugins' }
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'AndrewRadev/tagalong.vim'
 Plug 'aperezdc/vim-template'
 Plug 'bfredl/nvim-miniyank'
 Plug 'fidian/hexmode'
@@ -75,7 +74,6 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf'                                      , { 'dir': '~/.local/fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'justinmk/vim-syntax-extra'
 Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vista.vim'
 Plug 'MarcWeber/vim-addon-local-vimrc'
@@ -94,6 +92,7 @@ Plug 'romgrk/vim-session'
 Plug 'xolox/vim-shell'
 " }}}
 " Language                                                                   {{{
+Plug 'AndrewRadev/tagalong.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'tbastos/vim-lua'                                   , { 'for': 'lua' }
@@ -137,7 +136,6 @@ Plug 'TaDaa/vimade'
 Plug 'wellle/context.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
-Plug 'RRethy/vim-illuminate'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 Plug 'Yggdroot/indentLine'
