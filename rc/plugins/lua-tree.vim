@@ -27,31 +27,32 @@ let lua_tree_bindings = {
 
 " autocmd User SessionSavePre  call OnSessionSavePre()
 " autocmd User SessionSavePost call OnSessionSavePost()
-
-" let s:buffer_id = bufnr('CustomPluginBuffer')
-let s:saved_state = v:null
-
-function! OnSessionSavePre()
-  if v:true
-
-    " If it's open, we close the buffer
-    LuaTreeToggle
-
-    " And we add a command that will restore it's state
-    call add(g:session_save_commands, 'LuaTreeToggle')
-
-    " And we remember that we closed it to be able to open it in
-    " the SessionSavePost event
-    let s:saved_state = 'open'
-  end
-endfunc
-
-function! OnSessionSavePost()
-  if s:saved_state == 'open'
-    LuaTreeToggle
-    wincmd W
-  end
-endfunc
+"
+" " let s:buffer_id = bufnr('CustomPluginBuffer')
+" let s:saved_state = v:null
+"
+" function! OnSessionSavePre()
+"   if v:true
+"
+"     " If it's open, we close the buffer
+"     LuaTreeToggle
+"
+"     " And we add a command that will restore it's state
+"     call add(g:session_save_commands, 'LuaTreeToggle')
+"
+"     " And we remember that we closed it to be able to open it in
+"     " the SessionSavePost event
+"     let s:saved_state = 'open'
+"   end
+" endfunc
+"
+" function! OnSessionSavePost()
+"   if s:saved_state == 'open'
+"     let winid = win_getid()
+"     LuaTreeToggle
+"     call win_gotoid(winid)
+"   end
+" endfunc
 
 " }}}
 "===============================================================================
