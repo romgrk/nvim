@@ -9,6 +9,7 @@ function! s:onTermOpen ()
     setfiletype terminal
     setlocal nocursorline nocursorcolumn
     setlocal signcolumn=no
+    VimadeBufDisable
 
     if hi#exists('TermNormal') && !exists('b:fzf')
         setl winhl=Normal:TermNormal,NormalNC:TermNormalNC
