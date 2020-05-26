@@ -7,10 +7,11 @@
 " Excludes: non-code buffers, shared by various plugins
 
 let exclude_filetypes =
-    \ ['nerdtree', 'terminal', 'cocactions', 'help', 'todoist', 'fugitive']
+    \ ['nerdtree', 'terminal', 'cocactions', 'help', 'todoist',
+    \  'fugitive', 'clap_input', 'LuaTree']
 
 let exclude_buftypes =
-    \ ['help', 'terminal']
+    \ ['help', 'terminal', 'nowrite']
 
 " Settings:
 
