@@ -62,7 +62,6 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
-Plug 'ripxorip/aerojump.nvim'                            , { 'do': ':UpdateRemotePlugins' }
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'aperezdc/vim-template'
 Plug 'bfredl/nvim-miniyank'
@@ -116,6 +115,7 @@ Plug 'tpope/vim-haml'                                    , { 'for': ['sass', 'sc
 Plug 'hail2u/vim-css3-syntax'                            , { 'for': ['css', 'sass', 'scss', 'less'] }
 Plug 'groenewege/vim-less'                               , { 'for': 'less' }
 Plug 'digitaltoad/vim-pug'                               , { 'for': ['jade', 'pug'] }
+Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'othree/html5.vim'                                  , { 'for': 'html' }
 Plug 'othree/html5-syntax.vim'                           , { 'for': 'html' }
 Plug 'tpope/vim-liquid'                                  , { 'for': 'html' }
@@ -140,7 +140,6 @@ Plug 'KabbAmine/vCoolor.vim'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-highlightedyank'
-Plug 'valloric/MatchTagAlways'                           , { 'for': 'html' }
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'lilydjwg/colorizer'
 Plug 'airblade/vim-gitgutter'
