@@ -11,9 +11,9 @@ function! s:onTermOpen ()
     setlocal signcolumn=no
 
     if hi#exists('TermNormal') && !exists('b:fzf')
-        set winhl=Normal:TermNormal,NormalNC:TermNormalNC
+        setl winhl=Normal:TermNormal,NormalNC:TermNormalNC
     else
-        set winhl=Normal:Normal,NormalNC:NormalNC
+        setl winhl=Normal:Normal,NormalNC:NormalNC
     end
 
     startinsert
@@ -36,7 +36,7 @@ exe 'augroup RC'
                  \| end
 
     " Session
-    au VimLeave *        :ContextDisable | SaveSession!
+    au VimLeave *        :SaveSession!
     au QuitPre  *        :SaveSession!
     au SessionLoadPost * :SourceLocalVimrc
 
@@ -80,8 +80,9 @@ exe 'augroup RC'
     au BufLeave ~/notes/*.txt let session.lastnote = @%
 
     " Filetype-specific autocommands:
-    au BufNewFile,BufReadPost .babelrc setfiletype json
-    au BufNewFile,BufReadPost .tern-project setfiletype json
+    au BufNewFile,BufReadPost .babelrc          setfiletype json
+    au BufNewFile,BufReadPost .tern-project     setfiletype json
+    au BufNewFile,BufReadPost */components/*.js setfiletype javascript.jsx
 
     au BufReadPost,BufNewFile * if (&omnifunc == "")
                              \|     setlocal omnifunc=syntaxcomplete#Complete
