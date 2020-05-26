@@ -38,7 +38,6 @@ hi! link ClapSearchText       NormalPopup
 hi! link ClapDisplay          NormalPopover
 hi! link ClapPreview          NormalPopover
 
-hi! link ClapMatches          EasyMotionTargetDefault
 hi! link ClapSpinner          TabLine
 hi! link ClapQuery            Normal
 hi! link ClapSelected         PmenuSel
@@ -50,7 +49,14 @@ hi! link ClapDefaultCurrentSelection PmenuSel
 hi! link ClapFile             Directory
 hi! link ClapVistaTag         ClapFile
 
+hi! link ClapBlines       TextNormal
+hi! link ClapBlinesLineNr Comment
+
+hi! link ClapLinesBufnr   Comment
+hi! link ClapLinesBufname Directory
+
 " Matches
+hi! link ClapMatches        EasyMotionTargetDefault
 hi! link ClapMatches1       EasyMotionTargetDefault
 hi! link ClapMatches2       EasyMotionTargetDefault
 hi! link ClapMatches3       EasyMotionTargetDefault
