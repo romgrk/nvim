@@ -28,7 +28,7 @@ let s:hl_groups = ['Buffer', 'BufferVisible', 'BufferCurrent']
 let s:buffers = []
 
 fu! TabLineUpdate ()
-    let &tabline = BufferLine() . '%=' . TablineSession() . Tabpages()
+    let &tabline = BufferLine()
 endfu
 
 let s:SPACE = '%( %)'
