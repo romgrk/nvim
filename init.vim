@@ -47,6 +47,7 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'justinmk/vim-sneak'
 Plug 'romgrk/vim-sneak'
 Plug 'kana/vim-niceblock'
+Plug 'Konfekt/vim-ctrlxa'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 Plug 'neomake/neomake'

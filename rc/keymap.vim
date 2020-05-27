@@ -5,13 +5,16 @@
 
 " Recent mappings:
 
-nnoremap -  <C-x>
-nnoremap +  <C-a>
+xnoremap @  :normal @q<CR>
 
-nnoremap <C-X>h  :SidewaysLeft<CR>
-nnoremap <C-X>l  :SidewaysRight<CR>
+nnoremap <silent>,              :Clap blines<CR>
+nnoremap <silent><space>.       :Clap blines<CR>
+nnoremap <silent><space><space> :Clap  lines<CR>
 
-nnoremap gg ggzz
+" nnoremap -  <C-x>
+" nnoremap +  <C-a>
+nmap - <Plug>(CtrlXA-CtrlX)
+nmap + <Plug>(CtrlXA-CtrlA)
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -111,27 +114,24 @@ vnoremap <A-m> :<C-U>call multiple_cursors#new('v', 0)<CR>
 
 " }}}1
 "===============================================================================
-" Semicolon Quickmap                                                        {{{1
+" Semicolon quick commands                                                  {{{1
 
 " Semicolon key
-nmap <silent><expr>   ;    CmdJump()
+nmap   <expr>   ;    <SID>quick_cmd()
 
-let quickmap = {
+let s:quick_cmd_map = {
 \ 'w':       ":w\<CR>",
-\ '<':       ':messages',
-\ ';':       ":\<Up>",
 \ "\<C-F>":  ':Files',
 \ "\<A-;>":  'q:":P',
-\ "\<A-s>":  ":set ?\<Left>",
 \}
 
-function! CmdJump ()
+function! s:quick_cmd ()
     if sneak#is_sneaking() " return maparg('<Plug>SneakNext', 'n')
         return ":call sneak#rpt('', 0)\<CR>"
     end
     echo ''
     let char = GetChar('Info', ':')
-    let qmap = get(g:quickmap, char, ':' . char)
+    let qmap = get(s:quick_cmd_map, char, ':' . char)
     if !empty(qmap)
         return qmap
     else
@@ -162,9 +162,10 @@ nnoremap gso        :Edit $vim/rc/settings.vim<CR>
 nnoremap gsj        :Edit $HOME/github/github-light.vim/colors/github-light.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
 nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
-nnoremap gs<A-p>    :Edit $vim/plugin/
+nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
+nnoremap gsv        :Clap files $vim<CR>
 
-nnoremap <C-n>      :Edit <C-R>=escape(expand("%:p:h"), ' ')<CR>/<C-D>
+nnoremap <C-n>      :Clap filer <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
 
 " New...
 nnoremap <A-n><A-s> :UltiSnipsEdit<CR>
@@ -207,8 +208,8 @@ endfu
 
 
 " wide move
-noremap <A-j> 5<Down>
-noremap <A-k> 5<Up>
+noremap  <A-j> 5<Down>
+noremap  <A-k> 5<Up>
 nnoremap <A-j> 5gj
 nnoremap <A-k> 5gk
 vnoremap <A-j> 5gj
@@ -250,7 +251,7 @@ nmap <Tab> %
 vmap <Tab> %
 omap <Tab> %
 
-" Character-wise jumps
+" Character-wise jumps always
 nnoremap '   `
 vnoremap '   `
 nnoremap ''  `'
@@ -285,10 +286,6 @@ xmap <silent> b     <Plug>CamelCaseMotion_b
 xnoremap iw iw
 
 " }}}
-
-" ALE
-nnoremap <silent>]a  :ALENext<CR>zvzz
-nnoremap <silent>[a  :ALEPrevious<CR>zvzz
 
 " GitGutter hunks
 nnoremap <silent>[h  :GitGutterPrevHunk<CR>zvzz
@@ -428,21 +425,21 @@ nnoremap <silent><leader>no     :Clap note<CR>
 
 " Git:
 
-nnoremap <silent><leader>gg     :Git<CR>
+nnoremap <silent><leader>gg     :tabedit %<CR>:Git<CR><C-W>o
 nnoremap <silent><leader>gaa    :Git add --all<CR>
 nnoremap <silent><leader>ga.    :Git add %<CR>
-nnoremap <silent><leader>gcm    :Gcommit -m ""<Left>
-nnoremap <silent><leader>gcam   :Gcommit -am ""<Left>
-nnoremap <silent><leader>g.     :Gcommit % -m ""<Left>
-nnoremap <silent><leader>gk     :Git checkout<space>
-nnoremap <silent><leader>gK     :Git checkout -b<space>
+nnoremap         <leader>gcm    :Gcommit -m ""<Left>
+nnoremap         <leader>gcam   :Gcommit -am ""<Left>
+nnoremap         <leader>g.     :Gcommit % -m ""<Left>
+nnoremap         <leader>gk     :Git checkout<space>
+nnoremap         <leader>gK     :Git checkout -b<space>
 nnoremap <silent><leader>gl     :Gpull<CR>
 nnoremap <silent><leader>gp     :Gpush<CR>
 nnoremap <silent><leader>gs     :Gstatus<CR>
 nnoremap <silent><leader>gu     :GitOpenUnmergedFiles<CR>
 nnoremap <silent><leader>gda    :GitDiff<CR>
 nnoremap <silent><leader>gd.    :GitDiff %<CR>
-nnoremap <silent><leader>gdd    :GitDiff<space>
+nnoremap         <leader>gdd    :GitDiff<space>
 
 " GitMessenger:
 nnoremap <silent><leader>gm     :GitMessenger<CR>
@@ -458,7 +455,7 @@ nnoremap <silent><leader>hu     :GitGutterUndoHunk<CR>
 
 " Files:
 nnoremap <silent><leader>md     :Mkdir! <C-D>
-nnoremap <silent><leader>mv     :Move <C-D>
+nnoremap <silent><leader>mv     :Move <A-i>d/
 nnoremap <silent><leader>rn     :Rename<space>
 
 " Search:
@@ -510,7 +507,6 @@ nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
 nnoremap <leader>o         :Clap files<CR>
-nnoremap <leader><space>   :Clap files<CR>
 
 nnoremap <silent> <A-o>    :Clap files<CR>
 nnoremap <silent> <C-A-o>  :Clap files <C-R>=expand('%:h:~')<CR><CR>
@@ -625,6 +621,10 @@ end
 " Exchange line x-up/down
 nnoremap <expr>Xj     'ddp'  . col('.') . '<Bar>'
 nnoremap <expr>Xk     'ddkP' . col('.') . '<Bar>'
+
+" Exchange args left/right
+nnoremap <C-X>h  :SidewaysLeft<CR>
+nnoremap <C-X>l  :SidewaysRight<CR>
 
 " Yank & Paste * (yank-up, yank-down)
 nnoremap yu yyP
@@ -885,36 +885,49 @@ vmap X <Plug>ExchangeOperator
 " mappings: ga, <A-a>                                                        {{{
 
 " General
-nmap <A-a> <Plug>(EasyAlign)
-vmap <CR>  <Plug>(EasyAlign)
+nmap <A-a>   <Plug>(EasyAlign)
+vmap <CR>    <Plug>(EasyAlign)
+xmap g<A-a>  <Plug>(EasyAlign)
 
-nmap <A-a>r     <Plug>(EasyAlign)ip1<C-x>
-nmap <A-a><A-r> <Plug>(EasyAlign)ip1<C-x>
-nmap <A-a><A-/> <Plug>(EasyAlign)ip1<C-x>
-vmap <A-a>   ""<A-y><Plug>(EasyAlign)ip1<C-D><Left><C-x>.\{-}\zs\s*\ze<C-r>"<CR>
-vmap <C-a>   ""<A-y><Plug>(EasyAlign)ip1<C-D><Left><C-x>.\{-}\zs\s*\ze<C-r>"<CR>
+nmap <A-a><A-a>        <Plug>(EasyAlign)ip1<C-x>
+xmap <A-a><A-a> ""<A-y><Plug>(EasyAlign)ip1<C-D><Left><C-x>.\{-}\zs\s*\ze<C-r>"<CR>
 
 " align semicolon
 nnoremap <A-a><A-;> vip:EasyAlign *:<CR>
+xnoremap <A-a><A-;>    :EasyAlign *:<CR>
 " align bar
 nnoremap <A-a><A-\> vip:EasyAlign *<Bar><CR>
+xnoremap <A-a><A-\>    :EasyAlign *<Bar><CR>
 " align equal
 nnoremap <A-a><A-e> vip:EasyAlign *=<CR>
-nnoremap <A-=>      vip:EasyAlign *=<CR>
+xnoremap <A-a><A-e>    :EasyAlign *=<CR>
+nnoremap <A-a><A-=> vip:EasyAlign *=<CR>
+xnoremap <A-a><A-=>    :EasyAlign *=<CR>
+nnoremap <A-a>=     vip:EasyAlign *=<CR>
+xnoremap <A-a>=        :EasyAlign *=<CR>
 " align word
-nnoremap <A-a><A-w> vip:EasyAlign *<space><CR>
+nnoremap <A-a><A-w>   vip:EasyAlign *\<space><CR>
+xnoremap <A-a><A-w>      :EasyAlign *\<space><CR>
+nnoremap <A-a>w       vip:EasyAlign *\<space><CR>
+xnoremap <A-a>w          :EasyAlign *\<space><CR>
+nnoremap <A-a><space> vip:EasyAlign *\<space><CR>
+xnoremap <A-a><space>    :EasyAlign *\<space><CR>
 " align Last-Word
-nnoremap <A-a>lw    vip:EasyAlign -<space><CR>
+nnoremap <A-a><A-space>    vip:EasyAlign -<space><CR>
+xnoremap <A-a><A-space>       :EasyAlign -<space><CR>
 " align commas
-nnoremap ,,         vip:EasyAlign *,<CR>
+nnoremap <A-a><A-,>     vip:EasyAlign *,<CR>
+xnoremap <A-a><A-,>        :EasyAlign *,<CR>
+nnoremap <A-a>,         vip:EasyAlign *,<CR>
+xnoremap <A-a>,            :EasyAlign *,<CR>
 
 
 " EasyAlign                                                                  }}}
 
 " SplitJoin:
 " overrides 's' operator                                                     {{{
-nmap sj :SplitjoinJoin<CR>
-nmap sk :SplitjoinSplit<CR>
+nmap   sj   :SplitjoinJoin<CR>gbgq
+nmap   sk   :SplitjoinSplit<CR>gbgq
 " }}}
 
 " Comment:
