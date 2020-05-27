@@ -28,9 +28,14 @@ hi! CocWarningHighlight gui=undercurl guisp=#FF9F0E
 hi! CocErrorSign                      guisp=#ff1010
 hi! CocErrorHighlight   gui=undercurl guisp=#ff1010
 
-hi! CocInfoFloat                      guifg=white
-hi! CocWarningFloat                   guifg=#FFDD86
-hi! CocErrorFloat                     guifg=#FDC1C1
+" hi! link CocFloating NormalFloat
+" hi! CocInfoFloat                      guifg=white
+" hi! CocWarningFloat                   guifg=#FFDD86
+" hi! CocErrorFloat                     guifg=#FDC1C1
+hi! link CocFloating NormalPopover
+hi! link CocInfoFloat                   TextNormal
+hi! link CocWarningFloat                TextWarning
+hi! link CocErrorFloat                  TextError
 
 hi link gitmessengerHeader NormalFloat
 

@@ -1,5 +1,13 @@
 "!::exe [So]
 
+augroup context_session
+  au!
+  au User SessionSavePre  ContextDisable
+  au User SessionSavePost ContextEnable
+augroup END
+
+let context_enabled = 0
+
 let context_presenter = 'nvim-float'
 let context_max_height = 2
 
