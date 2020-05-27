@@ -16,7 +16,7 @@ let clap_forerunner_status_sign_done    = '  '
 "
 
 let clap_provider_session = {
-\ 'source': {-> xolox#session#complete_names('', 0, 0)},
+\ 'source': {-> xolox#session#complete_names('', 'OpenSession ', 0)},
 \ 'sink': 'OpenSession',
 \}
 
