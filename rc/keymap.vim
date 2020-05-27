@@ -15,6 +15,7 @@ nnoremap <silent><space><space> :Clap  lines<CR>
 " nnoremap +  <C-a>
 nmap - <Plug>(CtrlXA-CtrlX)
 nmap + <Plug>(CtrlXA-CtrlA)
+nmap = <Plug>(CtrlXA-CtrlA)
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -489,6 +490,7 @@ nnoremap <silent><leader>sye  :SynCurrentEdit<CR>
 
 nnoremap <silent><leader>ti   :TodoistInit<CR>
 
+nnoremap <silent><leader>qr   :call QuickReload()<CR>
 
 
 " Multi-Cursors:
@@ -1063,7 +1065,6 @@ inoremap <C-Y> <C-C>:let @z = @"<CR>mz
                 \`zp:let @" = @z<CR>a
 
 
-nnoremap =r      :call QuickReload()<CR>
 
 
 
