@@ -127,7 +127,7 @@ function! statusline#active () abort
     end
 
     " Heart
-    let content .= '%#StatuslineHeart# '
+    let content .= '%#StatuslineHeart# '
 
     " Gutentags status
     " let content .= '%{statusline#gutentags_enabled()?" ":""}%(%#StatuslineLint#%{statusline#gutentags()}%)'
@@ -177,7 +177,7 @@ function! statusline#inactive () abort
     end
 
     " Heart
-    let content .= '%#StatuslineVC#  '
+    let content .= '%#StatuslineVC#  '
   end
 
   return content
