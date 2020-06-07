@@ -133,8 +133,8 @@ end
 
 " }}}
 " UI                                                                         {{{
-Plug 'TaDaa/vimade'
-Plug 'wellle/context.vim'
+" Plug 'TaDaa/vimade'
+" Plug 'wellle/context.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'KabbAmine/vCoolor.vim'
@@ -155,7 +155,7 @@ Plug 'romgrk/replace.vim'
 Plug 'romgrk/vim-exeline'
 Plug 'romgrk/winteract.vim'                              , {'on': 'InteractiveWindow'}
 Plug 'romgrk/searchReplace.vim'
-Plug 'romgrk/todoist.nvim'                               , {'do': 'UpdateRemotePlugins'}
+Plug 'romgrk/todoist.nvim'                               , {'do': ':TodoistInstall'}
 Plug 'romgrk/github-light.vim'
 " }}}
 
