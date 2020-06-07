@@ -9,7 +9,7 @@ xnoremap @  :normal @q<CR>
 
 nnoremap <silent>,              :Clap blines<CR>
 nnoremap <silent><space>.       :Clap blines<CR>
-nnoremap <silent><space><space> :Clap  lines<CR>
+nnoremap <silent><space><space> :Clap  grep2<CR>
 
 " nnoremap -  <C-x>
 " nnoremap +  <C-a>
@@ -488,7 +488,8 @@ nnoremap <silent><leader>how  :r !howdoi<space>
 nnoremap <silent><leader>syv  :SynStack<CR>
 nnoremap <silent><leader>sye  :SynCurrentEdit<CR>
 
-nnoremap <silent><leader>ti   :TodoistInit<CR>
+nnoremap <silent><leader>ti   :Todoist<CR>
+nnoremap <silent><leader>to   :Clap todoist<CR>
 
 nnoremap <silent><leader>qr   :call QuickReload()<CR>
 
@@ -633,10 +634,10 @@ nnoremap yu yyP
 nnoremap yd yyp
 
 " Indent
-nnoremap <nowait> > V><Esc>
-nnoremap <nowait> < V<<Esc>
-vnoremap <nowait> > >gv
-vnoremap <nowait> < <gv
+nnoremap <silent><nowait> > V><Esc>
+nnoremap <silent><nowait> < V<<Esc>
+vnoremap <silent><nowait> > >gv
+vnoremap <silent><nowait> < <gv
 
 
 " Targets:
@@ -1043,8 +1044,8 @@ endfu
 " @utils
 
 " Yank all
-nnoremap gya :keepmarks normal! m'ggVGy`'<CR>
-nnoremap dya ggdG
+nnoremap <silent>gya :%y+<CR>
+nnoremap         dya ggdG
 
 " Exchange lhs-rhs
 nmap gx= vihgxvilgx
@@ -1179,7 +1180,7 @@ map! <S-space> _
 
 " Paste @@
 cnoremap <A-p> <C-R>+
-inoremap <A-p> <C-R>+
+inoremap <A-p> <Esc>pa
 
 " Section: Filename/path insertion {{{
 
