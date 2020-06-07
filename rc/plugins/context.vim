@@ -2,8 +2,8 @@
 
 augroup context_session
   au!
-  au User SessionSavePre  ContextDisable
-  au User SessionSavePost ContextEnable
+  au User SessionSavePre  if exists('ContextDisable') | ContextDisable | end
+  au User SessionSavePost if exists('ContextEnable')  | ContextEnable  | end
 augroup END
 
 let context_enabled = 0

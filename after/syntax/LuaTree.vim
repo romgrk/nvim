@@ -1,5 +1,7 @@
 
-VimadeBufDisable
+if exists(':VimadeBufDisable')
+  VimadeBufDisable
+end
 
 " winhl is hijacked for now
 " setl signcolumn=no

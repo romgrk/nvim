@@ -25,6 +25,11 @@ let clap_provider_note = {
 \ 'sink': 'Note',
 \}
 
+let clap_provider_todoist = {
+\ 'source': {-> Todoist__listProjects()},
+\ 'sink': 'Todoist',
+\}
+
 "
 " Highlight
 "
@@ -40,10 +45,10 @@ hi! link ClapPreview          NormalPopover
 
 hi! link ClapSpinner          TabLine
 hi! link ClapQuery            Normal
-hi! link ClapSelected         PmenuSel
-hi! link ClapCurrentSelection PmenuSel
-hi! link ClapDefaultSelected  PmenuSel
-hi! link ClapDefaultCurrentSelection PmenuSel
+hi! link ClapSelected         PmenuSelBold
+hi! link ClapCurrentSelection PmenuSelBold
+hi! link ClapDefaultSelected  PmenuSelBold
+hi! link ClapDefaultCurrentSelection PmenuSelBold
 
 " Name of file/tag
 hi! link ClapFile             File

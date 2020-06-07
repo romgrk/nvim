@@ -54,7 +54,7 @@ set titlestring=%(%{xolox#session#find_current_session()}%)%(\ %a%)
 "===============================================================================
 " Paths, session files & backups {{{
 
-set path=,,./*;,**2;,/usr/include
+" set path=,,./*;,**2;,/usr/include
 
 set wildignore=node_modules,bower_components,package-lock.json,tags,*.pyc
 set wildignorecase " aka wic
@@ -131,6 +131,9 @@ set mouse=ah mousemodel=popup
 set scrolloff=2
 set sidescroll=1
 set sidescrolloff=5
+
+" GUI
+set guifont=SauceCodePro\ Nerd\ Font:h16
 
 " }}}
 "===============================================================================

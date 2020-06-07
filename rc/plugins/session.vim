@@ -8,7 +8,7 @@ let session_default_to_last = 1
 let session_persist_colors  = 1
 let session_persist_globals = ['g:session_persist_globals', 'g:session']
 
-let session_autoload = 'no'
+let session_autoload = 'yes'
 let session_autosave = 'yes'
 let session_autosave_silent = 1
 let session_autosave_periodic = 1

@@ -1,5 +1,6 @@
 setlocal conceallevel=0
 setlocal formatprg=json_pp
+setlocal fdm=syntax
 
 "nmap <buffer> <TAB> /\v("[^"]+")\|true\|false\|\{<CR><ESC>
 "nmap <buffer> <S-TAB> ?\v("[^"]+")\|true\|false\|\{<CR><ESC>
