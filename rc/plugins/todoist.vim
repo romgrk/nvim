@@ -7,6 +7,7 @@ let todoist = {
 \   'loading':   '  ',
 \   'error':     '  ',
 \ },
+\ 'useMarkdownSyntax': v:true,
 \}
 
 hi! link todoistDateThisWeek todoistDate
