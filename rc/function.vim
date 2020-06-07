@@ -142,8 +142,10 @@ fu! BufferCloseCurrent ()
     call win_gotoid(current_window)
 
     " Delete buffer
-    if bufexists(current_buffer)
+    if bufloaded(current_buffer)
         exe 'bdelete! ' . current_buffer
+    end
+    if bufexists(current_buffer)
         exe 'bwipeout ' . current_buffer
     end
 
