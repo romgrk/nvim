@@ -74,7 +74,8 @@ fu! BufferLine ()
 
         let hlprefix   = '%#'. hl .'#'
         let bufExpr = '%{"' . buffer.name .'"}'
-        let result .= hlprefix . s:SPACE . numberPrefix . s:SPACE . hlprefix . bufExpr . s:SPACE
+        " let result .= hlprefix . s:SPACE . numberPrefix . s:SPACE . hlprefix . bufExpr . s:SPACE
+        let result .= hlprefix . s:SPACE . hlprefix . bufExpr . s:SPACE
     endfor
 
     let result .= s:hl('TabLineFill')
