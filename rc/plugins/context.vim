@@ -18,8 +18,8 @@ let context_filetype_blacklist = g:exclude_filetypes
 
 let context_add_mappings = 0
 
-nnoremap <silent> <C-Y> <C-Y>:call context#update('C-Y')<CR>
-nnoremap <silent> <C-E> <C-E>:call context#update('C-E')<CR>
-nnoremap <silent> zz       zz:call context#update('zz')<CR>
-nnoremap <silent> zb       zb:call context#update('zb')<CR>
-nnoremap <silent> <expr> zt context#util#map_zt()
+" nnoremap <silent> <C-Y> <C-Y>:call context#update('C-Y')<CR>
+" nnoremap <silent> <C-E> <C-E>:call context#update('C-E')<CR>
+" nnoremap <silent> zz       zz:call context#update('zz')<CR>
+" nnoremap <silent> zb       zb:call context#update('zb')<CR>
+" nnoremap <silent> <expr> zt context#util#map_zt()
