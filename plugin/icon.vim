@@ -200,6 +200,7 @@ let s:by_filename = {
 \  '.gitconfig': '',
 \  '.gitignore': '',
 \  '.gitlab-ci.yml': '',
+\  '.env': '',
 \  '.bashrc': '',
 \  '.zshrc': '',
 \  '.vimrc': '',
