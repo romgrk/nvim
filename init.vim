@@ -134,7 +134,7 @@ end
 " }}}
 " UI                                                                         {{{
 " Plug 'TaDaa/vimade'
-" Plug 'wellle/context.vim'
+" Plug 'wellle/context.vim'   " mappings disabled
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'KabbAmine/vCoolor.vim'
