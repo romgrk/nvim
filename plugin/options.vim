@@ -212,6 +212,7 @@ ToggleMap 'cc',  { 'value': '&cuc' }
 ToggleMap 'l',   { 'value': '&list' }
 ToggleMap 'n',   { 'value': '&number' }
 ToggleMap 've',  { 'value': '&virtualedit' }, ['all', 'block,onemore']
+ToggleMap 'le',  { 'value': '&conceallevel' },      [0,     2]
 
 ToggleMap 'h',   { 'value': '&hlsearch' },         [0,     1]
 ToggleMap 'sl',  { 'value': '&laststatus' },       [0,     2]
