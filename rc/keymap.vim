@@ -5,15 +5,19 @@
 
 " Recent mappings:
 
+xmap <C-W>sr <Plug>(Visual-Split-VSResize)
+xmap <C-W>ss <Plug>(Visual-Split-VSSplit)
+xmap <C-W>sk <Plug>(Visual-Split-VSSplitAbove)
+xmap <C-W>sj <Plug>(Visual-Split-VSSplitBelow)
+
 xnoremap @  :normal @q<CR>
 
 nnoremap <silent>,              :Clap blines<CR>
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep2<CR>
 
-" nnoremap -  <C-x>
-" nnoremap +  <C-a>
 nmap - <Plug>(CtrlXA-CtrlX)
+nmap _ <Plug>(CtrlXA-CtrlA)
 nmap + <Plug>(CtrlXA-CtrlA)
 nmap = <Plug>(CtrlXA-CtrlA)
 
