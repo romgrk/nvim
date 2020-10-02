@@ -14,7 +14,7 @@ xnoremap @  :normal @q<CR>
 
 nnoremap <silent>,              :Clap blines<CR>
 nnoremap <silent><space>.       :Clap blines<CR>
-nnoremap <silent><space><space> :Clap  grep2<CR>
+nnoremap <silent><space><space> :Clap  grep<CR>
 
 nmap - <Plug>(CtrlXA-CtrlX)
 nmap _ <Plug>(CtrlXA-CtrlA)
@@ -933,8 +933,8 @@ xnoremap <A-a>,            :EasyAlign *,<CR>
 
 " SplitJoin:
 " overrides 's' operator                                                     {{{
-nmap   sj   :SplitjoinJoin<CR>gbgq
-nmap   sk   :SplitjoinSplit<CR>gbgq
+nmap   sj   :SplitjoinJoin<CR>
+nmap   sk   :SplitjoinSplit<CR>
 " }}}
 
 " Comment:
@@ -994,6 +994,7 @@ nmap <A-r><A-w>   viw<C-F><A-r><A-l>
 nmap <A-r><A-p>   m'viw<C-F><A-r><A-l><A-p><CR>''
 
 xmap <A-r><A-r>   :s///<left>
+xmap <A-r>r       :s///<left>
 xmap <A-r><A-a>   <C-f><A-r><A-a>
 xmap <A-r><A-l>   <C-f><A-r><A-l>
 
@@ -1061,7 +1062,7 @@ nmap gx= vihgxvilgx
 if has('win32')
 nnoremap <F1> :silent !explorer .<CR>
 else
-nnoremap <F1> :silent !nautilus .<CR>
+nnoremap <F1> :!nautilus . &<CR>
 end
 
 nnoremap <F5> :e!<CR>
@@ -1195,12 +1196,12 @@ inoremap <A-p> <Esc>pa
 noremap! <A-i>f          <C-R>=expand('%')<CR>
 noremap! <A-i><A-f>      <C-R>=expand('%:~')<CR>
 noremap! <A-i>F          <C-R>=expand('%:p')<CR>
-noremap! <A-i>h          <C-R>=expand('%:h:.')<CR>
-noremap! <A-i><A-h>      <C-R>=expand('%:h:~')<CR>
-noremap! <A-i>H          <C-R>=expand('%:p:h')<cr>
-noremap! <A-i>d          <C-R>=expand('%:h:.')<CR>
-noremap! <A-i><A-d>      <C-R>=expand('%:h:~')<CR>
-noremap! <A-i>D          <C-R>=expand('%:p:h')<cr>
+noremap! <A-i>h          <C-R>=expand('%:h:.')<CR>/
+noremap! <A-i><A-h>      <C-R>=expand('%:h:~')<CR>/
+noremap! <A-i>H          <C-R>=expand('%:p:h')<CR>/
+noremap! <A-i>d          <C-R>=expand('%:h:.')<CR>/
+noremap! <A-i><A-d>      <C-R>=expand('%:h:~')<CR>/
+noremap! <A-i>D          <C-R>=expand('%:p:h')<CR>/
 noremap! <A-i>b          <C-R>=expand('%:t:r')<CR>
 noremap! <A-i>n          <C-R>=expand('%:t')<CR>
 noremap! <A-i>e          <C-R>=expand('%:e')<CR>
