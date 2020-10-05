@@ -643,6 +643,9 @@ nnoremap <silent><nowait> < V<<Esc>
 vnoremap <silent><nowait> > >gv
 vnoremap <silent><nowait> < <gv
 
+nmap <silent>g<  vii<<Esc>
+nmap <silent>g>  vii><Esc>
+
 
 " Targets:
 " b(), k{}, r[]                                                              {{{
