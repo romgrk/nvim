@@ -1,5 +1,5 @@
 let NERDSpaceDelims = 1
-let NERDCompactSexyComs = 0
+let NERDCompactSexyComs = 1
 let NERDCreateDefaultMappings = 0
 let NERDCommentWholeLinesInVMode = 1
 
