@@ -138,9 +138,6 @@ fu! BufferCloseCurrent ()
             enew | end
     endfor
 
-    " Go back to window
-    call win_gotoid(current_window)
-
     " Delete buffer
     if bufloaded(current_buffer)
         exe 'bdelete! ' . current_buffer
@@ -148,6 +145,9 @@ fu! BufferCloseCurrent ()
     if bufexists(current_buffer)
         exe 'bwipeout ' . current_buffer
     end
+
+    " Go back to window
+    call win_gotoid(current_window)
 
     doautocmd BufEnter
 endfu
