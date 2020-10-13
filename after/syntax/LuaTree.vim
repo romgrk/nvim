@@ -3,6 +3,10 @@ if exists(':VimadeBufDisable')
   VimadeBufDisable
 end
 
+if exists(':IndentLinesDisable')
+  IndentLinesDisable
+end
+
 " winhl is hijacked for now
 " setl signcolumn=no
 " au BufEnter <buffer> setl signcolumn=no

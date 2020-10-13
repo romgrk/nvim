@@ -2,6 +2,8 @@ setlocal fdm=marker
 setlocal foldmarker={,}
 setlocal formatprg=cssbeautify-cli\ -s\ -i\ '\ \ '
 
+nnoremap <buffer> <F4> :e %<.js<CR>
+
 nnoremap <buffer><silent> K     :call LanguageClient#textDocument_hover()<CR>
 nnoremap <buffer><silent> gd    :call LanguageClient#textDocument_definition()<CR>
 nnoremap <buffer><silent> <F2>  :call LanguageClient#textDocument_rename()<CR>

@@ -25,6 +25,12 @@ snippet dib "d: inline-block" b
 display: inline-block;
 endsnippet
 
+snippet w "w: 100%" b
+width: ${1:100%};
+endsnippet
+snippet h "h: 100%" b
+height: ${1:100%};
+endsnippet
 snippet wh "w, h: 100%" b
 width: ${1:100%};
 height: ${2:100%};
@@ -40,6 +46,19 @@ endsnippet
 snippet bg "background-color" b
 background-color: ${1:#b4b2b0};
 endsnippet
+
+snippet oh "overflow: hidden" b
+overflow: hidden;
+endsnippet
+
+snippet abs "position: absolute" b
+position: absolute;
+endsnippet
+snippet rel "position: relative" b
+position: relative;
+endsnippet
+
+
 snippet * "Comment" b
 /*
  * $0
@@ -50,14 +69,12 @@ snippet ! "!important"
 !important
 endsnippet
 
-snippet abs "position: absolute" b
-position: absolute;
-endsnippet
-snippet rel "position: relative" b
-position: relative;
-endsnippet
 
-snippet flex-col "flex column"
+snippet flr "flex row"
+display: flex;
+flex-direction: row;
+endsnippet
+snippet flc "flex column"
 display: flex;
 flex-direction: column;
 endsnippet
