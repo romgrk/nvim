@@ -1054,6 +1054,9 @@ endfu
 " Quick Utils                                                               {{{1
 " @utils
 
+" Surround line with { and }
+nnoremap  g{   m`o}<esc><lt><lt>kkA<Space>{<esc>``
+
 " Yank all
 nnoremap <silent>gya :%y+<CR>
 nnoremap         dya ggdG
