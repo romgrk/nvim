@@ -1,4 +1,4 @@
-" !::exe [so % | call colorizer#ColorHighlight(1)]
+" !::exe [so %]
 if (&bg == 'light')
   set background=dark
 end

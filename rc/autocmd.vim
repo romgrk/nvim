@@ -64,7 +64,7 @@ exe 'augroup RC'
     au WinEnter * if &bt == '' | let &l:cuc = &g:cuc | end
 
     " Colors
-    au FileType css,scss,sass,less call colorizer#ColorHighlight(1)
+    au FileType css,scss,sass,less HexokinaseTurnOn
 
 
     " Preview
@@ -105,10 +105,6 @@ augroup DeleteTrailingWS
     " Auto-delete whitespaces at EOL
     au BufWritePre *.py       %DeleteTrailingWS
     au BufWritePre *.[cc,cpp] %DeleteTrailingWS
-augroup END
-
-augroup Colorizer
-    au!
 augroup END
 
 

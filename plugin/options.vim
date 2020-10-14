@@ -223,8 +223,7 @@ ToggleMap 'sn',  { 'value': 'g:sneak#streak' },    [0,     1]
 ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post': 'let &ts = &sw' }
 
 ToggleMap 'cn',  'ContextToggle'
-ToggleMap 'co',  'call colorizer#ColorToggle()'
-ToggleMap 'hl',  'call colorizer#ColorHighlight(1)'
+ToggleMap 'hl',  'HexokinaseToggle'
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
 ToggleMap 'gs',  'GitGutterSignsEnable'
 ToggleMap 'gu',  'GitGutterToggle'

@@ -2,7 +2,6 @@ setlocal nonu
 setlocal nolist
 setlocal signcolumn=no
 call BookmarkLastHelp()
-au! Colorizer
 
 
 nnoremap <buffer> q          :wincmd c<CR>

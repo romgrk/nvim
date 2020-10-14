@@ -143,7 +143,7 @@ Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnab
 Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-highlightedyank'
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
-Plug 'lilydjwg/colorizer'
+Plug 'RRethy/vim-hexokinase'                             , { 'do': 'make hexokinase' }
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 " }}}
