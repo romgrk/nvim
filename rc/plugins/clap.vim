@@ -73,6 +73,7 @@ hi! link ClapMatches7       EasyMotionTargetDefault
 hi! link ClapMatches8       EasyMotionTargetDefault
 hi! link ClapMatches9       EasyMotionTargetDefault
 hi! link ClapMatches10      EasyMotionTargetDefault
+hi! link ClapMatches11      EasyMotionTargetDefault
 hi! link ClapFuzzyMatches1  EasyMotionTargetDefault
 hi! link ClapFuzzyMatches2  EasyMotionTargetDefault
 hi! link ClapFuzzyMatches3  EasyMotionTargetDefault
@@ -83,3 +84,4 @@ hi! link ClapFuzzyMatches7  EasyMotionTargetDefault
 hi! link ClapFuzzyMatches8  EasyMotionTargetDefault
 hi! link ClapFuzzyMatches9  EasyMotionTargetDefault
 hi! link ClapFuzzyMatches10 EasyMotionTargetDefault
+hi! link ClapFuzzyMatches11 EasyMotionTargetDefault
