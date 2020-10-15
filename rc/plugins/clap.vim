@@ -85,3 +85,18 @@ hi! link ClapFuzzyMatches8  EasyMotionTargetDefault
 hi! link ClapFuzzyMatches9  EasyMotionTargetDefault
 hi! link ClapFuzzyMatches10 EasyMotionTargetDefault
 hi! link ClapFuzzyMatches11 EasyMotionTargetDefault
+
+let clap_fuzzy_match_hl_groups = [
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ [196 , '#FF0000'] ,
+\ ]
