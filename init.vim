@@ -63,6 +63,7 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'wellle/visual-split.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'aperezdc/vim-template'
@@ -86,6 +87,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'vim-scripts/loremipsum'
 Plug 'wbthomason/lsp-status.nvim'
 Plug 'wsdjeg/vim-fetch'
+Plug 'wsdjeg/vim-todo'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 " Plug 'xolox/vim-session'
