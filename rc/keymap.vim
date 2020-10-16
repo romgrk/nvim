@@ -593,6 +593,9 @@ tnoremap <A-k>     <Esc>k
 tnoremap <A-h>     <Esc>h
 tnoremap <A-l>     <Esc>l
 
+
+tnoremap <A-;>     ;
+
 end "of has('nvim') }}}1
 "===============================================================================
 " Buffer navigation                                                         {{{1
