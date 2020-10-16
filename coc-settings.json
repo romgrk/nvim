@@ -57,6 +57,9 @@
     // CocInstall coc-python
     // CocInstall coc-tag
     // CocInstall coc-actions
+    // CocInstall coc-rust-analyzer
+    // CocInstall coc-clangd
+    // CocInstall coc-browser
 
   },
 }
