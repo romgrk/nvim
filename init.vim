@@ -50,6 +50,8 @@ Plug 'kana/vim-niceblock'
 Plug 'Konfekt/vim-ctrlxa'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+" https://github.com/vn-ki/coc-clap
+Plug 'vn-ki/coc-clap'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sirver/UltiSnips'
@@ -108,6 +110,7 @@ Plug 'tmhedberg/SimpylFold'                              , { 'for': 'python' }
 Plug 'mattboehm/vim-unstack'                             , { 'for': 'python' }
 Plug 'othree/xml.vim'
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
+Plug 'kristijanhusak/vim-js-file-import'                 , { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'neoclide/vim-jsx-improve'                          , { 'for': 'javascript.jsx' }
 Plug 'ianks/vim-tsx'                                     , { 'for': 'typescript.tsx' }
