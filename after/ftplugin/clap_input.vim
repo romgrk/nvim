@@ -17,5 +17,6 @@ inoremap <silent><buffer> <A-u>   <C-R>=<SID>navigate(5, 'up')<CR>
 inoremap <silent><buffer> <Tab>   <C-O>:<C-u>call clap#navigation#linewise('down')<CR>
 inoremap <silent><buffer> <S-Tab> <C-O>:<C-u>call clap#navigation#linewise('up')<CR>
 
-inoremap <silent><buffer> <A-h> <C-r>=clap#handler#bs_action()<CR>
+inoremap <silent><buffer> <A-u> <C-r>=clap#handler#back_action()<CR>
+inoremap <silent><buffer> <A-h> <C-r>=clap#handler#back_action()<CR>
 inoremap <silent><buffer> <A-l> <C-r>=clap#handler#tab_action()<CR>
