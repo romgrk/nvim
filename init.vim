@@ -76,8 +76,6 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/vim-gitbranch'
 Plug 'jremmen/vim-ripgrep'
-Plug 'junegunn/fzf'                                      , { 'dir': '~/.local/fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vista.vim'

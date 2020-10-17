@@ -465,8 +465,8 @@ nnoremap <silent><leader>mv     :Move <A-i>d/
 nnoremap <silent><leader>rn     :Rename<space>
 
 " Search:
-nnoremap <silent><leader>ag     :FzfRg<CR>
-nnoremap <silent><leader>aa     :FzfRg <C-r><C-w><CR>
+" nnoremap <silent><leader>ag     XXX implement search
+" nnoremap <silent><leader>aa     XXX implement search
 
 "===============================================================================
 
@@ -508,7 +508,7 @@ nnoremap      <leader>mW :.,.MultipleCursorsFind \w\+<CR>
 
 " }}}1
 "===============================================================================
-" Panels, File navigation, FZF & Clap                                       {{{1
+" Panels, File navigation & Clap                                       {{{1
 
 
 nnoremap <silent><C-\>   :LuaTreeToggle<CR>

@@ -13,11 +13,7 @@ function! s:onTermOpen ()
         VimadeBufDisable
     end
 
-    if hi#exists('TermNormal') && !exists('b:fzf')
-        setl winhl=Normal:TermNormal,NormalNC:TermNormalNC
-    else
-        setl winhl=Normal:Normal,NormalNC:NormalNC
-    end
+    setl winhl=Normal:TermNormal,NormalNC:TermNormalNC
 
     startinsert
 endfunc
