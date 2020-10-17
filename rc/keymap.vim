@@ -438,6 +438,7 @@ nnoremap         <leader>gcam   :Gcommit -am ""<Left>
 nnoremap         <leader>g.     :Gcommit % -m ""<Left>
 nnoremap         <leader>gk     :Git checkout<space>
 nnoremap         <leader>gK     :Git checkout -b<space>
+nnoremap         <leader>gb     :Clap git_branch<CR>
 nnoremap <silent><leader>gl     :Gpull<CR>
 nnoremap <silent><leader>gp     :Gpush<CR>
 nnoremap <silent><leader>gs     :Gstatus<CR>
@@ -518,7 +519,7 @@ nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 nnoremap <leader>o         :Clap files<CR>
 
 nnoremap <silent> <A-o>    :Clap files<CR>
-nnoremap <silent> <C-A-o>  :Clap files <C-R>=expand('%:h:~')<CR><CR>
+nnoremap <silent> <C-A-o>  :Clap filer <C-R>=expand('%:h:~')<CR><CR>
 nnoremap <silent> <A-O>    :Clap history<CR>
 nnoremap <silent> <C-S>    :Clap buffers<CR>
 

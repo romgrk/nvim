@@ -30,6 +30,11 @@ let clap_provider_todoist = {
 \ 'sink': 'Todoist',
 \}
 
+let clap_provider_git_branch = {
+\ 'source': {-> fugitive#CompleteObject('', '', '')},
+\ 'sink': 'Git checkout',
+\}
+
 "
 " Highlight
 "
@@ -41,7 +46,7 @@ hi! link ClapPopupCursor      Visual
 hi! link ClapInput            NormalPopup
 hi! link ClapSearchText       NormalPopup
 hi! link ClapDisplay          NormalPopover
-hi! link ClapPreview          NormalPopover
+hi! link ClapPreview          Normal
 
 hi! link ClapSpinner          TabLine
 hi! link ClapQuery            Normal
