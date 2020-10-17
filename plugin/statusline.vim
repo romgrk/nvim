@@ -1,5 +1,9 @@
 "!::exe [So]
 
+" Powerline characters:
+"                
+
+
 let s:color_by_mode = {
 \  'n':  ['#e9f2ff', '#599eff'],
 \  'i':  ['#6d5d08', '#ffcf00'],
@@ -37,6 +41,9 @@ endfunction
 
 function! statusline#update_colors(mode) abort
   call hi#('StatuslineAccent', get(s:color_by_mode, a:mode, s:color_by_mode.default))
+  call hi#('StatuslineAccentTransition',
+    \ get(s:color_by_mode, a:mode, s:color_by_mode.default)[1],
+    \ s:statuslineBg)
   call hi#fg('StatuslineFilename', &modified ? s:modifiedFg : s:statuslineFg)
   return ''
 endfunction
@@ -53,25 +60,26 @@ function! s:setup_colors() abort
   let s:statuslineBgDark = '#9D9D9D'
 
 
-  call hi#('StatuslineNormal',     ['#e9e9e9',           s:statuslineBg, 'none'])
-  call hi#('StatuslineAccent',     ['none',              'none',         'bold'])
-  call hi#('StatuslinePart',       hi#('StatusLinePart'))
-  call hi#('StatuslinePartNC',     hi#('StatusLinePartNC'))
-  call hi#('StatuslineFiletype',   [s:statuslineFg,      s:statuslineBg, 'none'])
-  call hi#('StatuslineModified',   [s:modifiedFg,        s:statuslineBg, 'bold'])
-  call hi#('StatuslineFilename',   [s:statuslineFg,      s:statuslineBg, 'bold'])
-  call hi#('StatuslineFilenameNC', [s:statuslineNCFg,    s:statuslineBg, 'bold'])
-  call hi#('StatuslineSeparator',  [s:statuslineFgLight, s:statuslineBg, 'none'])
-  call hi#('StatuslineLineCol',    [s:statuslineFg,      s:statuslineBg, 'none'])
-  call hi#('StatuslinePercentage', ['#dab997',           s:statuslineBg, 'none'])
-  call hi#('StatuslineVC',         [s:statuslineFg,      s:statuslineBg, 'none'])
-  call hi#('StatuslineHeart',      ['#d75f5f',           s:statuslineBg, 'none'])
+  call hi#('StatuslineNormal',           ['#e9e9e9',           s:statuslineBg, 'none'])
+  call hi#('StatuslineAccent',           ['none',              'none',         'bold'])
+  call hi#('StatuslineAccentTransition', ['none',              'none',         'bold'])
+  call hi#('StatuslinePart',             hi#('StatusLinePart'))
+  call hi#('StatuslinePartNC',           hi#('StatusLinePartNC'))
+  call hi#('StatuslineFiletype',         [s:statuslineFg,      s:statuslineBg, 'none'])
+  call hi#('StatuslineModified',         [s:modifiedFg,        s:statuslineBg, 'bold'])
+  call hi#('StatuslineFilename',         [s:statuslineFg,      s:statuslineBg, 'bold'])
+  call hi#('StatuslineFilenameNC',       [s:statuslineNCFg,    s:statuslineBg, 'bold'])
+  call hi#('StatuslineSeparator',        [s:statuslineFgLight, s:statuslineBg, 'none'])
+  call hi#('StatuslineLineCol',          [s:statuslineFg,      s:statuslineBg, 'none'])
+  call hi#('StatuslinePercentage',       ['#dab997',           s:statuslineBg, 'none'])
+  call hi#('StatuslineVC',               [s:statuslineFg,      s:statuslineBg, 'none'])
+  call hi#('StatuslineHeart',            ['#d75f5f',           s:statuslineBg, 'none'])
 
-  call hi#('StatuslineLintWarn',     ['#ffcf00',      s:statuslineBg, 'none'])
-  call hi#('StatuslineLintChecking', ['#458588',      s:statuslineBg, 'none'])
-  call hi#('StatuslineLintError',    ['#d75f5f',      s:statuslineBg, 'none'])
-  call hi#('StatuslineLintOk',       ['#b8bb26',      s:statuslineBg, 'none'])
-  call hi#('StatuslineLint',         [s:statuslineBg, '#e9e9e9',      'none'])
+  call hi#('StatuslineLintWarn',         ['#ffcf00',      s:statuslineBg, 'none'])
+  call hi#('StatuslineLintChecking',     ['#458588',      s:statuslineBg, 'none'])
+  call hi#('StatuslineLintError',        ['#d75f5f',      s:statuslineBg, 'none'])
+  call hi#('StatuslineLintOk',           ['#b8bb26',      s:statuslineBg, 'none'])
+  call hi#('StatuslineLint',             [s:statuslineBg, '#e9e9e9',      'none'])
 
 endfunction
 
@@ -95,6 +103,8 @@ function! statusline#active () abort
   if !is_normal
     let content .= '%#StatuslineAccent# '
     let content .= statusline#get_special_name() . ' '
+    let content .= '%#StatuslineAccentTransition#'
+
     let content .= '%#StatuslineFilename#'
   end
 
@@ -102,6 +112,7 @@ function! statusline#active () abort
     " Mode
     let content .= '%#StatuslineAccent# '
     let content .= '%{statusline#get_mode(mode())} '
+    let content .= '%#StatuslineAccentTransition#'
 
     " Filetype icon
     let content .= '%#StatuslineFiletype# %{statusline#filetype_icon()}'
