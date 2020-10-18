@@ -35,6 +35,43 @@ let clap_provider_git_branch = {
 \ 'sink': 'Git checkout',
 \}
 
+let clap_provider_npm = {
+\ 'source': {-> s:npm_list_scripts()},
+\ 'sink': 'NpmRun',
+\}
+
+function! s:npm_list_scripts()
+  let project_root = getcwd()
+  let directory = project_root
+
+  if !filereadable(directory . '/package.json')
+    let directory = expand('%:p:h')
+    while !filereadable(directory . '/package.json')
+          \ && directory != project_root
+          \ && directory != '/'
+      echom directory
+      let directory = fnamemodify(directory, ':h')
+    endwhile
+  end
+  if !filereadable(directory . '/package.json')
+    return []
+  end
+  let package = json_decode(readfile(directory . '/package.json'))
+  let scripts = get(package, 'scripts', {})
+  let items = []
+  let max_length = 0
+  for key in keys(scripts)
+    call add(items, #{ name: key, command: scripts[key] })
+    if len(key) > max_length
+      let max_length = len(key)
+    end
+  endfor
+  let max_length = max_length + 1
+  return map(items, {key, val -> printf('%-' . max_length . 's # %s', val.name, val.command)})
+endfunc
+
+
+
 "
 " Highlight
 "

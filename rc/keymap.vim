@@ -498,7 +498,10 @@ nnoremap <silent><leader>to   :Clap todoist<CR>
 
 nnoremap <silent><leader>td   :OpenTodo<CR>
 
+nnoremap <silent><leader>npm  :Clap npm<CR>
+
 nnoremap <silent><leader>qr   :call QuickReload()<CR>
+nnoremap <silent><leader>qo   :So<CR>
 
 
 " Multi-Cursors:
