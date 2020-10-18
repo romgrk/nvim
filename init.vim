@@ -80,6 +80,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vista.vim'
 Plug 'MarcWeber/vim-addon-local-vimrc'
+Plug 'neoclide/npm.nvim'
 Plug 'neovim/nvim-lsp'
 " Plug 'puremourning/vimspector'
 Plug 'sjl/gundo.vim'
@@ -162,6 +163,7 @@ Plug 'romgrk/winteract.vim'                              , {'on': 'InteractiveWi
 Plug 'romgrk/searchReplace.vim'
 Plug 'romgrk/todoist.nvim'                               , {'do': ':TodoistInstall'}
 Plug 'romgrk/github-light.vim'
+Plug 'romgrk/doom-one.vim'
 " }}}
 
 call plug#end() " }}}
