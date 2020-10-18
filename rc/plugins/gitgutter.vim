@@ -18,15 +18,20 @@ function! s:link_colors_start ()
 endfunc
 
 function! s:link_colors (...)
-  hi! link GitGutterAdd          DiffAddedSubtle
-  hi! link GitGutterChange       DiffModifiedSubtle
-  hi! link GitGutterChangeDelete DiffModifiedSubtle
-  hi! link GitGutterDelete       DiffRemovedSubtle
+  hi default link DiffAddedGutterLineNr     DiffAddedGutter
+  hi default link DiffModifiedGutterLineNr  DiffModifiedGutter
+  hi default link DiffModifiedGutterLineNr  DiffModifiedGutter
+  hi default link DiffRemovedGutterLineNr   DiffRemovedGutter
 
-  hi! link GitGutterAddLineNr          GitGutterAdd
-  hi! link GitGutterChangeLineNr       GitGutterChange
-  hi! link GitGutterChangeDeleteLineNr GitGutterChangeDelete
-  hi! link GitGutterDeleteLineNr       GitGutterDelete
+  hi! link GitGutterAdd                DiffAddedGutter
+  hi! link GitGutterChange             DiffModifiedGutter
+  hi! link GitGutterChangeDelete       DiffModifiedGutter
+  hi! link GitGutterDelete             DiffRemovedGutter
+
+  hi! link GitGutterAddLineNr          DiffAddedGutterLineNr
+  hi! link GitGutterChangeLineNr       DiffModifiedGutterLineNr
+  hi! link GitGutterChangeDeleteLineNr DiffModifiedGutterLineNr
+  hi! link GitGutterDeleteLineNr       DiffRemovedGutterLineNr
 endfunc
 
 augroup gitgutter_colors
