@@ -155,6 +155,7 @@ nmap gsln           :execute 'Note ' . GetCurrentSession()<CR>
 
 " Files
 nnoremap gsrc       :Edit $MYVIMRC<CR>
+nnoremap gsro       :Edit $vim/coc-settings.json<CR>
 nnoremap gsm        :Edit $vim/rc/keymap.vim<CR>
 nnoremap gsko       :Edit $vim/plugin/options.vim<CR>
 nnoremap gsa        :Edit $vim/rc/autocmd.vim<CR>

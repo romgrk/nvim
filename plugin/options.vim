@@ -222,7 +222,7 @@ ToggleMap 'w',   { 'value': '&l:wrap' },           [0,     1]
 ToggleMap 'sn',  { 'value': 'g:sneak#streak' },    [0,     1]
 ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post': 'let &ts = &sw' }
 
-ToggleMap 'cn',  'ContextToggle'
+AlternMap 'cn',  'Context', ['TSContextDisable', 'TSContextEnable']
 ToggleMap 'hl',  'HexokinaseToggle'
 ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
 ToggleMap 'gs',  'GitGutterSignsEnable'

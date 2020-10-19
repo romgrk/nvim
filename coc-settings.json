@@ -60,6 +60,9 @@
     // CocInstall coc-rust-analyzer
     // CocInstall coc-clangd
     // CocInstall coc-browser
+    // CocInstall coc-lua
 
   },
+
+  "lua.version": "5.2"
 }

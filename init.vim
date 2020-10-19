@@ -7,31 +7,25 @@
 
 let $vim = stdpath('config')
 
-" Load one file from ./rc/
-function! s:source_rc(file)
-    if a:file =~# '.lua$'
-        execute 'luafile ' . fnameescape($vim . '/rc/' . a:file)
-    else
-        execute 'source ' . fnameescape($vim . '/rc/' . a:file)
-    end
+" Source file
+function! s:load(file)
+    let file = a:file[0] == '/' ? a:file : path#Join([$vim, a:file])
+    execute (a:file =~# '.lua$' ? 'luafile' : 'source') fnameescape(file)
 endfu
-
-" Load all files from ./rc/plugins/
-function! s:source_plugins()
-    for file in split(glob($vim . '/rc/plugins/*'), "\n")
-        exe 'source ' . file
-    endfor
-endfunc
 
 " }}}
 "=============================================================================
 " Settings                                                                 {{{
 
-call s:source_rc('settings.vim')
-call s:source_rc('plugins.vim')
+call s:load('./rc/settings.vim')
+call s:load('./rc/plugins.vim')
 
 " Plugin settings (before loading):
-call s:source_plugins()
+for file in split(glob($vim . '/rc/plugins/*'), '\n')
+    if file !~ '.after.'
+        call s:load(file)
+    end
+endfor
 
 "                                                                          }}}
 "=============================================================================
@@ -82,6 +76,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'neoclide/npm.nvim'
 Plug 'neovim/nvim-lsp'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'romgrk/nvim-treesitter-context'
 " Plug 'puremourning/vimspector'
 Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-eunuch'
@@ -133,10 +129,6 @@ Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
 Plug 'elixir-lang/vim-elixir'                            , { 'for': 'elixir' }
 Plug 'dzeban/vim-log-syntax'                             , { 'for': 'log' }
 
-if exists('$VIFM')
-    set runtimepath+=/usr/share/vifm/vim-doc
-end
-
 " }}}
 " UI                                                                         {{{
 " Plug 'TaDaa/vimade'
@@ -171,33 +163,34 @@ call plug#end() " }}}
 " RC files                                                                 {{{
 
 " Scripts:
-call s:source_rc('function.vim')
-call s:source_rc('events.vim')
-call s:source_rc('autocmd.vim')
-call s:source_rc('commands.vim')
-call s:source_rc('colors.vim')
-call s:source_rc('highlight.vim')
-call s:source_rc('keymap.vim')
-call s:source_rc('abbrev.vim')
+call s:load('./rc/function.vim')
+call s:load('./rc/events.vim')
+call s:load('./rc/autocmd.vim')
+call s:load('./rc/commands.vim')
+call s:load('./rc/colors.vim')
+call s:load('./rc/highlight.vim')
+call s:load('./rc/keymap.vim')
+call s:load('./rc/abbrev.vim')
 
 " Plugin settings (after loading):
+" ...either use autocmd
 doautocmd User PluginsLoaded
+" ...or be named *.after.vim
+for file in split(glob($vim . '/rc/plugins/*'), '\n')
+    if file =~ '.after.'
+        call s:load(file) | end
+endfor
 
 " Local settings:
 if filereadable($vim . '/local.vim')
-    exe 'source ' . $vim . '/local.vim'
-end
-
-if argc() == 2 && argv(0) == 's'
-    exe 'au VimEnter * OpenSession! ' . argv(1)
-    call ClearArgs()
+    call s:load('./local.vim')
 end
 
 augroup RC_SETUP
 au!
-au VimEnter * colorscheme github-light
-au VimEnter * call s:source_rc('colors.vim')
-au VimEnter * call s:source_rc('highlight.vim')
+" au VimEnter * colorscheme github-light
+" au VimEnter * call s:load('./rc/colors.vim')
+au VimEnter * call s:load('./rc/highlight.vim')
 augroup END
 
 " }}}

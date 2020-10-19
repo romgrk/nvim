@@ -4,21 +4,7 @@
 " Last Modified:  5 May 2016
 " Exec: !::exe [So]
 
-function! s:onTermOpen ()
-    au BufEnter <buffer> startinsert
-    setfiletype terminal
-    setlocal nocursorline nocursorcolumn
-    setlocal signcolumn=no
-    if exists(':VimadeBufDisable')
-        VimadeBufDisable
-    end
-
-    setl winhl=Normal:TermNormal,NormalNC:TermNormalNC
-
-    startinsert
-endfunc
-
-exe 'augroup RC'
+augroup RC
     au!
 
     au BufWritePost */plugins/*.vim     So
@@ -47,7 +33,8 @@ exe 'augroup RC'
 
     " Terminal
     if has('nvim')
-    au TermOpen * call <SID>onTermOpen()
+    au TermOpen * call <SID>on_term_open()
+    au TermOpen * au BufEnter <buffer=abuf> startinsert
     end
 
     " Cmdwin in ./cmdwin.vim
@@ -61,7 +48,6 @@ exe 'augroup RC'
 
     " Colors
     au FileType css,scss,sass,less HexokinaseTurnOn
-
 
     " Preview
     au BufWinEnter * if &previewwindow | call PreviewOpen()  | end
@@ -78,30 +64,45 @@ exe 'augroup RC'
     au BufLeave */doc/*.txt   call BookmarkLastHelp()
     au BufLeave ~/notes/*.txt let session.lastnote = @%
 
-    " Filetype-specific autocommands:
-    au BufNewFile,BufReadPost .babelrc          setfiletype json
-    au BufNewFile,BufReadPost .tern-project     setfiletype json
-    au BufNewFile,BufReadPost */components/*.js setfiletype javascript.jsx
-
     au BufReadPost,BufNewFile * if (&omnifunc == "")
                              \|     setlocal omnifunc=syntaxcomplete#Complete
                              \| end
-exe 'augroup END'
-
-augroup TabLine
-    au!
-    au BufNew,BufDelete       * call TabLineUpdate()
-    au BufWinEnter,BufEnter   * call TabLineUpdate()
-    au BufWritePost           * call TabLineUpdate()
-    au TabEnter,TabNewEntered * call TabLineUpdate()
 augroup END
 
-augroup DeleteTrailingWS
-    au!
-    " Auto-delete whitespaces at EOL
-    au BufWritePre *.py       %DeleteTrailingWS
-    au BufWritePre *.[cc,cpp] %DeleteTrailingWS
-augroup END
+function! s:did_load (...)
+
+    augroup TabLine
+        au!
+        au BufNew,BufDelete       * call TabLineUpdate()
+        au BufWinEnter,BufEnter   * call TabLineUpdate()
+        au BufWritePost           * call TabLineUpdate()
+        au TabEnter,TabNewEntered * call TabLineUpdate()
+    augroup END
+
+    call TabLineUpdate()
+
+    augroup DeleteTrailingWS
+        au!
+        " Auto-delete whitespaces at EOL
+        au BufWritePre *.py       %DeleteTrailingWS
+        au BufWritePre *.[cc,cpp] %DeleteTrailingWS
+    augroup END
+endfunc
+call timer_start(100, function('s:did_load'))
+
+
+function! s:on_term_open ()
+    setfiletype terminal
+    setlocal nocursorline nocursorcolumn
+    setlocal signcolumn=no
+    if exists(':VimadeBufDisable')
+        VimadeBufDisable
+    end
+
+    setl winhl=Normal:TermNormal,NormalNC:TermNormalNC
+
+    startinsert
+endfunc
 
 
 " augroup inactive_win

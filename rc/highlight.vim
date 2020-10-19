@@ -4,10 +4,10 @@
 " Date: 16 Oct 2015
 " !::exe [So]
 
-exe 'augroup ' . expand('<sfile>:t') | au!
-au ColorScheme * exe 'source ' . expand('<sfile>:p')
-au VimEnter * :call pp#prettyTheme()
-exe 'augroup END'
+augroup user_highlight
+au ColorScheme * :exe 'source ' . expand('<sfile>:p')
+au VimEnter *    :call pp#prettyTheme()
+augroup END
 
 " General                                                                    {{{
 

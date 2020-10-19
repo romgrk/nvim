@@ -56,6 +56,10 @@ set titlestring=%(%{xolox#session#find_current_session()}%)%(\ %a%)
 
 " set path=,,./*;,**2;,/usr/include
 
+if exists('$VIFM')
+  set runtimepath+=/usr/share/vifm/vim-doc
+end
+
 set wildignore=node_modules,bower_components,package-lock.json,tags,*.pyc
 set wildignorecase " aka wic
 
@@ -228,8 +232,13 @@ set foldminlines=0
 set foldlevel=999
 set foldlevelstart=999
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-set foldmethod=marker foldmarker={{{,}}}
+set foldmarker={{{,}}}
 set foldtext=FoldText()
+
+" set foldmethod=marker
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 
 " }}}
 "===============================================================================
