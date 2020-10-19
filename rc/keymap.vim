@@ -526,7 +526,7 @@ nnoremap <silent> <A-O>    :Clap history<CR>
 nnoremap <silent> <C-S>    :Clap buffers<CR>
 
 nnoremap <silent> <A-i>    :Clap tags<CR>
-nnoremap <silent> <A-S-I>  :Tags<CR>
+nnoremap <silent> <A-S-I>  :Clap generated_tags<CR>
 
 nnoremap <silent> <C-p>    :Clap command<CR>
 
@@ -987,6 +987,8 @@ nmap #  <Plug>(incsearch-nohl-#)
 " Yank selected text as an escaped search-pattern
 map <silent><Plug>(visual-yank-plaintext)
       \ :<C-U>call setreg(v:register, '\C\V'.escape(visual#GetText(), '\/'))<CR>
+
+vmap <silent>    <C-f>  "/<Plug>(visual-yank-plaintext):set hlsearch<CR>
 
 vmap <silent>       g/  "/<Plug>(visual-yank-plaintext)n
 vmap <silent>       g?  "/<Plug>(visual-yank-plaintext)N

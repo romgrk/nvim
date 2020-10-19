@@ -15,6 +15,11 @@ let clap_forerunner_status_sign_done    = '  '
 " Custom providers
 "
 
+let clap_provider_generated_tags = {
+\ 'source': {-> Tags__source()},
+\ 'sink': {line -> Tags__sink(line)},
+\}
+
 let clap_provider_session = {
 \ 'source': {-> xolox#session#complete_names('', 'OpenSession ', 0)},
 \ 'sink': 'OpenSession',
@@ -39,6 +44,21 @@ let clap_provider_npm = {
 \ 'source': {-> s:npm_list_scripts()},
 \ 'sink': 'NpmRun',
 \}
+
+
+" Tags provider {{{
+
+function! Tags__source ()
+  return flatten(map(tagfiles(), {_, file ->
+    \ filter(readfile(file), 'stridx(v:val, "!_TAG") != 0')}))
+endfunc
+
+function! Tags__sink (line)
+  execute 'tag' split(a:line, '\s\*')[0]
+endfunc
+
+" }}}
+" NPM run scripts provider {{{
 
 function! s:npm_list_scripts()
   let project_root = getcwd()
@@ -70,6 +90,7 @@ function! s:npm_list_scripts()
   return map(items, {key, val -> printf('%-' . max_length . 's # %s', val.name, val.command)})
 endfunc
 
+" }}}
 
 
 "
