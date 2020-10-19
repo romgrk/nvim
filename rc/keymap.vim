@@ -435,6 +435,7 @@ nnoremap         <leader>gk     :Git checkout<space>
 nnoremap         <leader>gK     :Git checkout -b<space>
 nnoremap         <leader>gb     :Clap git_branch<CR>
 nnoremap         <leader>gl     :Gpull<CR>
+nnoremap         <leader>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
 nnoremap         <leader>gpp    :Gpush<CR>
 nnoremap         <leader>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
 nnoremap <silent><leader>gs     :Gstatus<CR>
