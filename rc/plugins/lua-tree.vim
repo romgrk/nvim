@@ -11,7 +11,7 @@ let lua_tree_show_icons = {
 \}
 
 let lua_tree_icons = {
-\ 'default':     '',
+\ 'default':     '',
 \ 'symlink':     '',
 \ 'folder':      {
 \   'default':   '',
@@ -85,9 +85,9 @@ let lua_tree_bindings = {
 "===============================================================================
 " Highlights                                                                 {{{
 
-hi! LuaTreeNormal  guifg=#ffffff guibg=#24292e gui=none
-hi! FolderInverted guifg=#ffffff gui=bold
-hi! FileInverted   guifg=#ffffff gui=none
+hi! LuaTreeNormal  guifg=#e0e0e0 guibg=#24292e gui=none
+hi! FolderInverted guifg=#e0e0e0 gui=bold
+hi! FileInverted   guifg=#e0e0e0 gui=none
 
 hi! CursorLineInverted guibg=#343d45
 " hi! link LuaTreeNormal      TabLine
@@ -97,7 +97,7 @@ hi! link LuaTreeCursorLine  CursorLineInverted
 
 hi! LuaTreeRootFolder guifg=#EBAD0D gui=bold
 
-hi! LuaTreeFolderName guifg=#ffffff gui=bold
+hi! LuaTreeFolderName guifg=#e0e0e0 gui=bold
 hi! LuaTreeFolderIcon guifg=#EBAD0D
 
 " hi! link LuaTreeFolderIcon   FileInverted
