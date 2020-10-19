@@ -2,6 +2,16 @@
 " Author: romgrk
 " Description: neovim init file
 
+" TODO Clap command
+" TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
+" TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+" TODO todo manager not working
+" TODO inline comments when available (eg javascript)
+" TODO Plug 'neovim/nvim-lsp'
+" TODO Plug 'wbthomason/lsp-status.nvim'
+
+" NOTE https://github.com/nvim-treesitter/playground
+
 "=============================================================================
 " Vim setup                                                                {{{
 
@@ -50,7 +60,6 @@ Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sirver/UltiSnips'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tommcdo/vim-ninja-feet'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -75,7 +84,6 @@ Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vista.vim'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'neoclide/npm.nvim'
-Plug 'neovim/nvim-lsp'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'romgrk/nvim-treesitter-context'
 " Plug 'puremourning/vimspector'
@@ -83,7 +91,6 @@ Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-scripts/loremipsum'
-Plug 'wbthomason/lsp-status.nvim'
 Plug 'wsdjeg/vim-fetch'
 Plug 'wsdjeg/vim-todo'
 Plug 'xolox/vim-misc'
@@ -131,8 +138,6 @@ Plug 'dzeban/vim-log-syntax'                             , { 'for': 'log' }
 
 " }}}
 " UI                                                                         {{{
-" Plug 'TaDaa/vimade'
-" Plug 'wellle/context.vim'   " mappings disabled
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'KabbAmine/vCoolor.vim'
@@ -144,7 +149,7 @@ Plug 'RRethy/vim-hexokinase'                             , { 'do': 'make hexokin
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 " }}}
-" Local (~/github/vim)                                                       {{{
+" Personal                                                                   {{{
 Plug 'romgrk/equal.operator'
 Plug 'romgrk/columnMove.vim'
 Plug 'romgrk/lib.kom'
