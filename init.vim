@@ -110,7 +110,6 @@ Plug 'jordwalke/vim-reasonml'                            , { 'for': 'reason' }
 Plug 'rhysd/vim-crystal'                                 , { 'for': 'crystal' }
 Plug 'vim-python/python-syntax'                          , { 'for': 'python' }
 Plug 'tmhedberg/SimpylFold'                              , { 'for': 'python' }
-Plug 'mattboehm/vim-unstack'                             , { 'for': 'python' }
 Plug 'othree/xml.vim'
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 Plug 'kristijanhusak/vim-js-file-import'                 , { 'for': 'javascript' }
