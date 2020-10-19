@@ -156,7 +156,7 @@ syn region vimFoldFinally
 
 " Highlight links {{{
 
-hi! link vimFunc       Function
+hi! link vimFunction   Function
 hi! link vimUserFunc   Function
 hi! link vimOption     Control
 
@@ -168,7 +168,8 @@ hi! link vimLet        StorageClass
 hi! link vimCommand    Statement
 hi! link vimCmdSep     SpecialChar
 
-hi! link vimOper       fg_lightblue
+hi! link vimOper       Operator
+" hi! link vimOperParen  Operator
 
 hi! link vimHiBang     vimOper
 hi! link vimHiAttrib   Control
@@ -176,7 +177,8 @@ hi! link vimHiAttrib   Control
 hi! link vimMapModKey  Special
 hi! link vimMapMod     SpecialDelimiter
 
-hi! link vimNotation   SpecialComment
+hi! link vimBracket    SpecialDelimiter
+hi! link vimNotation   SpecialKey
 hi! link vimContinue   Conceal
 hi! link vimSynRegPat  Regexp
 hi! link vimSynRegOpt  vimSpecial
@@ -193,6 +195,8 @@ hi! link nvimMap vimMap
 " hi! link vimSynMtchOpt vimSpecial
 hi! link vimBoolean    Boolean
 hi! link vimNull       Constant
+
+hi! link CommentEmail URL
 "}}}
 
 let s:bg = hi#bg('Normal')
