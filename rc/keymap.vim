@@ -618,10 +618,8 @@ nnoremap <silent> <A-7> :BufferJump 7<CR>
 nnoremap <silent> <A-8> :BufferJump 8<CR>
 nnoremap <silent> <A-9> :BufferLast<CR>
 
-nnoremap <A-c>      :BufferClose<CR>
-nnoremap <A-C>      :BufferReopen<CR>
-nnoremap <C-A-c>    :BufferClose<CR><C-w>c
-nnoremap <C-A-q>    :BufferWipeReopen<CR>
+nnoremap <silent> <A-c> :BufferClose<CR>
+nnoremap <silent> <A-C> :BufferReopen<CR>
 
 if exists('g:gui_oni')
 nnoremap <silent> <A-,> :tabprev<CR>
@@ -634,12 +632,12 @@ end
 " Text manipulation                                                         {{{1
 
 " Exchange line x-up/down
-nnoremap <expr>Xj     'ddp'  . col('.') . '<Bar>'
-nnoremap <expr>Xk     'ddkP' . col('.') . '<Bar>'
+nnoremap <expr> <C-x>j     'ddp'  . col('.') . '<Bar>'
+nnoremap <expr> <C-x>k     'ddkP' . col('.') . '<Bar>'
 
 " Exchange args left/right
-nnoremap <C-X>h  :SidewaysLeft<CR>
-nnoremap <C-X>l  :SidewaysRight<CR>
+nnoremap        <C-x>h  :SidewaysLeft<CR>
+nnoremap        <C-x>l  :SidewaysRight<CR>
 
 " Yank & Paste * (yank-up, yank-down)
 nnoremap yu yyP
@@ -955,17 +953,17 @@ vmap <A-'>      <Plug>NERDCommenterSexy
 " }}}
 
 " StringTransform:
-" gc, gC, --, -s, __                                                         {{{
-nmap gcc <Plug>(camel_case_operator)
-xmap gcc <Plug>(camel_case_operator)
-nmap gcC <Plug>(upper_camel_case_operator)
-xmap gcC <Plug>(upper_camel_case_operator)
-nmap gc_ <Plug>(snake_case_operator)
-xmap gc_ <Plug>(snake_case_operator)
-nmap gc- <Plug>(kebab_case_operator)
-xmap gc- <Plug>(kebab_case_operator)
-nmap gcs <Plug>(start_case_operator)
-xmap gcs <Plug>(start_case_operator)
+" Change Case                                                                {{{
+nmap <leader>ccc <Plug>(camel_case_operator)
+xmap <leader>ccc <Plug>(camel_case_operator)
+nmap <leader>ccC <Plug>(upper_camel_case_operator)
+xmap <leader>ccC <Plug>(upper_camel_case_operator)
+nmap <leader>cc_ <Plug>(snake_case_operator)
+xmap <leader>cc_ <Plug>(snake_case_operator)
+nmap <leader>cc- <Plug>(kebab_case_operator)
+xmap <leader>cc- <Plug>(kebab_case_operator)
+nmap <leader>ccs <Plug>(start_case_operator)
+xmap <leader>ccs <Plug>(start_case_operator)
 "}}}
 
 " }}}1
