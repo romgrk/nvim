@@ -142,7 +142,7 @@ function! statusline#active () abort
     " coc
     " let content .= '%{g:coc_enabled?"":" "}%(%#StatuslineLint#%{statusline#coc()}%)'
 
-    let content .= '%{statusline#have_lsp()?"":" "}%(%#StatuslineLint#%{statusline#lsp()}%)'
+    " let content .= '%{statusline#have_lsp()?"":" "}%(%#StatuslineLint#%{statusline#lsp()}%)'
   end
 
   return content
