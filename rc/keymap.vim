@@ -5,6 +5,9 @@
 
 " Recent mappings:
 
+vmap <C-f> <Nop>
+vmap <C-b> <Nop>
+
 xmap <C-W>sr <Plug>(Visual-Split-VSResize)
 xmap <C-W>ss <Plug>(Visual-Split-VSSplit)
 xmap <C-W>sk <Plug>(Visual-Split-VSSplitAbove)
@@ -12,7 +15,6 @@ xmap <C-W>sj <Plug>(Visual-Split-VSSplitBelow)
 
 xnoremap @  :normal @q<CR>
 
-nnoremap <silent>,              :Clap blines<CR>
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep<CR>
 
@@ -20,6 +22,7 @@ nmap - <Plug>(CtrlXA-CtrlX)
 nmap _ <Plug>(CtrlXA-CtrlA)
 nmap + <Plug>(CtrlXA-CtrlA)
 nmap = <Plug>(CtrlXA-CtrlA)
+
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -29,7 +32,7 @@ let mapleader = "\<space>"
 " <Esc>
 nnoremap <silent><expr> <Esc> (
             \   exists('b:esc') ? b:esc
-            \ : ":nohl<CR>" )
+            \ : ':nohl<CR>' )
 
 " <CR>
 "cnoremap <expr> <CR> g:space.parse_cmd_line()
@@ -76,11 +79,8 @@ xnoremap gu  gU
 xnoremap gU  ~
 
 " go-replace
-nnoremap gr      gR
-xnoremap gr      r<space>gR
-
-" go-winmode
-nnoremap gw      :InteractiveWindow<CR>
+nnoremap <C-r>   gR
+xnoremap <C-r>   r<space>gR
 
 " Next/Previous Tab
 nnoremap g[ gT
@@ -89,10 +89,6 @@ nnoremap g] gt
 " Open
 nnoremap <silent> go  :<C-U>OpenURLOrSearch<CR>
 xnoremap <silent> go y:<C-U>OpenURLOrSearch <C-R>"<CR>
-
-" Search
-nnoremap g/ *zvzz
-nnoremap g? #zvzz
 
 
 " Insert newline
@@ -469,8 +465,10 @@ nnoremap <silent><leader>rn     :Rename<space>
 " nnoremap <silent><leader>aa     XXX implement search
 
 "===============================================================================
+" Window things
 
-" Windows-things:
+nnoremap <silent><leader>ww   :InteractiveWindow<CR>
+
 nnoremap <silent><leader>w-   :call SizeDown()<CR>
 nnoremap <silent><leader>w+   :call SizeUp()<CR>
 
@@ -484,11 +482,11 @@ nnoremap   <expr><leader>c=   '"_ciw' . color#Lighten(expand('<cword>')) . "\<Es
 
 nnoremap <silent><leader>gf   :LuaTreeFindFile<CR>
 
-nnoremap <silent><leader>ret  :set et <Bar> ret<CR>
 nnoremap <silent><leader>ap   vip:EasyAlign<CR>
+nnoremap <silent><leader>ret  :set et <Bar> ret<CR>
 nnoremap <silent><leader>dws  :%DeleteTrailingWS<CR>
 
-nnoremap <silent><leader>how  :r !howdoi<space>
+nnoremap         <leader>how  :r !howdoi<space>
 
 nnoremap <silent><leader>syv  :SynStack<CR>
 nnoremap <silent><leader>sye  :SynCurrentEdit<CR>
@@ -555,8 +553,7 @@ nnoremap <C-w><C-Y> :WindowCopyView<CR>
 nnoremap <C-w>\     :WindowFitText<CR>
 nnoremap <C-w>q     :BufferClose <Bar> wincmd c<CR>
 
-nnoremap <C-w><Tab> :tabedit <C-r>=bufname(buf#filter('&buflisted')[-1])<CR><CR>
-nnoremap <C-w>t     :tab split<CR>
+nnoremap <C-w><Tab> :tabedit <C-r>=bufname()<CR><CR>
 
 " Terminal navigation mappings down here. }}}1
 "===============================================================================
@@ -564,7 +561,7 @@ nnoremap <C-w>t     :tab split<CR>
 if has('nvim')
 
 " Panels/Navigation
-nnoremap g:             :OpenTerminal<CR>
+nnoremap g:             :GoFirstTerminalWindow<CR>
 nnoremap g<A-;>         :OpenTerminalHere<CR>
 " nnoremap g<space>       :GoFirstTerminalWindow<CR>
 nnoremap <C-W><space>   :ToggleTerminalWindow<CR>
@@ -975,6 +972,10 @@ xmap gcs <Plug>(start_case_operator)
 "===============================================================================
 " Search & replace                                                          {{{1
 
+" Search
+nnoremap g/ *zvzz
+nnoremap g? #zvzz
+
 " IncSearch
 nmap / <Plug>(incsearch-forward)
 nmap ? <Plug>(incsearch-backward)
@@ -988,10 +989,15 @@ nmap #  <Plug>(incsearch-nohl-#)
 map <silent><Plug>(visual-yank-plaintext)
       \ :<C-U>call setreg(v:register, '\C\V'.escape(visual#GetText(), '\/'))<CR>
 
-vmap <M-y>           <Plug>(visual-yank-plaintext)
-vmap <A-/>         "/<Plug>(visual-yank-plaintext)n
-vmap <silent><C-F> "/<Plug>(visual-yank-plaintext):set hls<CR>
-nmap z*         viw"/<Plug>(visual-yank-plaintext):set hls<CR>
+vmap <silent>       g/  "/<Plug>(visual-yank-plaintext)n
+vmap <silent>       g?  "/<Plug>(visual-yank-plaintext)N
+
+nmap <silent><expr> g\  incsearch#go(<SID>incsearch_config())
+
+function! s:incsearch_config() abort
+  return {'converters': [{val -> '\V' . escape(val, '/\')}]}
+endfunction
+
 
 
 

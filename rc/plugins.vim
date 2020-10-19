@@ -60,9 +60,6 @@ let EasyMotion_keys = jump_keys
 let EasyMotion_use_smartsign_us = 1
 let EasyMotion_do_mapping = 0
 
-let splitjoin_split_mapping = ''
-let splitjoin_join_mapping  = ''
-
 let columnMove_mappings = 0
 
 let unstack_mapkey = '<F9>'

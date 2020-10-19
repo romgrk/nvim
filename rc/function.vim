@@ -194,20 +194,22 @@ fu! RestorePosition ()
 endfunc
 
 
-let g:termsize = 10
+let term_height = 10
 
 com! -bang OpenTerminal            call OpenTerminal()
-com! -bang OpenTerminalHere        call OpenTerminal(1)
+com! -bang OpenTerminalHere        call OpenTerminal(expand('%:p:h'))
 com! -bang GoFirstTerminalWindow   call GoFirstTerminalWindow()
 com! -bang ToggleTerminalWindow    call ToggleTerminalWindow('<bang>'==#'!')
 fu! OpenTerminal(...) "                                                      {{{
-    if (a:0 != 0 && a:1 == 1)
-        noautocmd cd %:h
-        call GetNewTerminalWindow()
-        noautocmd cd -
-    else
-        call GetNewTerminalWindow()
-    end
+    let dir = a:0 > 0 ? a:1 : getcwd()
+
+    below split
+    enew
+    call termopen(&shell, #{ cwd: dir })
+
+    let height = get(g:, 'term_height', 10)
+    call win#().height(height)
+    let &winheight = height
 endfu "                                                                      }}}
 fu! GoFirstTerminalWindow(...) "                                              {{{
     let terms = win#filter('&bt=="terminal"')
@@ -228,16 +230,16 @@ fu! GoFirstTerminalWindow(...) "                                              {{
         return
     end
 
-    call GetNewTerminalWindow()
+    call OpenTerminal()
 endfu "                                                                      }}}
-fu! ToggleTerminalWindow(nofocus,...) "                                                 {{{
+fu! ToggleTerminalWindow(nofocus, ...) "                                                 {{{
     if &buftype ==# 'terminal'
         let termwin = win#(0)
     elseif exists('w:termwin') && w:termwin.exists()
         let termwin = get(w:, 'termwin')
     else
         let thiswin = win#(0)
-        let w:termwin = GetNewTerminalWindow()
+        let w:termwin = OpenTerminal()
         " let w:termwin.parent = win#(0)
     end
 
@@ -248,7 +250,7 @@ fu! ToggleTerminalWindow(nofocus,...) "                                         
 
     let size = w:termwin.w('&winheight')
     if (!size || size <= 5)
-        let size = get(g:,'termheight',10)
+        let size = get(g:,'term_height',10)
     end
 
     if w:termwin.height() == 0
@@ -266,28 +268,10 @@ fu! GetTerminalWindow(...) "                                                 {{{
     else
         let cmd = 'term'
     end
-    let size = get(g:, 'termsize', 10)
+    let size = get(g:, 'term_height', 10)
     let win  = win#split('', [cmd])
     call win.height(size)
     let &winheight = size
-    return win
-endfu "                                                                      }}}
-fu! GetNewTerminalWindow(...) "                                              {{{
-    let saved_eventignore = &eventignore
-    let saved_winnr = winnr()
-    let &eventignore = 'all'
-
-    let win    = win#split('below split', ['term'])
-    let w:parent = saved_winnr
-    let height = get(g:,'termheight',10)
-    call win.height(height)
-    let &winheight = height
-
-    doautocmd TermOpen
-
-    exec saved_winnr.'wincmd w'
-
-    let &eventignore = saved_eventignore
     return win
 endfu "                                                                      }}}
 
@@ -561,7 +545,6 @@ function! FoldFunction(...) "                                                   
     return prefix . line
 endfu "                                                                      }}}
 
-com! -nargs=* -complete=function LOG call PrintWithoutNewlines(<args>)
 fu! PrintChars(start, end, ...) "                                                  {{{
     let start = _#isNumber(a:start) ? a:start : char2nr(a:start)
     let end   = _#isNumber(a:end)   ? a:end   : char2nr(a:end)
@@ -585,14 +568,6 @@ fu! PrintChars(start, end, ...) "                                               
 
     let @r=res
     exe 'normal! "rp'
-endfu "                                                                      }}}
-fu! PrintWithoutNewlines(value) "                                            {{{
-    if type(a:value) == type("string")
-        let strings = split(a:value, '\n')
-    else
-        let strings = a:value
-    endif
-    echo join(strings, ', ')
 endfu "                                                                      }}}
 
 

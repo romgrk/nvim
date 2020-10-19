@@ -93,6 +93,7 @@ call timer_start(100, function('s:did_load'))
 
 function! s:on_term_open ()
     setfiletype terminal
+    setlocal nonumber
     setlocal nocursorline nocursorcolumn
     setlocal signcolumn=no
     if exists(':VimadeBufDisable')
