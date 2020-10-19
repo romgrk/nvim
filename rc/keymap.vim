@@ -437,8 +437,9 @@ nnoremap         <leader>g.     :Gcommit % -m ""<Left>
 nnoremap         <leader>gk     :Git checkout<space>
 nnoremap         <leader>gK     :Git checkout -b<space>
 nnoremap         <leader>gb     :Clap git_branch<CR>
-nnoremap <silent><leader>gl     :Gpull<CR>
-nnoremap <silent><leader>gp     :Gpush<CR>
+nnoremap         <leader>gl     :Gpull<CR>
+nnoremap         <leader>gpp    :Gpush<CR>
+nnoremap         <leader>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
 nnoremap <silent><leader>gs     :Gstatus<CR>
 nnoremap <silent><leader>gu     :GitOpenUnmergedFiles<CR>
 nnoremap <silent><leader>gda    :GitDiff<CR>
