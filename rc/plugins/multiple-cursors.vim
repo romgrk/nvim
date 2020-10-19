@@ -5,9 +5,9 @@ let multi_cursor_exit_from_insert_mode = 0
 
 let multi_cursor_start_key      = '<A-m>'
 let multi_cursor_start_word_key = '<A-M>'
-let multi_cursor_prev_key       = 'p'
-let multi_cursor_next_key       = 'n'
-let multi_cursor_skip_key       = 's'
+let multi_cursor_prev_key       = '<C-p>'
+let multi_cursor_next_key       = '<C-n>'
+let multi_cursor_skip_key       = '<C-s>'
 let multi_cursor_quit_key       = 'q'
 
 let multi_cursor_normal_maps =
@@ -26,3 +26,16 @@ let multi_cursor_visual_maps = {
 let multi_cursor_insert_maps = {
 \ "\<A-i>": 1
 \}
+
+
+" function! Multiple_cursors_before()
+"   if exists(':NeoCompleteLock')==2
+"     exe 'NeoCompleteLock'
+"   endif
+" endfunction
+"
+" function! Multiple_cursors_after()
+"   if exists(':NeoCompleteUnlock')==2
+"     exe 'NeoCompleteUnlock'
+"   endif
+" endfunction

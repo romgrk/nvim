@@ -170,8 +170,6 @@ nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
 nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
 nnoremap gsv        :Clap files $vim<CR>
 
-nnoremap <C-n>      :Clap filer <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
-
 " New...
 nnoremap <A-n><A-s> :UltiSnipsEdit<CR>
 nnoremap <A-n><A-m> :EditFtplugin<CR>
@@ -508,6 +506,7 @@ nnoremap <silent><leader>qo   :So<CR>
 " (see: ./plugins/multiple-cursors.vim)
 nnoremap      <leader>mw :.,.MultipleCursorsFind \S\+<CR>o<Esc>
 nnoremap      <leader>mW :.,.MultipleCursorsFind \w\+<CR>
+nnoremap      <leader>mf :MultipleCursorsFind<space>
 
 " }}}1
 "===============================================================================
@@ -519,15 +518,16 @@ nnoremap <silent><C-A-\> :LuaTreeFindFile<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
-nnoremap <leader>o         :Clap files<CR>
-
 nnoremap <silent> <A-o>    :Clap files<CR>
-nnoremap <silent> <C-A-o>  :Clap filer <C-R>=expand('%:h:~')<CR><CR>
+nnoremap <silent> <C-A-o>  :Clap filer <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
+
 nnoremap <silent> <A-O>    :Clap history<CR>
 nnoremap <silent> <C-S>    :Clap buffers<CR>
 
 nnoremap <silent> <A-i>    :Clap tags<CR>
 nnoremap <silent> <A-S-I>  :Tags<CR>
+
+nnoremap <silent> <C-p>    :Clap command<CR>
 
 " Clap input
 
