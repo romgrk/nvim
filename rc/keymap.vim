@@ -1174,6 +1174,9 @@ xmap al     <Plug>(visual-Rhs)
 xmap iL     <Plug>(visual-Rhs)
 " end-of-LHS/RHS                                                             }}}
 
+" Treesitter operator:
+" ./rc/plugins/tree-sitter.after.lua
+
 " }}}1
 "===============================================================================
 " Visual-mode                                                               {{{1
