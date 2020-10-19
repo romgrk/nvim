@@ -17,11 +17,6 @@ let s:color_by_mode = {
 \  'default': ['#e9f2ff', '#599eff'],
 \}
 
-" let s:statuslineFg = hi#fg('StatusLine')
-" let s:statuslineBg = hi#bg('StatusLine')
-let s:statuslineFg = '#495058'
-let s:statuslineBg = '#d0d0d0'
-
 let s:modifiedFg = '#d75f5f'
 
 augroup statusline
@@ -31,33 +26,16 @@ augroup statusline
   au WinLeave *                      let &l:statusline = statusline#inactive()
 augroup END
 
-function! s:update_inactive_windows()
-  for winnum in range(1, winnr('$'))
-    if winnum != winnr()
-      call setwinvar(winnum, '&statusline', '%!statusline#inactive()')
-    endif
-  endfor
-endfunction
-
-function! statusline#update_colors(mode) abort
-  call hi#('StatuslineAccent', get(s:color_by_mode, a:mode, s:color_by_mode.default))
-  call hi#('StatuslineAccentTransition',
-    \ get(s:color_by_mode, a:mode, s:color_by_mode.default)[1],
-    \ s:statuslineBg)
-  call hi#fg('StatuslineFilename', &modified ? s:modifiedFg : s:statuslineFg)
-  return ''
-endfunction
-
 " Setup the colors
 function! s:setup_colors() abort
 
-  " let s:statuslineFg = hi#fg('StatusLine')
-  let s:statuslineFg = '#495058'
-  let s:statuslineFgLight = color#lighten(s:statuslineFg, '110%')
-  let s:statuslineNCFg = hi#fg('StatusLineNC')
+  let s:statuslineFg = !empty(hi#fg('StatusLine')) ? hi#fg('StatusLine') : '#495058'
+  let s:statuslineBg = !empty(hi#bg('StatusLine')) ? hi#bg('StatusLine') : '#d0d0d0'
+  let s:statuslineFgLight = color#Decrease(s:statuslineFg, 0.8)
+  let s:statuslineNCFg = !empty(hi#fg('StatusLineNC')) ? hi#fg('StatusLineNC') : '#495058'
   " let s:statuslineBg = hi#bg('StatusLine')
-  let s:statuslineBg = '#d0d0d0'
-  let s:statuslineBgDark = '#9D9D9D'
+  " let s:statuslineBg = '#d0d0d0'
+  let s:statuslineBgDark = color#Darken(s:statuslineBg, 0.2)
 
 
   call hi#('StatuslineNormal',           ['#e9e9e9',           s:statuslineBg, 'none'])
@@ -84,11 +62,29 @@ function! s:setup_colors() abort
 endfunction
 
 call s:setup_colors()
+call timer_start(100, {-> s:setup_colors()})
 
 augroup statusline_colors
   au!
   au ColorScheme * call s:setup_colors()
 augroup END
+
+function! s:update_inactive_windows()
+  for winnum in range(1, winnr('$'))
+    if winnum != winnr()
+      call setwinvar(winnum, '&statusline', '%!statusline#inactive()')
+    endif
+  endfor
+endfunction
+
+function! statusline#update_colors(mode) abort
+  call hi#('StatuslineAccent', get(s:color_by_mode, a:mode, s:color_by_mode.default))
+  call hi#('StatuslineAccentTransition',
+    \ get(s:color_by_mode, a:mode, s:color_by_mode.default)[1],
+    \ s:statuslineBg)
+  call hi#fg('StatuslineFilename', &modified ? s:modifiedFg : s:statuslineFg)
+  return ''
+endfunction
 
 "===============================================================================
 " Statusline builders
@@ -165,7 +161,7 @@ function! statusline#inactive () abort
 
   if is_normal
     " Filetype icon
-    let content .= '%#StatuslineFiletype# %{statusline#filetype_icon()}'
+    let content .= '%#StatuslineNC# %{statusline#filetype_icon()}'
 
     " Modified + Filename + Readonly
     let content .= '%#StatuslineFilenameNC#'
@@ -175,20 +171,22 @@ function! statusline#inactive () abort
 
     let content .= '%=' " Right side items
 
+    let content .= '%#StatuslineNC#'
+
     " Line and Column
-    let content .= '%#StatuslineLineCol#%l:%c '
-    let content .= '%#StatuslineSeparator#| '
-    let content .= '%#StatuslineLineCol#%L lines %<'
+    let content .= '%l:%c '
+    let content .= '| '
+    let content .= '%L lines %<'
 
     " VCS
     let vc_status = statusline#vc_status()
     if len(vc_status)
-      let content .= '%#StatuslineSeparator#| '
-      let content .= '%#StatuslineVC#%{statusline#vc_status()}'
+      let content .= '| '
+      let content .= '%{statusline#vc_status()}'
     end
 
     " Heart
-    let content .= '%#StatuslineVC#  '
+    let content .= '  '
   end
 
   return content
