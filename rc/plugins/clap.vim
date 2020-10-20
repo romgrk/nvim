@@ -15,11 +15,6 @@ let clap_forerunner_status_sign_done    = '  '
 " Custom providers
 "
 
-let clap_provider_generated_tags = {
-\ 'source': {-> Tags__source()},
-\ 'sink': {line -> Tags__sink(line)},
-\}
-
 let clap_provider_session = {
 \ 'source': {-> xolox#session#complete_names('', 'OpenSession ', 0)},
 \ 'sink': 'OpenSession',
@@ -46,18 +41,6 @@ let clap_provider_npm = {
 \}
 
 
-" Tags provider {{{
-
-function! Tags__source ()
-  return flatten(map(tagfiles(), {_, file ->
-    \ filter(readfile(file), 'stridx(v:val, "!_TAG") != 0')}))
-endfunc
-
-function! Tags__sink (line)
-  execute 'tag' split(a:line, '\s\*')[0]
-endfunc
-
-" }}}
 " NPM run scripts provider {{{
 
 function! s:npm_list_scripts()
@@ -69,7 +52,6 @@ function! s:npm_list_scripts()
     while !filereadable(directory . '/package.json')
           \ && directory != project_root
           \ && directory != '/'
-      echom directory
       let directory = fnamemodify(directory, ':h')
     endwhile
   end
@@ -97,21 +79,18 @@ endfunc
 " Highlight
 "
 
-hi! link ClapCurrentSelection Visual
-hi! link ClapPopupCursor      Visual
 
 " window backgrounds
+hi! link ClapSpinner          NormalPopupPrompt
 hi! link ClapInput            NormalPopup
 hi! link ClapSearchText       NormalPopup
 hi! link ClapDisplay          NormalPopover
 hi! link ClapPreview          Normal
 
-hi! link ClapSpinner          TabLine
 hi! link ClapQuery            Normal
-hi! link ClapSelected         PmenuSelBold
-hi! link ClapCurrentSelection PmenuSelBold
-hi! link ClapDefaultSelected  PmenuSelBold
-hi! link ClapDefaultCurrentSelection PmenuSelBold
+hi! link ClapSelected         Visual
+hi! link ClapCurrentSelection Visual
+hi! link ClapPopupCursor      Visual
 
 " Name of file/tag
 hi! link ClapFile             File
@@ -125,41 +104,41 @@ hi! link ClapLinesBufnr   Comment
 hi! link ClapLinesBufname Directory
 
 " Matches
-hi! link ClapMatches        EasyMotionTargetDefault
-hi! link ClapMatches1       EasyMotionTargetDefault
-hi! link ClapMatches2       EasyMotionTargetDefault
-hi! link ClapMatches3       EasyMotionTargetDefault
-hi! link ClapMatches4       EasyMotionTargetDefault
-hi! link ClapMatches5       EasyMotionTargetDefault
-hi! link ClapMatches6       EasyMotionTargetDefault
-hi! link ClapMatches7       EasyMotionTargetDefault
-hi! link ClapMatches8       EasyMotionTargetDefault
-hi! link ClapMatches9       EasyMotionTargetDefault
-hi! link ClapMatches10      EasyMotionTargetDefault
-hi! link ClapMatches11      EasyMotionTargetDefault
-hi! link ClapFuzzyMatches1  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches2  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches3  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches4  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches5  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches6  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches7  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches8  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches9  EasyMotionTargetDefault
-hi! link ClapFuzzyMatches10 EasyMotionTargetDefault
-hi! link ClapFuzzyMatches11 EasyMotionTargetDefault
+" hi! link ClapMatches        EasyMotionTargetDefault
+" hi! link ClapMatches1       EasyMotionTargetDefault
+" hi! link ClapMatches2       EasyMotionTargetDefault
+" hi! link ClapMatches3       EasyMotionTargetDefault
+" hi! link ClapMatches4       EasyMotionTargetDefault
+" hi! link ClapMatches5       EasyMotionTargetDefault
+" hi! link ClapMatches6       EasyMotionTargetDefault
+" hi! link ClapMatches7       EasyMotionTargetDefault
+" hi! link ClapMatches8       EasyMotionTargetDefault
+" hi! link ClapMatches9       EasyMotionTargetDefault
+" hi! link ClapMatches10      EasyMotionTargetDefault
+" hi! link ClapMatches11      EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches1  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches2  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches3  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches4  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches5  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches6  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches7  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches8  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches9  EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches10 EasyMotionTargetDefault
+" hi! link ClapFuzzyMatches11 EasyMotionTargetDefault
 
-let clap_fuzzy_match_hl_groups = [
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ [196 , '#cc0000'] ,
-\ ]
+" let clap_fuzzy_match_hl_groups = [
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ [196 , '#cc0000'] ,
+" \ ]

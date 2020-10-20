@@ -242,14 +242,6 @@ AlternMap 'coc', 'CoC',             ['CocDisable', 'CocEnable']
 
 
 
-" Foldmethod
-nmap z;m :setlocal fdm=marker<CR>
-nmap z;s :setlocal fdm=syntax<CR>
-nmap z;i :setlocal fdm=indent<CR>
-nmap z;I :setlocal fdm=expr<CR>:setlocal foldexpr=GetIndentFold(v:lnum)<CR>
-nmap z;e :setlocal fdm=expr<CR>:setlocal foldexpr=
-
-
 " Cool widget
 " Verbose options reference
 let s:verboseHelp = [

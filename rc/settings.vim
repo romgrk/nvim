@@ -60,7 +60,7 @@ if exists('$VIFM')
   set runtimepath+=/usr/share/vifm/vim-doc
 end
 
-set wildignore=node_modules,bower_components,package-lock.json,tags,*.pyc
+set wildignore=node_modules,bower_components,package-lock.json,tags,*.pyc,crates
 set wildignorecase
 
 set history=500

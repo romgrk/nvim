@@ -5,17 +5,17 @@
   "suggest.snippetIndicator": "•",
   "signature.target": "float",
 
-  "diagnostic.errorSign": "⨯ ",
-  "diagnostic.warningSign": "⚠ ",
-  "diagnostic.infoSign": "\\ ∙",
-  "diagnostic.hintSign": "\\ ?",
+  "diagnostic.errorSign":   " ",
+  "diagnostic.warningSign": " ",
+  "diagnostic.infoSign":    " ",
+  "diagnostic.hintSign":    " ",
 
   "languageserver": {
 
     "ocaml": {
       "command": "ocaml-language-server",
       "args": ["--stdio"],
-      "filetypes": ["reason", "ocaml"],
+      "filetypes": ["reason", "ocaml"]
       // "cwd": "./src",
     },
 

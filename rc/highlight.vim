@@ -25,7 +25,7 @@ hi! CocInfoSign                       guifg=#0E8FFF
 hi! CocInfoHighlight    gui=undercurl guisp=#0E8FFF
 hi! CocWarningSign                    guifg=#FF9F0E
 hi! CocWarningHighlight gui=undercurl guisp=#FF9F0E
-hi! CocErrorSign                      guisp=#ff1010
+hi! CocErrorSign                      guifg=#ff1010
 hi! CocErrorHighlight   gui=undercurl guisp=#ff1010
 
 " hi! link CocFloating NormalFloat

@@ -38,7 +38,7 @@ function! s:setup_colors() abort
   let s:statuslineBgDark = color#Darken(s:statuslineBg, 0.2)
 
 
-  call hi#('StatuslineNormal',           ['#e9e9e9',           s:statuslineBg, 'none'])
+  call hi#('StatuslineNormal',           ['#e9e9e9',           s:color_by_mode['n'][1], 'bold'])
   call hi#('StatuslineAccent',           ['none',              'none',         'bold'])
   call hi#('StatuslineAccentTransition', ['none',              'none',         'bold'])
   call hi#('StatuslinePart',             hi#('StatusLinePart'))

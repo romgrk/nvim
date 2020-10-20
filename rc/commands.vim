@@ -1,11 +1,15 @@
 " !::exe [So]
 
 
-command! -bar   So      so % | echo '' | call Warn('sourced')
-command! -bar   SO      w|So
+command! -nargs=* CurrentSession   echo GetCurrentSession()
 
-command! -bar   Sudo    write !sudo tee % >/dev/null
-command! -bar   Scratch        vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+command! -nargs=* Lua     lua print(vim.inspect(<args>))
+
+command! -bar     So      so % | echo '' | call Warn('sourced')
+command! -bar     SO      w|So
+
+command! -bar     Sudo    write !sudo tee % >/dev/null
+command! -bar     Scratch        vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
 
 " Generics
 

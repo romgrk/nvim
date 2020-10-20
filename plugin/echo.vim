@@ -19,6 +19,9 @@ fu! EchonHL(hlgroup, ...) " {{{
     exe ':echohl ' . a:hlgroup
     echon join(a:000)
 endfu " }}}
+fu! Echom(...) " {{{
+    echom join(a:000)
+endfu " }}}
 
 fu! Log(hl, ...)
     silent! echom string(a:000)

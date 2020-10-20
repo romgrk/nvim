@@ -31,8 +31,9 @@ let mapleader = "\<space>"
 
 " <Esc>
 nnoremap <silent><expr> <Esc> (
-            \   exists('b:esc') ? b:esc
-            \ : ':nohl<CR>' )
+            \   exists('b:esc') ? b:esc :
+            \   coc#util#has_float() ? (coc#util#float_hide() . '')[1] :
+            \  ':nohl<CR>' )
 
 " <CR>
 "cnoremap <expr> <CR> g:space.parse_cmd_line()
@@ -161,7 +162,8 @@ nnoremap gsd        :Edit $vim/rc/commands.vim<CR>
 nnoremap gsc        :Edit $vim/rc/colors.vim<CR>
 nnoremap gsh        :Edit $vim/rc/highlight.vim<CR>
 nnoremap gso        :Edit $vim/rc/settings.vim<CR>
-nnoremap gsj        :Edit $HOME/github/github-light.vim/colors/github-light.vim<CR>
+nnoremap gsjg       :Edit $HOME/github/github-light.vim/colors/github-light.vim<CR>
+nnoremap gsjd       :Edit $HOME/github/doom-one.vim/colors/doom-one.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
 nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
 nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
@@ -333,30 +335,49 @@ omap U <Plug>Sneak_T
 " Intellisense (coc.nvim)                                                   {{{1
 
 
-nmap <silent> <F2> :call CocAction('rename')<CR>
-nmap <silent> <leader>K :call CocAction('doHover')<CR>
+nmap <silent> <leader>coc :Clap coc_commands<CR>
+nmap <silent> <F2>       :call CocAction('rename')<CR>
+
+" xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> gme    :<C-u>CocCommand actions.open<CR>
 
 
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" Coc Diagnostics
+nnoremap <silent>[d  <Plug>(coc-diagnostic-previous)
+nnoremap <silent>]d  <Plug>(coc-diagnostic-next)
+nnoremap <silent>[e  <Plug>(coc-diagnostic-previous-error)
+nnoremap <silent>]e  <Plug>(coc-diagnostic-next-error)
+
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)zz
-nmap <silent> gy <Plug>(coc-type-definition)zz
-nmap <silent> gD <Plug>(coc-implementation)zz
-nmap <silent> gR <Plug>(coc-references)
+nmap <silent> gd     <Plug>(coc-definition)zz
+nmap <silent> gy     <Plug>(coc-type-definition)zz
+nmap <silent> gD     <Plug>(coc-implementation)zz
+nmap <silent> gR     <Plug>(coc-references)
+nmap <silent> g<A-r> <Plug>(coc-references-used)
 
 " Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K  :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if &filetype == 'vim'
     execute 'h '.expand('<cword>')
+    return
+  end
+  if !empty(win#filter('getwinvar(v:val, "float")'))
+    call coc#util#float_jump()
+    call s:coc_popup_mappings()
   else
     call CocAction('doHover')
-  endif
+  end
 endfunction
+
+function! s:coc_popup_mappings ()
+  nnoremap <silent><buffer> <Esc> :call coc#util#float_hide()<CR>
+  nnoremap <silent><buffer> <A-u> :call coc#float#scroll(-1)<CR>
+  nnoremap <silent><buffer> <A-d> :call coc#float#scroll(+1)<CR>
+endfunc
+
 
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
@@ -393,11 +414,7 @@ nmap     <leader>j         <Plug>Sneak_s
 nmap     <leader>k         <Plug>Sneak_S
 
 " OptionsWidget:
-nnoremap <silent><leader>co        :OptionsWidget<CR>
-
-" CoC:
-xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> gme    :<C-u>CocCommand actions.open<CR>
+nnoremap <silent><leader>op        :OptionsWidget<CR>
 
 nunmap <leader>ac
 nunmap <leader>a
@@ -526,7 +543,8 @@ nnoremap <silent> <A-O>    :Clap history<CR>
 nnoremap <silent> <C-S>    :Clap buffers<CR>
 
 nnoremap <silent> <A-i>    :Clap tags<CR>
-nnoremap <silent> <A-S-I>  :Clap generated_tags<CR>
+" nnoremap <silent> <A-S-I>  :Clap generated_tags<CR>
+nnoremap <silent> <A-S-I>  :Clap tagfiles<CR>
 
 nnoremap <silent> <C-p>    :Clap command<CR>
 
@@ -626,6 +644,10 @@ if exists('g:gui_oni')
 nnoremap <silent> <A-,> :tabprev<CR>
 nnoremap <silent> <A-.> :tabnext<CR>
 nnoremap <silent> <A-c> :tabclose<CR>
+end
+if exists('g:fvim_loaded')
+nnoremap <silent> <C-Tab>   :BufferNext<CR>
+nnoremap <silent> <C-S-Tab> :BufferPrevious<CR>
 end
 
 " }}}1
@@ -923,15 +945,17 @@ xnoremap <A-a><A-=>    :EasyAlign *=<CR>
 nnoremap <A-a>=     vip:EasyAlign *=<CR>
 xnoremap <A-a>=        :EasyAlign *=<CR>
 " align word
-nnoremap <A-a><A-w>   vip:EasyAlign *\<space><CR>
-xnoremap <A-a><A-w>      :EasyAlign *\<space><CR>
-nnoremap <A-a>w       vip:EasyAlign *\<space><CR>
-xnoremap <A-a>w          :EasyAlign *\<space><CR>
-nnoremap <A-a><space> vip:EasyAlign *\<space><CR>
-xnoremap <A-a><space>    :EasyAlign *\<space><CR>
+nnoremap <A-a><A-w>     vip:EasyAlign *\<space><CR>
+xnoremap <A-a><A-w>        :EasyAlign *\<space><CR>
+nnoremap <A-a>w         vip:EasyAlign *\<space><CR>
+xnoremap <A-a>w            :EasyAlign *\<space><CR>
+nnoremap <A-a><space>   vip:EasyAlign *\<space><CR>
+xnoremap <A-a><space>      :EasyAlign *\<space><CR>
+nnoremap <A-a><A-space> vip:EasyAlign *\<space><CR>
+xnoremap <A-a><A-space>    :EasyAlign *\<space><CR>
 " align Last-Word
-nnoremap <A-a><A-space>    vip:EasyAlign -<space><CR>
-xnoremap <A-a><A-space>       :EasyAlign -<space><CR>
+nnoremap <A-a>-<space>  vip:EasyAlign -<space><CR>
+xnoremap <A-a>-<space>     :EasyAlign -<space><CR>
 " align commas
 nnoremap <A-a><A-,>     vip:EasyAlign *,<CR>
 xnoremap <A-a><A-,>        :EasyAlign *,<CR>
@@ -1071,6 +1095,17 @@ endfu
 "===============================================================================
 " Quick Utils                                                               {{{1
 " @utils
+
+" Foldmethod
+nmap z;m :setlocal fdm=marker<CR>
+nmap z;s :setlocal fdm=syntax<CR>
+nmap z;i :setlocal fdm=indent<CR>
+nmap z;I :setlocal fdm=expr<CR>:setlocal foldexpr=GetIndentFold(v:lnum)<CR>
+nmap z;e :setlocal fdm=expr<CR>
+nmap z;E :setlocal fdm=expr<CR>:setlocal foldexpr=
+nmap z;t :setlocal fdm=expr<CR>:setlocal foldexpr=nvim_treesitter#foldexpr()<CR>
+
+
 
 " Surround line with { and }
 nnoremap  g{   m`o}<esc><lt><lt>kkA<Space>{<esc>``
