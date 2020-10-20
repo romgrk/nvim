@@ -61,7 +61,7 @@ if exists('$VIFM')
 end
 
 set wildignore=node_modules,bower_components,package-lock.json,tags,*.pyc
-set wildignorecase " aka wic
+set wildignorecase
 
 set history=500
 set undolevels=500
@@ -114,7 +114,7 @@ set inccommand=nosplit
 set cursorline
 
 set  laststatus=2
-set showtabline=2 " TODO set according to editor-mode (single vs multiEdit)
+set showtabline=2
 
 set number numberwidth=4
 set colorcolumn=
