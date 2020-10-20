@@ -193,7 +193,7 @@ end
 
 augroup RC_SETUP
 au!
-" au VimEnter * colorscheme github-light
+au VimEnter * colorscheme doom-one
 " au VimEnter * call s:load('./rc/colors.vim')
 au VimEnter * call s:load('./rc/highlight.vim')
 augroup END

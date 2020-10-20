@@ -130,10 +130,9 @@ expand('${1:%}$0')
 endsnippet
 
 snippet aug "autoroup file" b
-exe 'augroup ' . expand('<sfile>')
-au!
-au $0
-exe 'augroup END'
+augroup $0
+	au!
+augroup END
 endsnippet
 
 snippet hi "hi! link" b
