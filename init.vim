@@ -135,6 +135,7 @@ Plug 'rust-lang/rust.vim'                                , { 'for': 'rust' }
 Plug 'cespare/vim-toml'                                  , { 'for': 'toml' }
 Plug 'elixir-lang/vim-elixir'                            , { 'for': 'elixir' }
 Plug 'dzeban/vim-log-syntax'                             , { 'for': 'log' }
+Plug 'ionide/Ionide-vim'                                 , { 'for': 'fsharp' }
 
 " }}}
 " UI                                                                         {{{
