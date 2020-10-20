@@ -8,10 +8,21 @@ let gitgutter_map_keys = 0
 
 let gitgutter_highlight_linenrs = 1
 
-let gitgutter_sign_added            = "\u00a0"
-let gitgutter_sign_removed          = "\u00a0-"
-let gitgutter_sign_modified         = "\u00a0·"
-let gitgutter_sign_modified_removed = "\u00a0·"
+" let gitgutter_sign_added            = "\u00a0"
+" let gitgutter_sign_removed          = "\u00a0-"
+" let gitgutter_sign_modified         = "\u00a0·"
+" let gitgutter_sign_modified_removed = "\u00a0·"
+
+let gitgutter_sign_added            = "\u00a0│"
+let gitgutter_sign_removed          = "\u00a0│"
+let gitgutter_sign_modified         = "\u00a0│"
+let gitgutter_sign_modified_removed = "\u00a0│"
+
+" let gitgutter_sign_added            = "\u00a0▎"
+" let gitgutter_sign_removed          = "\u00a0▎"
+" let gitgutter_sign_modified         = "\u00a0▎"
+" let gitgutter_sign_modified_removed = "\u00a0▎"
+
 
 function! s:link_colors_start ()
   call timer_start(100, function('s:link_colors'), { "repeat": 1 })
