@@ -8,7 +8,7 @@
 augroup bufferline
     au!
     " Modified-buffer styling
-    au BufReadPost,BufNewFile * call BufferReadHandler()
+    au BufReadPost,BufNewFile * call <SID>on_open_buffer()
 augroup END
 
 
@@ -21,68 +21,83 @@ command!          BufferLast  call s:goto_buffer(-1)
 command! BufferMoveNext     call s:move_current_buffer(+1)
 command! BufferMovePrevious call s:move_current_buffer(-1)
 
+
+" Constants
+let s:SPACE = '%( %)'
+
 " Hl groups used for coloring
-let s:hl_groups = ['Buffer', 'BufferVisible', 'BufferCurrent']
+let s:status = ['Inactive', 'Visible', 'Current']
+let s:hl_groups = ['BufferInactive', 'BufferVisible', 'BufferCurrent']
 
 " Current buffers in tabline (ordered)
 let s:buffers = []
 
-fu! TabLineUpdate ()
-    let &tabline = BufferLine()
+
+fu! bufferline#update ()
+   let &tabline = bufferline#render()
 endfu
 
-let s:SPACE = '%( %)'
+fu! bufferline#render ()
+   let bufferNames = {}
+   let bufferDetails = map(s:get_updated_buffers(), {k, number -> { 'number': 0+number, 'name': s:get_buffer_name(number) }})
 
-fu! BufferLine ()
-    let bufferNames = {}
-    let bufferDetails = map(s:get_updated_buffers(), {k, number -> { 'number': 0+number, 'name': s:get_buffer_name(number) }})
+   for i in range(len(bufferDetails))
+   let buffer = bufferDetails[i]
 
-    for i in range(len(bufferDetails))
+   if !has_key(bufferNames, buffer.name)
+      let bufferNames[buffer.name] = i
+   else
+      let other = bufferNames[buffer.name]
+      let name = buffer.name
+      let results = s:get_unique_name(bufname(buffer.number), bufname(bufferDetails[other].number))
+      let newName = results[0]
+      let newOtherName = results[1]
+      let buffer.name = newName
+      let bufferDetails[other].name = newOtherName
+      let bufferNames[buffer.name] = buffer
+      let bufferNames[bufferDetails[other].name] = bufferDetails[other]
+      call remove(bufferNames, name)
+   end
+   endfor
+
+   let currentnr = bufnr()
+
+   let result = ''
+
+   for i in range(len(bufferDetails))
       let buffer = bufferDetails[i]
+      let type = buf#activity(0+buffer.number)
+      let is_visible = type == 1
+      let is_current = currentnr == buffer.number
 
-      if !has_key(bufferNames, buffer.name)
-        let bufferNames[buffer.name] = i
-      else
-        let other = bufferNames[buffer.name]
-        let name = buffer.name
-        let results = s:get_unique_name(bufname(buffer.number), bufname(bufferDetails[other].number))
-        let newName = results[0]
-        let newOtherName = results[1]
-        let buffer.name = newName
-        let bufferDetails[other].name = newOtherName
-        let bufferNames[buffer.name] = buffer
-        let bufferNames[bufferDetails[other].name] = bufferDetails[other]
-        call remove(bufferNames, name)
-      end
-    endfor
+      let status = s:status[type]
+      let mod = buf#modF(0+buffer.number) ? 'Mod' : ''
 
-    let currentnr = bufnr()
+      let signPrefix = s:hl('Buffer' . status . 'Sign')
+      let namePrefix = s:hl('Buffer' . status . mod)
 
-    let result = ''
+      let sign = '▎'
 
-    for i in range(len(bufferDetails))
-        let buffer = bufferDetails[i]
-        let type = buf#activity(0+buffer.number)
-        let is_visible = type == 1
-        let is_current = currentnr == buffer.number
+      let [icon, iconHl] = s:get_icon(buffer.name)
+      let iconPrefix = status is 'Inactive' ? namePrefix : s:hl(iconHl)
 
-        let hl  = s:hl_groups[type]
-        let hl .= buf#modF(0+buffer.number) ? 'Mod' : ''
+      let icon = '%{"' . icon .' "}'
+      let name = '%{"' . buffer.name .'"}'
 
-        let numberPrefix = s:hl('BufferSign' . 
-            \ (is_current ? 'Current' : is_visible ? 'Visible' : ''), i + 1)
+      let result .=
+         \ signPrefix . sign .
+         \ iconPrefix . icon .
+         \ namePrefix . name .
+         \ s:SPACE
 
-        let hlprefix   = '%#'. hl .'#'
-        let bufExpr = '%{"' . buffer.name .'"}'
-        " let result .= hlprefix . s:SPACE . numberPrefix . s:SPACE . hlprefix . bufExpr . s:SPACE
-        let result .= hlprefix . s:SPACE . hlprefix . bufExpr . s:SPACE
-    endfor
+   endfor
 
-    let result .= s:hl('TabLineFill')
+   let result .= s:hl('TabLineFill')
 
-    return result
+   return result
 endfu
-fu! TablineSession (...)
+
+fu! bufferline#session (...)
     let name = ''
 
     if exists('g:xolox#session#current_session_name')
@@ -98,7 +113,8 @@ fu! TablineSession (...)
 
     return '%#BufferPart#%( ' . name . ' %)'
 endfunc
-fu! Tabpages ()
+
+fu! bufferline#tab_pages ()
     if tabpagenr('$') == 1
         return ''
     end
@@ -113,76 +129,100 @@ fu! Tabpages ()
     return tabpart
 endfu
 
-function! BufferReadHandler()
+
+" Event handlers
+
+function! s:on_open_buffer()
    if (&bt == '')
       augroup BUFFER_MOD
       au!
-      au BufWritePost <buffer> call BufferModChanged()
-      au TextChanged  <buffer> call BufferModChanged()
-      au TextChangedI <buffer> call BufferModChanged()
+      au BufWritePost <buffer> call <SID>check_modified()
+      au TextChanged  <buffer> call <SID>check_modified()
+      au TextChangedI <buffer> call <SID>check_modified()
       augroup END
    end
 endfunc
 
-function! BufferModChanged()
+function! s:check_modified()
    if (&modified != get(b:,'checked'))
       let b:checked = &modified
-      call TabLineUpdate()
+      call bufferline#update()
    end
 endfunc
+
 
 " Buffer movement
 
 function! s:move_current_buffer (direction)
-    call s:get_updated_buffers()
+   call s:get_updated_buffers()
 
-    let currentnr = bufnr('%')
-    let idx = index(s:buffers, currentnr)
+   let currentnr = bufnr('%')
+   let idx = index(s:buffers, currentnr)
 
-    if idx == 0 && a:direction == -1
-        return
-    end
-    if idx == len(s:buffers)-1 && a:direction == +1
-        return
-    end
+   if idx == 0 && a:direction == -1
+      return
+   end
+   if idx == len(s:buffers)-1 && a:direction == +1
+      return
+   end
 
-    let othernr = s:buffers[idx + a:direction]
-    let s:buffers[idx] = othernr
-    let s:buffers[idx + a:direction] = currentnr
+   let othernr = s:buffers[idx + a:direction]
+   let s:buffers[idx] = othernr
+   let s:buffers[idx + a:direction] = currentnr
 
-    call TabLineUpdate()
+   call bufferline#update()
 endfunc
 
 function! s:goto_buffer (number)
-    call s:get_updated_buffers()
+   call s:get_updated_buffers()
 
-    if a:number == -1
-        let idx = len(s:buffers)-1
-    else
-        let idx = a:number - 1
-    end
+   if a:number == -1
+      let idx = len(s:buffers)-1
+   else
+      let idx = a:number - 1
+   end
 
-    silent execute 'buffer' . s:buffers[idx]
+   silent execute 'buffer' . s:buffers[idx]
 endfunc
 
 function! s:goto_buffer_relative (direction)
-    call s:get_updated_buffers()
+   call s:get_updated_buffers()
 
-    let currentnr = bufnr('%')
-    let idx = index(s:buffers, currentnr)
+   let currentnr = bufnr('%')
+   let idx = index(s:buffers, currentnr)
 
-    if idx == 0 && a:direction == -1
-        let idx = len(s:buffers)-1
-    elseif idx == len(s:buffers)-1 && a:direction == +1
-        let idx = 0
-    else
-        let idx = idx + a:direction
-    end
+   if idx == 0 && a:direction == -1
+      let idx = len(s:buffers)-1
+   elseif idx == len(s:buffers)-1 && a:direction == +1
+      let idx = 0
+   else
+      let idx = idx + a:direction
+   end
 
-    silent execute 'buffer' . s:buffers[idx]
+   silent execute 'buffer' . s:buffers[idx]
 endfunc
 
 " Helpers
+
+lua << END
+local web = require'nvim-web-devicons'
+function get_icon_wrapper(args)
+   local basename  = args[1]
+   local extension = args[2]
+   local icon, hl = web.get_icon(basename, extension, { default = true })
+   return { icon, hl }
+end
+END
+
+function! s:get_icon (buffer_name)
+   let basename = path#Basename(a:buffer_name)
+   let extension = matchstr(basename, '\v\.@<=\w+$', '', '')
+   let [icon, hl] = luaeval("get_icon_wrapper(_A)", [basename, extension])
+   if icon == ''
+      let icon = g:lua_tree_icons.default
+   end
+   return [icon, hl]
+endfunc
 
 function! s:get_updated_buffers ()
    if exists('g:session.buffers')
@@ -251,43 +291,4 @@ function! s:hl (...)
     return str
 endfu
 
-
-fu! IsGit (dir)
-    let res = system('cd ' . a:dir . ' && git show-branch')
-    return (res !~? '^fatal')
-endfu
-let s:cache  = {}
-let s:remote = {}
-fu! IsGithub (...)
-    let dir = fnamemodify((a:0 ? a:1 : @%), ':p:h')
-    if exists('s:cache[dir]')
-        return s:cache[dir]
-    end
-
-    let out = system('cd ' . dir . ' && git remote show origin')
-    if out[0:4] ==# '^fatal'
-        let s:cache[dir] = 0
-    else
-        let s:remote[dir] = matchstr(out, 'Fetch.\+$')
-        if out =~# 'github.com'
-            let s:cache[dir] = 1
-        else
-            let s:cache[dir] = 0
-        end
-    end
-    return s:cache[dir]
-endfu
-fu! s:gitBranch (dir)
-    let head = a:dir.'/.git/HEAD'
-    if filereadable(head)
-        let patt = '\v/\zs[^/]+\ze\s*$'
-        let branch = matchstr(
-            \join(readfile(head), ''), patt)
-        if strlen(branch)
-            return branch
-        end
-    end
-    return ''
-endfu
-
-let g:buffer_line = s:
+let g:bufferline = s:

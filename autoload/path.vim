@@ -52,7 +52,7 @@ function! s:SplitLast(path) abort
     let l:head = l:last_sep > 0 ? l:path[ : l:last_sep - 1] : ''
     return [l:root . l:head, l:path[l:last_sep + 1 : ]]
   else
-    return [l:root, '']
+    return [l:root, l:count == 1 ? a:path : '']
   endif
 endfunction
 
