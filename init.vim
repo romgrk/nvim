@@ -3,6 +3,7 @@
 " Description: neovim init file
 
 " TODO Clap command
+" TODO install https://github.com/fannheyward/coc-react-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 " TODO todo manager not working
