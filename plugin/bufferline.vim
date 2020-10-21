@@ -223,7 +223,7 @@ end
 END
 
 function! s:get_icon (buffer_name)
-   let basename = path#Basename(a:buffer_name)
+   let basename = fnamemodify(a:buffer_name, ':t')
    let extension = matchstr(basename, '\v\.@<=\w+$', '', '')
    let [icon, hl] = luaeval("get_icon_wrapper(_A)", [basename, extension])
    if icon == ''
