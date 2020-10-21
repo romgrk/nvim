@@ -18,6 +18,17 @@ let exclude_buftypes =
 let jsx_ext_required        = 1 " Allow JSX in normal JS files
 let javascript_plugin_jsdoc = 1
 
+" Icons:
+"
+let icons = {
+\ 'bufferline_separator_active':   '▎',
+\ 'bufferline_separator_inactive': '▎',
+\ 'gitgutter_sign_added':            "\u00a0│",
+\ 'gitgutter_sign_removed':          "\u00a0│",
+\ 'gitgutter_sign_modified':         "\u00a0│",
+\ 'gitgutter_sign_modified_removed': "\u00a0│",
+\}
+
 "=============================================================================
 " Paths                                                                      {{{
 

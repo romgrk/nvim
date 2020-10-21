@@ -25,7 +25,6 @@ augroup RC
     au QuitPre  *        :SaveSession!
     au SessionLoadPost * :SourceLocalVimrc
 
-
     " Jump back at last pos
     au BufReadPost * call RestorePosition()
     " Close list
@@ -73,13 +72,13 @@ function! s:did_load (...)
 
     augroup TabLine
         au!
-        au BufNew,BufDelete       * call TabLineUpdate()
-        au BufWinEnter,BufEnter   * call TabLineUpdate()
-        au BufWritePost           * call TabLineUpdate()
-        au TabEnter,TabNewEntered * call TabLineUpdate()
+        au BufNew,BufDelete       * call bufferline#update()
+        au BufWinEnter,BufEnter   * call bufferline#update()
+        au BufWritePost           * call bufferline#update()
+        au TabEnter,TabNewEntered * call bufferline#update()
     augroup END
 
-    call TabLineUpdate()
+    call bufferline#update()
 
     augroup DeleteTrailingWS
         au!

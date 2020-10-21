@@ -2,6 +2,8 @@
 " Author: romgrk
 " Description: neovim init file
 
+" TODO bufferline: open next
+" TODO mappings: rework inside-d/r/k/a
 " TODO Clap command
 " TODO install https://github.com/fannheyward/coc-react-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
@@ -69,7 +71,7 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
-" Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'lukas-reineke/indent-blankline.nvim' " re-enable if/when it's less CPU intensive
 Plug 'wellle/visual-split.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -84,6 +86,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vista.vim'
 Plug 'MarcWeber/vim-addon-local-vimrc'
+Plug 'markwu/vim-mrufiles'
 Plug 'neoclide/npm.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
