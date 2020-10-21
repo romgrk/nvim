@@ -32,6 +32,12 @@ let s:hl_groups = ['BufferInactive', 'BufferVisible', 'BufferCurrent']
 " Current buffers in tabline (ordered)
 let s:buffers = []
 
+" Default icons
+let g:icons = extend(get(g:, 'icons', {}), #{
+\ bufferline_separator_active:   '▎',
+\ bufferline_separator_inactive: '▎',
+\})
+
 
 fu! bufferline#update ()
    let &tabline = bufferline#render()
@@ -76,7 +82,9 @@ fu! bufferline#render ()
       let signPrefix = s:hl('Buffer' . status . 'Sign')
       let namePrefix = s:hl('Buffer' . status . mod)
 
-      let sign = '▎'
+      let sign = status == 'Inactive' ?
+         \ g:icons.bufferline_separator_inactive :
+         \ g:icons.bufferline_separator_active
 
       let [icon, iconHl] = s:get_icon(buffer.name)
       let iconPrefix = status is 'Inactive' ? namePrefix : s:hl(iconHl)
