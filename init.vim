@@ -2,9 +2,11 @@
 " Author: romgrk
 " Description: neovim init file
 
+" TODO go buffer mode with bufferline
 " TODO bufferline: open next
 " TODO mappings: rework inside-d/r/k/a
 " TODO Clap command
+" TODO install https://github.com/rhysd/vim-operator-surround
 " TODO install https://github.com/fannheyward/coc-react-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
@@ -12,6 +14,7 @@
 " TODO inline comments when available (eg javascript)
 " TODO Plug 'neovim/nvim-lsp'
 " TODO Plug 'wbthomason/lsp-status.nvim'
+" TODO Plug 'neomake/neomake'
 
 " NOTE https://github.com/nvim-treesitter/playground
 
@@ -59,7 +62,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 " https://github.com/vn-ki/coc-clap
 Plug 'vn-ki/coc-clap'
-Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sirver/UltiSnips'
 Plug 'terryma/vim-multiple-cursors'
@@ -155,6 +157,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 " }}}
 " Personal                                                                   {{{
+Plug 'romgrk/barbar.nvim'
 Plug 'romgrk/equal.operator'
 Plug 'romgrk/columnMove.vim'
 Plug 'romgrk/lib.kom'
