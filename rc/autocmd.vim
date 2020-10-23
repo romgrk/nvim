@@ -69,17 +69,6 @@ augroup RC
 augroup END
 
 function! s:did_load (...)
-
-    augroup TabLine
-        au!
-        au BufNew,BufDelete       * call bufferline#update()
-        au BufWinEnter,BufEnter   * call bufferline#update()
-        au BufWritePost           * call bufferline#update()
-        au TabEnter,TabNewEntered * call bufferline#update()
-    augroup END
-
-    call bufferline#update()
-
     augroup DeleteTrailingWS
         au!
         " Auto-delete whitespaces at EOL

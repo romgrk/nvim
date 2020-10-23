@@ -5,6 +5,11 @@
 
 " Recent mappings:
 
+nnoremap <silent><C-s>      :BufferPick<CR>
+nnoremap <silent><A-space>  :BufferPick<CR>
+nnoremap <silent><space>bd  :BufferOrderByDirectory<CR>
+nnoremap <silent><space>bl  :BufferOrderByLanguage<CR>
+
 vmap <C-f> <Nop>
 vmap <C-b> <Nop>
 
@@ -18,10 +23,6 @@ xnoremap @  :normal @q<CR>
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep<CR>
 
-nmap - <Plug>(CtrlXA-CtrlX)
-nmap _ <Plug>(CtrlXA-CtrlA)
-nmap + <Plug>(CtrlXA-CtrlA)
-nmap = <Plug>(CtrlXA-CtrlA)
 
 
 "===============================================================================
@@ -357,7 +358,10 @@ nmap <silent> gR     <Plug>(coc-references)
 nmap <silent> g<A-r> <Plug>(coc-references-used)
 
 " Use K for show documentation in preview window
-nnoremap <silent> K  :call <SID>show_documentation()<CR>
+nnoremap <silent> K     :call <SID>show_documentation()<CR>
+inoremap <silent> <C-k> <C-O>:call coc#util#float_jump()<CR>
+inoremap <silent> <A-u> <C-O>:call coc#float#scroll(-1)<CR>
+inoremap <silent> <A-d> <C-O>:call coc#float#scroll(+1)<CR>
 
 function! s:show_documentation()
   if &filetype == 'vim'
@@ -374,8 +378,6 @@ endfunction
 
 function! s:coc_popup_mappings ()
   nnoremap <silent><buffer> <Esc> :call coc#util#float_hide()<CR>
-  nnoremap <silent><buffer> <A-u> :call coc#float#scroll(-1)<CR>
-  nnoremap <silent><buffer> <A-d> :call coc#float#scroll(+1)<CR>
 endfunc
 
 
@@ -519,6 +521,8 @@ nnoremap <silent><leader>npm  :Clap npm<CR>
 nnoremap <silent><leader>qr   :call QuickReload()<CR>
 nnoremap <silent><leader>qo   :So<CR>
 
+nnoremap         <leader>up   :PlugUpdate <Bar> CocUpdate<CR>
+
 
 " Multi-Cursors:
 " (see: ./plugins/multiple-cursors.vim)
@@ -540,7 +544,7 @@ nnoremap <silent> <A-o>    :Clap files<CR>
 nnoremap <silent> <C-A-o>  :Clap filer <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
 
 nnoremap <silent> <A-O>    :Clap history<CR>
-nnoremap <silent> <C-S>    :Clap buffers<CR>
+" nnoremap <silent> <C-S>    :Clap buffers<CR>
 
 nnoremap <silent> <A-i>    :Clap tags<CR>
 " nnoremap <silent> <A-S-I>  :Clap generated_tags<CR>
@@ -627,14 +631,14 @@ nnoremap <silent> <A-.> :BufferNext<CR>
 nnoremap <silent> <A-<> :BufferMovePrevious<CR>
 nnoremap <silent> <A->> :BufferMoveNext<CR>
 
-nnoremap <silent> <A-1> :BufferJump 1<CR>
-nnoremap <silent> <A-2> :BufferJump 2<CR>
-nnoremap <silent> <A-3> :BufferJump 3<CR>
-nnoremap <silent> <A-4> :BufferJump 4<CR>
-nnoremap <silent> <A-5> :BufferJump 5<CR>
-nnoremap <silent> <A-6> :BufferJump 6<CR>
-nnoremap <silent> <A-7> :BufferJump 7<CR>
-nnoremap <silent> <A-8> :BufferJump 8<CR>
+nnoremap <silent> <A-1> :BufferGoto 1<CR>
+nnoremap <silent> <A-2> :BufferGoto 2<CR>
+nnoremap <silent> <A-3> :BufferGoto 3<CR>
+nnoremap <silent> <A-4> :BufferGoto 4<CR>
+nnoremap <silent> <A-5> :BufferGoto 5<CR>
+nnoremap <silent> <A-6> :BufferGoto 6<CR>
+nnoremap <silent> <A-7> :BufferGoto 7<CR>
+nnoremap <silent> <A-8> :BufferGoto 8<CR>
 nnoremap <silent> <A-9> :BufferLast<CR>
 
 nnoremap <silent> <A-c> :BufferClose<CR>
@@ -653,6 +657,12 @@ end
 " }}}1
 "===============================================================================
 " Text manipulation                                                         {{{1
+
+" Increase/decrease
+nmap - <Plug>(CtrlXA-CtrlX)
+nmap _ <Plug>(CtrlXA-CtrlA)
+nmap + <Plug>(CtrlXA-CtrlA)
+nmap = <Plug>(CtrlXA-CtrlA)
 
 " Exchange line x-up/down
 nnoremap <expr> <C-x>j     'ddp'  . col('.') . '<Bar>'
@@ -1519,6 +1529,7 @@ cnoremap <A-u> <C-W><C-W>
 " Abbreviations: @cabbr
 
 cabbrev pp      Pp
+cabbrev hh      vert h
 cabbrev sudo    w !sudo tee % >/dev/null
 
 
