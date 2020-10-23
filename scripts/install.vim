@@ -1,25 +1,32 @@
+" Usage: copy URL to clipboad & `:source scripts/install.vim`
+
+
+let s:start_pattern = "^Plug"
+
 
 let s:patt = '\v([^/]+)/([^/]+)$'
-"let q = system('xclip -selection clipboard -o')
-let q = getreg('+')
-let m = matchlist(q, s:patt)
+let s:q = getreg('+')
+let s:m = matchlist(s:q, s:patt)
 
-if empty(m)
-    let q = _#Input(':Plug ')
+if empty(s:m)
+    let s:q = input(':Plug ')
 end
 
-let m = matchlist(q, s:patt)
+let s:m = matchlist(s:q, s:patt)
 
-if empty(m)
+if empty(s:m)
     echo ''
-    call Warn('Empty match for: ', q)
+    echohl WarningMsg
+    echo 'Empty match for: ' s:q
+    echohl None
     finish
 end
 
-let cmd_p = "Plug '" . m[0] . "'"
-let cmd_i = "PlugInstall " . m[2] . ""
+let cmd_p = "Plug '" . s:m[0] . "'"
+let cmd_i = "PlugInstall " . s:m[2] . ""
 try
-    edit +/@plugins $MYVIMRC
+    execute "edit +/" s:start_pattern  " " $MYVIMRC
+
     call append('.', [cmd_p])
 
     execute cmd_p
