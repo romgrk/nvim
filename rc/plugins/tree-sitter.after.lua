@@ -24,15 +24,16 @@ configs.setup {
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = {  },  -- list of language that will be disabled
+    use_languagetree = true,
   },
 
   incremental_selection = {
-    enable = true,
+    enable = false,
     keymaps = {
-      init_selection    = '<C-r>n',
-      node_incremental  = '<C-r>n',
-      scope_incremental = '<C-r>c',
-      node_decremental  = '<C-r>m',
+      init_selection    = 'grn',
+      node_incremental  = 'grn',
+      scope_incremental = 'grc',
+      node_decremental  = 'grm',
     },
   },
 

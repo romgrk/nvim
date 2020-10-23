@@ -4,6 +4,8 @@
 
 let lua_tree_size = 25
 
+let lua_tree_git_hl = 1
+
 let lua_tree_show_icons = {
 \ 'git': 0,
 \ 'folders': 1,
@@ -25,8 +27,6 @@ let lua_tree_icons = {
 " \   'renamed':   '➜',
 " \   'untracked': '★'
 " \   },
-
-let lua_tree_git_hl = 1
 
 let lua_tree_bindings = {
 \ 'edit':            ['<CR>', 'o'],

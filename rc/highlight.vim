@@ -5,51 +5,62 @@
 " !::exe [So]
 
 augroup user_highlight
-au ColorScheme * :exe 'source ' . expand('<sfile>:p')
-au VimEnter *    :call pp#prettyTheme()
+    au ColorScheme * :call <SID>setup()
+    au VimEnter *    :call pp#prettyTheme()
 augroup END
 
-" General                                                                    {{{
+function! s:setup()
+    " General                                                                    {{{
 
-hi! link QuickFixLine Highlight
-hi! link    Noise          Comment
+    hi! link QuickFixLine Highlight
+    hi! link    Noise          Comment
 
-" }}}
-" Plugin specific                                                            {{{
+    " }}}
+    " Plugin specific                                                            {{{
 
-hi! link SearchReplaceMatch      EasyMotionTargetDefault
-hi! link SneakLabel              EasyMotionTargetDefault
-hi! link SneakLabelMask          Noise
+    hi! link SearchReplaceMatch      EasyMotionTargetDefault
+    hi! link SneakLabel              EasyMotionTargetDefault
+    hi! link SneakLabelMask          Noise
 
-hi! CocInfoSign                       guifg=#0E8FFF
-hi! CocInfoHighlight    gui=undercurl guisp=#0E8FFF
-hi! CocWarningSign                    guifg=#FF9F0E
-hi! CocWarningHighlight gui=undercurl guisp=#FF9F0E
-hi! CocErrorSign                      guifg=#ff1010
-hi! CocErrorHighlight   gui=undercurl guisp=#ff1010
+    hi! CocInfoSign                       guifg=#0E8FFF
+    hi! CocInfoHighlight    gui=undercurl guisp=#0E8FFF
+    hi! CocWarningSign                    guifg=#FF9F0E
+    hi! CocWarningHighlight gui=undercurl guisp=#FF9F0E
+    hi! CocErrorSign                      guifg=#ff1010
+    hi! CocErrorHighlight   gui=undercurl guisp=#ff1010
 
-" hi! link CocFloating NormalFloat
-" hi! CocInfoFloat                      guifg=white
-" hi! CocWarningFloat                   guifg=#FFDD86
-" hi! CocErrorFloat                     guifg=#FDC1C1
-hi! link CocFloating NormalPopover
-hi! link CocInfoFloat                   TextNormal
-hi! link CocWarningFloat                TextWarning
-hi! link CocErrorFloat                  TextError
+    hi! CocHintSign                       guifg=#15aabf
+    hi! CocHintHighlight    gui=undercurl guisp=#15aabf
 
-hi link gitmessengerHeader NormalFloat
+    let bg = hi#bg('Normal')
+    let bg = empty(bg) ? '#000000' : bg
+    call hi#('CocRustChainingHint', color#Mix('#15aabf', bg))
+
+    " hi! link CocFloating NormalFloat
+    " hi! CocInfoFloat                      guifg=white
+    " hi! CocWarningFloat                   guifg=#FFDD86
+    " hi! CocErrorFloat                     guifg=#FDC1C1
+    hi! link CocFloating NormalPopover
+    hi! link CocInfoFloat                   TextNormal
+    hi! link CocWarningFloat                TextWarning
+    hi! link CocErrorFloat                  TextError
+
+    hi link gitmessengerHeader NormalFloat
 
 
-hi! link HighlightedyankRegion Highlight
+    hi! link HighlightedyankRegion Highlight
 
-call hi#('multiple_cursors_cursor', colors.darkred, colors.pink, 'bold')
-hi! link multiple_cursors_visual visual
+    call hi#('multiple_cursors_cursor', g:colors.darkred, g:colors.pink, 'bold')
+    hi! link multiple_cursors_visual visual
 
 
-" }}}
-" Notes, notation, etc.                                                      {{{
-hi! link vifmNotation        OldSpecial
-hi! link notesXXX            TextError
-hi! link notesDoneMarker     TextSuccess
-hi! link notesTODO           TextWarning
-" }}}
+    " }}}
+    " Notes, notation, etc.                                                      {{{
+    hi! link vifmNotation        OldSpecial
+    hi! link notesXXX            TextError
+    hi! link notesDoneMarker     TextSuccess
+    hi! link notesTODO           TextWarning
+    " }}}
+endfunc
+
+call s:setup()
