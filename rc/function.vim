@@ -334,28 +334,16 @@ endfu "                                                                      }}}
 
 " Window-resize
 function! SizeUp ()
-    let max = 0+&columns
-    let anchors = sort([max/3, 2*max/3, max, 0+&textwidth], 'Compare')
-    let size = winwidth(0)
-    Pp size, anchors
-    let i = 0
-    while size >= anchors[i] && i < len(anchors)
-        let i += 1
-    endwhile
-
-    call win#().width(anchors[i])
+    let width = nvim_win_get_width(0)
+    let max_width = str2nr(&columns)
+    let new_width = min([width * 3 / 2, max_width])
+    call nvim_win_set_width(0, new_width)
 endfunc
 function! SizeDown ()
-    let max = 0+&columns
-    let anchors = sort([0, max/3, 2*max/3, &textwidth+0], 'Compare')
-    let size = winwidth(0)
-    Pp size, anchors
-    let i = len(anchors) - 1
-    while size <= anchors[i] && i > 0
-        let i -= 1
-    endwhile
-
-    call win#().width(anchors[i])
+    let width = nvim_win_get_width(0)
+    let min_width = 5
+    let new_width = max([width * 2 / 3 , min_width])
+    call nvim_win_set_width(0, new_width)
 endfunc
 function! ToggleWindows ()
     let currentWindow = winnr()
