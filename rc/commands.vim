@@ -1,7 +1,7 @@
 " !::exe [So]
 
 
-command! -nargs=* CurrentSession   echo GetCurrentSession()
+command!          CurrentSession   call Info('Session: ' . GetCurrentSession())
 
 command! -nargs=* Lua     lua print(vim.inspect(<args>))
 

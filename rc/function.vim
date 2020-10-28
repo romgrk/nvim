@@ -336,13 +336,13 @@ endfu "                                                                      }}}
 function! SizeUp ()
     let width = nvim_win_get_width(0)
     let max_width = str2nr(&columns)
-    let new_width = min([width * 3 / 2, max_width])
+    let new_width = min([width * 4 / 3, max_width])
     call nvim_win_set_width(0, new_width)
 endfunc
 function! SizeDown ()
     let width = nvim_win_get_width(0)
     let min_width = 5
-    let new_width = max([width * 2 / 3 , min_width])
+    let new_width = max([width * 3 / 4 , min_width])
     call nvim_win_set_width(0, new_width)
 endfunc
 function! ToggleWindows ()

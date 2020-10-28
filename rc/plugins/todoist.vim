@@ -1,6 +1,5 @@
 
 let todoist = {
-\ 'key': $TODOIST_API_KEY,
 \ 'icons': {
 \   'unchecked': '  ',
 \   'checked':   '  ',

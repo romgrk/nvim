@@ -5,6 +5,8 @@
 
 " Recent mappings:
 
+nnoremap <silent><C-b>      :Lister<CR>
+
 nnoremap <silent><C-s>      :BufferPick<CR>
 nnoremap <silent><A-space>  :BufferPick<CR>
 nnoremap <silent><space>bd  :BufferOrderByDirectory<CR>
@@ -23,6 +25,10 @@ xnoremap @  :normal @q<CR>
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep<CR>
 
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprevious<CR>
+nnoremap ]c /^<<<<CR>:set nohls<CR>
+nnoremap [c ?^<<<<CR>:set nohls<CR>
 
 
 "===============================================================================
@@ -456,6 +462,7 @@ nnoremap         <leader>gb     :Clap git_branch<CR>
 nnoremap         <leader>gl     :Gpull<CR>
 nnoremap         <leader>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
 nnoremap         <leader>gpp    :Gpush<CR>
+nnoremap         <leader>gpf    :Gpush --force<CR>
 nnoremap         <leader>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
 nnoremap <silent><leader>gs     :Gstatus<CR>
 nnoremap <silent><leader>gu     :GitOpenUnmergedFiles<CR>
@@ -519,7 +526,7 @@ nnoremap <silent><leader>td   :OpenTodo<CR>
 nnoremap <silent><leader>npm  :Clap npm<CR>
 
 nnoremap <silent><leader>qr   :call QuickReload()<CR>
-nnoremap <silent><leader>qo   :So<CR>
+nnoremap <expr>  <leader>qo   expand('%:e') == 'vim' ? ':So<CR>' : ':luafile %<CR>'
 
 nnoremap         <leader>up   :PlugUpdate <Bar> CocUpdate<CR>
 
@@ -543,7 +550,7 @@ nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 nnoremap <silent> <A-o>    :Clap files<CR>
 nnoremap <silent> <C-A-o>  :Clap filer <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
 
-nnoremap <silent> <A-O>    :Clap history<CR>
+nnoremap <silent> <A-S-o>  :Clap mrufiles<CR>
 " nnoremap <silent> <C-S>    :Clap buffers<CR>
 
 nnoremap <silent> <A-i>    :Clap tags<CR>
@@ -990,15 +997,15 @@ vmap <A-'>      <Plug>NERDCommenterSexy
 " StringTransform:
 " Change Case                                                                {{{
 nmap <leader>ccc <Plug>(camel_case_operator)
-xmap <leader>ccc <Plug>(camel_case_operator)
 nmap <leader>ccC <Plug>(upper_camel_case_operator)
-xmap <leader>ccC <Plug>(upper_camel_case_operator)
 nmap <leader>cc_ <Plug>(snake_case_operator)
-xmap <leader>cc_ <Plug>(snake_case_operator)
 nmap <leader>cc- <Plug>(kebab_case_operator)
-xmap <leader>cc- <Plug>(kebab_case_operator)
 nmap <leader>ccs <Plug>(start_case_operator)
-xmap <leader>ccs <Plug>(start_case_operator)
+" xmap <leader>ccc <Plug>(camel_case_operator)
+" xmap <leader>ccC <Plug>(upper_camel_case_operator)
+" xmap <leader>cc_ <Plug>(snake_case_operator)
+" xmap <leader>cc- <Plug>(kebab_case_operator)
+" xmap <leader>ccs <Plug>(start_case_operator)
 "}}}
 
 " }}}1

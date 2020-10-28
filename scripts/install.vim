@@ -1,7 +1,7 @@
 " Usage: copy URL to clipboad & `:source scripts/install.vim`
 
 
-let s:start_pattern = "^Plug"
+" let s:start_pattern = "^Plug"
 
 
 let s:patt = '\v([^/]+)/([^/]+)$'
@@ -25,7 +25,7 @@ end
 let cmd_p = "Plug '" . s:m[0] . "'"
 let cmd_i = "PlugInstall " . s:m[2] . ""
 try
-    execute "edit +/" s:start_pattern  " " $MYVIMRC
+    edit +/@plugins $MYVIMRC
 
     call append('.', [cmd_p])
 

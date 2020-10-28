@@ -10,6 +10,7 @@
 " TODO install https://github.com/fannheyward/coc-react-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+" TODO install https://github.com/iamcco/markdown-preview.nvim
 " TODO todo manager not working
 " TODO inline comments when available (eg javascript)
 " TODO Plug 'neovim/nvim-lsp'
@@ -60,8 +61,6 @@ Plug 'kana/vim-niceblock'
 Plug 'Konfekt/vim-ctrlxa'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
-" https://github.com/vn-ki/coc-clap
-Plug 'vn-ki/coc-clap'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sirver/UltiSnips'
 Plug 'terryma/vim-multiple-cursors'
@@ -73,6 +72,7 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'akinsho/nvim-toggleterm.lua'
 " Plug 'lukas-reineke/indent-blankline.nvim' " re-enable if/when it's less CPU intensive
 Plug 'wellle/visual-split.vim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -98,6 +98,8 @@ Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-scripts/loremipsum'
+" https://github.com/vn-ki/coc-clap
+Plug 'vn-ki/coc-clap'
 Plug 'wsdjeg/vim-fetch'
 Plug 'wsdjeg/vim-todo'
 Plug 'xolox/vim-misc'
@@ -107,6 +109,7 @@ Plug 'romgrk/vim-session'
 Plug 'xolox/vim-shell'
 " }}}
 " Language                                                                   {{{
+Plug 'JuliaEditorSupport/julia-vim'                      , { 'for': 'julia' }
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'justinmk/vim-syntax-extra'
@@ -169,6 +172,7 @@ Plug 'romgrk/searchReplace.vim'
 Plug 'romgrk/todoist.nvim'                               , {'do': ':TodoistInstall'}
 Plug 'romgrk/github-light.vim'
 Plug 'romgrk/doom-one.vim'
+Plug 'romgrk/lister'
 " }}}
 
 call plug#end() " }}}

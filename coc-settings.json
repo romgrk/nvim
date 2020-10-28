@@ -50,17 +50,19 @@
       }
     }
 
+    // CocInstall coc-actions
+
     // CocInstall coc-tsserver
     // CocInstall coc-css
     // CocInstall coc-html
     // CocInstall coc-json
     // CocInstall coc-python
     // CocInstall coc-tag
-    // CocInstall coc-actions
     // CocInstall coc-rust-analyzer
     // CocInstall coc-clangd
     // CocInstall coc-browser
     // CocInstall coc-lua
+    // CocInstall coc-julia
 
   },
 

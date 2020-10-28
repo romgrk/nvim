@@ -15,5 +15,5 @@ nnoremap <buffer>         <A-]>     /\v\<Bar>[^<Bar>]+\<Bar><CR>
 nnoremap <buffer>         <A-[>     ?\v\<Bar>[^<Bar>]+\<Bar><CR>
 nnoremap <buffer>         <Tab>     /\|\zs\S\{-}\|/<CR><C-]>
 
-nmap <nowait><buffer> d <A-d>
-nmap <nowait><buffer> u <A-u>
+" nmap <nowait><buffer> d <A-d>
+" nmap <nowait><buffer> u <A-u>
