@@ -2,10 +2,9 @@
 " Author: romgrk
 " Description: neovim init file
 
-" TODO go buffer mode with bufferline
 " TODO bufferline: open next
 " TODO mappings: rework inside-d/r/k/a
-" TODO Clap command
+" TODO install https://github.com/machakann/vim-sandwich
 " TODO install https://github.com/rhysd/vim-operator-surround
 " TODO install https://github.com/fannheyward/coc-react-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
