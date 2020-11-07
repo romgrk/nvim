@@ -28,7 +28,7 @@ augroup RC
     " Jump back at last pos
     au BufReadPost * call RestorePosition()
     " Close list
-    au BufDelete   * call StoreBuffer(expand('<afile>'))
+    au BufDelete   * call StoreBuffer(expand('<afile>:p'))
 
     " Terminal
     if has('nvim')

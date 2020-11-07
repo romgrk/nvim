@@ -108,7 +108,6 @@ endfu
 
 
 com! -bar FileDelete       call FileDeleteCurrent()
-com! -bar BufferClose      call BufferCloseCurrent()
 com! -bar BufferReopen     call BufferReopenClosed()
 com! -bar BufferWipeReopen call BufferWipeReopen()
 com! -bar BufferTabview    tab sview %
@@ -119,37 +118,6 @@ fu! FileDeleteCurrent()
         echoerr 'Failed to delete "'.file.'"'
     endif
     unlet file
-endfu
-fu! BufferCloseCurrent ()
-    let current_buffer = bufnr("%")
-    let current_window = win_getid()
-    let windows = win_findbuf(current_buffer)
-
-    " Change buffer if it's displayed in window
-    for winid in windows
-        execute  '' . (win_id2win(winid)) . 'wincmd w'
-
-        if buflisted(bufnr("#"))
-            buffer #
-        else
-            bnext | end
-
-        if current_buffer == bufnr('%')
-            enew | end
-    endfor
-
-    " Delete buffer
-    if bufloaded(current_buffer)
-        exe 'bdelete! ' . current_buffer
-    end
-    if bufexists(current_buffer)
-        exe 'bwipeout ' . current_buffer
-    end
-
-    " Go back to window
-    call win_gotoid(current_window)
-
-    doautocmd BufEnter
 endfu
 fu! BufferReopenClosed()
     if !exists('g:session.closed_buffers')
