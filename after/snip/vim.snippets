@@ -111,17 +111,14 @@ snippet fu "fu! endfu" b
 function! ${1:name}()
 endfunc
 endsnippet
-snippet fn "function! endfunction" b
-function! ${1:name} (${2:args})
-endfunc
-endsnippet
 snippet fs "function! s: endfunction" b
-function! s:${1:name} (${2:args})
+function! s:${1:name}(${2:args})
 endfunction
 endsnippet
 snippet : "key: value"
 '${1:key}': ${2:'${3:value}'},
 endsnippet
+
 
 # OTHER
 

@@ -17,7 +17,7 @@
       "args": ["--stdio"],
       "filetypes": ["reason", "ocaml"]
       // "cwd": "./src",
-    },
+    }
 
     /* "css-and-friends": {
      *   "command": "css-languageserver",
@@ -40,16 +40,6 @@
      *   // "cwd": "./src",
      * }, */
 
-    "cquery": {
-      "command": "cquery",
-      "args": ["--log-file=/tmp/cq.log"],
-      "filetypes": ["c", "cpp"],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/", ".cquery"],
-      "initializationOptions": {
-        "cacheDirectory": "/tmp/cquery"
-      }
-    }
-
     // CocInstall coc-actions
 
     // CocInstall coc-tsserver
@@ -66,5 +56,6 @@
 
   },
 
-  "lua.version": "5.2"
+  "lua.version": "5.2",
+  "clangd.path": "/home/romgrk/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
 }
