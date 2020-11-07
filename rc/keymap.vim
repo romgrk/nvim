@@ -5,7 +5,10 @@
 
 " Recent mappings:
 
-nnoremap <silent><C-b>      :Lister<CR>
+nmap g<C-F> yiw<C-F><C-U><A-p><CR>
+
+nnoremap <silent><C-b>     <cmd>lua require'telescope.builtin'.find_files{}<CR>
+" nnoremap <silent><C-b>      :Lister<CR>
 
 nnoremap <silent><C-s>      :BufferPick<CR>
 nnoremap <silent><A-space>  :BufferPick<CR>
@@ -25,6 +28,8 @@ xnoremap @  :normal @q<CR>
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep<CR>
 
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprevious<CR>
 nnoremap ]l :lnext<CR>
 nnoremap [l :lprevious<CR>
 nnoremap ]c /^<<<<CR>:set nohls<CR>
@@ -172,8 +177,7 @@ nnoremap gso        :Edit $vim/rc/settings.vim<CR>
 nnoremap gsjg       :Edit $HOME/github/github-light.vim/colors/github-light.vim<CR>
 nnoremap gsjd       :Edit $HOME/github/doom-one.vim/colors/doom-one.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
-nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
-nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
+nnoremap gsP        :Clap filer $vim/rc/plugins/<CR>
 nnoremap gsv        :Clap files $vim<CR>
 
 " New...
@@ -469,6 +473,8 @@ nnoremap <silent><leader>gu     :GitOpenUnmergedFiles<CR>
 nnoremap <silent><leader>gda    :GitDiff<CR>
 nnoremap <silent><leader>gd.    :GitDiff %<CR>
 nnoremap         <leader>gdd    :GitDiff<space>
+nnoremap         <leader>gr.    :Git restore %<CR>
+nnoremap         <leader>grA    :Git restore .<CR>
 
 " GitMessenger:
 nnoremap <silent><leader>gm     :GitMessenger<CR>
@@ -527,6 +533,7 @@ nnoremap <silent><leader>npm  :Clap npm<CR>
 
 nnoremap <silent><leader>qr   :call QuickReload()<CR>
 nnoremap <expr>  <leader>qo   expand('%:e') == 'vim' ? ':So<CR>' : ':luafile %<CR>'
+nmap     <silent><leader>qw   :w<CR><F5>
 
 nnoremap         <leader>up   :PlugUpdate <Bar> CocUpdate<CR>
 
@@ -581,7 +588,7 @@ nnoremap <C-w>y     :WindowYank<CR>
 nnoremap <C-w>g     :WindowPaste<CR>
 nnoremap <C-w><C-Y> :WindowCopyView<CR>
 nnoremap <C-w>\     :WindowFitText<CR>
-nnoremap <C-w>q     :BufferClose <Bar> wincmd c<CR>
+nnoremap <C-w>q     :BufferClose! <Bar> wincmd c<CR>
 
 nnoremap <C-w><Tab> :tabedit <C-r>=bufname()<CR><CR>
 
@@ -648,7 +655,7 @@ nnoremap <silent> <A-7> :BufferGoto 7<CR>
 nnoremap <silent> <A-8> :BufferGoto 8<CR>
 nnoremap <silent> <A-9> :BufferLast<CR>
 
-nnoremap <silent> <A-c> :BufferClose<CR>
+nnoremap <silent> <A-c> :BufferClose!<CR>
 nnoremap <silent> <A-C> :BufferReopen<CR>
 
 if exists('g:gui_oni')
@@ -1163,7 +1170,7 @@ nmap <silent>ycD :let @+=expand("%:p:h") <Bar> call Warn('Yanked: ' . @+)<CR>
 
 
 " Gtfo
-nnoremap ZZ :wqall<CR>
+nnoremap ZZ :wqall!<CR>
 
 " }}}1
 "===============================================================================
