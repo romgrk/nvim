@@ -1062,7 +1062,9 @@ xmap <A-r><A-l>   <C-f><A-r><A-l>
 
 
 " SearchReplace
-nnoremap <silent><C-F> :Search<CR>
+nnoremap <silent><C-f><C-f> :Search<CR>
+nnoremap <silent><C-f><C-w> :Search <C-R><C-W><CR>
+nnoremap <silent><C-f>w     :Search <C-R><C-W><CR>
 
 " }}}1
 "===============================================================================
