@@ -5,10 +5,7 @@
 
 " Recent mappings:
 
-nmap g<C-F> yiw<C-F><C-U><A-p><CR>
-
-nnoremap <silent><C-b>     <cmd>lua require'telescope.builtin'.find_files{}<CR>
-" nnoremap <silent><C-b>      :Lister<CR>
+nnoremap <silent><C-b>      :Lister<CR>
 
 nnoremap <silent><C-s>      :BufferPick<CR>
 nnoremap <silent><A-space>  :BufferPick<CR>
