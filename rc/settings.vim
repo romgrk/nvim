@@ -138,7 +138,10 @@ set sidescrolloff=5
 
 " GUI
 " set guifont=SauceCodePro\ Nerd\ Font:h16
-set guifont=monospace:h9
+" set guifont=monospace:h9
+" set guifont=monospace:h9
+let &guifont='FantasqueSansMono Nerd Font Mono:h15'
+" let &guifont='FantasqueSansMono Nerd Font Mono:h10'
 
 " }}}
 "===============================================================================

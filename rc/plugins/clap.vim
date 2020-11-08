@@ -79,29 +79,37 @@ endfunc
 " Highlight
 "
 
+augroup clap_settings
+  au!
+  au ColorScheme *      call s:update_highlights()
+  au User PluginsLoaded call s:update_highlights()
+augroup END
 
-" window backgrounds
-hi! link ClapSpinner          NormalPopupPrompt
-hi! link ClapInput            NormalPopup
-hi! link ClapSearchText       NormalPopup
-hi! link ClapDisplay          NormalPopover
-hi! link ClapPreview          Normal
+function s:update_highlights()
+  " window backgrounds
+  hi! link ClapSpinner          NormalPopupPrompt
+  hi! link ClapInput            NormalPopup
+  hi! link ClapIndicator        NormalPopupSubtle
+  hi! link ClapSearchText       NormalPopup
+  hi! link ClapDisplay          NormalPopover
+  hi! link ClapPreview          Normal
 
-hi! link ClapQuery            Normal
-hi! link ClapSelected         Visual
-hi! link ClapCurrentSelection Visual
-hi! link ClapPopupCursor      Visual
+  hi! link ClapQuery            Normal
+  hi! link ClapSelected         Visual
+  hi! link ClapCurrentSelection Visual
+  hi! link ClapPopupCursor      Visual
 
-" Name of file/tag
-hi! link ClapFile             File
-hi! link ClapDir              Directory
-hi! link ClapVistaTag         ClapFile
+  " Name of file/tag
+  hi! link ClapFile             File
+  hi! link ClapDir              Directory
+  hi! link ClapVistaTag         ClapFile
 
-hi! link ClapBlines       TextNormal
-hi! link ClapBlinesLineNr Comment
+  hi! link ClapBlines       TextNormal
+  hi! link ClapBlinesLineNr Comment
 
-hi! link ClapLinesBufnr   Comment
-hi! link ClapLinesBufname Directory
+  hi! link ClapLinesBufnr   Comment
+  hi! link ClapLinesBufname Directory
+endfunc
 
 " Matches
 " hi! link ClapMatches        EasyMotionTargetDefault
