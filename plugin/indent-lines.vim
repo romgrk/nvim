@@ -1,7 +1,11 @@
+" augroup IndentBlankLines
+    " autocmd!
+" augroup END
+" finish
 
-let pretty_indent_namespace = nvim_create_namespace('pretty_indent')
+let indent_blank_lines_namespace = nvim_create_namespace('indent_blank_lines')
 
-function! PrettyIndent()
+function! IndentBlankLines()
     let view = winsaveview()
 
     let topline = line('w0')
@@ -11,7 +15,7 @@ function! PrettyIndent()
     call cursor(topline, 0)
 
     call nvim_buf_clear_namespace(
-        \ 0, g:pretty_indent_namespace, 1, -1)
+        \ 0, g:indent_blank_lines_namespace, 1, -1)
 
     let last_topline = topline
     let position = s:search('^$', botline)
@@ -24,7 +28,7 @@ function! PrettyIndent()
         if l:indent > 0
             call nvim_buf_set_virtual_text(
             \   0,
-            \   g:pretty_indent_namespace,
+            \   g:indent_blank_lines_namespace,
             \   lnum - 1,
             \   [[repeat(repeat(' ', &shiftwidth - 1) . '│', l:indent / &shiftwidth), 'IndentGuide']],
             \   {}
@@ -46,10 +50,10 @@ function! s:search(pattern, end_line)
     return search_result[0] == 0 ? v:null : search_result
 endfunction
 
-augroup PrettyIndent
+augroup IndentBlankLines
     autocmd!
-    autocmd TextChanged * call PrettyIndent()
-    autocmd BufEnter    * call PrettyIndent()
-    autocmd InsertLeave * call PrettyIndent()
-    autocmd WinScrolled * call PrettyIndent()
+    autocmd TextChanged * call IndentBlankLines()
+    autocmd BufEnter    * call IndentBlankLines()
+    autocmd InsertLeave * call IndentBlankLines()
+    autocmd WinScrolled * call IndentBlankLines()
 augroup END
