@@ -432,7 +432,7 @@ nunmap <leader>a
 "===============================================================================
 
 " Session management:
-nnoremap <expr><leader>ss     xolox#session#find_current_session() != 'default' ?
+nnoremap   <expr><leader>ss     xolox#session#find_current_session() != 'default' ?
                               \ ":wall! \<Bar> SaveSession\<CR>\<Esc>" : ":wall! \<Bar> SaveSession\<space>"
 nnoremap <silent><leader>sS     :SaveSession!<space>
 nnoremap <silent><leader>so     :Clap session<CR>
@@ -533,6 +533,8 @@ nnoremap <expr>  <leader>qo   expand('%:e') == 'vim' ? ':So<CR>' : ':luafile %<C
 nmap     <silent><leader>qw   :w<CR><F5>
 
 nnoremap         <leader>up   :PlugUpdate <Bar> CocUpdate<CR>
+
+nnoremap <silent><leader>gh   :Clap help_tags<CR>
 
 
 " Multi-Cursors:
@@ -1272,8 +1274,8 @@ map! <A-space> _
 map! <S-space> _
 
 " Paste @@
-cnoremap <A-p> <C-R>+
-inoremap <A-p> <Esc>pa
+cnoremap <A-p> <C-r>+
+inoremap <A-p> <C-o>p
 
 " Section: Filename/path insertion {{{
 
