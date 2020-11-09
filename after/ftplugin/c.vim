@@ -1,7 +1,7 @@
 runtime! syntax/comment.vim
 syntax cluster cCommentGroup add=@comments
 
-setlocal foldmethod=syntax
+" setlocal foldmethod=syntax
 
 nnoremap <buffer> gh   :call ToggleHeader()<CR>
 nnoremap <buffer> <F4> :call ToggleHeader()<CR>
