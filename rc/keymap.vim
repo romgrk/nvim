@@ -562,7 +562,7 @@ nnoremap <silent> <A-S-o>  :Clap mrufiles<CR>
 nnoremap <silent> <A-i>    :Clap tags<CR>
 " nnoremap <silent> <A-S-I>  :Clap generated_tags<CR>
 " nnoremap <silent> <A-S-I>  :Clap tagfiles<CR>
-nnoremap <silent> <A-S-I>  :Clap coc_symbols
+nnoremap <silent> <A-S-I>  :Clap coc_symbols<CR>
 
 
 nnoremap <silent> <C-p>    :Clap command<CR>
