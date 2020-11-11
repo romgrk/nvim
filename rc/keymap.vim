@@ -4,6 +4,7 @@
 
 
 " Recent mappings:
+"
 
 nnoremap <silent><C-b>      :Lister<CR>
 
@@ -1068,11 +1069,10 @@ xmap <A-r>r       :s///<left>
 xmap <A-r><A-a>   <C-f><A-r><A-a>
 xmap <A-r><A-l>   <C-f><A-r><A-l>
 
-
 " SearchReplace
 nnoremap <silent><C-f><C-f> :Search<CR>
-nnoremap <silent><C-f><C-w> :Search <C-R><C-W><CR>
-nnoremap <silent><C-f>w     :Search <C-R><C-W><CR>
+nnoremap <silent><C-f><C-w> :Search \b<C-R><C-W>\b<CR>
+nnoremap <silent><C-f>w     :Search \b<C-R><C-W>\b<CR>
 
 " }}}1
 "===============================================================================
@@ -1426,8 +1426,8 @@ smap <Tab>   <Esc>:call UltiSnips#JumpForwards()<CR>
 smap <S-Tab> <Esc>:call UltiSnips#JumpBackwards()<CR>
 
 func! I_CR ()
-    "if Ulti_canExpand()
-        "return Ulti_expand() | end
+    if Ulti_canExpand()
+        return Ulti_expand() | end
 
     if pumvisible()
         return "\<C-Y>\<C-R>=Ulti_expand()\<CR>" | end
