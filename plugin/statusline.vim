@@ -62,7 +62,7 @@ function! s:setup_colors() abort
 endfunction
 
 call s:setup_colors()
-call timer_start(100, {-> s:setup_colors()})
+call timer_start(50, {-> s:setup_colors()})
 
 augroup statusline_colors
   au!
