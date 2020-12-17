@@ -1136,6 +1136,7 @@ nmap z;t :setlocal fdm=expr<CR>:setlocal foldexpr=nvim_treesitter#foldexpr()<CR>
 
 " Surround line with { and }
 nnoremap  g{   m`o}<esc><lt><lt>kkA<Space>{<esc>``
+nnoremap  g,   m`A,<Esc>``
 
 " Yank all
 nnoremap <silent>gya :%y+<CR>
