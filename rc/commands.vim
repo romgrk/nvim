@@ -3,7 +3,8 @@
 
 command!          CurrentSession   call Info('Session: ' . GetCurrentSession())
 
-command! -nargs=* Lua     lua print(vim.inspect(<args>))
+command! -nargs=* Lua       lua print(vim.inspect(<args>))
+command! -nargs=* LuaReload exec 'lua package.loaded["' '<args>' '"] = nil' | luafile %
 
 command! -bar     So      so % | echo '' | call Warn('sourced')
 command! -bar     SO      w|So
