@@ -60,10 +60,13 @@ nnoremap Y  y$
 
 " nnoremap u u
 " nnoremap U <C-R>
-nmap    . <Plug>(RepeatDot)
-nmap    u <Plug>(RepeatUndo)
-nmap    U <Plug>(RepeatRedo)
-nmap    <Plug>(ignore) <Plug>(RepeatUndoLine)
+" nmap    . <Plug>(RepeatDot)
+nnoremap    u u
+nnoremap    U <C-r>
+nmap    <Plug>(ignore-1) <Plug>(RepeatDot)
+nmap    <Plug>(ignore-2) <Plug>(RepeatUndo)
+nmap    <Plug>(ignore-3) <Plug>(RepeatRedo)
+nmap    <Plug>(ignore-4) <Plug>(RepeatUndoLine)
 
 " YankRing
 "if exists('*miniyank#on_yank')
