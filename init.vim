@@ -60,6 +60,7 @@ Plug 'kana/vim-niceblock'
 Plug 'Konfekt/vim-ctrlxa'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+Plug 'neoclide/coc-tabnine'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sirver/UltiSnips'
 Plug 'terryma/vim-multiple-cursors'
