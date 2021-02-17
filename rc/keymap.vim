@@ -6,6 +6,8 @@
 " Recent mappings:
 "
 
+imap ;w <Esc>;w
+
 nnoremap <silent><C-b>      :Lister<CR>
 
 nnoremap <silent><C-s>      :BufferPick<CR>
@@ -60,7 +62,8 @@ nnoremap Y  y$
 
 " nnoremap u u
 " nnoremap U <C-R>
-" nmap    . <Plug>(RepeatDot)
+nmap    . <Plug>(RepeatDot)
+" nmap    u <Plug>(RepeatUndo)
 nnoremap    u u
 nnoremap    U <C-r>
 nmap    <Plug>(ignore-1) <Plug>(RepeatDot)
@@ -373,7 +376,7 @@ nmap <silent> g<A-r> <Plug>(coc-references-used)
 
 " Use K for show documentation in preview window
 nnoremap <silent> K     :call <SID>show_documentation()<CR>
-inoremap <silent> <C-k> <C-O>:call coc#util#float_jump()<CR>
+inoremap <silent> <C-k> <C-O>:call coc#float#jump()<CR>
 inoremap <silent> <A-u> <C-O>:call coc#float#scroll(-1)<CR>
 inoremap <silent> <A-d> <C-O>:call coc#float#scroll(+1)<CR>
 
@@ -383,7 +386,7 @@ function! s:show_documentation()
     return
   end
   if !empty(win#filter('getwinvar(v:val, "float")'))
-    call coc#util#float_jump()
+    call coc#float#jump()
     call s:coc_popup_mappings()
   else
     call CocAction('doHover')
@@ -391,7 +394,7 @@ function! s:show_documentation()
 endfunction
 
 function! s:coc_popup_mappings ()
-  nnoremap <silent><buffer> <Esc> :call coc#util#float_hide()<CR>
+  nnoremap <silent><buffer> <Esc> :call coc#float#close_all()<CR>
 endfunc
 
 
@@ -1031,6 +1034,9 @@ nmap <leader>ccs <Plug>(start_case_operator)
 nnoremap g/ *zvzz
 nnoremap g? #zvzz
 
+" nnoremap g/ <Nop>
+" nnoremap g? <Nop>
+
 " IncSearch
 nmap / <Plug>(incsearch-forward)
 nmap ? <Plug>(incsearch-backward)
@@ -1068,6 +1074,7 @@ nmap <A-r>a       :%s///<left>
 nmap <A-r><A-j>   :.,$s///<left>
 nmap <A-r>j       :.,$s///<left>
 nmap <A-r><A-w>   viw<C-F><A-r><A-l>
+nmap <A-r>w       viw<C-F><A-r><A-l>
 nmap <A-r><A-p>   m'viw<C-F><A-r><A-l><A-p><CR>''
 
 xmap <A-r><A-r>   :s///<left>
@@ -1284,7 +1291,7 @@ map! <S-space> _
 
 " Paste @@
 cnoremap <A-p> <C-r>+
-inoremap <A-p> <C-o>p
+inoremap <A-p> <C-r>+
 
 " Section: Filename/path insertion {{{
 
