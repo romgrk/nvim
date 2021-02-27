@@ -27,6 +27,7 @@ end "}}}
 
 set timeout
 set timeoutlen=1000
+set ttimeoutlen=8
 
 " set textwidth=80
 set whichwrap=b,s,<,>,[,]
