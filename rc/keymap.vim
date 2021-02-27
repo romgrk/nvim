@@ -558,12 +558,12 @@ nnoremap      <leader>mf :MultipleCursorsFind<space>
 " Panels, File navigation & Clap                                       {{{1
 
 
-nnoremap <silent><C-\>   :LuaTreeToggle<CR>
-nnoremap <silent><C-A-\> :LuaTreeFindFile<CR>
+nnoremap <silent><C-\>   :NERDTreeToggle<CR>
+nnoremap <silent><C-A-\> :NERDTreeFind<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
-nnoremap <silent> <A-o>    :Clap files<CR>
+nnoremap <silent> <A-o>    :Clap files <C-R>=getcwd()<CR><CR>
 nnoremap <silent> <C-A-o>  :Clap filer <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
 
 nnoremap <silent> <A-S-o>  :Clap mrufiles<CR>

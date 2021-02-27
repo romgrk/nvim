@@ -72,8 +72,11 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'preservim/nerdtree'
+Plug 'k0kubun/vim-open-github'
 Plug 'akinsho/nvim-toggleterm.lua'
 " Plug 'lukas-reineke/indent-blankline.nvim' " re-enable if/when it's less CPU intensive
+" disabled: ~/.config/nvim/plugin/indent-lines.vim
 Plug 'wellle/visual-split.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -185,8 +188,6 @@ call s:load('./rc/events.vim')
 call s:load('./rc/autocmd.vim')
 call s:load('./rc/commands.vim')
 call s:load('./rc/colors.vim')
-call s:load('./rc/highlight.vim')
-call s:load('./rc/keymap.vim')
 call s:load('./rc/abbrev.vim')
 
 " Plugin settings (after loading):
@@ -208,6 +209,7 @@ au!
 au VimEnter * colorscheme doom-one
 " au VimEnter * call s:load('./rc/colors.vim')
 au VimEnter * call s:load('./rc/highlight.vim')
+au VimEnter * call s:load('./rc/keymap.vim')
 augroup END
 
 " }}}
