@@ -11,6 +11,11 @@ let clap_current_selection_sign = { 'text': '  ', 'texthl': 'ClapCurrentSelectio
 let clap_forerunner_status_sign_running = ' '
 let clap_forerunner_status_sign_done    = '  '
 
+" let clap_always_open_preview = v:false
+" let clap_preview_direction = 'LR'
+let clap_preview_direction = 'UD'
+
+
 "
 " Custom providers
 "
@@ -23,11 +28,6 @@ let clap_provider_session = {
 let clap_provider_note = {
 \ 'source': {-> xolox#notes#cmd_complete('', 'Note ', 0)},
 \ 'sink': 'Note',
-\}
-
-let clap_provider_todoist = {
-\ 'source': {-> Todoist__listProjects()},
-\ 'sink': 'Todoist',
 \}
 
 let clap_provider_git_branch = {
