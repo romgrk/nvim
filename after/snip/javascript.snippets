@@ -22,10 +22,16 @@ snippet i "import" b
 import $1 from '${2:$1}'
 endsnippet
 snippet cx "classname"
-import cx from 'classname'
+import cx from 'clsx'
 endsnippet
-snippet proptypes "proptypes"
+snippet jss "jss"
+import jss from 'react-jss'
+endsnippet
+snippet pt "proptypes"
 import PropTypes from 'prop-types'
+endsnippet
+snippet R "React"
+import React from 'react'
 endsnippet
 
 snippet * "comment" b
@@ -46,6 +52,9 @@ endsnippet
 
 # React
 
+snippet react "import React" 
+import React from 'react'
+endsnippet
 snippet mstp "mapStateToProps"
 const mapStateToProps = state => ({
 	$0
@@ -188,16 +197,10 @@ snippet do "(func())()" b
 })();
 endsnippet
 
-# Immediate function
-snippet -- "() => {...}" 
-(${1:e}) => ${2:{ $0 }}
-endsnippet
-snippet == "(a) => {...}" 
-(${1:arg}) => { ${2:/* code */} }
-endsnippet
-
 snippet fn "function"
-function ${1:name}(${2:args}) {$0}
+function ${1:name}(${2:args}) {
+	$0
+}
 endsnippet
 
 #snippet fun
@@ -331,44 +334,6 @@ snippet sdf
 			${4:// main code}
 		};
 	}
-endsnippet
-# singleton
-snippet sing
-	function ${1:Singleton} (${2:argument}) {
-		// the cached instance
-		var instance;
-
-		// rewrite the constructor
-		$1 = function $1($2) {
-			return instance;
-		};
-		
-		// carry over the prototype properties
-		$1.prototype = this;
-
-		// the instance
-		instance = new $1();
-
-		// reset the constructor pointer
-		instance.constructor = $1;
-
-		${3:// code ...}
-
-		return instance;
-	}
-endsnippet
-# class
-snippet class
-regex /^\s*/clas{0,2}/
-	var ${1:class} = function(${20}) {
-		$40$0
-	};
-	
-	(function() {
-		${60:this.prop = ""}
-	}).call(${1:class}.prototype);
-	
-	exports.${1:class} = ${1:class};
 endsnippet
 # 
 snippet for-

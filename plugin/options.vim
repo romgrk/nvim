@@ -232,6 +232,7 @@ ToggleMap 'il',  'IlluminationToggle'
 ToggleMap 'jn',  'setfiletype javascript.node'
 ToggleMap 'js',  'setfiletype javascript'
 ToggleMap 'jx',  'setfiletype javascript.jsx'
+ToggleMap 'tx',  'setfiletype typescriptreact'
 ToggleMap 'vl',  'EditVerboseLevel'
 ToggleMap 'vm',  'VimadeToggle'
 

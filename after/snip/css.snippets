@@ -7,21 +7,23 @@ snippet ** "/* Comment */" b
 endsnippet
 
 snippet bef "before" b
-&::before {
-	content: ' ';
-	position: absolute;
-	display: inline-block;
-}
-endsnippet
-snippet aft "&::after" b
-&::after {
-	content: ' ';
-	position: absolute;
-	display: inline-block;
-}
+content: '';
+position: absolute;
+display: inline-block;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
 endsnippet
 
-snippet dib "d: inline-block" b
+
+snippet d "display: none" b
+display: ${1:none};
+endsnippet
+snippet din "display: none" b
+display: none;
+endsnippet
+snippet dib "display: inline-block" b
 display: inline-block;
 endsnippet
 
@@ -36,8 +38,18 @@ width: ${1:100%};
 height: ${2:100%};
 endsnippet
 snippet tl "top, left: 0" b
-top:  ${1:0px};
-left: ${2:0px};
+top: ${1:0};
+left: ${1:${2:0}};
+endsnippet
+snippet tlx "top, left: 0px" b
+top: ${1:0px};
+left: ${1:${2:0px}};
+endsnippet
+
+snippet pc "position center" b
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 endsnippet
 
 snippet fg "color" b
@@ -79,8 +91,16 @@ display: flex;
 flex-direction: column;
 endsnippet
 
-snippet flex-center "display: flex; center"
+snippet fxc "display: flex; center"
 display: flex;
 justify-content: center;
 align-items: center;
+endsnippet
+
+
+snippet pen "pointer-events: none" 
+pointer-events: none;
+endsnippet
+snippet usn "user-select: none" 
+user-select: none;
 endsnippet

@@ -15,12 +15,12 @@ function! s:set_jsx()
 endfunc
 call timer_start(0, {->s:set_jsx()})
 
-" function! s:detect_jsx()
-"   let filename = expand('%:t')
-"   if (match(filename, '\U') > -1) && (&ft ==# 'javascript')
-"     setfiletype javascript.jsx
-"   end
-"   echom [filename, match(filename, '\U'), &ft]
-" endfunc
-" 
-" call s:detect_jsx()
+function! s:detect_jsx()
+  let filename = expand('%:t')
+  if (match(filename, '\U') > -1) && (&ft ==# 'javascript')
+    setfiletype javascript.jsx
+  end
+  " echom [filename, match(filename, '\U'), &ft]
+endfunc
+
+call s:detect_jsx()
