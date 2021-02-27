@@ -2,8 +2,12 @@
 " Author: romgrk
 " Description: neovim init file
 
-" TODO bufferline: open next
+" TODO install https://github.com/ms-jpq/chadtree
+" TODO map js-import
+" TODO fix repeat dot
+" TODO fix insert alt-p
 " TODO mappings: rework inside-d/r/k/a
+" TODO install https://github.com/mfussenegger/nvim-dap
 " TODO install https://github.com/machakann/vim-sandwich
 " TODO install https://github.com/rhysd/vim-operator-surround
 " TODO install https://github.com/fannheyward/coc-react-refactor
