@@ -11,7 +11,7 @@ let clap_current_selection_sign = { 'text': '  ', 'texthl': 'ClapCurrentSelectio
 let clap_forerunner_status_sign_running = ' '
 let clap_forerunner_status_sign_done    = '  '
 
-" let clap_always_open_preview = v:false
+let clap_always_open_preview = v:false
 " let clap_preview_direction = 'LR'
 let clap_preview_direction = 'UD'
 
