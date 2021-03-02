@@ -456,16 +456,16 @@ nnoremap <silent><leader>no     :Clap note<CR>
 nnoremap <silent><leader>gg     :tabedit %<CR>:Git<CR><C-W>o
 nnoremap <silent><leader>gaa    :Git add --all<CR>
 nnoremap <silent><leader>ga.    :Git add %<CR>
-nnoremap         <leader>gcm    :Gcommit -m ""<Left>
-nnoremap         <leader>gcam   :Gcommit -am ""<Left>
-nnoremap         <leader>g.     :Gcommit % -m ""<Left>
+nnoremap         <leader>gcm    :Git commit -m ""<Left>
+nnoremap         <leader>gcam   :Git commit -am ""<Left>
+nnoremap         <leader>g.     :Git commit % -m ""<Left>
 nnoremap         <leader>gk     :Git checkout<space>
 nnoremap         <leader>gK     :Git checkout -b<space>
 nnoremap         <leader>gb     :Clap git_branch<CR>
-nnoremap         <leader>gl     :Gpull<CR>
+nnoremap         <leader>gl     :Git pull<CR>
 nnoremap         <leader>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
-nnoremap         <leader>gpp    :Gpush<CR>
-nnoremap         <leader>gpf    :Gpush --force<CR>
+nnoremap         <leader>gpp    :Git push<CR>
+nnoremap         <leader>gpf    :Git push --force<CR>
 nnoremap         <leader>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
 nnoremap <silent><leader>gs     :Gstatus<CR>
 nnoremap <silent><leader>gu     :GitOpenUnmergedFiles<CR>
