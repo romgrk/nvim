@@ -2,22 +2,19 @@
 " Author: romgrk
 " Description: neovim init file
 
-" TODO install https://github.com/ms-jpq/chadtree
 " TODO map js-import
 " TODO fix repeat dot
 " TODO fix insert alt-p
 " TODO mappings: rework inside-d/r/k/a
+" TODO install https://github.com/ms-jpq/chadtree
 " TODO install https://github.com/mfussenegger/nvim-dap
 " TODO install https://github.com/machakann/vim-sandwich
 " TODO install https://github.com/rhysd/vim-operator-surround
 " TODO install https://github.com/fannheyward/coc-react-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-" TODO install https://github.com/iamcco/markdown-preview.nvim
-" TODO todo manager not working
 " TODO inline comments when available (eg javascript)
 " TODO Plug 'neomake/neomake'
-" NOTE https://github.com/nvim-treesitter/playground
 
 "=============================================================================
 " Vim setup                                                                {{{
@@ -134,6 +131,7 @@ Plug 'moll/vim-node'                                     , { 'for': 'javascript.
 Plug 'Quramy/tsuquyomi'                                  , { 'on': 'TsuServerInfo' } " { 'for': 'typescript' }
 Plug 'kchmck/vim-coffee-script'                          , { 'for': 'coffee' }
 Plug 'plasticboy/vim-markdown'                           , { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim'                      , { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'tpope/vim-haml'                                    , { 'for': ['sass', 'scss', 'haml'] }
 Plug 'hail2u/vim-css3-syntax'                            , { 'for': ['css', 'sass', 'scss', 'less'] }
 Plug 'groenewege/vim-less'                               , { 'for': 'less' }
