@@ -16,10 +16,7 @@
 " TODO install https://github.com/iamcco/markdown-preview.nvim
 " TODO todo manager not working
 " TODO inline comments when available (eg javascript)
-" TODO Plug 'neovim/nvim-lsp'
-" TODO Plug 'wbthomason/lsp-status.nvim'
 " TODO Plug 'neomake/neomake'
-
 " NOTE https://github.com/nvim-treesitter/playground
 
 "=============================================================================
@@ -98,7 +95,7 @@ Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'markwu/vim-mrufiles'
 Plug 'neoclide/npm.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+" Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/nvim-treesitter-context'
 " Plug 'puremourning/vimspector'
 Plug 'sjl/gundo.vim'
@@ -159,7 +156,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-highlightedyank'
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'RRethy/vim-hexokinase'                             , { 'do': 'make hexokinase' }
@@ -179,8 +176,9 @@ Plug 'romgrk/searchReplace.vim'
 Plug 'romgrk/todoist.nvim'                               , {'do': ':TodoistInstall'}
 Plug 'romgrk/github-light.vim'
 Plug 'romgrk/doom-one.vim'
-Plug 'romgrk/lister'
 " }}}
+
+packadd termdebug
 
 call plug#end() " }}}
 "=============================================================================
