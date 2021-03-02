@@ -6,34 +6,20 @@
 " Recent mappings:
 "
 
-imap ;w <Esc>;w
-
-nnoremap <silent><C-b>      :Lister<CR>
-
-nnoremap <silent><C-s>      :BufferPick<CR>
-nnoremap <silent><A-space>  :BufferPick<CR>
-nnoremap <silent><space>bd  :BufferOrderByDirectory<CR>
-nnoremap <silent><space>bl  :BufferOrderByLanguage<CR>
-
-vmap <C-f> <Nop>
-vmap <C-b> <Nop>
-
 xmap <C-W>sr <Plug>(Visual-Split-VSResize)
 xmap <C-W>ss <Plug>(Visual-Split-VSSplit)
 xmap <C-W>sk <Plug>(Visual-Split-VSSplitAbove)
 xmap <C-W>sj <Plug>(Visual-Split-VSSplitBelow)
 
-xnoremap @  :normal @q<CR>
-
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep<CR>
 
-nnoremap ]q :cnext<CR>
-nnoremap [q :cprevious<CR>
-nnoremap ]l :lnext<CR>
-nnoremap [l :lprevious<CR>
-nnoremap ]c /^<<<<CR>:set nohls<CR>
-nnoremap [c ?^<<<<CR>:set nohls<CR>
+nnoremap ]q   :cnext<CR>
+nnoremap [q   :cprevious<CR>
+nnoremap ]l   :lnext<CR>
+nnoremap [l   :lprevious<CR>
+nnoremap ]c   /^<<<<CR>:set nohls<CR>
+nnoremap [c   ?^<<<<CR>:set nohls<CR>
 
 
 "===============================================================================
@@ -133,12 +119,18 @@ vnoremap <A-m> :<C-U>call multiple_cursors#new('v', 0)<CR>
             "\ ?  ":'<,'>MultipleCursorsFind \\S\\+"
             "\ : ":call multiple_cursors#new('v', 0)"
 
+" Remove things we don't use
+vmap <C-f> <Nop>
+vmap <C-b> <Nop>
+
 " }}}1
 "===============================================================================
 " Semicolon quick commands                                                  {{{1
 
 " Semicolon key
 nmap   <expr>   ;    <SID>quick_cmd()
+
+imap ;w <Esc>;w
 
 let s:quick_cmd_map = {
 \ 'w':       ":w\<CR>",
@@ -669,6 +661,10 @@ nnoremap <silent> <A-9> :BufferLast<CR>
 nnoremap <silent> <A-c> :BufferClose!<CR>
 nnoremap <silent> <A-C> :BufferReopen<CR>
 
+nnoremap <silent><A-space>  :BufferPick<CR>
+nnoremap <silent><space>bd  :BufferOrderByDirectory<CR>
+nnoremap <silent><space>bl  :BufferOrderByLanguage<CR>
+
 if exists('g:gui_oni')
 nnoremap <silent> <A-,> :tabprev<CR>
 nnoremap <silent> <A-.> :tabnext<CR>
@@ -1092,7 +1088,9 @@ nnoremap <silent><C-f>w     "cyiw:Search \b<C-r>c\b<CR>
 " Macro & Automation                                                        {{{1
 
 " Replay macro
-nnoremap <M-q> @@
+nnoremap <M-q> @q
+" Replay macro (visual)
+xnoremap @  :normal @q<CR>
 
 " Execute the next macro with current visual-range
 vnoremap q :call VisualRecord()<CR>
