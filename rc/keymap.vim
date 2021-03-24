@@ -484,6 +484,9 @@ nnoremap <silent><leader>hs     :GitGutterStageHunk<CR>
 nnoremap <silent><leader>hv     :GitGutterPreviewHunk<CR>
 nnoremap <silent><leader>hu     :GitGutterUndoHunk<CR>
 
+" Open in Github:
+nnoremap <silent><leader>gh     :GH<CR>
+
 "===============================================================================
 " Ack, Ag, Grep & File Searching
 
@@ -539,7 +542,7 @@ nmap     <silent><leader>qw   :w<CR><F5>
 
 nnoremap         <leader>up   :PlugUpdate <Bar> CocUpdate<CR>
 
-nnoremap <silent><leader>gh   :Clap help_tags<CR>
+nnoremap <silent><leader>hh   :Clap help_tags<CR>
 
 
 " Multi-Cursors:
