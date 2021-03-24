@@ -6,6 +6,7 @@
 " TODO fix repeat dot
 " TODO fix insert alt-p
 " TODO mappings: rework inside-d/r/k/a
+" TODO install https://github.com/kevinhwang91/nvim-bqf
 " TODO install https://github.com/ms-jpq/chadtree
 " TODO install https://github.com/mfussenegger/nvim-dap
 " TODO install https://github.com/machakann/vim-sandwich
@@ -13,6 +14,8 @@
 " TODO install https://github.com/fannheyward/coc-react-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+" TODO install https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+" TODO install https://github.com/phaazon/hop.nvim
 " TODO inline comments when available (eg javascript)
 " TODO Plug 'neomake/neomake'
 
@@ -72,6 +75,7 @@ Plug 'wellle/targets.vim'
 " @plugins
 Plug 'preservim/nerdtree'
 Plug 'k0kubun/vim-open-github'
+Plug 'ruanyl/vim-gh-line'
 Plug 'akinsho/nvim-toggleterm.lua'
 " Plug 'lukas-reineke/indent-blankline.nvim' " re-enable if/when it's less CPU intensive
 " disabled: ~/.config/nvim/plugin/indent-lines.vim
