@@ -518,7 +518,7 @@ nnoremap <silent><leader>cp   :VCoolor<CR>
 nnoremap   <expr><leader>c-   '"_ciw' . color#Darken(expand('<cword>')) . "\<Esc>"
 nnoremap   <expr><leader>c=   '"_ciw' . color#Lighten(expand('<cword>')) . "\<Esc>"
 
-nnoremap <silent><leader>gf   :LuaTreeFindFile<CR>
+nnoremap <silent><leader>gf   :NERDTreeFind<CR>
 
 nnoremap <silent><leader>ap   vip:EasyAlign<CR>
 nnoremap <silent><leader>ret  :set et <Bar> ret<CR>
