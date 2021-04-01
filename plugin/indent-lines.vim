@@ -3,6 +3,8 @@
 " augroup END
 " finish
 
+finish
+
 let indent_blank_lines_namespace = nvim_create_namespace('indent_blank_lines')
 
 function! IndentBlankLines()

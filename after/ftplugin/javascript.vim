@@ -1,10 +1,15 @@
-setlocal fdm=syntax
+" setlocal fdm=syntax
 
 
 let b:syng_str = ''
 let b:syng_strcom = ''
 
-nnoremap <buffer> <F4> :e %<.scss<CR>
+nnoremap <buffer> <F4>       :e %<.scss<CR>
+
+nnoremap <buffer> <leader>fi :JsFileImport<CR>
+
+
+finish
 
 if &ft ==# 'javascript.jsx'
   finish
