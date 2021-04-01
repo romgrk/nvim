@@ -1040,8 +1040,8 @@ nnoremap g? #zvzz
 " nnoremap g? <Nop>
 
 " IncSearch
-nmap / <Plug>(incsearch-forward)
-nmap ? <Plug>(incsearch-backward)
+" nmap / <Plug>(incsearch-forward)
+" nmap ? <Plug>(incsearch-backward)
 
 nmap n  <Plug>(incsearch-nohl-n)zvzz
 nmap N  <Plug>(incsearch-nohl-N)zvzz
@@ -1542,8 +1542,13 @@ endfu
 "===============================================================================
 " Command maps                                                              {{{1
 
-set wildchar=<Tab>
-set wildcharm=<C-x>
+" set wildchar=<Tab>
+" set wildcharm=<C-x>
+
+set wildcharm=<Tab>
+cmap <expr> <Tab>   wilder#in_context() ? wilder#next()     : "\<Tab>"
+cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
+
 
 " Open CmdWindow
 set cedit=<C-F>

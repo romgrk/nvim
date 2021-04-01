@@ -155,6 +155,7 @@ Plug 'ionide/Ionide-vim'                                 , { 'for': 'fsharp' }
 
 " }}}
 " UI                                                                         {{{
+Plug 'gelguy/wilder.nvim'
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'KabbAmine/vCoolor.vim'
