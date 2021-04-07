@@ -592,6 +592,9 @@ function! ClearArgs()
 endfunction
 
 function! GetCurrentSession ()
+  if !exists('*xolox#session#find_current_session')
+    return 'none'
+  end
   return xolox#session#find_current_session()
 endfunc
 
