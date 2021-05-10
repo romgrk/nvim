@@ -176,7 +176,7 @@ nnoremap gso        :Edit $vim/rc/settings.vim<CR>
 nnoremap gsjg       :Edit $HOME/github/github-light.vim/colors/github-light.vim<CR>
 nnoremap gsjd       :Edit $HOME/github/doom-one.vim/colors/doom-one.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
-nnoremap gsP        :Clap filer $vim/rc/plugins/<CR>
+nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
 nnoremap gsv        :Clap files $vim<CR>
 
 " New...
@@ -1040,8 +1040,8 @@ nnoremap g? #zvzz
 " nnoremap g? <Nop>
 
 " IncSearch
-" nmap / <Plug>(incsearch-forward)
-" nmap ? <Plug>(incsearch-backward)
+nmap / <Plug>(incsearch-forward)
+nmap ? <Plug>(incsearch-backward)
 
 nmap n  <Plug>(incsearch-nohl-n)zvzz
 nmap N  <Plug>(incsearch-nohl-N)zvzz

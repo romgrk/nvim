@@ -77,6 +77,7 @@ Plug 'preservim/nerdtree'
 Plug 'k0kubun/vim-open-github'
 Plug 'ruanyl/vim-gh-line'
 Plug 'akinsho/nvim-toggleterm.lua'
+Plug 'Yggdroot/indentLine'
 " Plug 'lukas-reineke/indent-blankline.nvim' " re-enable if/when it's less CPU intensive
 " disabled: ~/.config/nvim/plugin/indent-lines.vim
 Plug 'wellle/visual-split.vim'
@@ -160,7 +161,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
-" Plug 'Yggdroot/indentLine'
 Plug 'machakann/vim-highlightedyank'
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'RRethy/vim-hexokinase'                             , { 'do': 'make hexokinase' }
