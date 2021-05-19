@@ -16,6 +16,7 @@
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 " TODO install https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 " TODO install https://github.com/phaazon/hop.nvim
+" TODO install https://github.com/folke/todo-comments.nvim
 " TODO inline comments when available (eg javascript)
 " TODO Plug 'neomake/neomake'
 
@@ -61,7 +62,7 @@ Plug 'kana/vim-niceblock'
 Plug 'Konfekt/vim-ctrlxa'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
-Plug 'neoclide/coc-tabnine'
+" Plug 'neoclide/coc-tabnine'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sirver/UltiSnips'
 Plug 'terryma/vim-multiple-cursors'
