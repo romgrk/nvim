@@ -33,3 +33,21 @@ command! -bar -nargs=0 WindowFitText    :call win#().width(&fdc + &nuw + &tw)
 " Tabs
 command! -bar Tabview    tab sview
 command! -bar TabviewRO  tab sview +setlocal\ nomodifiable
+
+
+" File tree
+
+command! -bar TreeToggle call TreeToggle()
+
+let s:is_open = v:false
+function! TreeToggle()
+  if s:is_open
+    lua require'bufferline.state'.set_offset(0)
+    NERDTreeClose
+    let s:is_open = v:false
+  else
+    lua require'bufferline.state'.set_offset(30, 'Files')
+    NERDTreeToggle
+    let s:is_open = v:true
+  end
+endfunc

@@ -172,7 +172,7 @@ set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
 set lcs+=precedes:<,extends:>   " Horizontal ellipsis
 
 set fillchars=
-set fcs+=vert:│                 " ▎VertSplit
+set fcs+=vert:▎                 " ▎VertSplit
 "set fcs+=stl:\ ,stlnc:-        " StatusLine & StatusLineNC
 "set fcs+=fold:-                " Folded
 set fcs+=diff:\                 " DiffDelete

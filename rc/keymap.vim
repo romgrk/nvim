@@ -556,7 +556,7 @@ nnoremap      <leader>mf :MultipleCursorsFind<space>
 " Panels, File navigation & Clap                                       {{{1
 
 
-nnoremap <silent><C-\>   :NERDTreeToggle<CR>
+nnoremap <silent><C-\>   :TreeToggle<CR>
 nnoremap <silent><C-A-\> :NERDTreeFind<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
@@ -614,10 +614,13 @@ nnoremap <C-W><space>   :ToggleTerminalWindow<CR>
 nnoremap <C-W><M-Space> :wincmd s \| NextTerminalBuffer<CR>
 
 
+tmap <A-w>          <C-\><C-N><A-w>
 tmap <A-,>          <C-\><C-n>:PreviousTerminalBuffer<CR>
 tmap <A-.>          <C-\><C-n>:NextTerminalBuffer<CR>
 tmap <C-A-,>        <C-\><C-n>:bp<CR>
 tmap <C-A-.>        <C-\><C-n>:bn<CR>
+
+tnoremap <buffer> <C-D> <C-D><CR>
 
 " Paste
 tnoremap <A-p>      <C-\><C-n>pi
