@@ -74,6 +74,7 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'jbyuki/venn.nvim'
 Plug 'preservim/nerdtree'
 Plug 'k0kubun/vim-open-github'
 Plug 'ruanyl/vim-gh-line'
