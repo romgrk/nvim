@@ -33,15 +33,12 @@ ui.setup({
     -- You can change the order of elements in the sidebar
     elements = {
       -- Provide as ID strings or tables with 'id' and 'size' keys
-      {
-        id = 'scopes',
-        size = 0.25, -- Can be float or integer > 1
-      },
+      { id = 'scopes',      size = 0.25 },
       { id = 'breakpoints', size = 0.25 },
-      { id = 'stacks', size = 0.25 },
-      { id = 'watches', size = 00.25 },
+      { id = 'stacks',      size = 0.25 },
+      { id = 'watches',     size = 0.25 },
     },
-    width = 40,
+    width = 50,
     position = 'left', -- Can be 'left' or 'right'
   },
   tray = {
