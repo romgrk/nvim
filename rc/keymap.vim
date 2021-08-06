@@ -1148,6 +1148,7 @@ endfu
 nnoremap <silent> <F9>    <cmd>lua require'dap'.continue()<CR>
 nnoremap <silent> g<F9>   <cmd>lua require'dap'.run_to_cursor()<CR>
 nnoremap <silent> <S-F9>  <cmd>lua require'dap'.close()<CR>
+nnoremap <silent> <F21>   <cmd>lua require'dap'.close()<CR>
 nnoremap <silent> <F10>   <cmd>lua require'dap'.step_over()<CR>
 nnoremap <silent> <F11>   <cmd>lua require'dap'.step_into()<CR>
 nnoremap <silent> <F12>   <cmd>lua require'dap'.step_out()<CR>
