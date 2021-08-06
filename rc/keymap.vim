@@ -496,6 +496,8 @@ nnoremap <silent><leader>mv     :Move <A-i>d/
 nnoremap <silent><leader>rn     :Rename<space>
 
 " Search:
+nnoremap <silent><leader>rg     :Rg<space>
+nnoremap <silent><leader>rw     :Rg<space><C-R><C-W><CR>
 " nnoremap <silent><leader>ag     XXX implement search
 " nnoremap <silent><leader>aa     XXX implement search
 
@@ -564,7 +566,7 @@ nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 nnoremap <silent> <A-o>    :Clap files <C-R>=getcwd()<CR><CR>
 nnoremap <silent> <C-A-o>  :Clap filer <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
 
-nnoremap <silent> <A-S-o>  :Clap mrufiles<CR>
+nnoremap <silent> <A-S-o>  :Clap recent_files<CR>
 " nnoremap <silent> <C-S>    :Clap buffers<CR>
 
 nnoremap <silent> <A-i>    :Clap tags<CR>
@@ -614,11 +616,11 @@ nnoremap <C-W><space>   :ToggleTerminalWindow<CR>
 nnoremap <C-W><M-Space> :wincmd s \| NextTerminalBuffer<CR>
 
 
-tmap <A-w>          <C-\><C-N><A-w>
-tmap <A-,>          <C-\><C-n>:PreviousTerminalBuffer<CR>
-tmap <A-.>          <C-\><C-n>:NextTerminalBuffer<CR>
-tmap <C-A-,>        <C-\><C-n>:bp<CR>
-tmap <C-A-.>        <C-\><C-n>:bn<CR>
+tnoremap <A-w>          <C-\><C-N><C-w>w
+tmap     <A-,>          <C-\><C-n>:PreviousTerminalBuffer<CR>
+tmap     <A-.>          <C-\><C-n>:NextTerminalBuffer<CR>
+tmap     <C-A-,>        <C-\><C-n>:bp<CR>
+tmap     <C-A-.>        <C-\><C-n>:bn<CR>
 
 tnoremap <buffer> <C-D> <C-D><CR>
 
@@ -1140,6 +1142,24 @@ endfu
 
 " }}}1
 "===============================================================================
+" Debugger                                                                  {{{1
+
+
+nnoremap <silent> <F9>    <cmd>lua require'dap'.continue()<CR>
+nnoremap <silent> g<F9>   <cmd>lua require'dap'.run_to_cursor()<CR>
+nnoremap <silent> <S-F9>  <cmd>lua require'dap'.close()<CR>
+nnoremap <silent> <F10>   <cmd>lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11>   <cmd>lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12>   <cmd>lua require'dap'.step_out()<CR>
+
+nnoremap <silent> <F7>    <cmd>lua require'dap'.toggle_breakpoint()<CR>
+
+nnoremap <silent> <F8>    <cmd>lua require('dapui').eval()<CR>
+
+
+
+" }}}1
+"===============================================================================
 " Quick Utils                                                               {{{1
 " @utils
 
@@ -1549,8 +1569,8 @@ endfu
 " set wildcharm=<C-x>
 
 set wildcharm=<Tab>
-cmap <expr> <Tab>   wilder#in_context() ? wilder#next()     : "\<Tab>"
-cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
+" cmap <expr> <Tab>   wilder#in_context() ? wilder#next()     : "\<Tab>"
+" cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
 
 
 " Open CmdWindow

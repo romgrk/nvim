@@ -21,8 +21,8 @@ augroup RC
                  \| end
 
     " Session
-    au VimLeave *        :SaveSession!
-    au QuitPre  *        :SaveSession!
+    " au VimLeave *        :SaveSession!
+    " au QuitPre  *        :SaveSession!
     au SessionLoadPost * :SourceLocalVimrc
 
     " Jump back at last pos

@@ -74,14 +74,15 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'jbyuki/venn.nvim'
 Plug 'preservim/nerdtree'
 Plug 'k0kubun/vim-open-github'
 Plug 'ruanyl/vim-gh-line'
 Plug 'akinsho/nvim-toggleterm.lua'
-Plug 'Yggdroot/indentLine'
-" Plug 'lukas-reineke/indent-blankline.nvim' " re-enable if/when it's less CPU intensive
-" disabled: ~/.config/nvim/plugin/indent-lines.vim
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'wellle/visual-split.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -107,7 +108,6 @@ Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-scripts/loremipsum'
-" https://github.com/vn-ki/coc-clap
 Plug 'vn-ki/coc-clap'
 Plug 'wsdjeg/vim-fetch'
 Plug 'wsdjeg/vim-todo'
