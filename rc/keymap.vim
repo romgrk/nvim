@@ -458,6 +458,7 @@ nnoremap <silent><leader>gaa    :Git add --all<CR>
 nnoremap <silent><leader>ga.    :Git add %<CR>
 nnoremap         <leader>gcm    :Git commit -m ""<Left>
 nnoremap         <leader>gcam   :Git commit -am ""<Left>
+nnoremap         <leader>gcaa   :Git commit --amend<CR>
 nnoremap         <leader>g.     :Git commit % -m ""<Left>
 nnoremap         <leader>gk     :Git checkout<space>
 nnoremap         <leader>gK     :Git checkout -b<space>
@@ -1144,20 +1145,30 @@ endfu
 "===============================================================================
 " Debugger                                                                  {{{1
 
-
 nnoremap <silent> <F9>    <cmd>lua require'dap'.continue()<CR>
 nnoremap <silent> g<F9>   <cmd>lua require'dap'.run_to_cursor()<CR>
 nnoremap <silent> <S-F9>  <cmd>lua require'dap'.close()<CR>
-nnoremap <silent> <F21>   <cmd>lua require'dap'.close()<CR>
+nnoremap <silent> <C-F9>  <cmd>lua require'dapui'.close()<CR>
 nnoremap <silent> <F10>   <cmd>lua require'dap'.step_over()<CR>
 nnoremap <silent> <F11>   <cmd>lua require'dap'.step_into()<CR>
 nnoremap <silent> <F12>   <cmd>lua require'dap'.step_out()<CR>
 
 nnoremap <silent> <F7>    <cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <C-F7>  <cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <S-F7>  <cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
 
 nnoremap <silent> <F8>    <cmd>lua require('dapui').eval()<CR>
 
 
+" nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+" nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+" nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+" nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+" nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+" nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+" nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+" nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+" nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
 " }}}1
 "===============================================================================
@@ -1679,5 +1690,6 @@ nnoremap z+ :set foldlevel+=1 <Bar> call Info('&foldlevel = ' . &foldlevel)<CR>
 " 1}}}
 "===============================================================================
 " Options: ../plugin/options.vim
+" F-keys:  ../plugin/f-keys.vim
 "===============================================================================
 " vim: fdm=marker

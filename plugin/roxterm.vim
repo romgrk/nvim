@@ -4,7 +4,8 @@ if $NVIM_IN_ROXTERM != '1'
 end
 
 augroup roxterm
-  au VimLeave * :call roxterm#save_dimensions()
+  au!
+  au VimLeavePre * :call roxterm#save_dimensions()
 augroup end
 
 function! roxterm#save_dimensions () abort

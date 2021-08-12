@@ -74,9 +74,11 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'vuki656/package-info.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'jbyuki/one-small-step-for-vimkind'
 Plug 'jbyuki/venn.nvim'
 Plug 'preservim/nerdtree'
 Plug 'k0kubun/vim-open-github'

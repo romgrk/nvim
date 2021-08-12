@@ -1,11 +1,7 @@
 "!::exe [So]
 
-let indentLine_char = '│' " | ┆
-let indentLine_leadingSpaceChar = '·'
-let indentLine_leadingSpaceEnabled = 0
-let indentLine_showFirstIndentLevel = 0
-let indentLine_fileTypeExclude = g:exclude_filetypes
-let indentLine_bufTypeExclude  = g:exclude_buftypes
-
-let indentLine_setColors  = 0
-let indentLine_setConceal = 0
+let indent_blankline_char = '│' " | ┆
+let indent_blankline_space_char = '·'
+let indent_blankline_use_treesitter = v:true
+let indent_blankline_show_current_context = v:false
+let indent_blankline_context_highlight_list = ['Type']
