@@ -18,4 +18,17 @@ if !exists('g:session')
   let g:session = {}
 end
 
+let g:rc#on_session_save = {}
+
+function! g:rc#on_session_save.pre() dict
+  echomsg 'SESSION AUTOCMD CALLED'
+  ScrollViewDisable
+  TSContextDisable
+endfunc
+
+function! g:rc#on_session_save.post()
+  ScrollViewEnable
+  TSContextEnable
+endfunc
+
 " }}}

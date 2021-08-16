@@ -63,26 +63,3 @@ function! QuickFixLeave()
     "exec 'resize ' . b:saved_height
     "
 endfunc
-
-
-
-
-finish
-
-
-
-
-" UNUSED:
-
-function! SessionEnter ()
-    call get#Load('.session')
-    let g:session.this_session = v:this_session
-    " Localrc sourcing...
-    "silent execute 'SourceLocalVimrc'
-endfunc
-function! SessionExit ()
-    if exists('g:session')
-        call get#Save('.session')
-    end
-endfunc
-
