@@ -2,11 +2,7 @@
 " Author: romgrk
 " Description: neovim init file
 
-" TODO Plug 'neomake/neomake'
-" TODO map js-import
-" TODO fix repeat dot
-" TODO fix insert alt-p
-" TODO mappings: rework inside-d/r/k/a
+" TODO instal Plug 'neomake/neomake'
 " TODO install https://github.com/kevinhwang91/nvim-bqf
 " TODO install https://github.com/ms-jpq/chadtree
 " TODO install https://github.com/machakann/vim-sandwich
@@ -17,6 +13,7 @@
 " TODO install https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 " TODO install https://github.com/phaazon/hop.nvim
 " TODO install https://github.com/folke/todo-comments.nvim
+" TODO install https://github.com/folke/twilight.nvim
 " TODO inline comments when available (eg javascript)
 
 "=============================================================================
@@ -73,6 +70,7 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'code-biscuits/nvim-biscuits'
 Plug 'dstein64/nvim-scrollview'
 Plug 'vuki656/package-info.nvim'
 Plug 'mfussenegger/nvim-dap'
@@ -121,7 +119,6 @@ Plug 'JuliaEditorSupport/julia-vim'                      , { 'for': 'julia' }
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'justinmk/vim-syntax-extra'
-Plug 'tbastos/vim-lua'                                   , { 'for': 'lua' }
 Plug 'thyrgle/vim-dyon'                                  , { 'for': 'dyon' }
 Plug 'keith/swift.vim'                                   , { 'for': 'swift' }
 Plug 'jordwalke/vim-reasonml'                            , { 'for': 'reason' }
@@ -131,11 +128,10 @@ Plug 'tmhedberg/SimpylFold'                              , { 'for': 'python' }
 Plug 'othree/xml.vim'
 Plug 'pangloss/vim-javascript'                           , { 'for': 'javascript' }
 Plug 'kristijanhusak/vim-js-file-import'                 , { 'for': 'javascript' }
-Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
 Plug 'neoclide/vim-jsx-improve'                          , { 'for': 'javascript.jsx' }
-Plug 'ianks/vim-tsx'                                     , { 'for': 'typescript.tsx' }
 Plug 'moll/vim-node'                                     , { 'for': 'javascript.node' }
-Plug 'Quramy/tsuquyomi'                                  , { 'on': 'TsuServerInfo' } " { 'for': 'typescript' }
+Plug 'leafgarland/typescript-vim'                        , { 'for': 'typescript' }
+Plug 'ianks/vim-tsx'                                     , { 'for': 'typescript.tsx' }
 Plug 'kchmck/vim-coffee-script'                          , { 'for': 'coffee' }
 Plug 'plasticboy/vim-markdown'                           , { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim'                      , { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -160,12 +156,10 @@ Plug 'ionide/Ionide-vim'                                 , { 'for': 'fsharp' }
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'KabbAmine/vCoolor.vim'
-Plug 'Yggdroot/hiPairs'                                  , {'on': [ 'HiPairsEnable', 'HiPairsToggle' ] }
 Plug 'machakann/vim-highlightedyank'
 Plug 'guns/xterm-color-table.vim'                        , {'on': 'XtermColorTable'}
 Plug 'RRethy/vim-hexokinase'                             , { 'do': 'make hexokinase' }
 Plug 'airblade/vim-gitgutter'
-Plug 'ryanoasis/vim-devicons'
 " }}}
 " Personal                                                                   {{{
 Plug 'romgrk/barbar.nvim'
