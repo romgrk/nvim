@@ -4,6 +4,8 @@
 
 " TODO https://github.com/rockerBOO/awesome-neovim#comment
 " TODO instal Plug 'neomake/neomake'
+" TODO install https://github.com/abecodes/tabout.nvim
+" TODO install https://github.com/pwntester/octo.nvim when working
 " TODO install https://github.com/tanvirtin/vgit.nvim
 " TODO install https://github.com/kevinhwang91/nvim-bqf
 " TODO install https://github.com/stevearc/qf_helper.nvim
@@ -75,6 +77,7 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'karb94/neoscroll.nvim'
 Plug 'sindrets/diffview.nvim'
 Plug 'code-biscuits/nvim-biscuits'
 Plug 'dstein64/nvim-scrollview'

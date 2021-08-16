@@ -21,7 +21,6 @@ nnoremap [l   :lprevious<CR>
 nnoremap ]c   /^<<<<CR>:set nohls<CR>
 nnoremap [c   ?^<<<<CR>:set nohls<CR>
 
-
 "===============================================================================
 " Major maps                                                                {{{1
 
@@ -228,11 +227,15 @@ vnoremap <A-j> 5gj
 vnoremap <A-k> 5gk
 
 " scroll up/down
-nnoremap <A-u> 10<C-Y>
-nnoremap <A-d> 10<C-E>
-vnoremap <A-u> 12<Up>
-vnoremap <A-d> 12<Down>
+nmap <C-u> <Cmd>lua require('neoscroll').scroll(-0.4, false, 150)<CR>
+nmap <C-d> <Cmd>lua require('neoscroll').scroll( 0.4, false, 150)<CR>
+nmap <A-u> <Cmd>lua require('neoscroll').scroll(-12,  false,  50)<CR>
+nmap <A-d> <Cmd>lua require('neoscroll').scroll( 12,  false,  50)<CR>
+vmap <A-u> <Cmd>lua require('neoscroll').scroll(-12,  false,  50)<CR>
+vmap <A-d> <Cmd>lua require('neoscroll').scroll( 12,  false,  50)<CR>
 
+
+" WORD moves
 nnoremap <A-b> B
 nnoremap <A-e> El
 onoremap <A-b> B
