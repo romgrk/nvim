@@ -14,13 +14,6 @@ xmap <C-W>sj <Plug>(Visual-Split-VSSplitBelow)
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep<CR>
 
-nnoremap ]q   :cnext<CR>
-nnoremap [q   :cprevious<CR>
-nnoremap ]l   :lnext<CR>
-nnoremap [l   :lprevious<CR>
-nnoremap ]c   /^<<<<CR>:set nohls<CR>
-nnoremap [c   ?^<<<<CR>:set nohls<CR>
-
 "===============================================================================
 " Major maps                                                                {{{1
 
@@ -307,6 +300,16 @@ xnoremap iw iw
 " GitGutter hunks
 nnoremap <silent>[h  :GitGutterPrevHunk<CR>zvzz
 nnoremap <silent>]h  :GitGutterNextHunk<CR>zvzz
+
+" Git conflicts
+nnoremap ]c   /^<<<<CR>:set nohls<CR>
+nnoremap [c   ?^<<<<CR>:set nohls<CR>
+
+" QF window
+nnoremap ]q   :cnext<CR>
+nnoremap [q   :cprevious<CR>
+nnoremap ]l   :lnext<CR>
+nnoremap [l   :lprevious<CR>
 
 " 1}}}
 "===============================================================================
