@@ -74,6 +74,7 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'dstein64/nvim-scrollview'
 Plug 'vuki656/package-info.nvim'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
@@ -160,7 +161,6 @@ Plug 'ionide/Ionide-vim'                                 , { 'for': 'fsharp' }
 
 " }}}
 " UI                                                                         {{{
-Plug 'gelguy/wilder.nvim'
 Plug 'junegunn/goyo.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'KabbAmine/vCoolor.vim'
