@@ -470,6 +470,7 @@ nnoremap         <leader>gpf    :Git push --force<CR>
 nnoremap         <leader>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
 nnoremap <silent><leader>gs     :Gstatus<CR>
 nnoremap <silent><leader>gu     :GitOpenUnmergedFiles<CR>
+nnoremap <silent><leader>gD     :DiffviewOpen<CR>
 nnoremap <silent><leader>gda    :GitDiff<CR>
 nnoremap <silent><leader>gd.    :GitDiff %<CR>
 nnoremap         <leader>gdd    :GitDiff<space>

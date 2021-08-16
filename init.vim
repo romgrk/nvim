@@ -3,6 +3,7 @@
 " Description: neovim init file
 
 " TODO instal Plug 'neomake/neomake'
+" TODO install https://github.com/tanvirtin/vgit.nvim
 " TODO install https://github.com/kevinhwang91/nvim-bqf
 " TODO install https://github.com/ms-jpq/chadtree
 " TODO install https://github.com/machakann/vim-sandwich
@@ -70,6 +71,7 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+Plug 'sindrets/diffview.nvim'
 Plug 'code-biscuits/nvim-biscuits'
 Plug 'dstein64/nvim-scrollview'
 Plug 'vuki656/package-info.nvim'
