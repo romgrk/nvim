@@ -106,7 +106,6 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 " Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/nvim-treesitter-context'
-" Plug 'puremourning/vimspector'
 Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
@@ -116,9 +115,8 @@ Plug 'wsdjeg/vim-fetch'
 Plug 'wsdjeg/vim-todo'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-" Plug 'xolox/vim-session'
-Plug 'romgrk/vim-session'
 Plug 'xolox/vim-shell'
+Plug 'romgrk/vim-session'
 " }}}
 " Language                                                                   {{{
 Plug 'JuliaEditorSupport/julia-vim'                      , { 'for': 'julia' }
