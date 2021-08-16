@@ -2,9 +2,11 @@
 " Author: romgrk
 " Description: neovim init file
 
+" TODO https://github.com/rockerBOO/awesome-neovim#comment
 " TODO instal Plug 'neomake/neomake'
 " TODO install https://github.com/tanvirtin/vgit.nvim
 " TODO install https://github.com/kevinhwang91/nvim-bqf
+" TODO install https://github.com/stevearc/qf_helper.nvim
 " TODO install https://github.com/ms-jpq/chadtree
 " TODO install https://github.com/machakann/vim-sandwich
 " TODO install https://github.com/rhysd/vim-operator-surround
@@ -53,6 +55,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bkad/CamelCaseMotion'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'jiangmiao/auto-pairs'
+" XXX use lightspeed asap
+" Plug 'ggandor/lightspeed.nvim'
 " Plug 'justinmk/vim-sneak'
 Plug 'romgrk/vim-sneak'
 Plug 'kana/vim-niceblock'
