@@ -78,7 +78,6 @@ Plug 'wellle/targets.vim'
 " General                                                                    {{{
 " @plugins
 Plug 'DanilaMihailov/beacon.nvim'
-Plug 'karb94/neoscroll.nvim'
 Plug 'sindrets/diffview.nvim'
 Plug 'code-biscuits/nvim-biscuits'
 Plug 'dstein64/nvim-scrollview'

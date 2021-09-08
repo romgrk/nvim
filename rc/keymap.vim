@@ -220,15 +220,10 @@ vnoremap <A-j> 5gj
 vnoremap <A-k> 5gk
 
 " scroll up/down
-nmap <C-u> <Cmd>lua require('neoscroll').scroll(-0.5, false, 150)<CR>
-nmap <C-d> <Cmd>lua require('neoscroll').scroll( 0.5, false, 150)<CR>
-nmap <A-u> <Cmd>lua require('neoscroll').scroll(-12,  false,  50)<CR>
-nmap <A-d> <Cmd>lua require('neoscroll').scroll( 12,  false,  50)<CR>
-vmap <A-u> <Cmd>lua require('neoscroll').scroll(-12,  false,  50)<CR>
-vmap <A-d> <Cmd>lua require('neoscroll').scroll( 12,  false,  50)<CR>
-nmap zz    <Cmd>lua require('neoscroll').zz(150)<CR>
-nmap zt    <Cmd>lua require('neoscroll').zt(150)<CR>
-nmap zb    <Cmd>lua require('neoscroll').zb(150)<CR>
+nmap <A-u> 12<C-y>
+nmap <A-d> 12<C-e>
+vmap <A-u> 12<C-y>
+vmap <A-d> 12<C-e>
 
 " WORD moves
 nnoremap <A-b> B
