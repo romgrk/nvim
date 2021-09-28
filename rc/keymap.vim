@@ -131,7 +131,7 @@ let s:quick_cmd_map = {
 \}
 
 function! s:quick_cmd ()
-    if sneak#is_sneaking() " return maparg('<Plug>SneakNext', 'n')
+    if sneak#is_sneaking()
         return ":call sneak#rpt('', 0)\<CR>"
     end
     echo ''
