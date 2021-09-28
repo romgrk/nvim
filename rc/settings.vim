@@ -175,7 +175,7 @@ set fillchars=
 set fcs+=vert:▎                 " ▎VertSplit
 "set fcs+=stl:\ ,stlnc:-        " StatusLine & StatusLineNC
 "set fcs+=fold:-                " Folded
-set fcs+=diff:\                 " DiffDelete
+set fcs+=diff:╱                 " DiffDelete
 set fcs+=eob:\                  " EndOfBuffer chars
 
 let chars = { }
