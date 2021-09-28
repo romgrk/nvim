@@ -31,6 +31,7 @@ function! s:setup()
 
     hi! CocHintSign                       guifg=#15aabf
     hi! CocHintHighlight    gui=undercurl guisp=#15aabf
+    hi! CocUnusedHighlight  gui=undercurl guisp=#15aabf
 
     let bg = hi#bg('Normal')
     let bg = empty(bg) ? '#000000' : bg

@@ -4,6 +4,7 @@
 
 " TODO https://github.com/rockerBOO/awesome-neovim#comment
 " TODO instal Plug 'neomake/neomake'
+" TODO install https://github.com/GustavoKatel/sidebar.nvim
 " TODO install https://github.com/abecodes/tabout.nvim
 " TODO install https://github.com/pwntester/octo.nvim when working
 " TODO install https://github.com/tanvirtin/vgit.nvim
@@ -79,7 +80,7 @@ Plug 'wellle/targets.vim'
 " @plugins
 Plug 'DanilaMihailov/beacon.nvim'
 Plug 'sindrets/diffview.nvim'
-Plug 'code-biscuits/nvim-biscuits'
+" Plug 'code-biscuits/nvim-biscuits'
 Plug 'dstein64/nvim-scrollview'
 Plug 'vuki656/package-info.nvim'
 Plug 'mfussenegger/nvim-dap'
