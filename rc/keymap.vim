@@ -165,8 +165,8 @@ nnoremap gsd        :Edit $vim/rc/commands.vim<CR>
 nnoremap gsc        :Edit $vim/rc/colors.vim<CR>
 nnoremap gsh        :Edit $vim/rc/highlight.vim<CR>
 nnoremap gso        :Edit $vim/rc/settings.vim<CR>
-nnoremap gsjg       :Edit $HOME/github/github-light.vim/colors/github-light.vim<CR>
-nnoremap gsjd       :Edit $HOME/github/doom-one.vim/colors/doom-one.vim<CR>
+nnoremap gsjg       :Edit $HOME/src/github-light.vim/colors/github-light.vim<CR>
+nnoremap gsjd       :Edit $HOME/src/doom-one.vim/colors/doom-one.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
 nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
 nnoremap gsv        :Clap files $vim<CR>
@@ -543,7 +543,7 @@ nnoremap <silent><leader>td   :OpenTodo<CR>
 
 nnoremap <silent><leader>npm  :Clap npm<CR>
 
-nnoremap <silent><leader>qr   :call QuickReload()<CR>
+nnoremap <silent><leader>qr   :e!<CR>
 nnoremap <expr>  <leader>qo   expand('%:e') == 'vim' ? ':So<CR>' : ':luafile %<CR>'
 nmap     <silent><leader>qw   :w<CR><F5>
 
