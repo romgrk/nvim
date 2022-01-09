@@ -124,6 +124,7 @@ Plug 'xolox/vim-shell'
 Plug 'romgrk/vim-session'
 " }}}
 " Language                                                                   {{{
+Plug 'pantharshit00/vim-prisma'                          , { 'for': 'prisma' }
 Plug 'JuliaEditorSupport/julia-vim'                      , { 'for': 'julia' }
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'neoclide/jsonc.vim'
