@@ -2,6 +2,7 @@
 " Author: romgrk
 " Description: neovim init file
 
+" TODO install https://github.com/folke/todo-comments.nvim
 " TODO install https://github.com/tanvirtin/vgit.nvim
 " TODO install https://github.com/SmiteshP/nvim-gps
 " TODO https://github.com/rockerBOO/awesome-neovim#comment
