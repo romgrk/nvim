@@ -398,7 +398,6 @@ nmap <F2> <Plug>(coc-rename)
 
 " Remap for format selected region
 vmap gq         <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup CocEvents
   autocmd!
@@ -435,6 +434,9 @@ nunmap <leader>a
 
 
 "===============================================================================
+
+" File management
+nnoremap <silent><leader>fr     :Rename<space>
 
 " Session management:
 nnoremap   <expr><leader>ss     xolox#session#find_current_session() != 'default' ?
@@ -531,7 +533,7 @@ nnoremap <silent><leader>ap   vip:EasyAlign<CR>
 nnoremap <silent><leader>ret  :set et <Bar> ret<CR>
 nnoremap <silent><leader>dws  :%DeleteTrailingWS<CR>
 
-nnoremap         <leader>how  :r !howdoi<space>
+nnoremap         <leader>how  :r !hors -e<space>
 
 nnoremap <silent><leader>syv  :SynStack<CR>
 nnoremap <silent><leader>sye  :SynCurrentEdit<CR>
