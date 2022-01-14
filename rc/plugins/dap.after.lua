@@ -29,7 +29,7 @@ ui.setup({
     repl = 'r',
   },
   sidebar = {
-    open_on_start = true,
+    -- open_on_start = true, FIXME deprecated
     -- You can change the order of elements in the sidebar
     elements = {
       -- Provide as ID strings or tables with 'id' and 'size' keys
@@ -42,7 +42,7 @@ ui.setup({
     position = 'left', -- Can be 'left' or 'right'
   },
   tray = {
-    open_on_start = true,
+    -- open_on_start = true, FIXME deprecated
     elements = { 'repl' },
     height = 10,
     position = 'bottom', -- Can be 'bottom' or 'top'

@@ -1,1 +1,1 @@
-require('package-info').setup({})
+-- require('package-info').setup({})

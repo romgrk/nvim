@@ -533,7 +533,7 @@ nnoremap <silent><leader>ap   vip:EasyAlign<CR>
 nnoremap <silent><leader>ret  :set et <Bar> ret<CR>
 nnoremap <silent><leader>dws  :%DeleteTrailingWS<CR>
 
-nnoremap         <leader>how  :r !hors -e google<space>
+nnoremap         <leader>how  :r !hors -e google --raw<space>
 
 nnoremap <silent><leader>syv  :SynStack<CR>
 nnoremap <silent><leader>sye  :SynCurrentEdit<CR>

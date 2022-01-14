@@ -2,6 +2,7 @@
 " Author: romgrk
 " Description: neovim init file
 
+" TODO install https://github.com/abecodes/tabout.nvim
 " TODO install https://github.com/folke/todo-comments.nvim
 " TODO install https://github.com/tanvirtin/vgit.nvim
 " TODO install https://github.com/SmiteshP/nvim-gps
@@ -24,6 +25,7 @@
 " TODO install https://github.com/folke/todo-comments.nvim
 " TODO install https://github.com/folke/twilight.nvim
 " TODO inline comments when available (eg javascript)
+" TODO checkout https://github.com/kmonad/kmonad
 
 "=============================================================================
 " Vim setup                                                                {{{
@@ -83,6 +85,7 @@ Plug 'wellle/targets.vim'
 " @plugins
 Plug 'https://gitlab.com/yorickpeterse/nvim-pqf.git'
 Plug 'DanilaMihailov/beacon.nvim'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
 " Plug 'code-biscuits/nvim-biscuits'
 Plug 'dstein64/nvim-scrollview'
@@ -116,6 +119,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 " Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/nvim-treesitter-context'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'

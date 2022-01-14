@@ -6,10 +6,6 @@
 -- Distributed under terms of the MIT license.
 --
 
--- require('treesitter-context').setup({
---   patterns = {
---     default = {
---       'if',
---     }
---   }
--- })
+require('treesitter-context').setup({
+  -- enable = false,
+})
