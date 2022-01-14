@@ -36,13 +36,6 @@ endsnippet
 # Structures:
 #=============
 
-snippet i "interface" b
-interface ${1:Name}${2:{
-	$0
-}}
-endsnippet
-
-
 # Declarations: Member properties
 
 snippet m: "member: declaration;" b
@@ -107,16 +100,12 @@ return $0;
 endsnippet
 
 
-# General HTML
+# React
 
-snippet # "doc.byId" b
-document.getElementById('${1:id}')${2:;}
-endsnippet
-
-snippet e "doc.createElement" b
-document.createElement('${1:div}')
-endsnippet
-
-snippet div "doc.createElement"
-document.createElement('${1:div}')
+snippet fnc "function Component"
+function ${1:Component}() {
+	return (
+		<div>$2</div>
+	)
+}
 endsnippet
