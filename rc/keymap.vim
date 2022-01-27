@@ -541,7 +541,7 @@ nnoremap <silent><leader>sye  :SynCurrentEdit<CR>
 nnoremap <silent><leader>ti   :Todoist<CR>
 nnoremap <silent><leader>to   :Clap todoist<CR>
 
-nnoremap <silent><leader>td   :OpenTodo<CR>
+nnoremap <silent><leader>td   :TodoQuickFix<CR>
 
 nnoremap <silent><leader>npm  :Clap npm<CR>
 

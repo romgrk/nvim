@@ -26,6 +26,7 @@
 " TODO install https://github.com/folke/twilight.nvim
 " TODO inline comments when available (eg javascript)
 " TODO checkout https://github.com/kmonad/kmonad
+" TODO checkout https://github.com/folke/trouble.nvim
 
 "=============================================================================
 " Vim setup                                                                {{{
@@ -87,6 +88,7 @@ Plug 'https://gitlab.com/yorickpeterse/nvim-pqf.git'
 Plug 'DanilaMihailov/beacon.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
+Plug 'folke/todo-comments.nvim'
 " Plug 'code-biscuits/nvim-biscuits'
 Plug 'dstein64/nvim-scrollview'
 Plug 'MunifTanjim/nui.nvim'
@@ -126,7 +128,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'vim-scripts/loremipsum'
 Plug 'vn-ki/coc-clap'
 Plug 'wsdjeg/vim-fetch'
-Plug 'wsdjeg/vim-todo'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-shell'
