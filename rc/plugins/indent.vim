@@ -1,6 +1,6 @@
 "!::exe [So]
 
-let indent_blankline_char = '│' " | ┆
+let indent_blankline_char = '⎸' " '│' " | ┆
 let indent_blankline_space_char = '·'
 let indent_blankline_space_char_blankline = ' '
 let indent_blankline_use_treesitter = v:true
