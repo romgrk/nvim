@@ -4,3 +4,5 @@ hi! link NERDTreeLinkFile Link
 Fullfill NERDTreeLinkFile
 hi! NERDTreeLinkFile gui=none
 hi! link NERDTreeLinkTarget NERDTreeLinkFile
+
+set shiftwidth=2

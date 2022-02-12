@@ -2,9 +2,6 @@
 " Author: romgrk
 " Description: neovim init file
 
-" TODO install https://github.com/abecodes/tabout.nvim
-" TODO install https://github.com/folke/todo-comments.nvim
-" TODO install https://github.com/tanvirtin/vgit.nvim
 " TODO install https://github.com/SmiteshP/nvim-gps
 " TODO https://github.com/rockerBOO/awesome-neovim#comment
 " TODO instal Plug 'neomake/neomake'
@@ -20,13 +17,11 @@
 " TODO install https://github.com/fannheyward/coc-react-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
 " TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-" TODO install https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 " TODO install https://github.com/phaazon/hop.nvim
-" TODO install https://github.com/folke/todo-comments.nvim
 " TODO install https://github.com/folke/twilight.nvim
+" TODO checkout https://github.com/folke/trouble.nvim
 " TODO inline comments when available (eg javascript)
 " TODO checkout https://github.com/kmonad/kmonad
-" TODO checkout https://github.com/folke/trouble.nvim
 
 "=============================================================================
 " Vim setup                                                                {{{
@@ -59,6 +54,11 @@ endfor
 call plug#begin($vim . '/bundle')
 
 " Editing                                                                    {{{
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
+" Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'romgrk/nvim-treesitter-context'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'bkad/CamelCaseMotion'
@@ -84,6 +84,9 @@ Plug 'wellle/targets.vim'
 " }}}
 " General                                                                    {{{
 " @plugins
+" Plug 'edluffy/hologram.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'https://gitlab.com/yorickpeterse/nvim-pqf.git'
 Plug 'DanilaMihailov/beacon.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -117,11 +120,6 @@ Plug 'liuchengxu/vim-clap'
 Plug 'liuchengxu/vista.vim'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'neoclide/npm.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/playground'
-" Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'romgrk/nvim-treesitter-context'
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'sjl/gundo.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
