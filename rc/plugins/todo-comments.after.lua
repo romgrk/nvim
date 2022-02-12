@@ -11,7 +11,7 @@ vim.defer_fn(function()
       WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
       FIX  = { icon = " ", color = "warning", alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
       XXX  = { icon = " ", color = "error" },
-      PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+      PERF = { icon = " ", color = "warning" },
       --NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
     },
 
