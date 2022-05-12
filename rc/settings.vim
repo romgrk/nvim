@@ -114,7 +114,7 @@ set inccommand=nosplit
 
 set cursorline
 
-set  laststatus=2
+set  laststatus=3
 set showtabline=2
 
 set number numberwidth=4
@@ -172,7 +172,7 @@ set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
 set lcs+=precedes:<,extends:>   " Horizontal ellipsis
 
 set fillchars=
-set fcs+=vert:▎                 " ▎VertSplit
+"set fcs+=vert:｜               " ▎VertSplit
 "set fcs+=stl:\ ,stlnc:-        " StatusLine & StatusLineNC
 "set fcs+=fold:-                " Folded
 set fcs+=diff:╱                 " DiffDelete
