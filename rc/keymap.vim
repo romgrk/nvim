@@ -465,8 +465,9 @@ nnoremap         <leader>gcm    :Git commit -m ""<Left>
 nnoremap         <leader>gcam   :Git commit -am ""<Left>
 nnoremap         <leader>gcaa   :Git commit --amend<CR>
 nnoremap         <leader>g.     :Git commit % -m ""<Left>
-nnoremap         <leader>gk     :Git checkout<space>
-nnoremap         <leader>gK     :Git checkout -b<space>
+nnoremap         <leader>gkk    :Git checkout<space>
+nnoremap         <leader>gkm    :Git checkout master<CR>
+nnoremap         <leader>gkb    :Git checkout -b<space>
 nnoremap         <leader>gb     :Clap git_branch<CR>
 nnoremap         <leader>gl     :Git pull<CR>
 nnoremap         <leader>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
