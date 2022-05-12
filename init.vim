@@ -2,6 +2,10 @@
 " Author: romgrk
 " Description: neovim init file
 
+" TODO install https://github.com/ggandor/leap.nvim
+" TODO install https://github.com/RRethy/nvim-treesitter-textsubjects
+" TODO install https://github.com/ThePrimeagen/jvim.nvim
+" TODO install https://github.com/VonHeikemen/searchbox.nvim
 " TODO install https://github.com/SmiteshP/nvim-gps
 " TODO https://github.com/rockerBOO/awesome-neovim#comment
 " TODO instal Plug 'neomake/neomake'
@@ -53,6 +57,11 @@ endfor
 " Plugins                                                                  {{{
 call plug#begin($vim . '/bundle')
 
+" Libraries                                                                  {{{
+Plug 'notomo/promise.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+" }}}
 " Editing                                                                    {{{
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
@@ -132,6 +141,7 @@ Plug 'xolox/vim-shell'
 Plug 'romgrk/vim-session'
 " }}}
 " Language                                                                   {{{
+Plug 'martinda/Jenkinsfile-vim-syntax'                   , { 'for': 'Jenkinsfile' }
 Plug 'pantharshit00/vim-prisma'                          , { 'for': 'prisma' }
 Plug 'JuliaEditorSupport/julia-vim'                      , { 'for': 'julia' }
 Plug 'AndrewRadev/tagalong.vim'
