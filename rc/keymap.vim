@@ -666,6 +666,8 @@ nnoremap <silent> <A-,> :BufferPrevious<CR>
 nnoremap <silent> <A-.> :BufferNext<CR>
 nnoremap <silent> <A-<> :BufferMovePrevious<CR>
 nnoremap <silent> <A->> :BufferMoveNext<CR>
+nnoremap <silent> <A-S-,> :BufferMovePrevious<CR>
+nnoremap <silent> <A-S-.> :BufferMoveNext<CR>
 
 nnoremap <silent> <A-1> :BufferGoto 1<CR>
 nnoremap <silent> <A-2> :BufferGoto 2<CR>
