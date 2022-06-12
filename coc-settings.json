@@ -10,6 +10,11 @@
   "diagnostic.infoSign":    " ",
   "diagnostic.hintSign":    " ",
 
+  "css.lint.emptyRules": "ignore",
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.emptyRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+
   "languageserver": {
 
     "ocaml": {
