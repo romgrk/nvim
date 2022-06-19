@@ -233,7 +233,7 @@ set shiftround
 
 set foldenable
 set foldcolumn=0
-set foldminlines=0
+set foldminlines=1
 set foldlevel=999
 set foldlevelstart=999
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
