@@ -97,26 +97,22 @@ require('packer').startup(function(use)
 
   -- General
   -- @plugins
+  -- Plug 'edluffy/hologram.nvim'
   use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' }, config = function() require('ufo').setup({ open_fold_hl_timeout = 0 }) end }
   use { 'b0o/incline.nvim' }
   use { 'bfredl/nvim-luadev' }
-  -- Plug 'edluffy/hologram.nvim'
   use { 'nvim-telescope/telescope.nvim' }
   use { 'nvim-telescope/telescope-fzy-native.nvim' }
-  use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' }
   use { 'DanilaMihailov/beacon.nvim' }
   use { 'sindrets/diffview.nvim' }
   use { 'folke/todo-comments.nvim' }
-  -- Plug 'code-biscuits/nvim-biscuits'
   use { 'dstein64/nvim-scrollview' }
-  -- Plug 'vuki656/package-info.nvim'
   use { 'mfussenegger/nvim-dap' }
   use { 'rcarriga/nvim-dap-ui' }
   use { 'theHamsta/nvim-dap-virtual-text' }
   use { 'jbyuki/one-small-step-for-vimkind' }
   use { 'jbyuki/venn.nvim' }
   use { 'preservim/nerdtree' }
-  use { 'k0kubun/vim-open-github' }
   use { 'ruanyl/vim-gh-line' }
   use { 'akinsho/nvim-toggleterm.lua' }
   use { 'lukas-reineke/indent-blankline.nvim' }
@@ -130,7 +126,7 @@ require('packer').startup(function(use)
   use { 'honza/vim-snippets' }
   use { 'itchyny/vim-gitbranch' }
   use { 'junegunn/vim-easy-align' }
-  use { 'liuchengxu/vim-clap' }
+  use { 'liuchengxu/vim-clap', run = ':Clap install-binary!' }
   use { 'liuchengxu/vista.vim' }
   use { 'MarcWeber/vim-addon-local-vimrc' }
   use { 'neoclide/npm.nvim' }
@@ -144,6 +140,30 @@ require('packer').startup(function(use)
   use { 'xolox/vim-notes' }
   use { 'xolox/vim-shell' }
   use { 'romgrk/vim-session' }
+
+  -- UI
+  use { 'junegunn/goyo.vim' }
+  use { 'rhysd/git-messenger.vim' }
+  use { 'KabbAmine/vCoolor.vim' }
+  use { 'machakann/vim-highlightedyank' }
+  use { 'guns/xterm-color-table.vim'           , cmd = 'XtermColorTable' }
+  use { 'RRethy/vim-hexokinase'                , run = 'make hexokinase' }
+  use { 'airblade/vim-gitgutter' }
+  use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' }
+
+  -- Personal
+  use { 'romgrk/barbar.nvim' }
+  use { 'romgrk/equal.operator' }
+  use { 'romgrk/columnMove.vim' }
+  use { 'romgrk/lib.kom' }
+  use { 'romgrk/pp.vim' }
+  use { 'romgrk/replace.vim' }
+  use { 'romgrk/vim-exeline' }
+  use { 'romgrk/winteract.vim'                 , cmd = 'InteractiveWindow'}
+  use { 'romgrk/searchReplace.vim' }
+  use { 'romgrk/todoist.nvim'                  , run = ':TodoistInstall' }
+  use { 'romgrk/github-light.vim' }
+  use { 'romgrk/doom-one.vim' }
 
   -- Language
   use { 'rhysd/vim-llvm' }
@@ -183,30 +203,6 @@ require('packer').startup(function(use)
   use { 'elixir-lang/vim-elixir'               , ft = 'elixir' }
   use { 'dzeban/vim-log-syntax'                , ft = 'log' }
   use { 'ionide/Ionide-vim'                    , ft = 'fsharp' }
-
-
-  -- UI
-  use { 'junegunn/goyo.vim' }
-  use { 'rhysd/git-messenger.vim' }
-  use { 'KabbAmine/vCoolor.vim' }
-  use { 'machakann/vim-highlightedyank' }
-  use { 'guns/xterm-color-table.vim'           , cmd = 'XtermColorTable' }
-  use { 'RRethy/vim-hexokinase'                , run = 'make hexokinase' }
-  use { 'airblade/vim-gitgutter' }
-
-  -- Personal
-  use { 'romgrk/barbar.nvim' }
-  use { 'romgrk/equal.operator' }
-  use { 'romgrk/columnMove.vim' }
-  use { 'romgrk/lib.kom' }
-  use { 'romgrk/pp.vim' }
-  use { 'romgrk/replace.vim' }
-  use { 'romgrk/vim-exeline' }
-  use { 'romgrk/winteract.vim'                 , cmd = 'InteractiveWindow'}
-  use { 'romgrk/searchReplace.vim' }
-  use { 'romgrk/todoist.nvim'                  , run = ':TodoistInstall' }
-  use { 'romgrk/github-light.vim' }
-  use { 'romgrk/doom-one.vim' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
