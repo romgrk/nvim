@@ -86,8 +86,7 @@ require('packer').startup(function(use)
   use { 'Konfekt/vim-ctrlxa' }
   use { 'michaeljsmith/vim-indent-object' }
   use { 'neoclide/coc.nvim', run = 'yarn install' }
-  -- Plug 'neoclide/coc-tabnine'
-  use { 'scrooloose/nerdcommenter' }
+  use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
   use { 'sirver/UltiSnips' }
   use { 'terryma/vim-multiple-cursors' }
   use { 'tpope/vim-fugitive' }
@@ -98,7 +97,7 @@ require('packer').startup(function(use)
 
   -- General
   -- @plugins
-  use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' }, run = function() require('ufo').setup({ open_fold_hl_timeout = 0 }) end }
+  use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' }, config = function() require('ufo').setup({ open_fold_hl_timeout = 0 }) end }
   use { 'b0o/incline.nvim' }
   use { 'bfredl/nvim-luadev' }
   -- Plug 'edluffy/hologram.nvim'

@@ -1024,8 +1024,9 @@ nmap   sk   :SplitjoinSplit<CR>
 
 " Comment:
 " alt-'  &  alt-"                                                            {{{
-nmap <A-'>      <Plug>NERDCommenterToggle
-vmap <A-'>      <Plug>NERDCommenterSexy
+nmap <A-'>      <Plug>(comment_toggle_current_linewise)
+xmap <A-'>      <Plug>(comment_toggle_linewise_visual)
+xmap g'         <Plug>(comment_toggle_blockwise_visual)
 " }}}
 
 " StringTransform:
