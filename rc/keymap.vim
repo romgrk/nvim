@@ -1026,6 +1026,7 @@ nmap   sk   :SplitjoinSplit<CR>
 " alt-'  &  alt-"                                                            {{{
 nmap <A-'>      <Plug>(comment_toggle_current_linewise)
 xmap <A-'>      <Plug>(comment_toggle_linewise_visual)
+nmap g'         <Plug>(comment_toggle_blockwise)
 xmap g'         <Plug>(comment_toggle_blockwise_visual)
 " }}}
 
