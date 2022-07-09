@@ -7,22 +7,9 @@
 augroup RC
     au!
 
-    au BufWritePost */plugins/*.vim     So
-
-    au VimEnter * nested let g:previous_columns = &columns
-    au VimResized * if (&columns < (g:previous_columns - 2) / 2)
-                 \|   only
-                 \|   let g:previous_columns = &columns
-                 \| end
-    au VimResized * if ((&columns + 2) > g:previous_columns * 2 && (&columns / 2) >= 80)
-                 \|   vsplit
-                 \|   exe "normal! \<c-w>="
-                 \|   let g:previous_columns = &columns
-                 \| end
+    au VimResized * wincmd =
 
     " Session
-    " au VimLeave *        :SaveSession!
-    " au QuitPre  *        :SaveSession!
     au SessionLoadPost * :SourceLocalVimrc
 
     " Jump back at last pos
@@ -69,8 +56,9 @@ function! s:did_load (...)
     augroup DeleteTrailingWS
         au!
         " Auto-delete whitespaces at EOL
-        au BufWritePre *.py       %DeleteTrailingWS
-        au BufWritePre *.[cc,cpp] %DeleteTrailingWS
+        au BufWritePre *.py                %DeleteTrailingWS
+        au BufWritePre *.[cc,cpp,h,hh,hpp] %DeleteTrailingWS
+        au BufWritePre *.[js,ts,tsx]       %DeleteTrailingWS
     augroup END
 endfunc
 call timer_start(100, function('s:did_load'))
