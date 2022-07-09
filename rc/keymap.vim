@@ -12,7 +12,7 @@ xmap <C-W>sk <Plug>(Visual-Split-VSSplitAbove)
 xmap <C-W>sj <Plug>(Visual-Split-VSSplitBelow)
 
 nnoremap <silent><space>.       :Clap blines<CR>
-nnoremap <silent><space><space> :Clap  grep<CR>
+nnoremap <silent><space><space> :Clap  grep2<CR>
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -434,7 +434,11 @@ nunmap <leader>a
 "===============================================================================
 
 " File management
+nnoremap <silent><leader>fn     :enew<CR>
+nnoremap         <leader>fs     :sav<space>
 nnoremap <silent><leader>fr     :Rename<space>
+nnoremap <silent><leader>fm     :Move<space>
+nnoremap <silent><leader>fD     :FileDelete<CR>
 
 " Session management:
 nnoremap   <expr><leader>ss     xolox#session#find_current_session() != 'default' ?
