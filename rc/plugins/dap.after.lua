@@ -14,6 +14,7 @@ vim.fn.sign_define('DapBreakpointRejected', {text='❓', linehl='',             
 
 -- Enable virtual text
 vim.g.dap_virtual_text = true
+
 -- Disable exceptions error text
 require'dap'.listeners.after.exceptionInfo['nvim-dap-virtual-text'] = function() end
 
@@ -28,24 +29,25 @@ ui.setup({
     edit = 'e',
     repl = 'r',
   },
-  sidebar = {
-    -- open_on_start = true, FIXME deprecated
-    -- You can change the order of elements in the sidebar
-    elements = {
-      -- Provide as ID strings or tables with 'id' and 'size' keys
-      { id = 'scopes',      size = 0.25 },
-      { id = 'breakpoints', size = 0.25 },
-      { id = 'stacks',      size = 0.25 },
-      { id = 'watches',     size = 0.25 },
+  layouts = {
+    {
+      elements = {
+        'scopes',
+        'breakpoints',
+        'stacks',
+        'watches',
+      },
+      size = 40,
+      position = 'left',
     },
-    width = 50,
-    position = 'left', -- Can be 'left' or 'right'
-  },
-  tray = {
-    -- open_on_start = true, FIXME deprecated
-    elements = { 'repl' },
-    height = 10,
-    position = 'bottom', -- Can be 'bottom' or 'top'
+    {
+      elements = {
+        'repl',
+        'console',
+      },
+      size = 10,
+      position = 'bottom',
+    },
   },
   floating = {
     max_height = nil, -- These can be integers or a float between 0 and 1.

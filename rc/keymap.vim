@@ -624,7 +624,7 @@ nnoremap <C-W><space>   :ToggleTerminalWindow<CR>
 nnoremap <C-W><M-Space> :wincmd s \| NextTerminalBuffer<CR>
 
 
-tnoremap <A-w>          <C-\><C-N><C-w>w
+tmap     <A-w>          <Cmd>wincmd w<CR>
 tmap     <A-,>          <C-\><C-n>:PreviousTerminalBuffer<CR>
 tmap     <A-.>          <C-\><C-n>:NextTerminalBuffer<CR>
 tmap     <C-A-,>        <C-\><C-n>:bp<CR>
@@ -645,7 +645,6 @@ tnoremap <F12>      <C-\><C-n>
 " Navigation
 tnoremap ;         <C-\><C-n>:
 tnoremap <A-;>     <Esc>;
-tnoremap <A-w>     <C-\><C-n><A-w>
 tnoremap <A-2>     <C-\><C-n><C-n>w
 tmap     <A-u>     <C-\><C-n><A-u>
 

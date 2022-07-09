@@ -15,6 +15,7 @@ let clap_always_open_preview = v:false
 " let clap_preview_direction = 'LR'
 let clap_preview_direction = 'UD'
 let clap_popup_border = v:null
+let clap_enable_background_shadow = v:true
 
 
 "
