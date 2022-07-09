@@ -32,29 +32,24 @@
 local vim = vim
 local api = vim.api
 local glob = vim.fn.glob
-local empty = vim.fn.empty
-local system = vim.fn.system
 local stdpath = vim.fn.stdpath
 local filereadable = vim.fn.filereadable
 local nvim_create_augroup = api.nvim_create_augroup
 local nvim_create_autocmd = api.nvim_create_autocmd
 local utils = require('rc.utils')
+local bootstrap_packer = require('rc.bootstrap_packer')
 local join = utils.join
 local split = vim.split
 local load = utils.load
 
-vim.cmd [[ let $vim = stdpath('config') ]]
-
 -- Bootstrap packer, if required
-local install_path = join(stdpath('data'), 'site/pack/packer/start/packer.nvim')
-local packer_bootstrap
-if empty(glob(install_path)) > 0 then
-  packer_bootstrap = system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-end
+local packer_bootstrap = bootstrap_packer()
 
 --
 -- Settings
 --
+
+vim.cmd [[let $vim = stdpath('config')]]
 
 load('./rc/settings.vim')
 load('./rc/plugins.vim')
@@ -69,11 +64,12 @@ for _, file in ipairs(plugin_settings) do
 end
 
 require('packer').startup(function(use)
-  -- Libraries                                                                  {{{
+  use { 'wbthomason/packer.nvim' }
+  -- Libraries
   use { 'nvim-lua/plenary.nvim' }
   use { 'MunifTanjim/nui.nvim' }
-  -- }}}
-  -- Editing                                                                    {{{
+
+  -- Editing
   use { 'nvim-treesitter/nvim-treesitter' }
   use { 'nvim-treesitter/nvim-treesitter-context' }
   use { 'JoosepAlviste/nvim-ts-context-commentstring' }
@@ -99,8 +95,8 @@ require('packer').startup(function(use)
   use { 'tpope/vim-surround' }
   use { 'wellle/line-targets.vim' }
   use { 'wellle/targets.vim' }
-  -- }}}
-  -- General                                                                    {{{
+
+  -- General
   -- @plugins
   use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' }, run = function() require('ufo').setup({ open_fold_hl_timeout = 0 }) end }
   use { 'b0o/incline.nvim' }
@@ -149,12 +145,11 @@ require('packer').startup(function(use)
   use { 'xolox/vim-notes' }
   use { 'xolox/vim-shell' }
   use { 'romgrk/vim-session' }
-  -- }}}
-  -- Language                                                                   {{{
+
+  -- Language
   use { 'rhysd/vim-llvm' }
   use { 'martinda/Jenkinsfile-vim-syntax'      , ft = 'Jenkinsfile' }
   use { 'pantharshit00/vim-prisma'             , ft = 'prisma' }
-  -- use { 'JuliaEditorSupport/julia-vim'     [>, ft = 'julia'<] }
   use { 'AndrewRadev/tagalong.vim' }
   use { 'neoclide/jsonc.vim' }
   use { 'justinmk/vim-syntax-extra' }
@@ -190,8 +185,8 @@ require('packer').startup(function(use)
   use { 'dzeban/vim-log-syntax'                , ft = 'log' }
   use { 'ionide/Ionide-vim'                    , ft = 'fsharp' }
 
-  -- }}}
-  -- UI                                                                         {{{
+
+  -- UI
   use { 'junegunn/goyo.vim' }
   use { 'rhysd/git-messenger.vim' }
   use { 'KabbAmine/vCoolor.vim' }
@@ -199,8 +194,8 @@ require('packer').startup(function(use)
   use { 'guns/xterm-color-table.vim'           , cmd = 'XtermColorTable' }
   use { 'RRethy/vim-hexokinase'                , run = 'make hexokinase' }
   use { 'airblade/vim-gitgutter' }
-  -- }}}
-  -- Personal                                                                   {{{
+
+  -- Personal
   use { 'romgrk/barbar.nvim' }
   use { 'romgrk/equal.operator' }
   use { 'romgrk/columnMove.vim' }
@@ -220,7 +215,6 @@ require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
 
 -- Scripts:
 load('./rc/function.vim')
