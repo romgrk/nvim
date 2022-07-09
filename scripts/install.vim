@@ -22,15 +22,16 @@ if empty(s:m)
     finish
 end
 
-let cmd_p = "Plug '" . s:m[0] . "'"
-let cmd_i = "PlugInstall " . s:m[2] . ""
+let cmd_p = "  use { '" . s:m[0] . "' }"
+" let cmd_i = "PlugInstall " . s:m[2] . ""
 try
     edit +/@plugins $MYVIMRC
 
     call append('.', [cmd_p])
 
     execute cmd_p
-    execute cmd_i
+    " execute cmd_i
+    echo "Configuration complete. Restart & run PackerInstall to complete."
 catch /.*/
     echohl Error
     echom v:exception . ':' . cmd_p . ':' . cmd_i
