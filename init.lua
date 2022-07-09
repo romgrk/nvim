@@ -3,10 +3,8 @@
 --
 
 -- TODO install https://github.com/anuvyklack/hydra.nvim
--- TODO install https://github.com/kevinhwang91/nvim-ufo
 -- TODO install https://github.com/ggandor/leap.nvim
 -- TODO install https://github.com/RRethy/nvim-treesitter-textsubjects
--- TODO install https://github.com/ThePrimeagen/jvim.nvim
 -- TODO install https://github.com/VonHeikemen/searchbox.nvim
 -- TODO install https://github.com/SmiteshP/nvim-gps
 -- TODO https://github.com/rockerBOO/awesome-neovim#comment
@@ -65,6 +63,10 @@ end
 
 require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
+
+  -- Dev
+  -- Plug 'edluffy/hologram.nvim'
+
   -- Libraries
   use { 'nvim-lua/plenary.nvim' }
   use { 'MunifTanjim/nui.nvim' }
@@ -97,7 +99,7 @@ require('packer').startup(function(use)
 
   -- General
   -- @plugins
-  -- Plug 'edluffy/hologram.nvim'
+  use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
   use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' }, config = function() require('ufo').setup({ open_fold_hl_timeout = 0 }) end }
   use { 'b0o/incline.nvim' }
   use { 'bfredl/nvim-luadev' }
@@ -142,6 +144,7 @@ require('packer').startup(function(use)
   use { 'romgrk/vim-session' }
 
   -- UI
+  use { 'RRethy/vim-illuminate' }
   use { 'junegunn/goyo.vim' }
   use { 'rhysd/git-messenger.vim' }
   use { 'KabbAmine/vCoolor.vim' }

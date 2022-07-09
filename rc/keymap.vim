@@ -122,8 +122,6 @@ vmap <C-b> <Nop>
 " Semicolon key
 nmap   <expr>   ;    <SID>quick_cmd()
 
-imap ;w <Esc>;w
-
 let s:quick_cmd_map = {
 \ 'w':       ":w\<CR>",
 \ "\<C-F>":  ':Files',
@@ -1058,6 +1056,7 @@ nnoremap g? #zvzz
 " IncSearch
 nmap / <Plug>(incsearch-forward)
 nmap ? <Plug>(incsearch-backward)
+" nmap / <cmd>SearchBoxMatchAll<CR>
 
 nmap n  <Plug>(incsearch-nohl-n)zvzz
 nmap N  <Plug>(incsearch-nohl-N)zvzz

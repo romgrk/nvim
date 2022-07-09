@@ -1,8 +1,6 @@
 setlocal isk+=-
 
-nnoremap <buffer><silent> K     :call LanguageClient#textDocument_hover()<CR>
-nnoremap <buffer><silent> gd    :call LanguageClient#textDocument_definition()<CR>
-nnoremap <buffer><silent> <F2>  :call LanguageClient#textDocument_rename()<CR>
+nnoremap <buffer> <F4> :e %<.js<CR>
 
 inoremap <expr><buffer>: <SID>insert_colon()
 inoremap <expr><buffer>; <SID>insert_semicolon()
@@ -20,8 +18,8 @@ function! s:insert_semicolon()
   let next_char = getline('.')[next_col]
 
   if next_char == ';'
-    return "\<Right>"
+    return "\<Right>\<CR>"
   end
 
-  return ';'
+  return ";\<CR>"
 endfu
