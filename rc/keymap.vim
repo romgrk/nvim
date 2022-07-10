@@ -107,26 +107,18 @@ vmap <C-b> <Nop>
 " Semicolon quick commands                                                  {{{1
 
 " Semicolon key
-nmap   <expr>   ;    <SID>quick_cmd()
+nmap <expr> ; <SID>n_semicolon()
+function! s:n_semicolon ()
+    if sneak#is_sneaking() | return ":call sneak#rpt('', 0)\<CR>" | end
+    return ':'
+endfunc
 
-let s:quick_cmd_map = {
-\ 'w':       ":w\<CR>",
-\ "\<C-F>":  ':Files',
-\ "\<A-;>":  'q:":P',
-\}
-
-function! s:quick_cmd ()
-    if sneak#is_sneaking()
-        return ":call sneak#rpt('', 0)\<CR>"
+cmap <expr> w <SID>cmd_write()
+function! s:cmd_write()
+    if getcmdline() == ''
+        return "w\<CR>"
     end
-    echo ''
-    let char = GetChar('Info', ':')
-    let qmap = get(s:quick_cmd_map, char, ':' . char)
-    if !empty(qmap)
-        return qmap
-    else
-        return ':' . char
-    end
+    return 'w'
 endfunc
 
 " }}}1
