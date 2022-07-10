@@ -4,9 +4,6 @@
 
 
 " Recent mappings:
-"
-
-nnoremap <silent> <C-A-F> :SearchBoxSimple<CR>
 
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep2<CR>
@@ -1022,18 +1019,12 @@ nmap <space>ccs <Plug>(start_case_operator)
 nnoremap g/ *zvzz
 nnoremap g? #zvzz
 
-" nnoremap g/ <Nop>
-" nnoremap g? <Nop>
-
 " IncSearch
-nmap / <Plug>(incsearch-forward)
-nmap ? <Plug>(incsearch-backward)
-" nmap / <cmd>SearchBoxMatchAll<CR>
+nnoremap /  <cmd>SearchBoxMatchAll title=Search<CR>
+nnoremap ?  <cmd>SearchBoxMatchAll title=Search reverse=true<CR>
 
-nmap n  <Plug>(incsearch-nohl-n)zvzz
-nmap N  <Plug>(incsearch-nohl-N)zvzz
-nmap *  <Plug>(incsearch-nohl-*)
-nmap #  <Plug>(incsearch-nohl-#)
+nmap n  nzvzz
+nmap N  Nzvzz
 
 " Yank selected text as an escaped search-pattern
 map <silent><Plug>(visual-yank-plaintext)
@@ -1044,16 +1035,8 @@ vmap <silent>    <C-f>  "/<Plug>(visual-yank-plaintext):set hlsearch<CR>
 vmap <silent>       g/  "/<Plug>(visual-yank-plaintext)n
 vmap <silent>       g?  "/<Plug>(visual-yank-plaintext)N
 
-nmap <silent><expr> g\  incsearch#go(<SID>incsearch_config())
 
-function! s:incsearch_config() abort
-  return {'converters': [{val -> '\V' . escape(val, '/\')}]}
-endfunction
-
-
-
-
-" Text Replace TODO implement a real replace-mode
+" Replace operations
 nnoremap <A-r>r     &
 nnoremap <A-r><A-r> g&
 
