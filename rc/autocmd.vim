@@ -28,7 +28,7 @@ augroup RC
     " Styling listeners:
 
     " CursorLine & CursorColumn
-    au WinLeave * if &bt == '' | exe 'setlocal nocursorline nocursorcolumn' | end
+    au WinLeave * exe 'setlocal nocursorline nocursorcolumn'
     au WinEnter * if &bt == '' | let &l:cul = &g:cul | end
     au WinEnter * if &bt == '' | let &l:cuc = &g:cuc | end
 
