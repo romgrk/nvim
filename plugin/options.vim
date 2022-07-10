@@ -224,12 +224,11 @@ ToggleMap 'sw',  { 'value': '&shiftwidth' },       [2,     4], { 'post': 'let &t
 
 AlternMap 'cn',  'Context', ['TSContextDisable', 'TSContextEnable']
 ToggleMap 'hl',  'HexokinaseToggle'
-ToggleMap 'ft',  'call feedkeys(\":setfiletype \", \"t\")'
+ToggleMap 'ft',  'Clap filetypes'
 ToggleMap 'gs',  'GitGutterSignsEnable'
 ToggleMap 'gu',  'GitGutterToggle'
 ToggleMap 'id',  'IndentLinesToggle'
 ToggleMap 'il',  'IlluminationToggle'
-ToggleMap 'jn',  'setfiletype javascript.node'
 ToggleMap 'js',  'setfiletype javascript'
 ToggleMap 'jx',  'setfiletype javascript.jsx'
 ToggleMap 'tx',  'setfiletype typescriptreact'
@@ -237,8 +236,6 @@ ToggleMap 'vl',  'EditVerboseLevel'
 ToggleMap 'vm',  'VimadeToggle'
 
 AlternMap 'gg',  'Git integration', ['GitGutterEnable', 'GitGutterDisable']
-AlternMap 'al',  'ALE Linter',      ['ALEEnable', 'ALEDisable']
-AlternMap 'lc',  'Language Client', ['LanguageClientStop', 'LanguageClientStart']
 AlternMap 'coc', 'CoC',             ['CocDisable', 'CocEnable']
 AlternMap 'si',  'project symbols',
     \ ['nnoremap <silent> <A-S-I>  :Clap tagfiles<CR>', 'nnoremap <silent> <A-S-I>  :Clap coc_symbols<CR>']

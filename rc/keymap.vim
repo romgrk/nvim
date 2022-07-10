@@ -50,11 +50,9 @@ nmap    <Plug>(ignore-3) <Plug>(RepeatRedo)
 nmap    <Plug>(ignore-4) <Plug>(RepeatUndoLine)
 
 " YankRing
-"if exists('*miniyank#on_yank')
 nmap     p <Plug>(miniyank-autoput)
 nmap     P <Plug>(miniyank-autoPut)
 nmap <A-p> <Plug>(miniyank-cycle)
-"end
 
 " G-commands:
 
@@ -308,11 +306,9 @@ nnoremap [l   :lprevious<CR>
 "===============================================================================
 " Sneak                                                                     {{{1
 
-nmap <PageUp>   <Plug>Sneak_S
-nmap <PageDown> <Plug>Sneak_s
-
-nmap gk         <Plug>Sneak_S
-nmap gj         <Plug>Sneak_s
+nmap <A-f>   <Plug>(leap-this-window)
+nmap <C-A-f> <Plug>(leap-cross-window)
+nmap g<A-f>  <Plug>(leap-cross-window)
 
 xmap <silent>    ;  <Plug>SneakNext
 xmap <silent> <A-;> <Plug>SneakPrevious
@@ -326,9 +322,6 @@ nmap <expr> <a-;> sneak#is_sneaking() ? (sneak#state().reverse==1
 nmap f     <Plug>Sneak_f
 xmap f     <Plug>Sneak_f
 omap f     <Plug>Sneak_f
-nmap <M-f> <Plug>Sneak_F
-xmap <M-f> <Plug>Sneak_F
-omap <M-f> <Plug>Sneak_F
 nmap F     <Plug>Sneak_F
 xmap F     <Plug>Sneak_F
 omap F     <Plug>Sneak_F
@@ -346,7 +339,7 @@ omap U <Plug>Sneak_T
 " Intellisense (coc.nvim)                                                   {{{1
 
 
-nmap <silent> <leader>coc :Clap coc_commands<CR>
+nmap <silent> <space>coc :Clap coc_commands<CR>
 nmap <silent> <F2>       :call CocAction('rename')<CR>
 
 " xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
@@ -405,163 +398,156 @@ augroup CocEvents
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-" vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Remap for do codeAction of selected region, ex: `<space>aap` for current paragraph
+" vmap <space>a  <Plug>(coc-codeaction-selected)
+nmap <space>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <space>ac  <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <space>qf  <Plug>(coc-fix-current)
 
 
 " 1}}}
 "===============================================================================
 " Commands & Space maps                                              @space {{{1
 
-nnoremap <C-A-B>           :NeomakeSh make build<CR>
-
-nmap     <leader>j         <Plug>Sneak_s
-nmap     <leader>k         <Plug>Sneak_S
-
-" OptionsWidget:
-nnoremap <silent><leader>op        :OptionsWidget<CR>
-
-nunmap <leader>ac
-nunmap <leader>a
-
+nunmap <space>ac
+nunmap <space>a
 
 "===============================================================================
 
-" File management
-nnoremap <silent><leader>fn     :enew<CR>
-nnoremap         <leader>fs     :sav<space>
-nnoremap <silent><leader>fr     :Rename<space>
-nnoremap <silent><leader>fm     :Move<space>
-nnoremap <silent><leader>fD     :FileDelete<CR>
+" File management (prefix: f)
+nnoremap <silent><space>fn     :enew<CR>
+nnoremap         <space>fs     :sav<space>
+nnoremap <silent><space>fr     :Rename<space>
+nnoremap <silent><space>fm     :Move<space>
+nnoremap <silent><space>fD     :FileDelete<CR>
 
-" Session management:
-nnoremap   <expr><leader>ss     xolox#session#find_current_session() != 'default' ?
+" Directory management
+nnoremap <silent><space>md     :Mkdir! <C-D>
+
+
+" Session management (prefix: s)
+nnoremap   <expr><space>ss     xolox#session#find_current_session() != 'default' ?
                               \ ":wall! \<Bar> SaveSession\<CR>\<Esc>" : ":wall! \<Bar> SaveSession\<space>"
-nnoremap <silent><leader>sS     :SaveSession!<space>
-nnoremap <silent><leader>so     :Clap session<CR>
-nnoremap <silent><leader>sd     :OpenSession! default<CR>
-nnoremap <silent><leader>sc     :wall! <Bar> CloseSession<CR>
-nnoremap <silent><leader>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
+nnoremap <silent><space>sS     :SaveSession!<space>
+nnoremap <silent><space>so     :Clap session<CR>
+nnoremap <silent><space>sd     :OpenSession! default<CR>
+nnoremap <silent><space>sc     :wall! <Bar> CloseSession<CR>
+nnoremap <silent><space>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
 
-nnoremap <silent><leader>sl     :SourceLocalVimrc<CR>
-nnoremap <silent><leader>sn     :Note <C-R>=xolox#session#find_current_session()<CR><CR>
+nnoremap <silent><space>sl     :SourceLocalVimrc<CR>
+nnoremap <silent><space>sn     :Note <C-R>=xolox#session#find_current_session()<CR><CR>
 
 
-nnoremap <silent><leader>np     :NewProject<space>
+nnoremap <silent><space>np     :NewProject<space>
 
-" Notes:
-nnoremap <silent><leader>no     :Clap note<CR>
 
-" Git:
+" Notes (prefix: n)
+nnoremap         <space>nn     :Clap<space>
+nnoremap <silent><space>no     :Clap note<CR>
 
-nnoremap <silent><leader>gg     :tabedit %<CR>:Git<CR><C-W>o
-nnoremap <silent><leader>gaa    :Git add --all<CR>
-nnoremap <silent><leader>ga.    :Git add %<CR>
-nnoremap         <leader>gcm    :Git commit -m ""<Left>
-nnoremap         <leader>gcam   :Git commit -am ""<Left>
-nnoremap         <leader>gcaa   :Git commit --amend<CR>
-nnoremap         <leader>g.     :Git commit % -m ""<Left>
-nnoremap         <leader>gkk    :Git checkout<space>
-nnoremap         <leader>gkm    :Git checkout master<CR>
-nnoremap         <leader>gkb    :Git checkout -b<space>
-nnoremap         <leader>gb     :Clap git_branch<CR>
-nnoremap         <leader>gl     :Git pull<CR>
-nnoremap         <leader>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
-nnoremap         <leader>gpp    :Git push<CR>
-nnoremap         <leader>gpf    :Git push --force<CR>
-nnoremap         <leader>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
-nnoremap <silent><leader>gs     :Gstatus<CR>
-nnoremap <silent><leader>gu     :GitOpenUnmergedFiles<CR>
-nnoremap <silent><leader>gdo    :DiffviewOpen<CR>
-nnoremap <silent><leader>gda    :GitDiff<CR>
-nnoremap <silent><leader>gd.    :GitDiff %<CR>
-nnoremap         <leader>gdd    :GitDiff<space>
-nnoremap         <leader>gr.    :Git restore %<CR>
-nnoremap         <leader>grA    :Git restore .<CR>
+
+" Git (prefix: g)
+
+nnoremap <silent><space>gg     :tabedit %<CR>:Git<CR><C-W>o
+nnoremap <silent><space>gaa    :Git add --all<CR>
+nnoremap <silent><space>ga.    :Git add %<CR>
+nnoremap         <space>gcm    :Git commit -m ""<Left>
+nnoremap         <space>gcam   :Git commit -am ""<Left>
+nnoremap         <space>gcaa   :Git commit --amend<CR>
+nnoremap         <space>g.     :Git commit % -m ""<Left>
+nnoremap         <space>gkk    :Git checkout<space>
+nnoremap         <space>gkm    :Git checkout master<CR>
+nnoremap         <space>gkb    :Git checkout -b<space>
+nnoremap         <space>gb     :Clap git_branch<CR>
+nnoremap         <space>gl     :Git pull<CR>
+nnoremap         <space>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
+nnoremap         <space>gpp    :Git push<CR>
+nnoremap         <space>gpf    :Git push --force<CR>
+nnoremap         <space>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
+nnoremap <silent><space>gs     :Gstatus<CR>
+nnoremap <silent><space>gu     :GitOpenUnmergedFiles<CR>
+nnoremap <silent><space>gdo    :DiffviewOpen<CR>
+nnoremap <silent><space>gda    :GitDiff<CR>
+nnoremap <silent><space>gd.    :GitDiff %<CR>
+nnoremap         <space>gdd    :GitDiff<space>
+nnoremap         <space>gR.    :Git restore %<CR>
+nnoremap         <space>gRR    :Git restore .<CR>
 
 " GitMessenger:
-nnoremap <silent><leader>gm     :GitMessenger<CR>
-
-" GitGutter:
-nnoremap <silent><leader>hh     :GitGutter
-nnoremap <silent><leader>hs     :GitGutterStageHunk<CR>
-nnoremap <silent><leader>hv     :GitGutterPreviewHunk<CR>
-nnoremap <silent><leader>hu     :GitGutterUndoHunk<CR>
+nnoremap <silent><space>gm     :GitMessenger<CR>
 
 " Open in Github:
-nnoremap <silent><leader>gh     :GH<CR>
+nnoremap <silent><space>gh     :GH<CR>
+
+" GitGutter (prefix: h)
+nnoremap <silent><space>hh     :GitGutter
+nnoremap <silent><space>hs     :GitGutterStageHunk<CR>
+nnoremap <silent><space>hv     :GitGutterPreviewHunk<CR>
+nnoremap <silent><space>hu     :GitGutterUndoHunk<CR>
 
 "===============================================================================
 " Ack, Ag, Grep & File Searching
 
-" Files:
-nnoremap <silent><leader>md     :Mkdir! <C-D>
-nnoremap <silent><leader>mv     :Move <A-i>d/
-nnoremap <silent><leader>rn     :Rename<space>
-
 " Search:
-nnoremap <silent><leader>rg     :Rg<space>
-nnoremap <silent><leader>rw     :Rg<space><C-R><C-W><CR>
-" nnoremap <silent><leader>ag     XXX implement search
-" nnoremap <silent><leader>aa     XXX implement search
+nnoremap <silent><space>rg     :Rg<space>
+nnoremap <silent><space>rw     :Rg<space><C-R><C-W><CR>
+" nnoremap <silent><space>ag     XXX implement search
+" nnoremap <silent><space>aa     XXX implement search
 
 "===============================================================================
 " Window things
 
-nnoremap <silent><leader>ww   :InteractiveWindow<CR>
+nnoremap <silent><space>ww   :InteractiveWindow<CR>
 
-nnoremap <silent><leader>w-   :call SizeDown()<CR>
-nnoremap <silent><leader>w+   :call SizeUp()<CR>
+nnoremap <silent><space>w-   :call SizeDown()<CR>
+nnoremap <silent><space>w+   :call SizeUp()<CR>
 
 "===============================================================================
 
 " Various:
 
-nnoremap <silent><leader>mp   :MarkdownPreview<CR>
-nnoremap <silent><leader>mP   :MarkdownPreviewStop<CR>
+nnoremap <silent><space>mp   :MarkdownPreview<CR>
+nnoremap <silent><space>mP   :MarkdownPreviewStop<CR>
 
-nnoremap <silent><leader>cp   :VCoolor<CR>
-nnoremap   <expr><leader>c-   '"_ciw' . color#Darken(expand('<cword>')) . "\<Esc>"
-nnoremap   <expr><leader>c=   '"_ciw' . color#Lighten(expand('<cword>')) . "\<Esc>"
+nnoremap <silent><space>cp   :VCoolor<CR>
+nnoremap   <expr><space>c-   '"_ciw' . color#Darken(expand('<cword>')) . "\<Esc>"
+nnoremap   <expr><space>c=   '"_ciw' . color#Lighten(expand('<cword>')) . "\<Esc>"
 
-nnoremap <silent><leader>gf   :NERDTreeFind<CR>
+nnoremap <silent><space>gf   :NERDTreeFind<CR>
 
-nnoremap <silent><leader>ap   vip:EasyAlign<CR>
-nnoremap <silent><leader>ret  :set et <Bar> ret<CR>
-nnoremap <silent><leader>dws  :%DeleteTrailingWS<CR>
+nnoremap <silent><space>ap   vip:EasyAlign<CR>
+nnoremap <silent><space>ret  :set et <Bar> ret<CR>
+nnoremap <silent><space>dws  :%DeleteTrailingWS<CR>
 
-nnoremap         <leader>how  :r !hors -e google --raw<space>
+nnoremap         <space>how  :r !hors -e google --raw<space>
 
-nnoremap <silent><leader>syv  :SynStack<CR>
-nnoremap <silent><leader>sye  :SynCurrentEdit<CR>
+nnoremap <silent><space>syv  :SynStack<CR>
+nnoremap <silent><space>sye  :SynCurrentEdit<CR>
 
-nnoremap <silent><leader>ti   :Todoist<CR>
-nnoremap <silent><leader>to   :Clap todoist<CR>
+nnoremap <silent><space>ti   :Todoist<CR>
+nnoremap <silent><space>to   :Clap todoist<CR>
 
-nnoremap <silent><leader>td   :TodoQuickFix<CR>
+nnoremap <silent><space>td   :TodoQuickFix<CR>
 
-nnoremap <silent><leader>npm  :Clap npm<CR>
+nnoremap <silent><space>npm  :Clap npm<CR>
 
-nnoremap <silent><leader>qr   :e!<CR>
-nnoremap <expr>  <leader>qo   expand('%:e') == 'vim' ? ':So<CR>' : ':luafile %<CR>'
-nmap     <silent><leader>qw   :w<CR><F5>
+nnoremap <silent><space>qr   :e!<CR>
+nnoremap <expr>  <space>qo   expand('%:e') == 'vim' ? ':So<CR>' : ':luafile %<CR>'
+nmap     <silent><space>qw   :w<CR><F5>
 
-nnoremap         <leader>up   :PlugUpdate <Bar> CocUpdate<CR>
+nnoremap         <space>vu   :PackerUpdate <Bar> CocUpdate<CR>
 
-nnoremap <silent><leader>hh   :Clap help_tags<CR>
+nnoremap <silent><space>hh   :Clap help_tags<CR>
 
 
 " Multi-Cursors:
 " (see: ./plugins/multiple-cursors.vim)
-nnoremap      <leader>mw :.,.MultipleCursorsFind \S\+<CR>o<Esc>
-nnoremap      <leader>mW :.,.MultipleCursorsFind \w\+<CR>
-nnoremap      <leader>mf :MultipleCursorsFind<space>
+nnoremap      <space>mw :.,.MultipleCursorsFind \S\+<CR>o<Esc>
+nnoremap      <space>mW :.,.MultipleCursorsFind \w\+<CR>
+nnoremap      <space>mf :MultipleCursorsFind<space>
 
 " }}}1
 "===============================================================================
@@ -683,7 +669,7 @@ nnoremap <silent> <A-9> :BufferLast<CR>
 nnoremap <silent> <A-c> :BufferClose!<CR>
 nnoremap <silent> <A-C> :BufferReopen<CR>
 
-nnoremap <silent><A-space>  :BufferPick<CR>
+nnoremap         <space>o   :BufferPick<CR>
 nnoremap <silent><space>bd  :BufferOrderByDirectory<CR>
 nnoremap <silent><space>bl  :BufferOrderByLanguage<CR>
 
@@ -951,10 +937,6 @@ fu! s:deleteSurroundingQuotes()
     return "\<Plug>Dsurround" . s:findQuote()
 endfu
 
-
-nmap <silent><expr>f'   "<Plug>Sneak_f" . <SID>findQuote(1, 'c')
-nmap <silent><expr>F'   "<Plug>Sneak_F" . <SID>findQuote(0, 'c')
-
 " delete/change surrounding quotes
 nmap <expr>cs'  <SID>changeSurroundingQuotes()
 nmap <expr>ds'  <SID>deleteSurroundingQuotes()
@@ -1034,16 +1016,16 @@ xmap g'         <Plug>(comment_toggle_blockwise_visual)
 
 " StringTransform:
 " Change Case                                                                {{{
-nmap <leader>ccc <Plug>(camel_case_operator)
-nmap <leader>ccC <Plug>(upper_camel_case_operator)
-nmap <leader>cc_ <Plug>(snake_case_operator)
-nmap <leader>cc- <Plug>(kebab_case_operator)
-nmap <leader>ccs <Plug>(start_case_operator)
-" xmap <leader>ccc <Plug>(camel_case_operator)
-" xmap <leader>ccC <Plug>(upper_camel_case_operator)
-" xmap <leader>cc_ <Plug>(snake_case_operator)
-" xmap <leader>cc- <Plug>(kebab_case_operator)
-" xmap <leader>ccs <Plug>(start_case_operator)
+nmap <space>ccc <Plug>(camel_case_operator)
+nmap <space>ccC <Plug>(upper_camel_case_operator)
+nmap <space>cc_ <Plug>(snake_case_operator)
+nmap <space>cc- <Plug>(kebab_case_operator)
+nmap <space>ccs <Plug>(start_case_operator)
+" xmap <space>ccc <Plug>(camel_case_operator)
+" xmap <space>ccC <Plug>(upper_camel_case_operator)
+" xmap <space>cc_ <Plug>(snake_case_operator)
+" xmap <space>cc- <Plug>(kebab_case_operator)
+" xmap <space>ccs <Plug>(start_case_operator)
 "}}}
 
 " }}}1
@@ -1177,11 +1159,11 @@ nnoremap <silent> <F8>    <cmd>lua require('dapui').eval()<CR>
 " nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
 " nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
 " nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
-" nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
-" nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-" nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-" nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
-" nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
+" nnoremap <silent> <space>b :lua require'dap'.toggle_breakpoint()<CR>
+" nnoremap <silent> <space>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+" nnoremap <silent> <space>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+" nnoremap <silent> <space>dr :lua require'dap'.repl.open()<CR>
+" nnoremap <silent> <space>dl :lua require'dap'.run_last()<CR>
 
 " }}}1
 "===============================================================================

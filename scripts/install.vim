@@ -34,7 +34,7 @@ try
     echo "Configuration complete. Restart & run PackerInstall to complete."
 catch /.*/
     echohl Error
-    echom v:exception . ':' . cmd_p . ':' . cmd_i
+    echom v:exception . ':' . cmd_p
     echohl None
     edit $MYVIMRC
     undo

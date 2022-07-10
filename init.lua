@@ -3,7 +3,6 @@
 --
 
 -- TODO install https://github.com/anuvyklack/hydra.nvim
--- TODO install https://github.com/ggandor/leap.nvim
 -- TODO install https://github.com/RRethy/nvim-treesitter-textsubjects
 -- TODO install https://github.com/VonHeikemen/searchbox.nvim
 -- TODO install https://github.com/SmiteshP/nvim-gps
@@ -65,7 +64,7 @@ require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
   -- Dev
-  -- Plug 'edluffy/hologram.nvim'
+  use { '/home/romgrk/src/hologram.nvim' }
 
   -- Libraries
   use { 'nvim-lua/plenary.nvim' }
@@ -99,6 +98,7 @@ require('packer').startup(function(use)
 
   -- General
   -- @plugins
+  use { 'ggandor/leap.nvim' }
   use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
   use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' }, config = function() require('ufo').setup({ open_fold_hl_timeout = 0 }) end }
   use { 'b0o/incline.nvim' }
