@@ -89,7 +89,6 @@ require('packer').startup(function(use)
   use { 'tpope/vim-fugitive' }
   use { 'tpope/vim-repeat' }
   use { 'tpope/vim-surround' }
-  use { 'wellle/line-targets.vim' }
   use { 'wellle/targets.vim' }
 
   -- General
