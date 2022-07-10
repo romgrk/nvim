@@ -295,6 +295,8 @@ nnoremap [l   :lprevious<CR>
 
 nmap <A-f>        <Plug>(leap-this-window)
 nmap <space><A-f> <Plug>(leap-cross-window)
+nmap  <BS>        <Plug>(leap-this-window)
+nmap g<BS>        <Plug>(leap-cross-window)
 
 xmap <silent>    ;  <Plug>SneakNext
 xmap <silent> <A-;> <Plug>SneakPrevious
