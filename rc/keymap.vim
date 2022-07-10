@@ -6,6 +6,8 @@
 " Recent mappings:
 "
 
+nnoremap <silent> <C-A-F> :SearchBoxSimple<CR>
+
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep2<CR>
 
@@ -1464,19 +1466,15 @@ func! I_CR ()
     if pumvisible()
         return "\<C-Y>\<C-R>=Ulti_expand()\<CR>" | end
 
-    "return delimitMate#ExpandReturn() . "\<C-g>u"
-    return "\<CR>\<C-g>u"
+    return "\<CR>"
 endfu
 
 func! I_SPACE ()
-    "if delimitMate#ShouldJump() && pumvisible()
-        "return delimitMate#JumpAny() | end
-
     if pumvisible()
         return "\<C-g>\<Esc>" . "\<space>"
     end
 
-    return "\<C-g>u" . "\<space>"
+    return "\<space>"
 endfu
 
 fu! I_TAB ()
