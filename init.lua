@@ -79,8 +79,6 @@ require('packer').startup(function(use)
   use { 'bkad/CamelCaseMotion' }
   use { 'coderifous/textobj-word-column.vim' }
   use { 'jiangmiao/auto-pairs' }
-  -- XXX use lightspeed asap
-  -- Plug 'ggandor/lightspeed.nvim'
   -- Plug 'justinmk/vim-sneak'
   use { 'romgrk/vim-sneak' }
   use { 'kana/vim-niceblock' }
