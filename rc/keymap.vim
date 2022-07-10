@@ -302,9 +302,8 @@ nnoremap [l   :lprevious<CR>
 "===============================================================================
 " Sneak                                                                     {{{1
 
-nmap <A-f>   <Plug>(leap-this-window)
-nmap <C-A-f> <Plug>(leap-cross-window)
-nmap g<A-f>  <Plug>(leap-cross-window)
+nmap <A-f>        <Plug>(leap-this-window)
+nmap <space><A-f> <Plug>(leap-cross-window)
 
 xmap <silent>    ;  <Plug>SneakNext
 xmap <silent> <A-;> <Plug>SneakPrevious
