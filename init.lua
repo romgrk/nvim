@@ -83,7 +83,7 @@ require('packer').startup(function(use)
   use { 'Konfekt/vim-ctrlxa' }
   use { 'michaeljsmith/vim-indent-object' }
   use { 'neoclide/coc.nvim', run = 'yarn install' }
-  use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
+  use { 'numToStr/Comment.nvim' }
   use { 'sirver/UltiSnips' }
   use { 'terryma/vim-multiple-cursors' }
   use { 'tpope/vim-fugitive' }
@@ -120,7 +120,6 @@ require('packer').startup(function(use)
   use { 'aperezdc/vim-template' }
   use { 'bfredl/nvim-miniyank' }
   use { 'fidian/hexmode' }
-  use { 'haya14busa/incsearch.vim' }
   use { 'honza/vim-snippets' }
   use { 'itchyny/vim-gitbranch' }
   use { 'junegunn/vim-easy-align' }
