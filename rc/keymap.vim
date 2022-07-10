@@ -6,11 +6,6 @@
 " Recent mappings:
 "
 
-xmap <C-W>sr <Plug>(Visual-Split-VSResize)
-xmap <C-W>ss <Plug>(Visual-Split-VSSplit)
-xmap <C-W>sk <Plug>(Visual-Split-VSSplitAbove)
-xmap <C-W>sj <Plug>(Visual-Split-VSSplitBelow)
-
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep2<CR>
 
@@ -490,15 +485,6 @@ nnoremap <silent><space>hv     :GitGutterPreviewHunk<CR>
 nnoremap <silent><space>hu     :GitGutterUndoHunk<CR>
 
 "===============================================================================
-" Ack, Ag, Grep & File Searching
-
-" Search:
-nnoremap <silent><space>rg     :Rg<space>
-nnoremap <silent><space>rw     :Rg<space><C-R><C-W><CR>
-" nnoremap <silent><space>ag     XXX implement search
-" nnoremap <silent><space>aa     XXX implement search
-
-"===============================================================================
 " Window things
 
 nnoremap <silent><space>ww   :InteractiveWindow<CR>
@@ -594,11 +580,17 @@ nnoremap <C-w>:     :vsplit <Bar> terminal<CR>
 nnoremap <C-w><A-;> :tabedit term://bin/zsh<CR>
 nnoremap <C-w>y     :WindowYank<CR>
 nnoremap <C-w>g     :WindowPaste<CR>
-nnoremap <C-w><C-Y> :WindowCopyView<CR>
+nnoremap <C-w><C-y> :WindowCopyView<CR>
 nnoremap <C-w>\     :WindowFitText<CR>
 nnoremap <C-w>q     :BufferClose! <Bar> wincmd c<CR>
 
 nnoremap <C-w><Tab> :tabedit <C-r>=bufname()<CR><CR>
+
+xmap     <C-w>sr <Plug>(Visual-Split-VSResize)
+xmap     <C-w>ss <Plug>(Visual-Split-VSSplit)
+xmap     <C-w>sk <Plug>(Visual-Split-VSSplitAbove)
+xmap     <C-w>sj <Plug>(Visual-Split-VSSplitBelow)
+
 
 " Terminal navigation mappings down here. }}}1
 "===============================================================================
