@@ -5,9 +5,19 @@ snippet p "print()" b
 print(${1:"${2:hello}"})
 endsnippet
 
+snippet v "print(vim.inspect())" b
+print(vim.inspect($1))
+endsnippet
+
 # Language
 snippet l "local v" b
 local ${1:_}${2: = ${3:"${4:value}"}};
+endsnippet
+
+snippet fori "for ipairs" b
+for _, $1 in ipairs($2) do
+	-- code
+end
 endsnippet
 
 snippet fu "local function" b
