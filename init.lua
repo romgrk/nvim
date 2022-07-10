@@ -166,7 +166,6 @@ require('packer').startup(function(use)
   use { 'rhysd/vim-llvm' }
   use { 'martinda/Jenkinsfile-vim-syntax'      , ft = 'Jenkinsfile' }
   use { 'pantharshit00/vim-prisma'             , ft = 'prisma' }
-  use { 'AndrewRadev/tagalong.vim' }
   use { 'neoclide/jsonc.vim' }
   use { 'justinmk/vim-syntax-extra' }
   use { 'thyrgle/vim-dyon'                     , ft = 'dyon' }
@@ -189,6 +188,7 @@ require('packer').startup(function(use)
   use { 'hail2u/vim-css3-syntax'               , ft = { 'css', 'sass', 'scss', 'less' } }
   use { 'groenewege/vim-less'                  , ft = 'less' }
   use { 'digitaltoad/vim-pug'                  , ft = { 'jade', 'pug' } }
+  use { 'AndrewRadev/tagalong.vim' }
   use { 'valloric/MatchTagAlways'              , ft = 'html' }
   use { 'othree/html5.vim'                     , ft = 'html' }
   use { 'othree/html5-syntax.vim'              , ft = 'html' }
