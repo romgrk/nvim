@@ -34,8 +34,6 @@ xnoremap <expr>v
 
 nnoremap Y  y$
 
-" nnoremap u u
-" nnoremap U <C-R>
 nmap    . <Plug>(RepeatDot)
 " nmap    u <Plug>(RepeatUndo)
 nnoremap    u u
@@ -51,10 +49,6 @@ nmap     P <Plug>(miniyank-autoPut)
 nmap <A-p> <Plug>(miniyank-cycle)
 
 " G-commands:
-
-"nnoremap gp   P`[
-"nnoremap gp  m`p``
-"nnoremap gP   m`P``
 
 " Re-select last pasted text
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -218,15 +212,13 @@ vmap <A-u> 12<C-y>
 vmap <A-d> 12<C-e>
 
 " WORD moves
-nnoremap <A-b> B
-nnoremap <A-e> El
-onoremap <A-b> B
-onoremap <A-e> E
-xnoremap <A-b> B
-xnoremap <A-e> E
-
+nnoremap E El
 
 " Column-edge
+nmap  gj            <Plug>ColumnMoveDown
+nmap  gk            <Plug>ColumnMoveUp
+vmap  gj            <Plug>ColumnMoveDown
+vmap  gk            <Plug>ColumnMoveUp
 nmap  <C-A-J>       <Plug>ColumnMoveDown
 nmap  <C-A-K>       <Plug>ColumnMoveUp
 vmap  <C-A-J>       <Plug>ColumnMoveDown
