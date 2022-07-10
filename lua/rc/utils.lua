@@ -17,6 +17,12 @@ local function join(a, b)
   return vim.fn.resolve(a .. '/' .. b)
 end
 
+local function try_and_warn(fn, arg)
+  local ok, result = pcall(fn, arg)
+  if ok then return end
+  vim.api.nvim_err_writeln('Error while running "' .. arg .. '": ' .. tostring(result))
+end
+
 local function load(path)
   local filepath =
     starts_with(path, '/')
@@ -24,10 +30,10 @@ local function load(path)
       or join(stdpath('config'), path)
 
   if ends_with(filepath, '.lua') then
-    vim.cmd(string.format('luafile %s', filepath))
+    try_and_warn(vim.cmd, string.format('luafile %s', filepath))
   end
   if ends_with(filepath, '.vim') then
-    vim.cmd(string.format('source %s', filepath))
+    try_and_warn(vim.cmd, string.format('source %s', filepath))
   end
 end
 

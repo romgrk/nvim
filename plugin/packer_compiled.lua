@@ -74,6 +74,12 @@ _G.packer_plugins = {
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/CamelCaseMotion",
     url = "https://github.com/bkad/CamelCaseMotion"
   },
+  ["Comment.nvim"] = {
+    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0" },
+    loaded = true,
+    path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
+  },
   ["Ionide-vim"] = {
     loaded = false,
     needs_bufread = true,
@@ -184,6 +190,11 @@ _G.packer_plugins = {
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/hexmode",
     url = "https://github.com/fidian/hexmode"
   },
+  ["hologram.nvim"] = {
+    loaded = true,
+    path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/hologram.nvim",
+    url = "/home/romgrk/src/hologram.nvim"
+  },
   ["html5-syntax.vim"] = {
     loaded = false,
     needs_bufread = false,
@@ -218,6 +229,11 @@ _G.packer_plugins = {
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/jsonc.vim",
     url = "https://github.com/neoclide/jsonc.vim"
   },
+  ["leap.nvim"] = {
+    loaded = true,
+    path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/leap.nvim",
+    url = "https://github.com/ggandor/leap.nvim"
+  },
   ["lib.kom"] = {
     loaded = true,
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/lib.kom",
@@ -239,11 +255,6 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
-  },
-  nerdcommenter = {
-    loaded = true,
-    path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/nerdcommenter",
-    url = "https://github.com/scrooloose/nerdcommenter"
   },
   nerdtree = {
     loaded = true,
@@ -335,6 +346,11 @@ _G.packer_plugins = {
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/one-small-step-for-vimkind",
     url = "https://github.com/jbyuki/one-small-step-for-vimkind"
   },
+  ["packer.nvim"] = {
+    loaded = true,
+    path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -373,6 +389,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/searchReplace.vim",
     url = "https://github.com/romgrk/searchReplace.vim"
+  },
+  ["searchbox.nvim"] = {
+    loaded = true,
+    path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/searchbox.nvim",
+    url = "https://github.com/VonHeikemen/searchbox.nvim"
   },
   ["sideways.vim"] = {
     loaded = true,
@@ -557,6 +578,11 @@ _G.packer_plugins = {
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
     url = "https://github.com/machakann/vim-highlightedyank"
   },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
+  },
   ["vim-indent-object"] = {
     loaded = true,
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/vim-indent-object",
@@ -642,11 +668,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/vim-notes",
     url = "https://github.com/xolox/vim-notes"
-  },
-  ["vim-open-github"] = {
-    loaded = true,
-    path = "/home/romgrk/.local/share/nvim/site/pack/packer/start/vim-open-github",
-    url = "https://github.com/k0kubun/vim-open-github"
   },
   ["vim-prisma"] = {
     loaded = false,
@@ -762,127 +783,131 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file InteractiveWindow lua require("packer.load")({'winteract.vim'}, { cmd = "InteractiveWindow", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file XtermColorTable lua require("packer.load")({'xterm-color-table.vim'}, { cmd = "XtermColorTable", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file InteractiveWindow lua require("packer.load")({'winteract.vim'}, { cmd = "InteractiveWindow", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-markdown', 'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
-vim.cmd [[au FileType prisma ++once lua require("packer.load")({'vim-prisma'}, { ft = "prisma" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vim-plug ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "vim-plug" }, _G.packer_plugins)]]
-vim.cmd [[au FileType sass ++once lua require("packer.load")({'vim-haml', 'vim-css3-syntax'}, { ft = "sass" }, _G.packer_plugins)]]
-vim.cmd [[au FileType scss ++once lua require("packer.load")({'vim-haml', 'vim-css3-syntax'}, { ft = "scss" }, _G.packer_plugins)]]
-vim.cmd [[au FileType haml ++once lua require("packer.load")({'vim-haml'}, { ft = "haml" }, _G.packer_plugins)]]
-vim.cmd [[au FileType css ++once lua require("packer.load")({'vim-css3-syntax'}, { ft = "css" }, _G.packer_plugins)]]
-vim.cmd [[au FileType less ++once lua require("packer.load")({'vim-less', 'vim-css3-syntax'}, { ft = "less" }, _G.packer_plugins)]]
-vim.cmd [[au FileType reason ++once lua require("packer.load")({'vim-reasonml'}, { ft = "reason" }, _G.packer_plugins)]]
-vim.cmd [[au FileType gyp ++once lua require("packer.load")({'gyp.vim'}, { ft = "gyp" }, _G.packer_plugins)]]
-vim.cmd [[au FileType jade ++once lua require("packer.load")({'vim-pug'}, { ft = "jade" }, _G.packer_plugins)]]
-vim.cmd [[au FileType pug ++once lua require("packer.load")({'vim-pug'}, { ft = "pug" }, _G.packer_plugins)]]
-vim.cmd [[au FileType python ++once lua require("packer.load")({'python-syntax', 'SimpylFold'}, { ft = "python" }, _G.packer_plugins)]]
-vim.cmd [[au FileType html ++once lua require("packer.load")({'MatchTagAlways', 'html5.vim', 'html5-syntax.vim', 'vim-liquid', 'sparkup'}, { ft = "html" }, _G.packer_plugins)]]
-vim.cmd [[au FileType elixir ++once lua require("packer.load")({'vim-elixir'}, { ft = "elixir" }, _G.packer_plugins)]]
-vim.cmd [[au FileType swift ++once lua require("packer.load")({'swift.vim'}, { ft = "swift" }, _G.packer_plugins)]]
-vim.cmd [[au FileType javascript ++once lua require("packer.load")({'vim-javascript', 'vim-js-file-import'}, { ft = "javascript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType dyon ++once lua require("packer.load")({'vim-dyon'}, { ft = "dyon" }, _G.packer_plugins)]]
-vim.cmd [[au FileType typescript ++once lua require("packer.load")({'typescript-vim'}, { ft = "typescript" }, _G.packer_plugins)]]
 vim.cmd [[au FileType javascript.jsx ++once lua require("packer.load")({'vim-jsx-improve'}, { ft = "javascript.jsx" }, _G.packer_plugins)]]
-vim.cmd [[au FileType log ++once lua require("packer.load")({'vim-log-syntax'}, { ft = "log" }, _G.packer_plugins)]]
-vim.cmd [[au FileType rust ++once lua require("packer.load")({'rust.vim'}, { ft = "rust" }, _G.packer_plugins)]]
 vim.cmd [[au FileType javascript.node ++once lua require("packer.load")({'vim-node'}, { ft = "javascript.node" }, _G.packer_plugins)]]
-vim.cmd [[au FileType toml ++once lua require("packer.load")({'vim-toml'}, { ft = "toml" }, _G.packer_plugins)]]
-vim.cmd [[au FileType Jenkinsfile ++once lua require("packer.load")({'Jenkinsfile-vim-syntax'}, { ft = "Jenkinsfile" }, _G.packer_plugins)]]
+vim.cmd [[au FileType typescript ++once lua require("packer.load")({'typescript-vim'}, { ft = "typescript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType gyp ++once lua require("packer.load")({'gyp.vim'}, { ft = "gyp" }, _G.packer_plugins)]]
 vim.cmd [[au FileType typescript.tsx ++once lua require("packer.load")({'vim-tsx'}, { ft = "typescript.tsx" }, _G.packer_plugins)]]
-vim.cmd [[au FileType crystal ++once lua require("packer.load")({'vim-crystal'}, { ft = "crystal" }, _G.packer_plugins)]]
+vim.cmd [[au FileType toml ++once lua require("packer.load")({'vim-toml'}, { ft = "toml" }, _G.packer_plugins)]]
 vim.cmd [[au FileType coffee ++once lua require("packer.load")({'vim-coffee-script'}, { ft = "coffee" }, _G.packer_plugins)]]
 vim.cmd [[au FileType fsharp ++once lua require("packer.load")({'Ionide-vim'}, { ft = "fsharp" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vim-markdown', 'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType css ++once lua require("packer.load")({'vim-css3-syntax'}, { ft = "css" }, _G.packer_plugins)]]
+vim.cmd [[au FileType prisma ++once lua require("packer.load")({'vim-prisma'}, { ft = "prisma" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vim-plug ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "vim-plug" }, _G.packer_plugins)]]
+vim.cmd [[au FileType rust ++once lua require("packer.load")({'rust.vim'}, { ft = "rust" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sass ++once lua require("packer.load")({'vim-css3-syntax', 'vim-haml'}, { ft = "sass" }, _G.packer_plugins)]]
+vim.cmd [[au FileType scss ++once lua require("packer.load")({'vim-css3-syntax', 'vim-haml'}, { ft = "scss" }, _G.packer_plugins)]]
+vim.cmd [[au FileType dyon ++once lua require("packer.load")({'vim-dyon'}, { ft = "dyon" }, _G.packer_plugins)]]
+vim.cmd [[au FileType haml ++once lua require("packer.load")({'vim-haml'}, { ft = "haml" }, _G.packer_plugins)]]
+vim.cmd [[au FileType swift ++once lua require("packer.load")({'swift.vim'}, { ft = "swift" }, _G.packer_plugins)]]
+vim.cmd [[au FileType less ++once lua require("packer.load")({'vim-css3-syntax', 'vim-less'}, { ft = "less" }, _G.packer_plugins)]]
+vim.cmd [[au FileType reason ++once lua require("packer.load")({'vim-reasonml'}, { ft = "reason" }, _G.packer_plugins)]]
+vim.cmd [[au FileType elixir ++once lua require("packer.load")({'vim-elixir'}, { ft = "elixir" }, _G.packer_plugins)]]
+vim.cmd [[au FileType jade ++once lua require("packer.load")({'vim-pug'}, { ft = "jade" }, _G.packer_plugins)]]
+vim.cmd [[au FileType pug ++once lua require("packer.load")({'vim-pug'}, { ft = "pug" }, _G.packer_plugins)]]
+vim.cmd [[au FileType python ++once lua require("packer.load")({'SimpylFold', 'python-syntax'}, { ft = "python" }, _G.packer_plugins)]]
+vim.cmd [[au FileType html ++once lua require("packer.load")({'vim-liquid', 'html5-syntax.vim', 'html5.vim', 'MatchTagAlways', 'sparkup'}, { ft = "html" }, _G.packer_plugins)]]
+vim.cmd [[au FileType Jenkinsfile ++once lua require("packer.load")({'Jenkinsfile-vim-syntax'}, { ft = "Jenkinsfile" }, _G.packer_plugins)]]
+vim.cmd [[au FileType crystal ++once lua require("packer.load")({'vim-crystal'}, { ft = "crystal" }, _G.packer_plugins)]]
+vim.cmd [[au FileType javascript ++once lua require("packer.load")({'vim-javascript', 'vim-js-file-import'}, { ft = "javascript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType log ++once lua require("packer.load")({'vim-log-syntax'}, { ft = "log" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-liquid/ftdetect/liquid.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-liquid/ftdetect/liquid.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-liquid/ftdetect/liquid.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/swift.vim/ftdetect/swift.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/swift.vim/ftdetect/swift.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/swift.vim/ftdetect/swift.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-node/ftdetect/node.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-node/ftdetect/node.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-node/ftdetect/node.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-prisma/ftdetect/prisma.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-prisma/ftdetect/prisma.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-prisma/ftdetect/prisma.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-pug/ftdetect/pug.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-pug/ftdetect/pug.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-pug/ftdetect/pug.vim]], false)
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-reasonml/ftdetect/dune.vim]], true)
 vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-reasonml/ftdetect/dune.vim]]
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-reasonml/ftdetect/dune.vim]], false)
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-reasonml/ftdetect/reason.vim]], true)
 vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-reasonml/ftdetect/reason.vim]]
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-reasonml/ftdetect/reason.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/crystal.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/crystal.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/crystal.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/ecrystal.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/ecrystal.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/ecrystal.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/Ionide-vim/ftdetect/fsharp.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/Ionide-vim/ftdetect/fsharp.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/Ionide-vim/ftdetect/fsharp.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-log-syntax/ftdetect/log.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-log-syntax/ftdetect/log.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-log-syntax/ftdetect/log.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-markdown/ftdetect/markdown.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-pug/ftdetect/pug.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-pug/ftdetect/pug.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-pug/ftdetect/pug.vim]], false)
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-coffee-script/ftdetect/coffee.vim]], true)
 vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-coffee-script/ftdetect/coffee.vim]]
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-coffee-script/ftdetect/coffee.vim]], false)
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-coffee-script/ftdetect/vim-literate-coffeescript.vim]], true)
 vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-coffee-script/ftdetect/vim-literate-coffeescript.vim]]
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-coffee-script/ftdetect/vim-literate-coffeescript.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-tsx/ftdetect/typescript.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-tsx/ftdetect/typescript.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-tsx/ftdetect/typescript.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/crystal.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/crystal.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/crystal.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/ecrystal.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/ecrystal.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-crystal/ftdetect/ecrystal.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-log-syntax/ftdetect/log.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-log-syntax/ftdetect/log.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-log-syntax/ftdetect/log.vim]], false)
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/Jenkinsfile-vim-syntax/ftdetect/Jenkinsfile.vim]], true)
 vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/Jenkinsfile-vim-syntax/ftdetect/Jenkinsfile.vim]]
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/Jenkinsfile-vim-syntax/ftdetect/Jenkinsfile.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-haml/ftdetect/haml.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-haml/ftdetect/haml.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-haml/ftdetect/haml.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-less/ftdetect/less.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-less/ftdetect/less.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-less/ftdetect/less.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-prisma/ftdetect/prisma.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-prisma/ftdetect/prisma.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-prisma/ftdetect/prisma.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-node/ftdetect/node.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-node/ftdetect/node.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-node/ftdetect/node.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/typescript-vim/ftdetect/typescript.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-tsx/ftdetect/typescript.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-tsx/ftdetect/typescript.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-tsx/ftdetect/typescript.vim]], false)
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-dyon/ftdetect/dyon.vim]], true)
 vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-dyon/ftdetect/dyon.vim]]
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-dyon/ftdetect/dyon.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-liquid/ftdetect/liquid.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-liquid/ftdetect/liquid.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-liquid/ftdetect/liquid.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/sparkup/ftdetect/hsb.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/sparkup/ftdetect/hsb.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/sparkup/ftdetect/hsb.vim]], false)
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/swift.vim/ftdetect/swift.vim]], true)
-vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/swift.vim/ftdetect/swift.vim]]
-time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/swift.vim/ftdetect/swift.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/Ionide-vim/ftdetect/fsharp.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/Ionide-vim/ftdetect/fsharp.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/Ionide-vim/ftdetect/fsharp.vim]], false)
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-elixir/ftdetect/elixir.vim]], true)
 vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-elixir/ftdetect/elixir.vim]]
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-elixir/ftdetect/elixir.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-haml/ftdetect/haml.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-haml/ftdetect/haml.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-haml/ftdetect/haml.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/rust.vim/ftdetect/rust.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/flow.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-javascript/ftdetect/javascript.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-less/ftdetect/less.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-less/ftdetect/less.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-less/ftdetect/less.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/sparkup/ftdetect/hsb.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/sparkup/ftdetect/hsb.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/sparkup/ftdetect/hsb.vim]], false)
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]], true)
+vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]]
+time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/vim-toml/ftdetect/toml.vim]], false)
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/gyp.vim/ftdetect/gyp.vim]], true)
 vim.cmd [[source /home/romgrk/.local/share/nvim/site/pack/packer/opt/gyp.vim/ftdetect/gyp.vim]]
 time([[Sourcing ftdetect script at: /home/romgrk/.local/share/nvim/site/pack/packer/opt/gyp.vim/ftdetect/gyp.vim]], false)
