@@ -22,6 +22,7 @@ let mapleader = "\<space>"
 " <Esc>
 nnoremap <silent><expr> <Esc> (
             \   exists('b:esc') ? b:esc :
+            \   sneak#is_sneaking() ? (sneak#cancel() . '')[1] :
             \   coc#float#has_float() ? (coc#float#close_all() . '')[1] :
             \  ':nohl<CR>' )
 
