@@ -90,6 +90,7 @@ require('packer').startup(function(use)
 
   -- General
   -- @plugins
+  use { 'sidebar-nvim/sidebar.nvim' }
   use { 'ggandor/leap.nvim' }
   use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
   use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' } }
@@ -106,13 +107,11 @@ require('packer').startup(function(use)
   use { 'theHamsta/nvim-dap-virtual-text' }
   use { 'jbyuki/one-small-step-for-vimkind' }
   use { 'jbyuki/venn.nvim' }
-  use { 'preservim/nerdtree' }
   use { 'ruanyl/vim-gh-line' }
   use { 'akinsho/nvim-toggleterm.lua' }
   use { 'lukas-reineke/indent-blankline.nvim' }
   use { 'wellle/visual-split.vim' }
   use { 'kyazdani42/nvim-web-devicons' }
-  use { 'kyazdani42/nvim-tree.lua' }
   use { 'aperezdc/vim-template' }
   use { 'bfredl/nvim-miniyank' }
   use { 'fidian/hexmode' }
