@@ -83,7 +83,6 @@ require('packer').startup(function(use)
   use { 'neoclide/coc.nvim', run = 'yarn install' }
   use { 'numToStr/Comment.nvim' }
   use { 'sirver/UltiSnips' }
-  use { 'terryma/vim-multiple-cursors' }
   use { 'tpope/vim-fugitive' }
   use { 'tpope/vim-repeat' }
   use { 'tpope/vim-surround' }

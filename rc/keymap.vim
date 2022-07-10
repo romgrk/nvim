@@ -521,13 +521,6 @@ nnoremap         <space>vu   :PackerUpdate <Bar> CocUpdate<CR>
 
 nnoremap <silent><space>hh   :Clap help_tags<CR>
 
-
-" Multi-Cursors:
-" (see: ./plugins/multiple-cursors.vim)
-nnoremap      <space>mw :.,.MultipleCursorsFind \S\+<CR>o<Esc>
-nnoremap      <space>mW :.,.MultipleCursorsFind \w\+<CR>
-nnoremap      <space>mf :MultipleCursorsFind<space>
-
 " }}}1
 "===============================================================================
 " Panels, File navigation & Clap                                       {{{1
