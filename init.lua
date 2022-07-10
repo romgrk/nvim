@@ -4,7 +4,6 @@
 
 -- TODO install https://github.com/anuvyklack/hydra.nvim
 -- TODO install https://github.com/RRethy/nvim-treesitter-textsubjects
--- TODO install https://github.com/VonHeikemen/searchbox.nvim
 -- TODO install https://github.com/SmiteshP/nvim-gps
 -- TODO https://github.com/rockerBOO/awesome-neovim#comment
 -- TODO instal Plug 'neomake/neomake'
@@ -20,7 +19,6 @@
 -- TODO install https://github.com/fannheyward/coc-react-refactor
 -- TODO install https://github.com/nvim-treesitter/nvim-treesitter-refactor
 -- TODO install https://github.com/nvim-treesitter/nvim-treesitter-textobjects
--- TODO install https://github.com/phaazon/hop.nvim
 -- TODO install https://github.com/folke/twilight.nvim
 -- TODO checkout https://github.com/folke/trouble.nvim
 -- TODO inline comments when available (eg javascript)
