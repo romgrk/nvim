@@ -9,8 +9,6 @@
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep2<CR>
 
-nnoremap <silent><space><space> :SearchBoxMatchLines<CR>
-
 "===============================================================================
 " Major maps                                                                {{{1
 
@@ -124,12 +122,12 @@ function! s:cmd_write()
     return 'w'
 endfunc
 
-cmap <expr> h <SID>cmd_help()
+cmap <expr> <space> <SID>cmd_help()
 function! s:cmd_help()
-    if getcmdline() == ''
-        return "Clap help_tags\<CR>"
+    if getcmdline() == 'h'
+        return "\<BS>Clap help_tags\<CR>"
     end
-    return 'h'
+    return "\<space>"
 endfunc
 
 " }}}1
@@ -1018,8 +1016,8 @@ nnoremap g/ *zvzz
 nnoremap g? #zvzz
 
 " IncSearch
-nnoremap /  <cmd>SearchBoxMatchAll title=Search<CR>
-nnoremap ?  <cmd>SearchBoxMatchAll title=Search reverse=true<CR>
+nnoremap /  <cmd>SearchBoxMatchAll title=Search mode=fuzzy<CR>
+nnoremap ?  <cmd>SearchBoxMatchAll title=Search mode=fuzzy reverse=true<CR>
 
 nmap n  nzvzz
 nmap N  Nzvzz
