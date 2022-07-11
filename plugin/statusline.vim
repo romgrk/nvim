@@ -90,7 +90,7 @@ endfunction
 " Statusline builders
 
 function! statusline#active () abort
-  let is_normal = !(&bt =~# '\vno(file|write)')
+  let is_normal = !(&bt =~# '\vno(file|write)' || &bt == 'prompt')
 
   " Left side items
 
@@ -203,6 +203,8 @@ function! statusline#get_special_name() abort
   \ 'fugitive': ' FUGITIVE',
   \ 'LuaTree':  ' FILES',
   \ 'nerdtree': ' FILES',
+  \ 'SidebarNvim': ' Sidebar',
+  \ 'SearchBox': ' Searching',
   \}
 
   if has_key(name_by_filetype, &filetype)
