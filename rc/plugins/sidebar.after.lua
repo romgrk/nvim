@@ -3,7 +3,7 @@ local view = require('sidebar-nvim.view')
 local bufferline = require('bufferline.state')
 
 sidebar.setup({
-  open = true,
+  open = vim.fn.argc() == 0,
   disable_default_keybindings = 0,
   side = 'left',
   initial_width = 35,
