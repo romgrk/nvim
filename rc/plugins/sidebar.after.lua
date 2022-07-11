@@ -20,10 +20,10 @@ sidebar.setup({
   sections = {
     'git',
     'diagnostics',
-    'todos',
     'files',
+    'todos',
   },
-  section_separator = function(section, index)
+  section_separator = function()
     return {
       '',
       string.rep('─', view.View.width),
@@ -48,7 +48,7 @@ vim.api.nvim_create_user_command('TreeToggle', function()
     bufferline.set_offset(0)
     sidebar.close()
   else
-    bufferline.set_offset(view.View.width, '')
+    bufferline.set_offset(view.View.width, '', 'SidebarNvimNormal')
     sidebar.open()
   end
 end, {})
