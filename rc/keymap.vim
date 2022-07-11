@@ -5,8 +5,11 @@
 
 " Recent mappings:
 
+
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep2<CR>
+
+nnoremap <silent><space><space> :SearchBoxMatchLines<CR>
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -121,6 +124,14 @@ function! s:cmd_write()
     return 'w'
 endfunc
 
+cmap <expr> h <SID>cmd_help()
+function! s:cmd_help()
+    if getcmdline() == ''
+        return "Clap help_tags\<CR>"
+    end
+    return 'h'
+endfunc
+
 " }}}1
 "===============================================================================
 " RC & Setup quick access                                                   {{{1
@@ -145,7 +156,7 @@ nnoremap gso        :Edit $vim/rc/settings.vim<CR>
 nnoremap gsjg       :Edit $HOME/src/github-light.vim/colors/github-light.vim<CR>
 nnoremap gsjd       :Edit $HOME/src/doom-one.vim/colors/doom-one.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
-nnoremap gsP        :Clap files $vim/rc/plugins/<CR>
+nnoremap gsP        :Clap filer $vim/rc/plugins/<CR>
 nnoremap gsv        :Clap files $vim<CR>
 
 " New...

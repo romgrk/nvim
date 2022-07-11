@@ -143,6 +143,12 @@ require('packer').startup(function(use)
   use { 'RRethy/vim-hexokinase'                , run = 'make hexokinase' }
   use { 'airblade/vim-gitgutter' }
   use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' }
+  use { 'pwntester/octo.nvim', requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    }
+  }
 
   -- Personal
   use { 'romgrk/barbar.nvim' }
