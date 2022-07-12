@@ -156,6 +156,7 @@ nnoremap gsjd       :Edit $HOME/src/doom-one.vim/colors/doom-one.vim<CR>
 nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
 nnoremap gsP        :Clap filer $vim/rc/plugins/<CR>
 nnoremap gsv        :Clap files $vim<CR>
+nnoremap gssh       :Edit ~/.ssh/config<CR>
 
 " New...
 nnoremap <A-n><A-s> :UltiSnipsEdit<CR>
@@ -294,18 +295,15 @@ nnoremap [l   :lprevious<CR>
 "===============================================================================
 " Sneak                                                                     {{{1
 
+nmap <A-;>        <Plug>(leap-this-window)
+
 nmap <A-f>        <Plug>(leap-this-window)
 nmap <space><A-f> <Plug>(leap-cross-window)
 nmap  <BS>        <Plug>(leap-this-window)
 nmap g<BS>        <Plug>(leap-cross-window)
 
-xmap <silent>    ;  <Plug>SneakNext
-xmap <silent> <A-;> <Plug>SneakPrevious
-
-nmap <expr> <a-;> sneak#is_sneaking() ? (sneak#state().reverse==1
-                        \ ? "<Plug>Sneak_s<CR>"
-                        \ : "<Plug>Sneak_S<CR>")
-                \ : "<Plug>SneakNext"
+xmap <silent> ; <Plug>SneakNext
+xmap <silent> , <Plug>SneakPrevious
 
 " find operator
 nmap f     <Plug>Sneak_f
@@ -1016,8 +1014,8 @@ nnoremap g/ *zvzz
 nnoremap g? #zvzz
 
 " IncSearch
-nnoremap /  <cmd>SearchBoxMatchAll title=Search mode=fuzzy<CR>
-nnoremap ?  <cmd>SearchBoxMatchAll title=Search mode=fuzzy reverse=true<CR>
+nnoremap /  <cmd>SearchBoxMatchAll title=Search<CR>
+nnoremap ?  <cmd>SearchBoxMatchAll title=Search reverse=true<CR>
 
 nmap n  nzvzz
 nmap N  Nzvzz
@@ -1630,18 +1628,13 @@ nnoremap <C-k> za
 nnoremap <C-o> zO
 
 " Recursive open/close
-nnoremap zm zM
-nnoremap zr zR
-nnoremap zR zr
-nnoremap zM zm
+nnoremap z0 <cmd>lua require('ufo').closeAllFolds()<CR>
+nnoremap z9 <cmd>lua require('ufo').openAllFolds()<CR>
 
 " Mappings to easily toggle fold levels
-nnoremap z0 :set foldlevel=0<CR>
 nnoremap z1 :set foldlevel=1<CR>
 nnoremap z2 :set foldlevel=2<CR>
 nnoremap z3 :set foldlevel=3<CR>
-nnoremap z- :set foldlevel-=1 <Bar> call Info('&foldlevel = ' . &foldlevel)<CR>
-nnoremap z+ :set foldlevel+=1 <Bar> call Info('&foldlevel = ' . &foldlevel)<CR>
 
 " 1}}}
 "===============================================================================
