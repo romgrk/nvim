@@ -20,7 +20,7 @@
     "/usr/local/share/nvim/runtime/lua/vim": true,
     "/usr/local/share/nvim/runtime/lua/vim/lsp": true
   },
-  "Lua.diagnostics.globals": ["vim"],
+  "Lua.diagnostics.globals": ["vim", "describe", "it"],
 
   "languageserver": {
 
@@ -52,7 +52,9 @@
      *   // "cwd": "./src",
      * }, */
 
-    // CocInstall coc-actions coc-tsserver coc-css coc-html coc-json coc-python coc-tag coc-rust-analyzer coc-clangd coc-browser coc-lua coc-julia
+    // CocInstall coc-actions coc-tsserver coc-css coc-html coc-json coc-python
+    // CocInstall coc-tag coc-rust-analyzer coc-clangd coc-browser coc-lua coc-julia
+    // CocInstall coc-tabnine
 
   }
 
