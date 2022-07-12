@@ -15,10 +15,15 @@ endfu
 
 function! s:insert_semicolon()
   let next_col = col('.')-1
-  let next_char = getline('.')[next_col]
+  let next_char = getline(line('.'))[next_col]
 
   if next_char == ';'
     return "\<Right>\<CR>"
+  end
+
+  let next_line = getline(line('.') + 1)
+  if next_line[len(next_line) - 1] == ';'
+    return ';'
   end
 
   return ";\<CR>"
