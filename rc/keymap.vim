@@ -5,6 +5,10 @@
 
 " Recent mappings:
 
+nnoremap <space>cd :Clap coc_diagnostics<CR>
+
+nnoremap <silent><a-space>           :ToggleTerm<CR>
+tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep2<CR>
@@ -296,11 +300,10 @@ nnoremap [l   :lprevious<CR>
 " Sneak                                                                     {{{1
 
 nmap <A-;>        <Plug>(leap-this-window)
+nmap <C-A-;>      <Plug>(leap-cross-window)
 
-nmap <A-f>        <Plug>(leap-this-window)
-nmap <space><A-f> <Plug>(leap-cross-window)
-nmap  <BS>        <Plug>(leap-this-window)
-nmap g<BS>        <Plug>(leap-cross-window)
+" nmap <A-f>        <Plug>(leap-this-window)
+" nmap <space><A-f> <Plug>(leap-cross-window)
 
 xmap <silent> ; <Plug>SneakNext
 xmap <silent> , <Plug>SneakPrevious
@@ -312,6 +315,9 @@ omap f     <Plug>Sneak_f
 nmap F     <Plug>Sneak_F
 xmap F     <Plug>Sneak_F
 omap F     <Plug>Sneak_F
+nmap <A-f> <Plug>Sneak_F
+xmap <A-f> <Plug>Sneak_F
+omap <A-f> <Plug>Sneak_F
 
 " until operator
 nmap t <Plug>Sneak_t
@@ -1455,8 +1461,8 @@ func! I_SPACE ()
 endfu
 
 fu! I_TAB ()
-    if pumvisible()
-        return "\<C-N>" | end
+    if coc#pum#visible()
+        return coc#pum#next(1) | end
 
     if Ulti_canExpand()
         return Ulti_expand() | end
@@ -1478,8 +1484,8 @@ fu! I_S_TAB ()
     if Ulti_canJump() && !pumvisible()
         return Ulti_jump('0') | end
 
-    if pumvisible()
-        return "\<C-p>" | end
+    if coc#pum#visible()
+        return coc#pum#prev(1) | end
 
     return "\<S-TAB>"
 endfu
