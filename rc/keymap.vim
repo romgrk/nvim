@@ -1474,9 +1474,6 @@ fu! I_TAB ()
     \ && getline('.')[col('.')-1] !~? '\w' )
         return get(b:, 'tab_complete', &omnifunc != '' ? "\<C-X>\<C-O>" : "\<C-N>")."\<C-P>"  | end
 
-    if exists('b:tab_key')
-      return b:tab_key | end
-
     return "\<TAB>"
 endfu
 
