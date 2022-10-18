@@ -2,6 +2,7 @@
 -- init.lua
 --
 
+-- TODO consider https://git.sr.ht/~whynothugo/lsp_lines.nvim
 -- TODO install https://github.com/GustavoKatel/sidebar.nvim
 -- TODO install https://github.com/kristijanhusak/vim-dadbod-ui
 -- TODO install https://github.com/anuvyklack/hydra.nvim
@@ -69,6 +70,7 @@ require('packer').startup(function(use)
   -- Editing
   use { 'nvim-treesitter/nvim-treesitter' }
   use { 'nvim-treesitter/nvim-treesitter-context' }
+  use { 'nvim-treesitter/playground' }
   use { 'JoosepAlviste/nvim-ts-context-commentstring' }
   use { 'AndrewRadev/sideways.vim' }
   use { 'AndrewRadev/splitjoin.vim' }
@@ -100,7 +102,6 @@ require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzy-native.nvim' }
   use { 'DanilaMihailov/beacon.nvim' }
   use { 'sindrets/diffview.nvim' }
-  use { 'folke/todo-comments.nvim' }
   use { 'dstein64/nvim-scrollview' }
   use { 'mfussenegger/nvim-dap' }
   use { 'rcarriga/nvim-dap-ui' }
