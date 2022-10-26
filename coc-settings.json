@@ -57,7 +57,9 @@
     // CocInstall coc-tag coc-rust-analyzer coc-clangd coc-browser coc-lua coc-julia
     // CocInstall coc-tabnine
 
-  }
+  },
+
+  "Lua.telemetry.enable": true
 
   // "clangd.path": "/home/romgrk/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
 }
