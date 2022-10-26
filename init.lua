@@ -61,7 +61,7 @@ require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim' }
 
   -- Dev
-  use { '/home/romgrk/src/hologram.nvim' }
+  -- use { '/home/romgrk/src/hologram.nvim' }
 
   -- Libraries
   use { 'nvim-lua/plenary.nvim' }
@@ -96,11 +96,9 @@ require('packer').startup(function(use)
   use { 'ggandor/leap.nvim' }
   use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
   use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' } }
-  use { 'b0o/incline.nvim' }
   use { 'bfredl/nvim-luadev' }
-  use { 'nvim-telescope/telescope.nvim' }
-  use { 'nvim-telescope/telescope-fzy-native.nvim' }
-  use { 'DanilaMihailov/beacon.nvim' }
+  -- use { 'nvim-telescope/telescope.nvim' }
+  -- use { 'nvim-telescope/telescope-fzy-native.nvim' }
   use { 'sindrets/diffview.nvim' }
   use { 'dstein64/nvim-scrollview' }
   use { 'mfussenegger/nvim-dap' }
@@ -122,7 +120,6 @@ require('packer').startup(function(use)
   use { 'liuchengxu/vim-clap', run = ':Clap install-binary!' }
   use { 'liuchengxu/vista.vim' }
   use { 'MarcWeber/vim-addon-local-vimrc' }
-  use { 'neoclide/npm.nvim' }
   use { 'sjl/gundo.vim' }
   use { 'tpope/vim-eunuch' }
   use { 'tpope/vim-sleuth' }
@@ -135,7 +132,7 @@ require('packer').startup(function(use)
   use { 'romgrk/vim-session' }
 
   -- UI
-  use { 'RRethy/vim-illuminate' }
+  -- use { 'RRethy/vim-illuminate' }
   use { 'junegunn/goyo.vim' }
   use { 'rhysd/git-messenger.vim' }
   use { 'KabbAmine/vCoolor.vim' }
