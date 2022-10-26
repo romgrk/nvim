@@ -127,7 +127,9 @@ set novisualbell noerrorbells
 
 set lazyredraw
 set shortmess=aostWAc " set terse
+if exists('&splitkeep')
 set splitkeep=topline
+end
 
 " Mouse
 set mouse=ah mousemodel=popup
