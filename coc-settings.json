@@ -53,7 +53,7 @@
      *   // "cwd": "./src",
      * }, */
 
-    // CocInstall coc-actions coc-tsserver coc-css coc-html coc-json coc-python
+    // CocInstall coc-actions coc-tsserver coc-css coc-html coc-json coc-pyright
     // CocInstall coc-tag coc-rust-analyzer coc-clangd coc-browser coc-lua coc-julia
     // CocInstall coc-tabnine
 
