@@ -1,6 +1,9 @@
 {
 
-  "suggest.enablePreview": true,
+  "suggest.noselect": true,
+  "suggest.floatConfig": {
+    "winblend": 20
+  },
 
   "suggest.snippetIndicator": "•",
   "signature.target": "float",
