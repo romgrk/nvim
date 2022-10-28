@@ -1425,19 +1425,14 @@ let UltiSnipsExpandTrigger       = "<A-;>"
 let UltiSnipsJumpForwardTrigger  = "<C-A-n>"
 let UltiSnipsJumpBackwardTrigger = "<C-A-p>"
 
-let ycm_key_invoke_completion        =  '<C-Space>'
-let ycm_key_list_select_completion   = [ '<Down>' ]
-let ycm_key_list_previous_completion = [ '<Up>'   ]
-
 inoremap <C-Space> <C-X><C-I>
 
 " Filename autocompletion
 inoremap <C-F> <C-X><C-F>
 
-inoremap <silent><CR>    <C-R>=I_CR()<CR>
-inoremap <silent><Tab>   <C-R>=I_TAB()<CR>
-inoremap <silent><S-Tab> <C-R>=I_S_TAB()<CR>
-inoremap <silent><Space> <C-R>=I_SPACE()<CR>
+inoremap <silent><expr><Tab>   I_TAB()
+inoremap <silent><expr><S-Tab> I_S_TAB()
+inoremap <silent>      <CR>    <C-R>=I_CR()<CR>
 
 smap <Tab>   <Esc>:call UltiSnips#JumpForwards()<CR>
 smap <S-Tab> <Esc>:call UltiSnips#JumpBackwards()<CR>
@@ -1452,14 +1447,6 @@ func! I_CR ()
     return "\<CR>"
 endfu
 
-func! I_SPACE ()
-    if pumvisible()
-        return "\<C-g>\<Esc>" . "\<space>"
-    end
-
-    return "\<space>"
-endfu
-
 fu! I_TAB ()
     if coc#pum#visible()
         return coc#pum#next(1) | end
@@ -1472,7 +1459,7 @@ fu! I_TAB ()
 
     if  (getline('.')[col('.')-2] =~? '\w\|\.'
     \ && getline('.')[col('.')-1] !~? '\w' )
-        return get(b:, 'tab_complete', &omnifunc != '' ? "\<C-X>\<C-O>" : "\<C-N>")."\<C-P>"  | end
+        return (&omnifunc != '' ? "\<C-X>\<C-O>" : "\<C-N>") . "\<C-P>"  | end
 
     return "\<TAB>"
 endfu
