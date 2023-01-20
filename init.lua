@@ -158,8 +158,6 @@ require('packer').startup(function(use)
   use { 'pantharshit00/vim-prisma'             , ft = 'prisma' }
   use { 'neoclide/jsonc.vim' }
   use { 'justinmk/vim-syntax-extra' }
-  use { 'thyrgle/vim-dyon'                     , ft = 'dyon' }
-  use { 'keith/swift.vim'                      , ft = 'swift' }
   use { 'jordwalke/vim-reasonml'               , ft = 'reason' }
   use { 'vim-python/python-syntax'             , ft = 'python' }
   use { 'tmhedberg/SimpylFold'                 , ft = 'python' }
@@ -178,7 +176,6 @@ require('packer').startup(function(use)
   use { 'valloric/MatchTagAlways'              , ft = 'html' }
   use { 'othree/html5.vim'                     , ft = 'html' }
   use { 'othree/html5-syntax.vim'              , ft = 'html' }
-  use { 'tpope/vim-liquid'                     , ft = 'html' }
   use { 'rstacruz/sparkup'                     , ft = 'html' }
   use { 'kelan/gyp.vim'                        , ft = 'gyp' }
   use { 'rust-lang/rust.vim'                   , ft = 'rust' }
