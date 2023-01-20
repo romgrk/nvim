@@ -97,9 +97,6 @@ require('packer').startup(function(use)
   -- General
   -- @plugins
   use { 'ggandor/leap.nvim' }
-  use { 'bfredl/nvim-luadev' }
-  use { 'sindrets/diffview.nvim' }
-  use { 'dstein64/nvim-scrollview' }
   use { 'mfussenegger/nvim-dap' }
   use { 'rcarriga/nvim-dap-ui' }
   use { 'theHamsta/nvim-dap-virtual-text' }
@@ -121,7 +118,7 @@ require('packer').startup(function(use)
   use { 'sjl/gundo.vim' }
   use { 'tpope/vim-eunuch' }
   use { 'tpope/vim-sleuth' }
-  use { 'vim-scripts/loremipsum' }
+  use { 'vim-scripts/loremipsum', cmd = 'Loremipsum' }
   use { 'vn-ki/coc-clap' }
   use { 'wsdjeg/vim-fetch' }
   use { 'xolox/vim-misc' }
@@ -130,6 +127,8 @@ require('packer').startup(function(use)
   use { 'romgrk/vim-session' }
 
   -- UI
+  use { 'sindrets/diffview.nvim' }
+  use { 'dstein64/nvim-scrollview' }
   use { 'sidebar-nvim/sidebar.nvim' }
   use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
   use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' } }
