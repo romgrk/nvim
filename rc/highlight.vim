@@ -18,7 +18,8 @@ function! s:setup()
     " }}}
     " Plugin specific                                                            {{{
 
-    hi! link SearchReplaceMatch      EasyMotionTargetDefault
+    hi! link SearchReplaceLineNr     TextSpecial
+    hi! link SearchReplaceMatch      TextError
     hi! link SneakLabel              EasyMotionTargetDefault
     hi! link SneakLabelMask          Noise
 
@@ -29,13 +30,13 @@ function! s:setup()
     hi! CocErrorSign                      guifg=#ff1010
     hi! CocErrorHighlight   gui=undercurl guisp=#ff1010
 
-    hi! CocHintSign                       guifg=#15aabf
-    hi! CocHintHighlight    gui=undercurl guisp=#15aabf
-    hi! CocUnusedHighlight  gui=undercurl guisp=#15aabf
+    " hi! CocHintSign                       guifg=#085C69
+    " hi! CocHintHighlight    gui=undercurl guisp=#085C69
+    " hi! CocUnusedHighlight  gui=undercurl guisp=#085C69
 
-    let bg = hi#bg('Normal')
-    let bg = empty(bg) ? '#000000' : bg
-    call hi#('CocRustChainingHint', color#Mix('#15aabf', bg))
+    " let bg = hi#bg('Normal')
+    " let bg = empty(bg) ? '#000000' : bg
+    " call hi#('CocRustChainingHint', color#Mix('#085C69', bg))
 
     " hi! link CocFloating NormalFloat
     " hi! CocInfoFloat                      guifg=white
