@@ -84,6 +84,7 @@ require('packer').startup(function(use)
   use { 'jiangmiao/auto-pairs' }
   -- Plug 'justinmk/vim-sneak'
   use { 'romgrk/vim-sneak' }
+  use { 'ggandor/leap.nvim' }
   use { 'kana/vim-niceblock' }
   use { 'Konfekt/vim-ctrlxa' }
   use { 'michaeljsmith/vim-indent-object' }
@@ -97,19 +98,16 @@ require('packer').startup(function(use)
 
   -- General
   -- @plugins
-  use { 'ggandor/leap.nvim' }
+  use { 'fidian/hexmode' }
   use { 'mfussenegger/nvim-dap' }
   use { 'rcarriga/nvim-dap-ui' }
   use { 'theHamsta/nvim-dap-virtual-text' }
   use { 'jbyuki/one-small-step-for-vimkind' }
   use { 'jbyuki/venn.nvim' }
   use { 'ruanyl/vim-gh-line' }
-  use { 'akinsho/nvim-toggleterm.lua' }
-  use { 'lukas-reineke/indent-blankline.nvim' }
   use { 'wellle/visual-split.vim' }
   use { 'aperezdc/vim-template' }
   use { 'bfredl/nvim-miniyank' }
-  use { 'fidian/hexmode' }
   use { 'honza/vim-snippets' }
   use { 'junegunn/vim-easy-align' }
   use { 'liuchengxu/vim-clap', run = ':Clap install-binary!' }
@@ -138,6 +136,8 @@ require('packer').startup(function(use)
   use { 'RRethy/vim-hexokinase'                , run = 'make hexokinase' }
   use { 'airblade/vim-gitgutter' }
   use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' }
+  use { 'akinsho/nvim-toggleterm.lua' }
+  use { 'lukas-reineke/indent-blankline.nvim' }
 
   -- Personal
   use { 'romgrk/barbar.nvim' }
