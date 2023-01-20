@@ -171,7 +171,6 @@ require('packer').startup(function(use)
   use { 'thyrgle/vim-dyon'                     , ft = 'dyon' }
   use { 'keith/swift.vim'                      , ft = 'swift' }
   use { 'jordwalke/vim-reasonml'               , ft = 'reason' }
-  use { 'rhysd/vim-crystal'                    , ft = 'crystal' }
   use { 'vim-python/python-syntax'             , ft = 'python' }
   use { 'tmhedberg/SimpylFold'                 , ft = 'python' }
   use { 'othree/xml.vim' }
@@ -181,13 +180,10 @@ require('packer').startup(function(use)
   use { 'moll/vim-node'                        , ft = 'javascript.node' }
   use { 'leafgarland/typescript-vim'           , ft = 'typescript' }
   use { 'ianks/vim-tsx'                        , ft = 'typescript.tsx' }
-  use { 'kchmck/vim-coffee-script'             , ft = 'coffee' }
   use { 'plasticboy/vim-markdown'              , ft = 'markdown' }
   use { 'iamcco/markdown-preview.nvim'         , run = function () vim.cmd[[call mkdp#util#install()]] end, ft = { 'markdown', 'vim-plug' } }
   use { 'tpope/vim-haml'                       , ft = { 'sass', 'scss', 'haml' } }
   use { 'hail2u/vim-css3-syntax'               , ft = { 'css', 'sass', 'scss', 'less' } }
-  use { 'groenewege/vim-less'                  , ft = 'less' }
-  use { 'digitaltoad/vim-pug'                  , ft = { 'jade', 'pug' } }
   use { 'AndrewRadev/tagalong.vim' }
   use { 'valloric/MatchTagAlways'              , ft = 'html' }
   use { 'othree/html5.vim'                     , ft = 'html' }
@@ -197,9 +193,7 @@ require('packer').startup(function(use)
   use { 'kelan/gyp.vim'                        , ft = 'gyp' }
   use { 'rust-lang/rust.vim'                   , ft = 'rust' }
   use { 'cespare/vim-toml'                     , ft = 'toml' }
-  use { 'elixir-lang/vim-elixir'               , ft = 'elixir' }
   use { 'dzeban/vim-log-syntax'                , ft = 'log' }
-  use { 'ionide/Ionide-vim'                    , ft = 'fsharp' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
