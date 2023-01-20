@@ -161,7 +161,7 @@ require('packer').startup(function(use)
   use { 'jordwalke/vim-reasonml'               , ft = 'reason' }
   use { 'vim-python/python-syntax'             , ft = 'python' }
   use { 'tmhedberg/SimpylFold'                 , ft = 'python' }
-  use { 'othree/xml.vim' }
+  use { 'othree/xml.vim'                       , ft = 'xml' }
   use { 'pangloss/vim-javascript'              , ft = 'javascript' }
   use { 'kristijanhusak/vim-js-file-import'    , ft = 'javascript' }
   use { 'neoclide/vim-jsx-improve'             , ft = 'javascript.jsx' }
