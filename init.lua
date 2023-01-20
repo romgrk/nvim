@@ -70,6 +70,7 @@ require('packer').startup(function(use)
   use { 'nvim-lua/plenary.nvim' }
   use { 'MunifTanjim/nui.nvim' }
   use { 'kyazdani42/nvim-web-devicons' }
+  use { 'itchyny/vim-gitbranch' }
 
   -- Editing
   use { 'nvim-treesitter/nvim-treesitter' }
@@ -110,7 +111,6 @@ require('packer').startup(function(use)
   use { 'bfredl/nvim-miniyank' }
   use { 'fidian/hexmode' }
   use { 'honza/vim-snippets' }
-  use { 'itchyny/vim-gitbranch' }
   use { 'junegunn/vim-easy-align' }
   use { 'liuchengxu/vim-clap', run = ':Clap install-binary!' }
   use { 'liuchengxu/vista.vim' }
