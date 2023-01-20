@@ -141,7 +141,6 @@ require('packer').startup(function(use)
   use { 'rhysd/git-messenger.vim' }
   use { 'KabbAmine/vCoolor.vim' }
   use { 'machakann/vim-highlightedyank' }
-  use { 'guns/xterm-color-table.vim'           , cmd = 'XtermColorTable' }
   use { 'RRethy/vim-hexokinase'                , run = 'make hexokinase' }
   use { 'airblade/vim-gitgutter' }
   use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' }
