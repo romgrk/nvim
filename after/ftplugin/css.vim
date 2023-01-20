@@ -1,5 +1,8 @@
 setlocal isk+=-
 
+setlocal fdm=marker
+setlocal foldmarker={,}
+
 nnoremap <buffer> <F4> :e %<.js<CR>
 
 inoremap <expr><buffer>: <SID>insert_colon()
