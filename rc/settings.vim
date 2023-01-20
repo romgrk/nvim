@@ -114,7 +114,7 @@ set inccommand=nosplit
 
 set cursorline
 
-set  laststatus=3
+set  laststatus=2
 set showtabline=2
 
 set number numberwidth=4
