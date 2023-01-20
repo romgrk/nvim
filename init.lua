@@ -99,9 +99,6 @@ require('packer').startup(function(use)
   -- General
   -- @plugins
   use { 'fidian/hexmode' }
-  use { 'mfussenegger/nvim-dap' }
-  use { 'rcarriga/nvim-dap-ui' }
-  use { 'theHamsta/nvim-dap-virtual-text' }
   use { 'jbyuki/one-small-step-for-vimkind' }
   use { 'jbyuki/venn.nvim' }
   use { 'ruanyl/vim-gh-line' }
@@ -113,7 +110,6 @@ require('packer').startup(function(use)
   use { 'liuchengxu/vim-clap', run = ':Clap install-binary!' }
   use { 'liuchengxu/vista.vim' }
   use { 'MarcWeber/vim-addon-local-vimrc' }
-  use { 'sjl/gundo.vim' }
   use { 'tpope/vim-eunuch' }
   use { 'tpope/vim-sleuth' }
   use { 'vim-scripts/loremipsum', cmd = 'Loremipsum' }
@@ -138,6 +134,9 @@ require('packer').startup(function(use)
   use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' }
   use { 'akinsho/nvim-toggleterm.lua' }
   use { 'lukas-reineke/indent-blankline.nvim' }
+  -- use { 'mfussenegger/nvim-dap' }
+  -- use { 'rcarriga/nvim-dap-ui' }
+  -- use { 'theHamsta/nvim-dap-virtual-text' }
 
   -- Personal
   use { 'romgrk/barbar.nvim' }
