@@ -69,6 +69,7 @@ require('packer').startup(function(use)
   -- Libraries
   use { 'nvim-lua/plenary.nvim' }
   use { 'MunifTanjim/nui.nvim' }
+  use { 'kyazdani42/nvim-web-devicons' }
 
   -- Editing
   use { 'nvim-treesitter/nvim-treesitter' }
@@ -96,13 +97,8 @@ require('packer').startup(function(use)
   -- General
   -- @plugins
   use { 'cshuaimin/ssr.nvim' }
-  use { 'sidebar-nvim/sidebar.nvim' }
   use { 'ggandor/leap.nvim' }
-  use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
-  use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' } }
   use { 'bfredl/nvim-luadev' }
-  -- use { 'nvim-telescope/telescope.nvim' }
-  -- use { 'nvim-telescope/telescope-fzy-native.nvim' }
   use { 'sindrets/diffview.nvim' }
   use { 'dstein64/nvim-scrollview' }
   use { 'mfussenegger/nvim-dap' }
@@ -114,7 +110,6 @@ require('packer').startup(function(use)
   use { 'akinsho/nvim-toggleterm.lua' }
   use { 'lukas-reineke/indent-blankline.nvim' }
   use { 'wellle/visual-split.vim' }
-  use { 'kyazdani42/nvim-web-devicons' }
   use { 'aperezdc/vim-template' }
   use { 'bfredl/nvim-miniyank' }
   use { 'fidian/hexmode' }
@@ -136,8 +131,9 @@ require('packer').startup(function(use)
   use { 'romgrk/vim-session' }
 
   -- UI
-  -- use { 'RRethy/vim-illuminate' }
-  use { 'junegunn/goyo.vim' }
+  use { 'sidebar-nvim/sidebar.nvim' }
+  use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
+  use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' } }
   use { 'rhysd/git-messenger.vim' }
   use { 'KabbAmine/vCoolor.vim' }
   use { 'machakann/vim-highlightedyank' }
@@ -156,7 +152,6 @@ require('packer').startup(function(use)
   use { 'romgrk/winteract.vim'                 , cmd = 'InteractiveWindow'}
   use { 'romgrk/searchReplace.vim' }
   use { 'romgrk/todoist.nvim'                  , run = ':TodoistInstall' }
-  use { 'romgrk/github-light.vim' }
   use { 'romgrk/doom-one.vim' }
 
   -- Language
