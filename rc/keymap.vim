@@ -11,7 +11,7 @@ nnoremap <silent><a-space>           :ToggleTerm<CR>
 tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
 nnoremap <silent><space>.       :Clap blines<CR>
-nnoremap <silent><space><space> :Clap  grep2<CR>
+nnoremap <silent><space><space> :Clap  grep<CR>
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -1147,6 +1147,7 @@ nmap z;I :setlocal fdm=expr<CR>:setlocal foldexpr=GetIndentFold(v:lnum)<CR>
 nmap z;e :setlocal fdm=expr<CR>
 nmap z;E :setlocal fdm=expr<CR>:setlocal foldexpr=
 nmap z;t :setlocal fdm=expr<CR>:setlocal foldexpr=nvim_treesitter#foldexpr()<CR>
+nmap z;b :setlocal fdm=marker<CR>:setlocal foldmarker={,}<CR>
 
 
 

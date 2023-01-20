@@ -96,7 +96,6 @@ require('packer').startup(function(use)
 
   -- General
   -- @plugins
-  use { 'cshuaimin/ssr.nvim' }
   use { 'ggandor/leap.nvim' }
   use { 'bfredl/nvim-luadev' }
   use { 'sindrets/diffview.nvim' }
