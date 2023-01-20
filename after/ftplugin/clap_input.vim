@@ -1,7 +1,7 @@
 
 function! s:navigate (times, direction)
     for idx in range(a:times)
-        call clap#navigation#linewise(a:direction)
+        call clap#navigation#linewise_scroll(a:direction)
     endfor
     return ''
 endfunc
@@ -14,8 +14,8 @@ inoremap <silent><buffer> <A-k>   <C-R>=<SID>navigate(1, 'up')<CR>
 inoremap <silent><buffer> <A-d>   <C-R>=<SID>navigate(5, 'down')<CR>
 inoremap <silent><buffer> <A-u>   <C-R>=<SID>navigate(5, 'up')<CR>
 
-inoremap <silent><buffer> <Tab>   <C-O>:<C-u>call clap#navigation#linewise('down')<CR>
-inoremap <silent><buffer> <S-Tab> <C-O>:<C-u>call clap#navigation#linewise('up')<CR>
+inoremap <silent><buffer> <Tab>   <C-O>:<C-u>call clap#navigation#linewise_scroll('down')<CR>
+inoremap <silent><buffer> <S-Tab> <C-O>:<C-u>call clap#navigation#linewise_scroll('up')<CR>
 
 inoremap <silent><buffer> <C-space>  <C-O>:<C-u>call clap#handler#tab_action()<CR>
 
