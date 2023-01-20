@@ -2,14 +2,17 @@
 -- init.lua
 --
 
+-- TODO https://github.com/ggandor/flit.nvim
+-- TODO https://github.com/koenverburg/peepsight.nvim
+-- TODO https://github.com/DNLHC/glance.nvim
+-- TODO https://github.com/Wansmer/treesj
+-- TODO https://github.com/smjonas/live-command.nvim
 -- TODO consider https://git.sr.ht/~whynothugo/lsp_lines.nvim
 -- TODO install https://github.com/GustavoKatel/sidebar.nvim
 -- TODO install https://github.com/kristijanhusak/vim-dadbod-ui
 -- TODO install https://github.com/anuvyklack/hydra.nvim
 -- TODO install https://github.com/RRethy/nvim-treesitter-textsubjects
 -- TODO install https://github.com/SmiteshP/nvim-gps
--- TODO https://github.com/rockerBOO/awesome-neovim#comment
--- TODO instal Plug 'neomake/neomake'
 -- TODO install https://github.com/abecodes/tabout.nvim
 -- TODO install https://github.com/pwntester/octo.nvim when working
 -- TODO install https://github.com/tanvirtin/vgit.nvim
@@ -92,6 +95,7 @@ require('packer').startup(function(use)
 
   -- General
   -- @plugins
+  use { 'cshuaimin/ssr.nvim' }
   use { 'sidebar-nvim/sidebar.nvim' }
   use { 'ggandor/leap.nvim' }
   use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
@@ -141,12 +145,6 @@ require('packer').startup(function(use)
   use { 'RRethy/vim-hexokinase'                , run = 'make hexokinase' }
   use { 'airblade/vim-gitgutter' }
   use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' }
-  use { 'pwntester/octo.nvim', requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
-    }
-  }
 
   -- Personal
   use { 'romgrk/barbar.nvim' }
