@@ -12,6 +12,7 @@ tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep<CR>
+nnoremap <silent><C-A-S-o>      :Clap browser_history<CR>
 
 "===============================================================================
 " Major maps                                                                {{{1

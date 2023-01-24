@@ -112,7 +112,6 @@ require('packer').startup(function(use)
   use { 'MarcWeber/vim-addon-local-vimrc' }
   use { 'tpope/vim-eunuch' }
   use { 'tpope/vim-sleuth' }
-  use { 'vim-scripts/loremipsum', cmd = 'Loremipsum' }
   use { 'vn-ki/coc-clap' }
   use { 'wsdjeg/vim-fetch' }
   use { 'xolox/vim-misc' }

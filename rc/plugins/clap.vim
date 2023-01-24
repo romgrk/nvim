@@ -6,16 +6,15 @@ let clap_layout = {
   \ 'row': '10%',
   \}
 let clap_enable_icon = 0
-let clap_prompt_format = ' %provider_id%   '
-let clap_current_selection_sign = { 'text': '  ', 'texthl': 'ClapCurrentSelection', 'linehl': 'ClapCurrentSelection' }
-let clap_forerunner_status_sign_running = ' '
-let clap_forerunner_status_sign_done    = '  '
+" let clap_prompt_format = ' %provider_id%   '
+" let clap_current_selection_sign = { 'text': '  ', 'texthl': 'ClapCurrentSelection', 'linehl': 'ClapCurrentSelection' }
+" let clap_forerunner_status_sign_running = ' '
+" let clap_forerunner_status_sign_done    = '  '
 
 let clap_always_open_preview = v:false
-" let clap_preview_direction = 'LR'
 let clap_preview_direction = 'UD'
 let clap_popup_border = v:null
-let clap_enable_background_shadow = v:true
+let clap_enable_background_shadow = v:false
 
 
 "
@@ -42,6 +41,10 @@ let clap_provider_npm = {
 \ 'sink': 'NpmRun',
 \}
 
+let clap_provider_browser_history = {
+\ 'source': {-> v:lua.browser_history_get()},
+\ 'sink': {url -> v:lua.browser_history_open(url)},
+\}
 
 " NPM run scripts provider {{{
 
