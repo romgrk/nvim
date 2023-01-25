@@ -22,7 +22,9 @@ end
 local function setup()
   vim.fn.system(string.format('cp "%s" "%s"', history_path, copy_path))
 
-  local output = vim.fn.system(string.format('sqlite3 "%s" "select url from urls"', copy_path))
+  local output = vim.fn.system(
+    string.format('sqlite3 --init /dev/null "%s" "select url from urls order by visit_count desc limit 2000"', copy_path)
+  )
   local all_lines = vim.split(output, "\n")
 
   lines = vim.tbl_filter(is_valid, all_lines)
