@@ -4,6 +4,8 @@
 let clap_layout = {
   \ 'relative': 'editor',
   \ 'row': '10%',
+  \ 'col':  '5%',
+  \ 'width': '90%',
   \}
 let clap_enable_icon = 0
 " let clap_prompt_format = ' %provider_id%   '
