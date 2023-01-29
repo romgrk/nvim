@@ -957,12 +957,12 @@ xnoremap <A-a><A-;>    :EasyAlign *:<CR>
 nnoremap <A-a><A-\> vip:EasyAlign *<Bar><CR>
 xnoremap <A-a><A-\>    :EasyAlign *<Bar><CR>
 " align equal
-nnoremap <A-a><A-e> vii:EasyAlign *=<CR>
-xnoremap <A-a><A-e>    :EasyAlign *=<CR>
-nnoremap <A-a><A-=> vii:EasyAlign *=<CR>
-xnoremap <A-a><A-=>    :EasyAlign *=<CR>
-nnoremap <A-a>=     vii:EasyAlign *=<CR>
-xnoremap <A-a>=        :EasyAlign *=<CR>
+nmap     <A-a><A-e> vii:EasyAlign *=<CR>
+xmap     <A-a><A-e>    :EasyAlign *=<CR>
+nmap     <A-a><A-=> vii:EasyAlign *=<CR>
+xmap     <A-a><A-=>    :EasyAlign *=<CR>
+nmap     <A-a>=     vii:EasyAlign *=<CR>
+xmap     <A-a>=        :EasyAlign *=<CR>
 " align word
 nnoremap <A-a><A-w>     vip:EasyAlign *\<space><CR>
 xnoremap <A-a><A-w>        :EasyAlign *\<space><CR>
