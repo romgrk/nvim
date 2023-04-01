@@ -3,7 +3,8 @@ local view = require('sidebar-nvim.view')
 local bufferline = require('bufferline.state')
 
 sidebar.setup({
-  open = vim.fn.argc() == 0,
+  -- open = vim.fn.argc() == 0,
+  open = false,
   disable_default_keybindings = 0,
   side = 'left',
   initial_width = 35,
@@ -19,7 +20,7 @@ sidebar.setup({
   -- },
   sections = {
     'git',
-    'diagnostics',
+    -- 'diagnostics',
     'files',
     'todos',
   },
@@ -35,6 +36,9 @@ sidebar.setup({
     attach_shell = '/bin/sh', show_all = true, interval = 5000,
   },
   todos = { ignored_paths = { '~' } },
+  diagnostics = {
+    default_open = false,
+  },
   bindings = {
     ['q'] = function()
       bufferline.set_offset(0)

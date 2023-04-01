@@ -12,7 +12,7 @@ tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
 nnoremap <silent><space>.       :Clap blines<CR>
 nnoremap <silent><space><space> :Clap  grep<CR>
-nnoremap <silent><C-A-S-o>      :Clap browser_history<CR>
+nnoremap <silent><C-A-S-o>      :Kirby browser-history<CR>
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -426,7 +426,7 @@ nnoremap <silent><space>md     :Mkdir! <C-D>
 nnoremap   <expr><space>ss     xolox#session#find_current_session() != 'default' ?
                               \ ":wall! \<Bar> SaveSession\<CR>\<Esc>" : ":wall! \<Bar> SaveSession\<space>"
 nnoremap <silent><space>sS     :SaveSession!<space>
-nnoremap <silent><space>so     :Clap session<CR>
+nnoremap <silent><space>so     :Kirby session<CR>
 nnoremap <silent><space>sd     :OpenSession! default<CR>
 nnoremap <silent><space>sc     :wall! <Bar> CloseSession<CR>
 nnoremap <silent><space>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
@@ -453,9 +453,9 @@ nnoremap         <space>gcam   :Git commit -am ""<Left>
 nnoremap         <space>gcaa   :Git commit --amend<CR>
 nnoremap         <space>g.     :Git commit % -m ""<Left>
 nnoremap         <space>gkk    :Git checkout<space>
-nnoremap         <space>gkm    :Git checkout master<CR>
+nnoremap         <space>gkm    :Git checkout main<CR>
 nnoremap         <space>gkb    :Git checkout -b<space>
-nnoremap         <space>gb     :Clap git_branch<CR>
+nnoremap         <space>gb     :Kirby git-branch<CR>
 nnoremap         <space>gl     :Git pull<CR>
 nnoremap         <space>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
 nnoremap         <space>gpp    :Git push<CR>
@@ -537,8 +537,9 @@ nnoremap <silent><C-A-\> :NERDTreeFind<CR>
 nnoremap <silent><C-A-T> :TagbarToggle<CR>
 nnoremap <silent><C-A-L> :call ToggleWindows()<CR>
 
-nnoremap <silent> <A-o>    :Clap files <C-R>=getcwd()<CR><CR>
-nnoremap <silent> <C-A-o>  :Clap filer <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
+nnoremap <silent> <A-o>    :KirbyFilePicker <C-R>=getcwd()<CR><CR>
+" nnoremap <silent> <A-o>    :Clap files <C-R>=getcwd()<CR><CR>
+nnoremap <silent> <C-A-o>  :Kirby files <C-R>=escape(expand("%:p:h"), ' ')<CR><CR>
 
 nnoremap <silent> <A-S-o>  :Clap recent_files<CR>
 " nnoremap <silent> <C-S>    :Clap buffers<CR>
@@ -549,7 +550,7 @@ nnoremap <silent> <A-i>    :Clap tags<CR>
 nnoremap <silent> <A-S-I>  :Clap coc_symbols<CR>
 
 
-nnoremap <silent> <C-p>    :Clap command<CR>
+" nnoremap <silent> <C-p>    :Clap command<CR>
 
 " Clap input
 

@@ -2,6 +2,8 @@
 -- init.lua
 --
 
+-- TODO https://github.com/Wansmer/sibling-swap.nvim
+-- TODO https://github.com/ggandor/leap-spooky.nvim
 -- TODO https://github.com/ggandor/flit.nvim
 -- TODO https://github.com/koenverburg/peepsight.nvim
 -- TODO https://github.com/DNLHC/glance.nvim
@@ -34,13 +36,13 @@ local filereadable = vim.fn.filereadable
 local nvim_create_augroup = api.nvim_create_augroup
 local nvim_create_autocmd = api.nvim_create_autocmd
 local utils = require('rc.utils')
-local bootstrap_packer = require('rc.bootstrap_packer')
+local bootstrap = require('rc.bootstrap')
 local join = utils.join
 local split = vim.split
 local load = utils.load
 
--- Bootstrap packer, if required
-local packer_bootstrap = bootstrap_packer()
+-- Bootstrap lazy, if required
+bootstrap()
 
 --
 -- Settings
@@ -60,132 +62,128 @@ for _, file in ipairs(plugin_settings) do
   end
 end
 
-require('packer').startup(function(use)
-  use { 'wbthomason/packer.nvim' }
-
-  -- Dev
-  -- use { '/home/romgrk/src/hologram.nvim' }
-
+require('lazy').setup({
   -- Libraries
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'MunifTanjim/nui.nvim' }
-  use { 'kyazdani42/nvim-web-devicons' }
-  use { 'itchyny/vim-gitbranch' }
+  { 'nvim-lua/plenary.nvim' },
+  { 'nvim-tree/nvim-web-devicons' },
+  { 'itchyny/vim-gitbranch' },
 
   -- Editing
-  use { 'nvim-treesitter/nvim-treesitter' }
-  use { 'nvim-treesitter/nvim-treesitter-context' }
-  use { 'nvim-treesitter/playground' }
-  use { 'JoosepAlviste/nvim-ts-context-commentstring' }
-  use { 'AndrewRadev/sideways.vim' }
-  use { 'AndrewRadev/splitjoin.vim' }
-  use { 'bkad/CamelCaseMotion' }
-  use { 'coderifous/textobj-word-column.vim' }
-  use { 'jiangmiao/auto-pairs' }
+  { 'nvim-treesitter/nvim-treesitter' },
+  { 'nvim-treesitter/nvim-treesitter-context', dev = true },
+  { 'nvim-treesitter/playground' },
+  { 'JoosepAlviste/nvim-ts-context-commentstring' },
+  { 'AndrewRadev/sideways.vim' },
+  { 'AndrewRadev/splitjoin.vim' },
+  { 'bkad/CamelCaseMotion' },
+  { 'coderifous/textobj-word-column.vim' },
+  { 'jiangmiao/auto-pairs' },
   -- Plug 'justinmk/vim-sneak'
-  use { 'romgrk/vim-sneak' }
-  use { 'ggandor/leap.nvim' }
-  use { 'kana/vim-niceblock' }
-  use { 'Konfekt/vim-ctrlxa' }
-  use { 'michaeljsmith/vim-indent-object' }
-  use { 'neoclide/coc.nvim', run = 'yarn install' }
-  use { 'numToStr/Comment.nvim' }
-  use { 'sirver/UltiSnips' }
-  use { 'tpope/vim-fugitive' }
-  use { 'tpope/vim-repeat' }
-  use { 'tpope/vim-surround' }
-  use { 'wellle/targets.vim' }
+  { 'romgrk/vim-sneak' },
+  { 'ggandor/leap.nvim' },
+  { 'kana/vim-niceblock' },
+  { 'Konfekt/vim-ctrlxa' },
+  { 'michaeljsmith/vim-indent-object' },
+  { 'neoclide/coc.nvim', build = 'yarn install' },
+  { 'numToStr/Comment.nvim' },
+  { 'sirver/UltiSnips' },
+  { 'tpope/vim-fugitive' },
+  { 'tpope/vim-repeat' },
+  { 'tpope/vim-surround' },
+  { 'wellle/targets.vim' },
 
   -- General
   -- @plugins
-  use { 'fidian/hexmode' }
-  use { 'jbyuki/one-small-step-for-vimkind' }
-  use { 'jbyuki/venn.nvim' }
-  use { 'ruanyl/vim-gh-line' }
-  use { 'wellle/visual-split.vim' }
-  use { 'aperezdc/vim-template' }
-  use { 'bfredl/nvim-miniyank' }
-  use { 'honza/vim-snippets' }
-  use { 'junegunn/vim-easy-align' }
-  use { 'liuchengxu/vim-clap', run = ':Clap install-binary!' }
-  use { 'liuchengxu/vista.vim' }
-  use { 'MarcWeber/vim-addon-local-vimrc' }
-  use { 'tpope/vim-eunuch' }
-  use { 'tpope/vim-sleuth' }
-  use { 'vn-ki/coc-clap' }
-  use { 'wsdjeg/vim-fetch' }
-  use { 'xolox/vim-misc' }
-  use { 'xolox/vim-notes' }
-  use { 'xolox/vim-shell' }
-  use { 'romgrk/vim-session' }
+  { 'justinmk/vim-dirvish' },
+  { 'fidian/hexmode' },
+  { 'jbyuki/one-small-step-for-vimkind' },
+  { 'jbyuki/venn.nvim' },
+  { 'ruanyl/vim-gh-line' },
+  { 'wellle/visual-split.vim' },
+  { 'aperezdc/vim-template' },
+  { 'bfredl/nvim-miniyank' },
+  { 'honza/vim-snippets' },
+  { 'junegunn/vim-easy-align' },
+  { 'liuchengxu/vim-clap', build = ':Clap install-binary!' },
+  { 'liuchengxu/vista.vim' },
+  { 'MarcWeber/vim-addon-local-vimrc' },
+  { 'tpope/vim-eunuch' },
+  { 'tpope/vim-sleuth' },
+  { 'vn-ki/coc-clap' },
+  { 'wsdjeg/vim-fetch' },
+  { 'xolox/vim-misc'},
+  { 'xolox/vim-notes', dependencies = { 'xolox/vim-misc' } },
+  { 'xolox/vim-shell', dependencies = { 'xolox/vim-misc' } },
+  { 'romgrk/vim-session', dependencies = { 'xolox/vim-misc' } },
 
   -- UI
-  use { 'sindrets/diffview.nvim' }
-  use { 'dstein64/nvim-scrollview' }
-  use { 'sidebar-nvim/sidebar.nvim' }
-  use { 'VonHeikemen/searchbox.nvim', requires = { 'MunifTanjim/nui.nvim' } }
-  use { 'kevinhwang91/nvim-ufo', requires = { 'kevinhwang91/promise-async' } }
-  use { 'rhysd/git-messenger.vim' }
-  use { 'KabbAmine/vCoolor.vim' }
-  use { 'machakann/vim-highlightedyank' }
-  use { 'RRethy/vim-hexokinase'                , run = 'make hexokinase' }
-  use { 'airblade/vim-gitgutter' }
-  use { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' }
-  use { 'akinsho/nvim-toggleterm.lua' }
-  use { 'lukas-reineke/indent-blankline.nvim' }
-  -- use { 'mfussenegger/nvim-dap' }
-  -- use { 'rcarriga/nvim-dap-ui' }
-  -- use { 'theHamsta/nvim-dap-virtual-text' }
+  { 'sindrets/diffview.nvim' },
+  { 'dstein64/nvim-scrollview' },
+  { 'sidebar-nvim/sidebar.nvim', dev = true },
+  { 'VonHeikemen/searchbox.nvim', dependencies = { { 'MunifTanjim/nui.nvim', dev = true } }, dev = true },
+  { 'kevinhwang91/nvim-ufo', dependencies = { 'kevinhwang91/promise-async' } },
+  { 'rhysd/git-messenger.vim' },
+  { 'KabbAmine/vCoolor.vim' },
+  { 'machakann/vim-highlightedyank' },
+  { 'RRethy/vim-hexokinase'                , build = 'make hexokinase' },
+  { 'airblade/vim-gitgutter' },
+  { 'https://gitlab.com/yorickpeterse/nvim-pqf.git' },
+  { 'akinsho/nvim-toggleterm.lua' },
+  { 'lukas-reineke/indent-blankline.nvim' },
+  -- { 'mfussenegger/nvim-dap' },
+  -- { 'rcarriga/nvim-dap-ui' },
+  -- { 'theHamsta/nvim-dap-virtual-text' },
 
   -- Personal
-  use { 'romgrk/barbar.nvim' }
-  use { 'romgrk/equal.operator' }
-  use { 'romgrk/columnMove.vim' }
-  use { 'romgrk/lib.kom' }
-  use { 'romgrk/pp.vim' }
-  use { 'romgrk/replace.vim' }
-  use { 'romgrk/vim-exeline' }
-  use { 'romgrk/winteract.vim'                 , cmd = 'InteractiveWindow'}
-  use { 'romgrk/searchReplace.vim' }
-  use { 'romgrk/todoist.nvim'                  , run = ':TodoistInstall' }
-  use { 'romgrk/doom-one.vim' }
+  { 'romgrk/doom-one.vim', dev = true, lazy = false, priority = 1000 },
+  { 'romgrk/fzy-lua-native', dev = true },
+  { 'romgrk/kui.nvim', dev = true },
+  { 'romgrk/kirby.nvim', dependencies = { { 'romgrk/fzy-lua-native', dev = true } }, dev = true },
+  { 'romgrk/barbar.nvim' },
+  { 'romgrk/equal.operator' },
+  { 'romgrk/columnMove.vim' },
+  { 'romgrk/lib.kom' },
+  { 'romgrk/pp.vim' },
+  { 'romgrk/replace.vim' },
+  { 'romgrk/vim-exeline' },
+  { 'romgrk/winteract.vim'                 , cmd = 'InteractiveWindow'},
+  { 'romgrk/searchReplace.vim' },
+  { 'romgrk/todoist.nvim'                  , build = ':TodoistInstall' },
 
   -- Language
-  use { 'rhysd/vim-llvm' }
-  use { 'martinda/Jenkinsfile-vim-syntax'      , ft = 'Jenkinsfile' }
-  use { 'pantharshit00/vim-prisma'             , ft = 'prisma' }
-  use { 'neoclide/jsonc.vim' }
-  use { 'justinmk/vim-syntax-extra' }
-  use { 'jordwalke/vim-reasonml'               , ft = 'reason' }
-  use { 'vim-python/python-syntax'             , ft = 'python' }
-  use { 'tmhedberg/SimpylFold'                 , ft = 'python' }
-  use { 'othree/xml.vim'                       , ft = 'xml' }
-  use { 'pangloss/vim-javascript'              , ft = 'javascript' }
-  use { 'kristijanhusak/vim-js-file-import'    , ft = 'javascript' }
-  use { 'neoclide/vim-jsx-improve'             , ft = 'javascript.jsx' }
-  use { 'moll/vim-node'                        , ft = 'javascript.node' }
-  use { 'leafgarland/typescript-vim'           , ft = 'typescript' }
-  use { 'ianks/vim-tsx'                        , ft = 'typescript.tsx' }
-  use { 'plasticboy/vim-markdown'              , ft = 'markdown' }
-  use { 'iamcco/markdown-preview.nvim'         , run = function () vim.cmd[[call mkdp#util#install()]] end, ft = { 'markdown', 'vim-plug' } }
-  use { 'tpope/vim-haml'                       , ft = { 'sass', 'scss', 'haml' } }
-  use { 'hail2u/vim-css3-syntax'               , ft = { 'css', 'sass', 'scss', 'less' } }
-  use { 'AndrewRadev/tagalong.vim' }
-  use { 'valloric/MatchTagAlways'              , ft = 'html' }
-  use { 'othree/html5.vim'                     , ft = 'html' }
-  use { 'othree/html5-syntax.vim'              , ft = 'html' }
-  use { 'rstacruz/sparkup'                     , ft = 'html' }
-  use { 'kelan/gyp.vim'                        , ft = 'gyp' }
-  use { 'rust-lang/rust.vim'                   , ft = 'rust' }
-  use { 'cespare/vim-toml'                     , ft = 'toml' }
-  use { 'dzeban/vim-log-syntax'                , ft = 'log' }
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+  { 'rhysd/vim-llvm' },
+  { 'pantharshit00/vim-prisma'             , ft = 'prisma' },
+  { 'neoclide/jsonc.vim' },
+  { 'justinmk/vim-syntax-extra' },
+  { 'jordwalke/vim-reasonml'               , ft = 'reason' },
+  { 'vim-python/python-syntax'             , ft = 'python' },
+  { 'tmhedberg/SimpylFold'                 , ft = 'python' },
+  { 'othree/xml.vim'                       , ft = 'xml' },
+  { 'pangloss/vim-javascript'              , ft = 'javascript' },
+  { 'kristijanhusak/vim-js-file-import'    , ft = 'javascript' },
+  { 'neoclide/vim-jsx-improve'             , ft = 'javascript.jsx' },
+  { 'moll/vim-node'                        , ft = 'javascript.node' },
+  { 'leafgarland/typescript-vim'           , ft = 'typescript' },
+  { 'ianks/vim-tsx'                        , ft = 'typescript.tsx' },
+  { 'plasticboy/vim-markdown'              , ft = 'markdown' },
+  { 'iamcco/markdown-preview.nvim'         , build = function () vim.cmd[[call mkdp#util#install()]] end, ft = { 'markdown', 'vim-plug' } },
+  { 'tpope/vim-haml'                       , ft = { 'sass', 'scss', 'haml' } },
+  { 'hail2u/vim-css3-syntax'               , ft = { 'css', 'sass', 'scss', 'less' } },
+  { 'AndrewRadev/tagalong.vim' },
+  { 'valloric/MatchTagAlways'              , ft = 'html' },
+  { 'othree/html5.vim'                     , ft = 'html' },
+  { 'othree/html5-syntax.vim'              , ft = 'html' },
+  { 'rstacruz/sparkup'                     , ft = 'html' },
+  { 'kelan/gyp.vim'                        , ft = 'gyp' },
+  { 'rust-lang/rust.vim'                   , ft = 'rust' },
+  { 'cespare/vim-toml'                     , ft = 'toml' },
+  { 'dzeban/vim-log-syntax'                , ft = 'log' },
+}, {
+  dev = {
+    path = '~/src',
+    fallback = false,
+  },
+})
 
 -- Scripts:
 load('./rc/function.vim')

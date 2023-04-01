@@ -20,7 +20,7 @@ end
 local function try_and_warn(fn, arg)
   local ok, result = pcall(fn, arg)
   if ok then return end
-  vim.api.nvim_err_writeln('Error while running "' .. arg .. '": ' .. tostring(result))
+  -- vim.api.nvim_err_writeln('Error while running "' .. arg .. '": ' .. tostring(result))
 end
 
 local function load(path)

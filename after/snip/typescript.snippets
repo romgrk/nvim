@@ -7,28 +7,8 @@
 
 extends javascript
 
-#==========
-# Imports:
-#==========
-
-snippet ref "ref" b
-/// <reference path='${1:.}/$0' />
-endsnippet
-
-
-snippet ex "export" b
-export ${1:default }$0
-endsnippet
-
-
-#===========
-# Language:
-#===========
-
-snippet if "if" b
-if (${1:expr}) ${2:{
-	$0;
-}}
+snippet vi "print(vim.inspect())"
+print(vim.inspect($0))
 endsnippet
 
 
