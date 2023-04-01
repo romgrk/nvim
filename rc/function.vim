@@ -119,17 +119,6 @@ fu! FileDeleteCurrent()
     endif
     unlet file
 endfu
-fu! BufferReopenClosed()
-    if !exists('g:session.closed_buffers')
-        let g:session.closed_buffers = []
-    end
-    if len(g:session.closed_buffers) == 0
-        echom 'BufferReopen: no previously closed buffer'
-        return
-    end
-    let buffer_name = remove(g:session.closed_buffers, -1)
-    exe 'edit ' . buffer_name
-endfu
 fu! BufferWipeReopen(...)
     let buffer_nr = (a:0==1) ? a:1 : bufnr('%')
     let buffer_name = bufname(buffer_nr)
@@ -137,19 +126,6 @@ fu! BufferWipeReopen(...)
     exe 'BufferClose'
     exe buffer_nr . 'bw'
     exe 'e ' . buffer_name
-endfu
-fu! StoreBuffer(bufferName)
-    if !buflisted(a:bufferName) | return | end
-    if &previewwindow           | return | end
-
-    if !exists('g:session.closed_buffers')
-        let g:session.closed_buffers = []
-    end
-    let filename = fnamemodify(a:bufferName, ':p')
-    call add(g:session.closed_buffers, filename)
-    if (len(g:session.closed_buffers) > 20)
-        call remove(g:session.closed_buffers, 15, -1)
-    end
 endfu
 fu! RestorePosition ()
     " Go back to where the cursor was when the file was closed if
