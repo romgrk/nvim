@@ -29,6 +29,10 @@
 -- TODO checkout https://github.com/folke/trouble.nvim
 
 local vim = vim
+
+-- Fancy lua loader
+vim.loader.enable()
+
 local api = vim.api
 local glob = vim.fn.glob
 local stdpath = vim.fn.stdpath
@@ -71,7 +75,6 @@ require('lazy').setup({
   -- Editing
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-treesitter/nvim-treesitter-context', dev = true },
-  -- { 'nvim-treesitter/playground' },
   { 'JoosepAlviste/nvim-ts-context-commentstring' },
   { 'AndrewRadev/sideways.vim' },
   { 'AndrewRadev/splitjoin.vim' },
