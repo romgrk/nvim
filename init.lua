@@ -80,7 +80,7 @@ require('lazy').setup({
   { 'AndrewRadev/splitjoin.vim' },
   { 'chrisgrieser/nvim-spider', lazy = true },
   { 'coderifous/textobj-word-column.vim' },
-  { 'jiangmiao/auto-pairs' },
+  { 'm4xshen/autoclose.nvim', init = function() require'autoclose'.setup() end },
   { 'romgrk/vim-sneak' },
   { 'ggandor/leap.nvim' },
   { 'kana/vim-niceblock' },
