@@ -3,7 +3,7 @@
   "MatchTagAlways": { "branch": "master", "commit": "352eb479a4ad1608e0880b79ab2357aac2cf4bed" },
   "SimpylFold": { "branch": "master", "commit": "ff4c85197c5555715093c08a8d4f9d493c4d80cd" },
   "UltiSnips": { "branch": "master", "commit": "0ad238b1910d447476b2d98f593322c1cdb71285" },
-  "auto-pairs": { "branch": "master", "commit": "39f06b873a8449af8ff6a3eee716d3da14d63a76" },
+  "autoclose.nvim": { "branch": "main", "commit": "c4db42ffc0edbd244502be951c142df0c8a7e582" },
   "coc-clap": { "branch": "master", "commit": "0f43b736899b9444704b11bd1835fa337f31ac11" },
   "coc.nvim": { "branch": "master", "commit": "628f08a0bf625f1a9872608c33638f48410d171e" },
   "columnMove.vim": { "branch": "master", "commit": "afd7335ff40279d016b5b94cafa1a5fd40ca9e93" },
