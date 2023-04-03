@@ -260,23 +260,22 @@ nnoremap <nowait> { {
 nnoremap <C-]> <C-W>z<C-]>
 
 
-" CamelCase motion
+" Special-cased word motions
 " map: w, b,        nmap: e, ge  {{{
 
-nmap <silent> w     <Plug>CamelCaseMotion_w
-nmap <silent> b     <Plug>CamelCaseMotion_b
-nmap <silent> e     <Plug>CamelCaseMotion_e
+nmap <silent> w     <cmd>lua require'spider'.motion('w')<CR>
+nmap <silent> b     <cmd>lua require'spider'.motion('b')<CR>
+nmap <silent> e     <cmd>lua require'spider'.motion('e')<CR>
 
-xmap <silent> w     <Plug>CamelCaseMotion_w
-xmap <silent> b     <Plug>CamelCaseMotion_b
-xmap <silent> e     <Plug>CamelCaseMotion_e
-xmap <silent> ge    <Plug>CamelCaseMotion_ge
+xmap <silent> w     <cmd>lua require'spider'.motion('w')<CR>
+xmap <silent> b     <cmd>lua require'spider'.motion('b')<CR>
+xmap <silent> e     <cmd>lua require'spider'.motion('e')<CR>
+xmap <silent> ge    <cmd>lua require'spider'.motion('ge')<CR>
 
 omap <expr>   w     searchpos('\%#\s', '')[1] ?
-                    \ '<Plug>CamelCaseMotion_w' : '<Plug>CamelCaseMotion_e'
-omap <silent> <A-w> <Plug>CamelCaseMotion_e
-
-xmap <silent> b     <Plug>CamelCaseMotion_b
+                    \ "<cmd>lua require'spider'.motion('w')<CR>" : "<cmd>lua require'spider'.motion('e')<CR>"
+omap <silent> <A-w> <cmd>lua require'spider'.motion('e')<CR>
+omap <silent> b     <cmd>lua require'spider'.motion('b')<CR>
 
 xnoremap iw iw
 

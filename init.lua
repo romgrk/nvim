@@ -78,7 +78,7 @@ require('lazy').setup({
   { 'JoosepAlviste/nvim-ts-context-commentstring' },
   { 'AndrewRadev/sideways.vim' },
   { 'AndrewRadev/splitjoin.vim' },
-  { 'bkad/CamelCaseMotion' },
+  { 'chrisgrieser/nvim-spider', lazy = true },
   { 'coderifous/textobj-word-column.vim' },
   { 'jiangmiao/auto-pairs' },
   { 'romgrk/vim-sneak' },

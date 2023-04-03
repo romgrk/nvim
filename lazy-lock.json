@@ -1,5 +1,4 @@
 {
-  "CamelCaseMotion": { "branch": "master", "commit": "de439d7c06cffd0839a29045a103fe4b44b15cdc" },
   "Comment.nvim": { "branch": "master", "commit": "8d3aa5c22c2d45e788c7a5fe13ad77368b783c20" },
   "MatchTagAlways": { "branch": "master", "commit": "352eb479a4ad1608e0880b79ab2357aac2cf4bed" },
   "SimpylFold": { "branch": "master", "commit": "ff4c85197c5555715093c08a8d4f9d493c4d80cd" },
@@ -24,6 +23,7 @@
   "nvim-miniyank": { "branch": "master", "commit": "2a3a0f3ae535e1b93a8c17dfdac718b9a12c772b" },
   "nvim-pqf": { "branch": "main", "commit": "d15582d3d0c09280f371fa5f21537cf4530ed330" },
   "nvim-scrollview": { "branch": "main", "commit": "c0699da2f00976943d39c7b32c015c768f68e74b" },
+  "nvim-spider": { "branch": "main", "commit": "3d7a74b56e27fd2d7bd20b35bf1941a96d03db54" },
   "nvim-toggleterm.lua": { "branch": "main", "commit": "b86982429325112d2b20c6d0cc7a5c4b182ab705" },
   "nvim-treesitter": { "branch": "master", "commit": "cbfa7cae1b38e1b843b2275d633ddbb05a105906" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "729d83ecb990dc2b30272833c213cc6d49ed5214" },
