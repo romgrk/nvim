@@ -155,7 +155,6 @@ require('lazy').setup({
   { 'rhysd/vim-llvm' },
   { 'pantharshit00/vim-prisma'             , ft = 'prisma' },
   { 'neoclide/jsonc.vim' },
-  { 'justinmk/vim-syntax-extra' },
   { 'jordwalke/vim-reasonml'               , ft = 'reason' },
   { 'vim-python/python-syntax'             , ft = 'python' },
   { 'tmhedberg/SimpylFold'                 , ft = 'python' },

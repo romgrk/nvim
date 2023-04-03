@@ -1,3 +1,3 @@
 require'barbar'.setup({
-  maximum_padding = 4,
+  maximum_padding = 6,
 })
