@@ -2,19 +2,16 @@
 -- init.lua
 --
 
--- TODO https://github.com/Wansmer/sibling-swap.nvim
 -- TODO https://github.com/ggandor/leap-spooky.nvim
 -- TODO https://github.com/ggandor/flit.nvim
--- TODO https://github.com/koenverburg/peepsight.nvim
 -- TODO https://github.com/DNLHC/glance.nvim
 -- TODO https://github.com/Wansmer/treesj
+-- TODO https://github.com/Wansmer/sibling-swap.nvim
 -- TODO https://github.com/smjonas/live-command.nvim
 -- TODO consider https://git.sr.ht/~whynothugo/lsp_lines.nvim
 -- TODO install https://github.com/GustavoKatel/sidebar.nvim
--- TODO install https://github.com/kristijanhusak/vim-dadbod-ui
 -- TODO install https://github.com/anuvyklack/hydra.nvim
 -- TODO install https://github.com/RRethy/nvim-treesitter-textsubjects
--- TODO install https://github.com/SmiteshP/nvim-gps
 -- TODO install https://github.com/abecodes/tabout.nvim
 -- TODO install https://github.com/pwntester/octo.nvim when working
 -- TODO install https://github.com/tanvirtin/vgit.nvim
