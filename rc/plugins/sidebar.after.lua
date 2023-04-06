@@ -1,6 +1,6 @@
 local sidebar = require('sidebar-nvim')
 local view = require('sidebar-nvim.view')
-local bufferline = require('bufferline.state')
+local barbar = require('barbar.api')
 
 sidebar.setup({
   -- open = vim.fn.argc() == 0,
@@ -41,7 +41,7 @@ sidebar.setup({
   },
   bindings = {
     ['q'] = function()
-      bufferline.set_offset(0)
+      barbar.set_offset(0)
       sidebar.close()
     end,
   },
@@ -49,10 +49,10 @@ sidebar.setup({
 
 vim.api.nvim_create_user_command('TreeToggle', function()
  if sidebar.is_open() then
-    bufferline.set_offset(0)
+    barbar.set_offset(0)
     sidebar.close()
   else
-    bufferline.set_offset(view.View.width, '', 'SidebarNvimNormal')
+    barbar.set_offset(view.View.width, '', 'SidebarNvimNormal')
     sidebar.open()
   end
 end, {})
