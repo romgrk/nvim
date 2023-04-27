@@ -1,3 +1,3 @@
-nmap <buffer> q     :tabclose<CR>
-nmap <buffer> <C-k> =
-nmap <buffer> gp    :Git push<CR>
+nmap <silent><buffer> q     :tabclose<CR>
+nmap <silent><buffer> <C-k> =
+nmap <silent><buffer> gp    :Git push<CR>

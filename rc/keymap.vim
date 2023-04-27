@@ -125,7 +125,7 @@ endfunc
 cmap <expr> w <SID>cmd_write()
 function! s:cmd_write()
     if getcmdline() == ''
-        return "\<CR>:silent w\<CR>"
+        return "w\<CR>:echo ''\<CR>"
     end
     return 'w'
 endfunc
@@ -136,38 +136,37 @@ endfunc
 " @configuration
 
 " Local config
-nmap gslc           :Edit .vimrc<CR>
-nmap gsln           :execute 'Note ' . GetCurrentSession()<CR>
+nnoremap <silent> gslc           <cmd>Edit .vimrc<CR>
+nnoremap <silent> gsln           <cmd>execute 'Note ' . GetCurrentSession()<CR>
 
 " Files
-nnoremap gsrc       :Edit $MYVIMRC<CR>
-nnoremap gsro       :Edit $vim/coc-settings.json<CR>
-nnoremap gsm        :Edit $vim/rc/keymap.vim<CR>
-nnoremap gsko       :Edit $vim/plugin/options.vim<CR>
-nnoremap gsa        :Edit $vim/rc/autocmd.vim<CR>
-nnoremap gse        :Edit $vim/rc/events.vim<CR>
-nnoremap gsf        :Edit $vim/rc/function.vim<CR>
-nnoremap gsd        :Edit $vim/rc/commands.vim<CR>
-nnoremap gsc        :Edit $vim/rc/colors.vim<CR>
-nnoremap gsh        :Edit $vim/rc/highlight.vim<CR>
-nnoremap gso        :Edit $vim/rc/settings.vim<CR>
-nnoremap gsjg       :Edit $HOME/src/github-light.vim/colors/github-light.vim<CR>
-nnoremap gsjd       :Edit $HOME/src/doom-one.vim/colors/doom-one.vim<CR>
-nnoremap gsp        :Edit $vim/rc/plugins.vim<CR>
-nnoremap gsP        :Clap filer $vim/rc/plugins/<CR>
-nnoremap gsv        :Clap files $vim<CR>
-nnoremap gssh       :Edit ~/.ssh/config<CR>
+nnoremap <silent> gsrc       <cmd>Edit $MYVIMRC<CR>
+nnoremap <silent> gsro       <cmd>Edit $vim/coc-settings.json<CR>
+nnoremap <silent> gsm        <cmd>Edit $vim/rc/keymap.vim<CR>
+nnoremap <silent> gsko       <cmd>Edit $vim/plugin/options.vim<CR>
+nnoremap <silent> gsa        <cmd>Edit $vim/rc/autocmd.vim<CR>
+nnoremap <silent> gse        <cmd>Edit $vim/rc/events.vim<CR>
+nnoremap <silent> gsf        <cmd>Edit $vim/rc/function.vim<CR>
+nnoremap <silent> gsd        <cmd>Edit $vim/rc/commands.vim<CR>
+nnoremap <silent> gsc        <cmd>Edit $vim/rc/colors.vim<CR>
+nnoremap <silent> gsh        <cmd>Edit $vim/rc/highlight.vim<CR>
+nnoremap <silent> gso        <cmd>Edit $vim/rc/settings.vim<CR>
+nnoremap <silent> gsjg       <cmd>Edit $HOME/src/github-light.vim/colors/github-light.vim<CR>
+nnoremap <silent> gsjd       <cmd>Edit $HOME/src/doom-one.vim/colors/doom-one.vim<CR>
+nnoremap <silent> gsp        <cmd>Edit $vim/rc/plugins.vim<CR>
+nnoremap <silent> gsP        <cmd>Clap filer $vim/rc/plugins/<CR>
+nnoremap <silent> gsv        <cmd>Clap files $vim<CR>
+nnoremap <silent> gssh       <cmd>Edit ~/.ssh/config<CR>
 
 " New...
-nnoremap <A-n><A-s> :UltiSnipsEdit<CR>
-nnoremap <A-n><A-m> :EditFtplugin<CR>
-nnoremap <A-n><A-a> :EditFtsyntax<CR>
-" Edit runtime syntax file
-nnoremap <A-n><A-f> :EditSyntax<CR>
+nnoremap <silent> <A-n><A-s> <cmd>UltiSnipsEdit<CR>
+nnoremap <silent> <A-n><A-m> <cmd>EditFtplugin<CR>
+nnoremap <silent> <A-n><A-a> <cmd>EditFtsyntax<CR>
+nnoremap <silent> <A-n><A-f> <cmd>EditSyntax<CR>
 
 " Notefile
-nnoremap <A-n><A-n> :Edit $vim/plugin/notes.vim<CR>
-nnoremap <A-n><A-o> :Note vim<CR>
+nnoremap <silent> <A-n><A-n> <cmd>Edit $vim/plugin/notes.vim<CR>
+nnoremap <silent> <A-n><A-o> <cmd>Note vim<CR>
 
 " }}}1
 "===============================================================================
@@ -285,10 +284,10 @@ nnoremap ]c   /^<<<<CR>:set nohls<CR>
 nnoremap [c   ?^<<<<CR>:set nohls<CR>
 
 " QF window
-nnoremap ]q   :cnext<CR>
-nnoremap [q   :cprevious<CR>
-nnoremap ]l   :lnext<CR>
-nnoremap [l   :lprevious<CR>
+nnoremap <silent> ]q   <cmd>cnext<CR>
+nnoremap <silent> [q   <cmd>cprevious<CR>
+nnoremap <silent> ]l   <cmd>lnext<CR>
+nnoremap <silent> [l   <cmd>lprevious<CR>
 
 " 1}}}
 "===============================================================================
@@ -327,8 +326,8 @@ omap U <Plug>Sneak_T
 " Intellisense (coc.nvim)                                                   {{{1
 
 
-nmap <silent> <space>coc :Clap coc_commands<CR>
-nmap <silent> <F2>       :call CocAction('rename')<CR>
+nmap <silent> <space>coc <cmd>Clap coc_commands<CR>
+nmap <silent> <F2>       <cmd>call CocAction('rename')<CR>
 
 " xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 " nmap <silent> gme    :<C-u>CocCommand actions.open<CR>
@@ -349,7 +348,7 @@ nmap <silent> gR     <Plug>(coc-references)
 nmap <silent> g<A-r> <Plug>(coc-references-used)
 
 " Use K for show documentation in preview window
-nnoremap <silent> K     :call <SID>show_documentation()<CR>
+nnoremap <silent> K      <cmd>call <SID>show_documentation()<CR>
 inoremap <silent> <C-k> <C-O>:call coc#float#jump()<CR>
 inoremap <silent> <A-u> <C-O>:call coc#float#scroll(-1)<CR>
 inoremap <silent> <A-d> <C-O>:call coc#float#scroll(+1)<CR>
@@ -408,12 +407,12 @@ nunmap <space>a
 " File management (prefix: f)
 nnoremap <silent><space>fn     :enew<CR>
 nnoremap         <space>fs     :sav<space>
-nnoremap <silent><space>fr     :Rename<space>
-nnoremap <silent><space>fm     :Move<space>
+nnoremap         <space>fr     :Rename<space>
+nnoremap         <space>fm     :Move<space>
 nnoremap <silent><space>fD     :FileDelete<CR>
 
 " Directory management
-nnoremap <silent><space>md     :Mkdir! <C-D>
+nnoremap         <space>md     :Mkdir!<space>
 
 
 " Session management (prefix: s)
@@ -628,39 +627,29 @@ end "of has('nvim') }}}1
 "===============================================================================
 " Buffer navigation                                                         {{{1
 
-nnoremap <silent> <A-,> :BufferPrevious<CR>
-nnoremap <silent> <A-.> :BufferNext<CR>
-nnoremap <silent> <A-<> :BufferMovePrevious<CR>
-nnoremap <silent> <A->> :BufferMoveNext<CR>
-nnoremap <silent> <A-S-,> :BufferMovePrevious<CR>
-nnoremap <silent> <A-S-.> :BufferMoveNext<CR>
+nnoremap <silent> <A-,>   <cmd>BufferPrevious<CR>
+nnoremap <silent> <A-.>   <cmd>BufferNext<CR>
+nnoremap <silent> <A-<>   <cmd>BufferMovePrevious<CR>
+nnoremap <silent> <A->>   <cmd>BufferMoveNext<CR>
+nnoremap <silent> <A-S-,> <cmd>BufferMovePrevious<CR>
+nnoremap <silent> <A-S-.> <cmd>BufferMoveNext<CR>
 
-nnoremap <silent> <A-1> :BufferGoto 1<CR>
-nnoremap <silent> <A-2> :BufferGoto 2<CR>
-nnoremap <silent> <A-3> :BufferGoto 3<CR>
-nnoremap <silent> <A-4> :BufferGoto 4<CR>
-nnoremap <silent> <A-5> :BufferGoto 5<CR>
-nnoremap <silent> <A-6> :BufferGoto 6<CR>
-nnoremap <silent> <A-7> :BufferGoto 7<CR>
-nnoremap <silent> <A-8> :BufferGoto 8<CR>
-nnoremap <silent> <A-9> :BufferLast<CR>
+nnoremap <silent> <A-1>   <cmd>BufferGoto 1<CR>
+nnoremap <silent> <A-2>   <cmd>BufferGoto 2<CR>
+nnoremap <silent> <A-3>   <cmd>BufferGoto 3<CR>
+nnoremap <silent> <A-4>   <cmd>BufferGoto 4<CR>
+nnoremap <silent> <A-5>   <cmd>BufferGoto 5<CR>
+nnoremap <silent> <A-6>   <cmd>BufferGoto 6<CR>
+nnoremap <silent> <A-7>   <cmd>BufferGoto 7<CR>
+nnoremap <silent> <A-8>   <cmd>BufferGoto 8<CR>
+nnoremap <silent> <A-9>   <cmd>BufferLast<CR>
 
-nnoremap <silent> <A-c> :BufferClose!<CR>
-nnoremap <silent> <A-C> :BufferRestore<CR>
+nnoremap <silent> <A-c>   <cmd>BufferClose!<CR>
+nnoremap <silent> <A-C>   <cmd>BufferRestore<CR>
 
-nnoremap         <space>o   :BufferPick<CR>
-nnoremap <silent><space>bd  :BufferOrderByDirectory<CR>
-nnoremap <silent><space>bl  :BufferOrderByLanguage<CR>
-
-if exists('g:gui_oni')
-nnoremap <silent> <A-,> :tabprev<CR>
-nnoremap <silent> <A-.> :tabnext<CR>
-nnoremap <silent> <A-c> :tabclose<CR>
-end
-if exists('g:fvim_loaded')
-nnoremap <silent> <C-Tab>   :BufferNext<CR>
-nnoremap <silent> <C-S-Tab> :BufferPrevious<CR>
-end
+nnoremap         <space>o   <cmd>BufferPick<CR>
+nnoremap <silent><space>bd  <cmd>BufferOrderByDirectory<CR>
+nnoremap <silent><space>bl  <cmd>BufferOrderByLanguage<CR>
 
 " }}}1
 "===============================================================================
