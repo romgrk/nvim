@@ -52,9 +52,6 @@ function! s:setup()
 
     hi! link HighlightedyankRegion Highlight
 
-    call hi#('multiple_cursors_cursor', g:colors.darkred, g:colors.pink, 'bold')
-    hi! link multiple_cursors_visual visual
-
 
     " }}}
     " Notes, notation, etc.                                                      {{{

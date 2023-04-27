@@ -96,7 +96,7 @@ nnoremap <expr>i empty(substitute(getline('.'), '^\s\+', '', '')) ? 'cc' : 'i'
 
 
 " Split line (as opposed to J)
-nnoremap <silent><C-J>  i<CR><Esc>:silent -DeleteTrailingWS<CR>
+nnoremap <silent><C-j>  i<CR><Esc>:silent -DeleteTrailingWS<CR>
 
 
 " Alt-M start MultiCursor-mode
@@ -110,6 +110,8 @@ vnoremap <A-m> :<C-U>call multiple_cursors#new('v', 0)<CR>
 " Remove things we don't use
 vmap <C-f> <Nop>
 vmap <C-b> <Nop>
+nmap <C-f> <Nop>
+nmap <C-b> <Nop>
 
 " }}}1
 "===============================================================================
@@ -153,6 +155,7 @@ nnoremap <silent> gsh        <cmd>Edit $vim/rc/highlight.vim<CR>
 nnoremap <silent> gso        <cmd>Edit $vim/rc/settings.vim<CR>
 nnoremap <silent> gsjg       <cmd>Edit $HOME/src/github-light.vim/colors/github-light.vim<CR>
 nnoremap <silent> gsjd       <cmd>Edit $HOME/src/doom-one.vim/colors/doom-one.vim<CR>
+nnoremap <silent> gsjk       <cmd>Edit $HOME/src/kyntell.vim/colors/kyntell.vim<CR>
 nnoremap <silent> gsp        <cmd>Edit $vim/rc/plugins.vim<CR>
 nnoremap <silent> gsP        <cmd>Clap filer $vim/rc/plugins/<CR>
 nnoremap <silent> gsv        <cmd>Clap files $vim<CR>
@@ -251,7 +254,7 @@ nnoremap <nowait> { {
 
 
 " Close any preview window then jump
-nnoremap <C-]> <C-W>z<C-]>
+nnoremap <C-]> <C-w>z<C-]>
 
 
 " Special-cased word motions
@@ -276,8 +279,8 @@ xnoremap iw iw
 " }}}
 
 " GitGutter hunks
-nnoremap <silent>[h  :GitGutterPrevHunk<CR>zvzz
-nnoremap <silent>]h  :GitGutterNextHunk<CR>zvzz
+nnoremap <silent>[h  <cmd>GitGutterPrevHunk<CR>zvzz
+nnoremap <silent>]h  <cmd>GitGutterNextHunk<CR>zvzz
 
 " Git conflicts
 nnoremap ]c   /^<<<<CR>:set nohls<CR>
@@ -426,9 +429,6 @@ nnoremap <silent><space>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D
 
 nnoremap <silent><space>sl     :SourceLocalVimrc<CR>
 nnoremap <silent><space>sn     :Note <C-R>=xolox#session#find_current_session()<CR><CR>
-
-
-nnoremap <silent><space>np     :NewProject<space>
 
 
 " Notes (prefix: n)
