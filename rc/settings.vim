@@ -154,7 +154,6 @@ set wrapmargin=0
 set nowrap
 
 set linebreak
-" set showbreak=…\                " NonText
 set showbreak=                    " NonText
 set breakindent
 
@@ -162,13 +161,8 @@ set breakindent
 
 set list listchars=
 "set lcs+=conceal:
-if has('win32')
-  "set lcs+=eol:¬                 " EOL character
-  set lcs+=tab:>\  "\              " Tab character replacement
-else
-  "set lcs+=eol:¬                 " EOL character
-  set lcs+=tab:\  "\              " Tab character replacement
-end
+"set lcs+=eol:¬                 " EOL character
+set lcs+=tab:\  "\             " Tab character replacement
 set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
 set lcs+=precedes:<,extends:>   " Horizontal ellipsis
 
