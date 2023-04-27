@@ -360,31 +360,6 @@ function! FoldFunction(...) "                                                   
     return prefix . line
 endfu "                                                                      }}}
 
-fu! PrintChars(start, end, ...) "                                                  {{{
-    let start = _#isNumber(a:start) ? a:start : char2nr(a:start)
-    let end   = _#isNumber(a:end)   ? a:end   : char2nr(a:end)
-    let sep = get(a:000, 0, ' ')
-
-    let i = start
-    let res = ''
-
-    if (i < 0xFFFF)
-        let format = '%04x'
-    else
-        let format = '%05x'
-    end
-
-    while (i < end)
-        execute
-                    \ 'let res .="\u' . printf(format, (i)) .'"'
-        let res .= sep
-        let i = i + 1
-    endwhile
-
-    let @r=res
-    exe 'normal! "rp'
-endfu "                                                                      }}}
-
 
 com! SynStack              call SyntaxStack()
 com! GetCurrentSyntaxGroup Pp GetCurrentSyntaxGroup()
@@ -422,18 +397,6 @@ fu! EditSyntax (...)
     let file = findfile('syntax/'. &ft . '.vim', &rtp)
     exe 'edit ' . file
 endfu
-fu! QuickReload ()
-    doautocmd Syntax
-    exe 'source ' . $vim . '/after/ftplugin/' . &ft . '.vim'
-endfu
-
-
-function! Now()
-    return strftime("%H:%M")
-endfunc
-function! Today()
-    return strftime("%e %B %Y")
-endfunc
 
 
 function! GetArgs()

@@ -18,7 +18,6 @@ augroup RC
     " Terminal
     if has('nvim')
     au TermOpen * call <SID>on_term_open()
-    " au TermOpen * au BufEnter <buffer=abuf> startinsert
     end
 
     " Cmdwin in ./cmdwin.vim
@@ -61,9 +60,5 @@ function! s:on_term_open ()
     setlocal nonumber
     setlocal nocursorline nocursorcolumn
     setlocal signcolumn=no
-    if exists(':VimadeBufDisable')
-        VimadeBufDisable
-    end
-
-    setl winhl=Normal:TermNormal,NormalNC:TermNormalNC
+    setlocal winhl=Normal:TermNormal,NormalNC:TermNormalNC
 endfunc
