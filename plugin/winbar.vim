@@ -7,25 +7,6 @@ augroup END
 
 let s:SEPARATOR = ''
 
-" " Setup the colors
-" function! s:setup_colors() abort
-"   let s:winbarFg = !empty(hi#fg('Normal')) ? hi#fg('Normal') : '#ffffff'
-"   let s:winbarBg = !empty(hi#bg('Normal')) ? hi#bg('Normal') : '#000000'
-"
-"   let s:winbarSep = color#Decrease(s:winbarFg, 0.4)
-"
-"   call hi#('WinBar',          [s:winbarFg,      s:winbarBg, 'none'])
-"   call hi#('WinBarSeparator', [s:winbarSep,     s:winbarBg, 'none'])
-" endfunction
-"
-" call s:setup_colors()
-" call timer_start(50, {-> s:setup_colors()})
-"
-" augroup winbar_colors
-"   au!
-"   au ColorScheme * call s:setup_colors()
-" augroup END
-
 function! s:update_inactive_windows()
   for winnum in range(1, winnr('$'))
     if winnum != winnr()
