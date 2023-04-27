@@ -116,13 +116,20 @@ function! statusline#active () abort
     let content .= '%#StatuslineSeparator#| '
 
     " Filetype icon
-    let content .= '%#StatuslineFiletype#%{statusline#filetype_icon()}'
-
+    " let content .= '%#StatuslineFiletype#%{statusline#filetype_icon()}'
     " Modified + Filename + Readonly
-    let content .= '%#StatuslineFilename#'
-    let content .= '%{statusline#modified(&modified)} '
-    let content .= '%{statusline#filename()} %<'
-    let content .= '%{&readonly?"' . icon#name('lock') . '":" "}'
+    " let content .= '%#StatuslineFilename#'
+    " let content .= '%{statusline#modified(&modified)} '
+    " let content .= '%{statusline#filename()} %<'
+    " let content .= '%{&readonly?"' . icon#name('lock') . '":" "}'
+
+    " VCS
+    let vc_status = statusline#vc_branch()
+    if len(vc_status)
+      let content .= '%#StatuslineVC#%{statusline#vc_branch()}'
+      " let content .= '%#StatuslineSeparator#| '
+    end
+
 
     let content .= '%=' " Right side items
 
@@ -130,13 +137,6 @@ function! statusline#active () abort
     let content .= '%#StatuslineLineCol#%l:%c '
     let content .= '%#StatuslineSeparator#| '
     let content .= '%#StatuslineLineCol#%L lines %<'
-
-    " VCS
-    let vc_status = statusline#vc_status()
-    if len(vc_status)
-      let content .= '%#StatuslineSeparator#| '
-      let content .= '%#StatuslineVC#%{statusline#vc_status()}'
-    end
 
     " Heart
     let content .= '%#StatuslineHeart# '
@@ -151,52 +151,55 @@ function! statusline#active () abort
 endfunc
 
 function! statusline#inactive () abort
-  let is_normal = !(&bt =~# '\vno(file|write)')
+  " Using laststatus=3
+  return statusline#active()
 
-  let content = ''
-
-  if !is_normal
-    let content .= '%#StatuslinePartNC# '
-    let content .= statusline#get_special_name() . ' '
-    let content .= '%#StatuslineFilenameNC#'
-  end
-
-  if is_normal
-    " Mode placeholder
-    let content .= '%#StatuslineAccentNC# '
-    let content .= '%{statusline#get_mode("e")} '
-    let content .= '%#StatuslineSeparator#| '
-
-    " Filetype icon
-    let content .= '%#StatuslineNC#%{statusline#filetype_icon()}'
-
-    " Modified + Filename + Readonly
-    let content .= '%#StatuslineFilenameNC#'
-    let content .= '%{statusline#modified(&modified)} '
-    let content .= '%{statusline#filename()} %<'
-    let content .= '%{&readonly?"' . icon#name('lock') . '":" "}'
-
-    let content .= '%=' " Right side items
-
-    let content .= '%#StatuslineNC#'
-
-    " Line and Column
-    let content .= '%l:%c '
-    let content .= '| '
-    let content .= '%L lines %<'
-
-    " VCS
-    let vc_status = statusline#vc_status()
-    if len(vc_status)
-      let content .= '| '
-      let content .= '%{statusline#vc_status()}'
-    end
-
-    " Heart
-    let content .= ' '
-  end
-
-  return content
+  " let is_normal = !(&bt =~# '\vno(file|write)')
+  "
+  " let content = ''
+  "
+  " if !is_normal
+  "   let content .= '%#StatuslinePartNC# '
+  "   let content .= statusline#get_special_name() . ' '
+  "   let content .= '%#StatuslineFilenameNC#'
+  " end
+  "
+  " if is_normal
+  "   " Mode placeholder
+  "   let content .= '%#StatuslineAccentNC# '
+  "   let content .= '%{statusline#get_mode("e")} '
+  "   let content .= '%#StatuslineSeparator#| '
+  "
+  "   " Filetype icon
+  "   let content .= '%#StatuslineNC#%{statusline#filetype_icon()}'
+  "
+  "   " Modified + Filename + Readonly
+  "   let content .= '%#StatuslineFilenameNC#'
+  "   let content .= '%{tatusline#modified(&modified)} '
+  "   let content .= '%{statusline#filename()} %<'
+  "   let content .= '%{&readonly?"' . icon#name('lock') . '":" "}'
+  "
+  "   let content .= '%=' " Right side items
+  "
+  "   let content .= '%#StatuslineNC#'
+  "
+  "   " Line and Column
+  "   let content .= '%l:%c '
+  "   let content .= '| '
+  "   let content .= '%L lines %<'
+  "
+  "   " VCS
+  "   let vc_status = statusline#vc_status()
+  "   if len(vc_status)
+  "     let content .= '| '
+  "     let content .= '%{statusline#vc_status()}'
+  "   end
+  "
+  "   " Heart
+  "   let content .= ' '
+  " end
+  "
+  " return content
 endfunc
 
 "===============================================================================
@@ -237,29 +240,25 @@ function! statusline#filetype_icon() abort
 endfunction
 
 
-function! statusline#gutentags_enabled() abort
-  return exists('g:gutentags_enabled') && g:gutentags_enabled == 1 && gutentags#statusline() !=# ''
-endfunction
-
-function! statusline#gutentags()
-  if !statusline#gutentags_enabled()
+function! statusline#vc_branch() abort
+  let mark = ''
+  let branch = gitbranch#name()
+  if branch ==# ''
     return ''
-  endif
-
-  return gutentags#statusline('[', '] ')
+  end
+  return branch . ' ' . mark
 endfunction
 
 function! statusline#vc_status() abort
-  let l:mark = ''
-  let l:branch = gitbranch#name()
-  let l:changes = GitGutterGetHunkSummary()
-  let l:status = l:changes[0] > 0 ? '+' . l:changes[0] : ''
-  let l:prefix = l:changes[0] > 0 ? ' ' : ''
-  let l:status = l:changes[1] > 0 ? l:status . l:prefix . '~' . l:changes[1] : l:status
-  let l:prefix = l:changes[1] > 0 ? ' ' : ''
-  let l:status = l:changes[2] > 0 ? l:status . l:prefix . '-' . l:changes[2] : l:status
-  let l:status = l:status ==# '' ? '' : l:status . ' '
-  return l:branch !=# '' ? l:status . l:mark . ' ' . l:branch . ' ' : ''
+  let changes = GitGutterGetHunkSummary()
+  let status = changes[0] > 0 ? '+' . changes[0] : ''
+  let prefix = changes[0] > 0 ? ' ' : ''
+  let status = changes[1] > 0 ? status . prefix . '~' . changes[1] : status
+  let prefix = changes[1] > 0 ? ' ' : ''
+  let status = changes[2] > 0 ? status . prefix . '-' . changes[2] : status
+  let status = status ==# '' ? '' : status . ' '
+
+  return status
 endfunction
 
 function! statusline#coc() abort
