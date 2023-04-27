@@ -43,11 +43,6 @@ augroup RC
     au QuickFixCmdPost    l* call QuickFixOpen('l')
     au BufReadPost quickfix  call QuickFixEnter()
 
-    " Auto-Bookmarks
-    au FileType help          call BookmarkLastHelp()
-    au BufLeave */doc/*.txt   call BookmarkLastHelp()
-    au BufLeave ~/notes/*.txt let session.lastnote = @%
-
 augroup END
 
 function! s:did_load (...)

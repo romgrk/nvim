@@ -55,7 +55,7 @@ fu! FindFtSyntax(...) "                                                      {{{
 endfu "                                                                      }}}
 
 
-function! ExecTerminal(command, arguments)
+function! s:term(command, arguments)
     let quoted_arguments = join(map(copy(a:arguments), {key, val -> expand(val)}), ' ')
     below split
     15wincmd _
@@ -78,33 +78,14 @@ function! GitOpenUnmergedFiles()
     call Edit(files)
 endfunction
 function! GitPush(...)
-    call ExecTerminal('git push', a:000)
+    call s:term('git push', a:000)
 endfunction
 function! GitStatus(...)
-    call ExecTerminal('git status', a:000)
+    call s:term('git status', a:000)
 endfunction
 function! GitDiff(...)
-    call ExecTerminal('git diff', a:000)
+    call s:term('git diff', a:000)
 endfunction
-
-
-com! -nargs=+ NewProject   call NewProject(<f-args>)
-fu! NewProject(...)
-    let name = a:000[0]
-    let folder = len(a:000) > 1 ? a:000[1] : 'projects'
-
-    wall!
-    CloseSession
-
-    let dir = $HOME . '/' . folder . '/' . name
-
-    if !isdirectory(dir)
-        call mkdir(dir, 'p')
-    endif
-
-    execute 'cd ' . dir
-    execute 'SaveSession ' . name
-endfu
 
 
 com! -bar FileDelete       call FileDeleteCurrent()
@@ -313,42 +294,6 @@ function! ToggleWindows ()
                     \ 'call win#close(v:val - v:key)')
     end
 endfunc
-
-
-com! BookmarkFile     call BookmarkFile()
-com! BookmarkLastHelp call BookmarkLastHelp()
-com! ReopenHelp       call ReopenHelp()
-fu! BookmarkFile(...) "                                                      {{{
-    let file = get(a:000, '1', @%)
-    let line = get(a:000, '2', line('.'))
-    silent! exe '!echo ' . file . ':' . line . ' >> ' . get(g:, 'bookmarks', $HOME . '/.cache/nvim/bookmarks')
-    if !exists('g:session["bookmarks"]')
-        let g:session["bookmarks"] = []
-    end
-    call add(g:session['bookmarks'], [file, line])
-endfu "                                                                      }}}
-fu! BookmarkLastHelp() "                                                     {{{
-    if &ft !~? 'help'
-        return | endif
-    let g:session.last_help=[expand("%:p"), getcurpos()]
-endfu "                                                                      }}}
-fu! ReopenHelp() abort "                                                     {{{
-    if !exists('g:session.last_help')
-        call Warn('No last help')
-        " execute 'Helptags'
-        return
-    end
-
-    if !_#isList(g:session.last_help[1])
-        call Warn('last_help == ', g:session.last_help)
-    end
-
-    exe 'vertical view ' . g:session.last_help[0]
-
-    call cursor(g:session.last_help[1][1], 0)
-    "set filetype=help
-    doautocmd Syntax
-endfu "                                                                      }}}
 
 
 com! -nargs=* OpenURLOrSearch call OpenURLOrSearch(<q-args>)

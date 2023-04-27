@@ -1,7 +1,6 @@
 setlocal nonu
 setlocal nolist
 setlocal signcolumn=no
-call BookmarkLastHelp()
 
 
 nnoremap <silent><buffer> q          :wincmd c<CR>
