@@ -4,17 +4,18 @@
 "                
 
 
+let s:mode_background = '#606060'
 let s:color_by_mode = {
-\  'n':  ['#e9f2ff', '#599eff'],
-\  'i':  ['#6d5d08', '#ffcf00'],
-\  'R':  ['#e9e9e9', '#afaf00'],
-\  'c':  ['#e9f2ff', '#599eff'],
-\  't':  ['#e9e9e9', '#d75f5f'],
-\  'v':  ['#e9e9e9', '#875fdf'],
-\  'V':  ['#e9e9e9', '#875fdf'],
-\  '': ['#e9e9e9', '#875fdf'],
+\  'n':  '#599eff',
+\  'i':  '#ffcf00',
+\  'R':  '#afaf00',
+\  'c':  '#d75f5f',
+\  't':  '#d75f5f',
+\  'v':  '#A77FFF',
+\  'V':  '#A77FFF',
+\  '': '#A77FFF',
 \
-\  'default': ['#e9f2ff', '#599eff'],
+\  'default': '#599eff',
 \}
 
 let s:modifiedFg = '#d75f5f'
@@ -31,16 +32,20 @@ function! s:setup_colors() abort
 
   let s:statuslineFg = !empty(hi#fg('StatusLine')) ? hi#fg('StatusLine') : '#495058'
   let s:statuslineBg = !empty(hi#bg('StatusLine')) ? hi#bg('StatusLine') : '#d0d0d0'
-  let s:statuslineFgLight = color#Decrease(s:statuslineFg, 0.8)
+
+  let s:mode_background = s:statuslineBg
+
+  let s:statuslineFgLight = color#Decrease(s:statuslineFg, 0.4)
   let s:statuslineNCFg = !empty(hi#fg('StatusLineNC')) ? hi#fg('StatusLineNC') : '#495058'
   " let s:statuslineBg = hi#bg('StatusLine')
   " let s:statuslineBg = '#d0d0d0'
   let s:statuslineBgDark = color#Darken(s:statuslineBg, 0.2)
 
 
-  call hi#('StatuslineNormal',           ['#e9e9e9',           s:color_by_mode['n'][1], 'bold'])
+  call hi#('StatuslineNormal',           [s:color_by_mode['n'], s:mode_background, 'bold'])
   call hi#('StatuslineAccent',           ['none',              'none',         'bold'])
   call hi#('StatuslineAccentTransition', ['none',              'none',         'bold'])
+  call hi#('StatuslineAccentNC',         [s:statuslineNCFg,    s:statuslineBg, 'bold'])
   call hi#('StatuslinePart',             hi#('StatusLinePart'))
   call hi#('StatuslinePartNC',           hi#('StatusLinePartNC'))
   call hi#('StatuslineFiletype',         [s:statuslineFg,      s:statuslineBg, 'none'])
@@ -78,9 +83,9 @@ function! s:update_inactive_windows()
 endfunction
 
 function! statusline#update_colors(mode) abort
-  call hi#('StatuslineAccent', get(s:color_by_mode, a:mode, s:color_by_mode.default))
+  call hi#('StatuslineAccent', [get(s:color_by_mode, a:mode, s:color_by_mode.default), s:mode_background])
   call hi#('StatuslineAccentTransition',
-    \ get(s:color_by_mode, a:mode, s:color_by_mode.default)[1],
+    \ s:mode_background,
     \ s:statuslineBg)
   call hi#fg('StatuslineFilename', &modified ? s:modifiedFg : s:statuslineFg)
   return ''
@@ -99,7 +104,7 @@ function! statusline#active () abort
   if !is_normal
     let content .= '%#StatuslineAccent# '
     let content .= statusline#get_special_name() . ' '
-    let content .= '%#StatuslineAccentTransition#'
+    let content .= '%#StatuslineSeparator#| '
 
     let content .= '%#StatuslineFilename#'
   end
@@ -108,10 +113,10 @@ function! statusline#active () abort
     " Mode
     let content .= '%#StatuslineAccent# '
     let content .= '%{statusline#get_mode(mode())} '
-    let content .= '%#StatuslineAccentTransition#'
+    let content .= '%#StatuslineSeparator#| '
 
     " Filetype icon
-    let content .= '%#StatuslineFiletype# %{statusline#filetype_icon()}'
+    let content .= '%#StatuslineFiletype#%{statusline#filetype_icon()}'
 
     " Modified + Filename + Readonly
     let content .= '%#StatuslineFilename#'
@@ -136,9 +141,6 @@ function! statusline#active () abort
     " Heart
     let content .= '%#StatuslineHeart# '
 
-    " Gutentags status
-    " let content .= '%{statusline#gutentags_enabled()?" ":""}%(%#StatuslineLint#%{statusline#gutentags()}%)'
-
     " coc
     " let content .= '%{g:coc_enabled?"":" "}%(%#StatuslineLint#%{statusline#coc()}%)'
 
@@ -160,8 +162,13 @@ function! statusline#inactive () abort
   end
 
   if is_normal
+    " Mode placeholder
+    let content .= '%#StatuslineAccentNC# '
+    let content .= '%{statusline#get_mode("e")} '
+    let content .= '%#StatuslineSeparator#| '
+
     " Filetype icon
-    let content .= '%#StatuslineNC# %{statusline#filetype_icon()}'
+    let content .= '%#StatuslineNC#%{statusline#filetype_icon()}'
 
     " Modified + Filename + Readonly
     let content .= '%#StatuslineFilenameNC#'
@@ -186,7 +193,7 @@ function! statusline#inactive () abort
     end
 
     " Heart
-    let content .= '  '
+    let content .= ' '
   end
 
   return content
@@ -222,8 +229,13 @@ function! statusline#modified(modified) abort
 endfunction
 
 function! statusline#filetype_icon() abort
-  return icon#file(fnamemodify(bufname('%'), ':h'), &filetype)
+  let icon = v:lua.require('nvim-web-devicons').get_icon(fnamemodify(bufname('%'), ':h'), &filetype)
+  if icon != v:null
+    return icon
+  end
+  return icon#name('file')
 endfunction
+
 
 function! statusline#gutentags_enabled() abort
   return exists('g:gutentags_enabled') && g:gutentags_enabled == 1 && gutentags#statusline() !=# ''
@@ -300,25 +312,26 @@ endfunction
 
 function! statusline#get_mode(mode) abort
   let l:currentmode={
+        \'e':  'Normal',
         \'n':  'Normal',
-        \'no': 'Operator',
+        \'no': 'Op    ',
         \'v':  'Visual',
         \'V':  'V·Line',
-        \'^V': 'V·Block',
+        \'^V': 'V·Blck',
         \'s':  'Select',
         \'S':  'S·Line',
-        \'^S': 'S·Block',
+        \'^S': 'S·Blck',
         \'i':  'Insert',
-        \'R':  'Replace',
-        \'Rv': 'V·Replace',
-        \'c':  'Command',
+        \'R':  'Replce',
+        \'Rv': 'V·Repl',
+        \'c':  'Cmd   ',
         \'cv': 'Vim Ex',
-        \'ce': 'Ex',
+        \'ce': 'Ex    ',
         \'r':  'Prompt',
-        \'rm': 'More',
-        \'r?': 'Confirm',
-        \'!':  'Shell',
-        \'t':  'Terminal'
+        \'rm': 'More  ',
+        \'r?': 'Confrm',
+        \'!':  'Shell ',
+        \'t':  'Term  '
         \}
   return toupper(get(l:currentmode, a:mode, 'V-Block'))
 endfunction

@@ -4,8 +4,8 @@ setlocal signcolumn=no
 call BookmarkLastHelp()
 
 
-nnoremap <buffer> q          :wincmd c<CR>
-nnoremap <buffer> <esc><esc> :wincmd c<CR>
+nnoremap <silent><buffer> q          :wincmd c<CR>
+nnoremap <silent><buffer> <esc><esc> :wincmd c<CR>
 
 nnoremap <buffer>           <CR>    <C-]>
 nnoremap <buffer>         <A-CR>    /<C-R><C-W><CR>:nohl<CR>

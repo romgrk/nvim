@@ -134,6 +134,7 @@ require('lazy').setup({
   -- { 'theHamsta/nvim-dap-virtual-text' },
 
   -- Personal
+  { 'romgrk/kyntell.vim', dev = true, lazy = false, priority = 1000 },
   { 'romgrk/doom-one.vim', dev = true, lazy = false, priority = 1000 },
   { 'romgrk/fzy-lua-native', dev = true },
   { 'romgrk/kui.nvim', dev = true },
@@ -160,8 +161,6 @@ require('lazy').setup({
   { 'kristijanhusak/vim-js-file-import'    , ft = 'javascript' },
   { 'neoclide/vim-jsx-improve'             , ft = 'javascript.jsx' },
   { 'moll/vim-node'                        , ft = 'javascript.node' },
-  { 'leafgarland/typescript-vim'           , ft = 'typescript' },
-  { 'ianks/vim-tsx'                        , ft = 'typescript.tsx' },
   { 'plasticboy/vim-markdown'              , ft = 'markdown' },
   { 'iamcco/markdown-preview.nvim'         , build = function () vim.cmd[[call mkdp#util#install()]] end, ft = { 'markdown', 'vim-plug' } },
   { 'tpope/vim-haml'                       , ft = { 'sass', 'scss', 'haml' } },

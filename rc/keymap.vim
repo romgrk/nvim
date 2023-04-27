@@ -5,6 +5,9 @@
 
 " Recent mappings:
 
+nnoremap <silent><C-p>   :BufferPin<CR>
+nnoremap <silent><C-A-c> :BufferPickDelete<CR>
+
 nnoremap <space>cd :Clap coc_diagnostics<CR>
 
 nnoremap <silent><a-space>           :ToggleTerm<CR>
@@ -122,17 +125,9 @@ endfunc
 cmap <expr> w <SID>cmd_write()
 function! s:cmd_write()
     if getcmdline() == ''
-        return "w\<CR>"
+        return "\<CR>:silent w\<CR>"
     end
     return 'w'
-endfunc
-
-cmap <expr> <space> <SID>cmd_help()
-function! s:cmd_help()
-    if getcmdline() == 'h'
-        return "\<BS>Clap help_tags\<CR>"
-    end
-    return "\<space>"
 endfunc
 
 " }}}1
@@ -561,7 +556,7 @@ nnoremap <silent> <A-S-I>  :Clap coc_symbols<CR>
 " @windows
 
 " Cycle between editor Windows
-nnoremap <silent> <A-w>      :GoNextListedWindow<CR>
+nnoremap <silent> <A-w>      <cmd>GoNextListedWindow<CR>
 
 " Windows actions
 nnoremap <C-w>v     <C-w>v<C-w>l

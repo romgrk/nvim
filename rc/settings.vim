@@ -142,9 +142,7 @@ set sidescrolloff=5
 
 " GUI
 " set guifont=SauceCodePro\ Nerd\ Font:h16
-" set guifont=monospace:h9
-" set guifont=monospace:h9
-let &guifont='FantasqueSansMono Nerd Font Mono:h15'
+let &guifont='JetBrainsMono Nerd Font Mono:h11'
 " let &guifont='FantasqueSansMono Nerd Font Mono:h10'
 
 " }}}
@@ -175,7 +173,7 @@ set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
 set lcs+=precedes:<,extends:>   " Horizontal ellipsis
 
 set fillchars=
-"set fcs+=vert:｜               " ▎VertSplit
+set fcs+=vert:▎               " ▎VertSplit
 "set fcs+=stl:\ ,stlnc:-        " StatusLine & StatusLineNC
 "set fcs+=fold:-                " Folded
 set fcs+=diff:╱                 " DiffDelete
