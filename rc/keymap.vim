@@ -120,7 +120,7 @@ nmap <C-b> <Nop>
 " Semicolon key
 nmap <expr> ; <SID>n_semicolon()
 function! s:n_semicolon ()
-    if sneak#is_sneaking() | return ":call sneak#rpt('', 0)\<CR>" | end
+    if sneak#is_sneaking() | return ":call sneak#rpt('', 0)\<CR>:echo ''\<CR>" | end
     return ':'
 endfunc
 
@@ -446,7 +446,7 @@ nnoremap         <space>gcam   :Git commit -am ""<Left>
 nnoremap         <space>gcaa   :Git commit --amend<CR>
 nnoremap         <space>g.     :Git commit % -m ""<Left>
 nnoremap         <space>gkk    :Git checkout<space>
-nnoremap         <space>gkm    :Git checkout main<CR>
+nnoremap         <space>gkm    :Git checkout master<CR>
 nnoremap         <space>gkb    :Git checkout -b<space>
 nnoremap         <space>gb     :Kirby git-branch<CR>
 nnoremap         <space>gl     :Git pull<CR>
