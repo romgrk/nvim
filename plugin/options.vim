@@ -231,7 +231,7 @@ ToggleMap 'id',  'IndentLinesToggle'
 ToggleMap 'il',  'IlluminationToggle'
 ToggleMap 'js',  'setfiletype javascript'
 ToggleMap 'jx',  'setfiletype javascript.jsx'
-ToggleMap 'tx',  'setfiletype typescriptreact'
+ToggleMap 'tx',  'setfiletype typescript.tsx'
 ToggleMap 'vl',  'EditVerboseLevel'
 ToggleMap 'vm',  'VimadeToggle'
 

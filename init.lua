@@ -2,6 +2,7 @@
 -- init.lua
 --
 
+-- TODO https://github.com/Bekaboo/dropbar.nvim
 -- TODO https://github.com/ggandor/leap-spooky.nvim
 -- TODO https://github.com/ggandor/flit.nvim
 -- TODO https://github.com/DNLHC/glance.nvim
@@ -71,6 +72,7 @@ require('lazy').setup({
 
   -- Editing
   { 'nvim-treesitter/nvim-treesitter' },
+  { 'nvim-treesitter/playground' },
   { 'nvim-treesitter/nvim-treesitter-context', dev = true },
   { 'JoosepAlviste/nvim-ts-context-commentstring' },
   { 'AndrewRadev/sideways.vim' },
@@ -157,10 +159,12 @@ require('lazy').setup({
   -- { 'vim-python/python-syntax'             , ft = 'python' },
   { 'tmhedberg/SimpylFold'                 , ft = 'python' },
   -- { 'othree/xml.vim'                       , ft = 'xml' },
-  -- { 'pangloss/vim-javascript'              , ft = 'javascript' },
+  { 'pangloss/vim-javascript'              , ft = 'javascript' },
   { 'kristijanhusak/vim-js-file-import'    , ft = 'javascript' },
-  -- { 'neoclide/vim-jsx-improve'             , ft = 'javascript.jsx' },
+  { 'neoclide/vim-jsx-improve'             , ft = 'javascript.jsx' },
   { 'moll/vim-node'                        , ft = 'javascript.node' },
+  -- { 'leafgarland/typescript-vim'           , ft = 'typescript' },
+  -- { 'ianks/vim-tsx'                        , ft = 'typescript.tsx' },
   -- { 'plasticboy/vim-markdown'              , ft = 'markdown' },
   { 'iamcco/markdown-preview.nvim'         , build = function () vim.cmd[[call mkdp#util#install()]] end, ft = { 'markdown', 'vim-plug' } },
   -- { 'tpope/vim-haml'                       , ft = { 'sass', 'scss', 'haml' } },
@@ -208,7 +212,7 @@ nvim_create_autocmd('VimEnter', {
   pattern = {'*'},
   group = nvim_create_augroup('RC_SETUP', { clear = true }),
   callback = function()
-    vim.cmd [[colorscheme doom-one]]
+    vim.cmd [[colorscheme kyntell]]
 
     load('./rc/highlight.vim')
     load('./rc/keymap.vim')

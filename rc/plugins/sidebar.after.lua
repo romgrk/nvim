@@ -7,7 +7,7 @@ sidebar.setup({
   open = false,
   disable_default_keybindings = 0,
   side = 'left',
-  initial_width = 35,
+  initial_width = 40,
   hide_statusline = false,
   update_interval = 1000,
   -- sections = {

@@ -52,7 +52,7 @@ function! winbar#render() abort
   end
   let base_name = fnamemodify(base_name, ':~:.')
 
-  let space = float2nr(floor(0.8 * winwidth(0)))
+  let space = float2nr(floor(0.8 * winwidth(g:statusline_winid)))
   if len(base_name) <= space
     let filename = base_name
   else
