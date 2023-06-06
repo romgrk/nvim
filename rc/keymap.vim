@@ -1041,6 +1041,7 @@ xmap <A-r><A-l>   <C-f><A-r><A-l>
 
 " SearchReplace
 nnoremap <silent><C-f><C-f> :Search<CR>
+nnoremap <silent><C-f><C-p> :Search <C-r>"<CR>
 nnoremap <silent><C-f><C-w> "cyiw:Search \b<C-r>c\b<CR>
 nnoremap <silent><C-f>w     "cyiw:Search \b<C-r>c\b<CR>
 
