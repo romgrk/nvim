@@ -140,8 +140,16 @@ require('lazy').setup({
   { 'romgrk/doom-one.vim', dev = true, lazy = false, priority = 1000 },
   { 'romgrk/fzy-lua-native', dev = true },
   { 'romgrk/kui.nvim', dev = true },
-  { 'romgrk/kirby.nvim', dependencies = { { 'romgrk/fzy-lua-native', dev = true } }, dev = true },
-  { 'romgrk/barbar.nvim', dev = true },
+  {
+    'romgrk/kirby.nvim',
+    dependencies = {
+      { 'romgrk/fzy-lua-native', build = 'make install', dev = true },
+      { 'romgrk/kui.nvim', dev = true },
+      { 'nvim-tree/nvim-web-devicons' },
+    },
+    dev = true,
+  },
+  { 'romgrk/barbar.nvim',                    dev = true },
   { 'romgrk/todoist.nvim', dev = true      , build = ':TodoistInstall' },
   { 'romgrk/equal.operator' },
   { 'romgrk/columnMove.vim' },
@@ -149,7 +157,7 @@ require('lazy').setup({
   { 'romgrk/pp.vim' },
   { 'romgrk/replace.vim' },
   { 'romgrk/winteract.vim'                 , cmd = 'InteractiveWindow'},
-  { 'romgrk/searchReplace.vim' },
+  { 'romgrk/searchReplace.vim', dev = true },
 
   -- Language
   { 'rhysd/vim-llvm' },
