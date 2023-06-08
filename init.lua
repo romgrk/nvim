@@ -2,6 +2,8 @@
 -- init.lua
 --
 
+-- TODO https://github.com/rmehri01/onenord.nvim
+-- TODO https://github.com/folke/edgy.nvim
 -- TODO https://github.com/Bekaboo/dropbar.nvim
 -- TODO https://github.com/ggandor/leap-spooky.nvim
 -- TODO https://github.com/ggandor/flit.nvim
@@ -146,6 +148,7 @@ require('lazy').setup({
       { 'romgrk/fzy-lua-native', build = 'make install', dev = true },
       { 'romgrk/kui.nvim', dev = true },
       { 'nvim-tree/nvim-web-devicons' },
+      { 'nvim-lua/plenary.nvim' },
     },
     dev = true,
   },
