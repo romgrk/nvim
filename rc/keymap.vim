@@ -1606,8 +1606,8 @@ nnoremap <C-k> za
 nnoremap <C-o> zO
 
 " Recursive open/close
-" nnoremap z0 <cmd>lua require('ufo').closeAllFolds()<CR>
-" nnoremap z9 <cmd>lua require('ufo').openAllFolds()<CR>
+nnoremap z0 <cmd>silent set foldlevel=0<CR>
+nnoremap z9 <cmd>silent set foldlevel=999<CR>
 
 " Mappings to easily toggle fold levels
 nnoremap z1 :set foldlevel=1<CR>
