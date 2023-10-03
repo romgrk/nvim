@@ -124,6 +124,12 @@ snippet exit "process.exit" b
 process.exit(${1:0})
 endsnippet
 
+snippet perf "start/end benchmark" 
+const start = Date.now()
+const end = Date.now()
+console.log(end - start)
+endsnippet
+
 ### Functions:
 
 snippet fn "function"
@@ -147,11 +153,6 @@ endsnippet
 
 snippet th "throw new Error()" b
 throw new Error('$0')
-endsnippet
-
-# hasOwnProperty
-snippet has
-hasOwnProperty(${1})
 endsnippet
 
 # JSON.parse

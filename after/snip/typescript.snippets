@@ -11,6 +11,11 @@ snippet vi "print(vim.inspect())"
 print(vim.inspect($0))
 endsnippet
 
+snippet perf "const start = Date.now() ..."
+const start = Date.now()
+const end = Date.now()
+console.log('${1:event}', end - start)
+endsnippet
 
 #=============
 # Structures:
@@ -69,6 +74,11 @@ snippet t "this." b
 this.$1${2:;}
 endsnippet
 
+snippet for "for i" b
+for (let ${1:i} = 0; $1 < ${2:list}.length; $1++) {
+	let ${3:element} = $2[$1];
+}
+endsnippet
 snippet fori "for i" b
 for (let ${1:i} = 0; $1 < ${2:list}.length; $1++) {
 	let ${3:element} = $2[$1];

@@ -105,9 +105,8 @@ require('lazy').setup({
   { 'wellle/visual-split.vim' },
   { 'aperezdc/vim-template' },
   { 'bfredl/nvim-miniyank' },
-  { 'honza/vim-snippets' },
   { 'junegunn/vim-easy-align' },
-  { 'liuchengxu/vim-clap', build = ':Clap install-binary!' },
+  -- { 'liuchengxu/vim-clap', build = ':Clap install-binary!' },
   { 'liuchengxu/vista.vim' },
   { 'MarcWeber/vim-addon-local-vimrc' },
   { 'tpope/vim-eunuch' },
@@ -121,10 +120,10 @@ require('lazy').setup({
 
   -- UI
   { 'sindrets/diffview.nvim' },
-  { 'dstein64/nvim-scrollview' },
+  -- { 'dstein64/nvim-scrollview' },
   { 'sidebar-nvim/sidebar.nvim', dev = true },
   { 'VonHeikemen/searchbox.nvim', dependencies = { { 'MunifTanjim/nui.nvim', dev = true } }, dev = true },
-  { 'kevinhwang91/nvim-ufo', dependencies = { 'kevinhwang91/promise-async' } },
+  -- { 'kevinhwang91/nvim-ufo', dependencies = { 'kevinhwang91/promise-async' } },
   { 'rhysd/git-messenger.vim' },
   { 'KabbAmine/vCoolor.vim' },
   { 'machakann/vim-highlightedyank' },

@@ -8,7 +8,6 @@
 
 let b:argwrap_line_prefix = '\'
 
-setlocal foldmethod=syntax
 setlocal isident=@,48-57,_,192-255,#
 
 nnoremap <buffer> gdd         :Goto<space>

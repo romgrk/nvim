@@ -4,26 +4,30 @@
 
 local kirby = require('kirby')
 
-kirby.register('session', {
-  name = 'Open session',
-  values = function() return vim.fn['xolox#session#complete_names']('', 'OpenSession ', 0) end,
-  onAccept = 'OpenSession',
-})
 
-kirby.register('note', {
-  name = 'Open note',
-  values = function() return vim.fn['xolox#notes#cmd_complete']('', 'Note ', 0) end,
-  onAccept = 'Note',
-})
-
-
-kirby.register('git-branch', {
+kirby.register({
+  id = 'git-branch',
   name = 'Git checkout',
   values = function() return vim.fn['fugitive#CompleteObject']('', ' ', '') end,
   onAccept = 'Git checkout',
 })
 
-kirby.register('browser-history', {
+kirby.register({
+  id = 'session',
+  name = 'Open session',
+  values = function() return vim.fn['xolox#session#complete_names']('', 'OpenSession ', 0) end,
+  onAccept = 'OpenSession',
+})
+
+kirby.register({
+  id = 'note',
+  name = 'Open note',
+  values = function() return vim.fn['xolox#notes#cmd_complete']('', 'Note ', 0) end,
+  onAccept = 'Note',
+})
+
+kirby.register({
+  id = 'browser-history',
   values = function() return _G.browser_history_get() end,
   onAccept = function(_, entry)
     browser_history_open(entry.value)

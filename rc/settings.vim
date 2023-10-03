@@ -108,6 +108,8 @@ set gdefault
 
 set inccommand=nosplit
 
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+
 "}}}
 "===============================================================================
 " UI {{{
@@ -142,7 +144,7 @@ set sidescrolloff=5
 
 " GUI
 " set guifont=SauceCodePro\ Nerd\ Font:h16
-let &guifont='JetBrainsMono Nerd Font Mono:h11'
+let &guifont='JetBrainsMono Nerd Font:h20'
 " let &guifont='FantasqueSansMono Nerd Font Mono:h10'
 
 " }}}
@@ -170,6 +172,7 @@ set fillchars=
 set fcs+=vert:│
 set fcs+=diff:╱                 " DiffDelete
 set fcs+=eob:\                  " EndOfBuffer chars
+set fcs+=fold:\ 
 
 let chars = { }
 let chars['indent']  = '│'
@@ -233,9 +236,9 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set foldmarker={{{,}}}
 set foldtext=FoldText()
 
-" set foldmethod=marker
 set foldmethod=expr
 set foldexpr=v:lua.vim.treesitter.foldexpr()
+set foldtext=v:lua.rc_plugin_foldtext()
 
 
 " }}}

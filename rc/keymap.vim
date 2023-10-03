@@ -5,16 +5,18 @@
 
 " Recent mappings:
 
-nnoremap <silent><C-p>   :BufferPin<CR>
+nnoremap <silent><C-p> :Kirby commands-list<CR>
+
+nnoremap <silent><C-b>   :BufferPin<CR>
 nnoremap <silent><C-A-c> :BufferPickDelete<CR>
 
-nnoremap <space>cd :Clap coc_diagnostics<CR>
+nnoremap <space>cd :Kirby coc-diagnostics<CR>
 
 nnoremap <silent><a-space>           :ToggleTerm<CR>
 tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
-nnoremap <silent><space>.       :Clap blines<CR>
-nnoremap <silent><space><space> :Clap  grep<CR>
+" nnoremap <silent><space>.       :Clap blines<CR>
+" nnoremap <silent><space><space> :Clap  grep<CR>
 nnoremap <silent><C-A-S-o>      :Kirby browser-history<CR>
 
 "===============================================================================
@@ -109,9 +111,9 @@ vnoremap <A-m> :<C-U>call multiple_cursors#new('v', 0)<CR>
 
 " Remove things we don't use
 vmap <C-f> <Nop>
-vmap <C-b> <Nop>
+" vmap <C-b> <Nop>
 nmap <C-f> <Nop>
-nmap <C-b> <Nop>
+" nmap <C-b> <Nop>
 
 " }}}1
 "===============================================================================
@@ -157,8 +159,8 @@ nnoremap <silent> gsjg       <cmd>Edit $HOME/src/github-light.vim/colors/github-
 nnoremap <silent> gsjd       <cmd>Edit $HOME/src/doom-one.vim/colors/doom-one.vim<CR>
 nnoremap <silent> gsjk       <cmd>Edit $HOME/src/kyntell.vim/colors/kyntell.vim<CR>
 nnoremap <silent> gsp        <cmd>Edit $vim/rc/plugins.vim<CR>
-nnoremap <silent> gsP        <cmd>Clap filer $vim/rc/plugins/<CR>
-nnoremap <silent> gsv        <cmd>Clap files $vim<CR>
+nnoremap <silent> gsP        <cmd>Kirby files $vim/rc/plugins/<CR>
+nnoremap <silent> gsv        <cmd>Kirby files $vim<CR>
 nnoremap <silent> gssh       <cmd>Edit ~/.ssh/config<CR>
 
 " New...
@@ -329,7 +331,7 @@ omap U <Plug>Sneak_T
 " Intellisense (coc.nvim)                                                   {{{1
 
 
-nmap <silent> <space>coc <cmd>Clap coc_commands<CR>
+" nmap <silent> <space>coc <cmd>Clap coc_commands<CR>
 nmap <silent> <F2>       <cmd>call CocAction('rename')<CR>
 
 " xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
@@ -432,8 +434,8 @@ nnoremap <silent><space>sn     :Note <C-R>=xolox#session#find_current_session()<
 
 
 " Notes (prefix: n)
-nnoremap         <space>nn     :Clap<space>
-nnoremap <silent><space>no     :Clap note<CR>
+nnoremap         <space>nn     :Note<space>
+nnoremap <silent><space>no     :Kirby note<CR>
 
 
 " Git (prefix: g)
@@ -500,7 +502,8 @@ nnoremap <silent><space>ap   vip:EasyAlign<CR>
 nnoremap <silent><space>ret  :set et <Bar> ret<CR>
 nnoremap <silent><space>dws  :%DeleteTrailingWS<CR>
 
-nnoremap         <space>how  :r !hors -e google --raw<space>
+" nnoremap         <space>how  :r !hors -e google --raw<space>
+nnoremap <silent><space>how  :Kirby howdoi<CR>
 
 nnoremap <silent><space>syv  :SynStack<CR>
 nnoremap <silent><space>sye  :SynCurrentEdit<CR>
@@ -509,8 +512,6 @@ nnoremap <silent><space>ti   :Todoist<CR>
 nnoremap <silent><space>to   :Clap todoist<CR>
 
 nnoremap <silent><space>td   :TodoQuickFix<CR>
-
-nnoremap <silent><space>npm  :Clap npm<CR>
 
 nnoremap <silent><space>qr   :e!<CR>
 nnoremap <expr>  <space>qo   expand('%:e') == 'vim' ? ':So<CR>' : ':luafile %<CR>'
@@ -537,10 +538,10 @@ nnoremap <silent> <C-A-o>  :Kirby files <C-R>=escape(expand("%:p:h"), ' ')<CR><C
 nnoremap <silent> <A-S-o>  :Clap recent_files<CR>
 " nnoremap <silent> <C-S>    :Clap buffers<CR>
 
-nnoremap <silent> <A-i>    :Clap tags<CR>
+nnoremap <silent> <A-i>    :Kirby ctags-current-file<CR>
 " nnoremap <silent> <A-S-I>  :Clap generated_tags<CR>
 " nnoremap <silent> <A-S-I>  :Clap tagfiles<CR>
-nnoremap <silent> <A-S-I>  :Clap coc_symbols<CR>
+nnoremap <silent> <A-S-I>  :Kirby coc-workspace-symbols<CR>
 
 
 " nnoremap <silent> <C-p>    :Clap command<CR>
@@ -1605,8 +1606,8 @@ nnoremap <C-k> za
 nnoremap <C-o> zO
 
 " Recursive open/close
-nnoremap z0 <cmd>lua require('ufo').closeAllFolds()<CR>
-nnoremap z9 <cmd>lua require('ufo').openAllFolds()<CR>
+" nnoremap z0 <cmd>lua require('ufo').closeAllFolds()<CR>
+" nnoremap z9 <cmd>lua require('ufo').openAllFolds()<CR>
 
 " Mappings to easily toggle fold levels
 nnoremap z1 :set foldlevel=1<CR>

@@ -21,14 +21,21 @@ end
 let g:rc#on_session_save = {}
 
 function! g:rc#on_session_save.pre() dict
-  echomsg 'SESSION AUTOCMD CALLED'
-  ScrollViewDisable
-  TSContextDisable
+  if exists(':ScrollViewDisable')
+    ScrollViewDisable
+  end
+  if exists(':TSContextDisable')
+    TSContextDisable
+  end
 endfunc
 
 function! g:rc#on_session_save.post()
-  ScrollViewEnable
-  TSContextEnable
+  if exists(':ScrollViewEnable')
+    ScrollViewEnable
+  end
+  if exists(':TSContextEnable')
+    TSContextEnable
+  end
 endfunc
 
 " }}}
