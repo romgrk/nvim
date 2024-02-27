@@ -448,6 +448,7 @@ nnoremap <silent><space>ga.    :Git add %<CR>
 nnoremap         <space>gcm    :Git commit -m ""<Left>
 nnoremap         <space>gcam   :Git commit -am ""<Left>
 nnoremap         <space>gcaa   :Git commit --amend<CR>
+nnoremap         <space>gclp   :Git commit -am "lint"<CR>:Git push<CR>
 nnoremap         <space>g.     :Git commit % -m ""<Left>
 nnoremap         <space>gkk    :Git checkout<space>
 nnoremap         <space>gkm    :Git checkout master<CR>
