@@ -97,6 +97,7 @@ require('lazy').setup({
 
   -- General
   -- @plugins
+  { 'projekt0n/github-nvim-theme'},
   { 'justinmk/vim-dirvish' },
   { 'fidian/hexmode' },
   { 'jbyuki/one-small-step-for-vimkind' },
@@ -106,7 +107,7 @@ require('lazy').setup({
   { 'aperezdc/vim-template' },
   { 'bfredl/nvim-miniyank' },
   { 'junegunn/vim-easy-align' },
-  -- { 'liuchengxu/vim-clap', build = ':Clap install-binary!' },
+  { 'liuchengxu/vim-clap', build = ':Clap install-binary!' },
   { 'liuchengxu/vista.vim' },
   { 'MarcWeber/vim-addon-local-vimrc' },
   { 'tpope/vim-eunuch' },

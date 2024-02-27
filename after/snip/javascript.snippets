@@ -21,7 +21,7 @@ snippet cx "classname"
 import cx from 'clsx'
 endsnippet
 snippet R "React"
-import React from 'react'
+import * as React from 'react'
 endsnippet
 
 snippet * "comment" b
@@ -118,6 +118,9 @@ endsnippet
 
 snippet l "log" b
 console.log($0)
+endsnippet
+snippet lh "log here" b
+console.log('here')
 endsnippet
 
 snippet exit "process.exit" b

@@ -16,8 +16,10 @@ nnoremap <silent><a-space>           :ToggleTerm<CR>
 tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
 " nnoremap <silent><space>.       :Clap blines<CR>
-" nnoremap <silent><space><space> :Clap  grep<CR>
+nnoremap <silent><space><space> :Clap  grep<CR>
 nnoremap <silent><C-A-S-o>      :Kirby browser-history<CR>
+
+nnoremap <silent><space>pr  :!yarn prettier %<CR>
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -456,7 +458,6 @@ nnoremap         <space>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
 nnoremap         <space>gpp    :Git push<CR>
 nnoremap         <space>gpf    :Git push --force<CR>
 nnoremap         <space>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
-nnoremap <silent><space>gs     :Gstatus<CR>
 nnoremap <silent><space>gu     :GitOpenUnmergedFiles<CR>
 nnoremap <silent><space>gdo    :DiffviewOpen<CR>
 nnoremap <silent><space>gda    :GitDiff<CR>
