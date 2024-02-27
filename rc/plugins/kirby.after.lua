@@ -34,6 +34,20 @@ kirby.register({
   end ,
 })
 
+kirby.register({
+  id = 'github-pr',
+  values = function()
+    return vim.tbl_map(
+      function(entry) return tostring(entry.number) .. ': ' .. tostring(entry.title) end,
+      vim.json.decode(vim.fn.system('gh pr list --json number,title') or '[]')
+    )
+  end,
+  onAccept = function(entry)
+    local number = vim.split(entry.value, ':')[1]
+    vim.cmd(':!gh pr checkout ' .. number)
+  end ,
+})
+
 
 -- let clap_provider_note = {
 -- \ 'source': {-> xolox#notes#cmd_complete('', 'Note ', 0)},

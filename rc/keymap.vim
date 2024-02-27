@@ -466,6 +466,7 @@ nnoremap <silent><space>gd.    :GitDiff %<CR>
 nnoremap         <space>gdd    :GitDiff<space>
 nnoremap         <space>gR.    :Git restore %<CR>
 nnoremap         <space>gRR    :Git restore .<CR>
+nnoremap         <space>gkpr   :Kirby github-pr<CR>
 
 " GitMessenger:
 nnoremap <silent><space>gm     :GitMessenger<CR>
