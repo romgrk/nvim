@@ -17,7 +17,7 @@ local labels = {
 
 leap.setup({
   labels = labels,
-  safe_labels = labels,
+  safe_labels = {},
 })
 
 vim.api.nvim_create_user_command('LeapThisWindow',

@@ -15,8 +15,12 @@ nnoremap <space>cd :Kirby coc-diagnostics<CR>
 nnoremap <silent><a-space>           :ToggleTerm<CR>
 tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
+nnoremap <silent><space>w   :w<CR>
+nnoremap         <space>e   :Edit<space>
+nnoremap         <space><space>   :
+
 " nnoremap <silent><space>.       :Clap blines<CR>
-nnoremap <silent><space><space> :Clap  grep<CR>
+nnoremap <silent><space>/       :Clap  grep<CR>
 nnoremap <silent><C-A-S-o>      :Kirby browser-history<CR>
 
 nnoremap <silent><space>pr  :!yarn prettier %<CR>
@@ -125,7 +129,7 @@ nmap <C-f> <Nop>
 nmap <expr> ; <SID>n_semicolon()
 function! s:n_semicolon ()
     if sneak#is_sneaking() | return ":call sneak#rpt('', 0)\<CR>:echo ''\<CR>" | end
-    return ':'
+    return "\<Plug>(leap-this-window)"
 endfunc
 
 cmap <expr> w <SID>cmd_write()
@@ -300,11 +304,11 @@ nnoremap <silent> [l   <cmd>lprevious<CR>
 "===============================================================================
 " Sneak                                                                     {{{1
 
-nmap <A-;>        <Plug>(leap-this-window)
-nmap <C-A-;>      <Plug>(leap-cross-window)
 
-" nmap <A-f>        <Plug>(leap-this-window)
-" nmap <space><A-f> <Plug>(leap-cross-window)
+" Semi-colon key defined above
+" nmap ;            <Plug>(leap-this-window)
+nmap <A-;>        <Plug>(leap-cross-window)
+
 
 xmap <silent> ; <Plug>SneakNext
 xmap <silent> , <Plug>SneakPrevious
@@ -483,10 +487,10 @@ nnoremap <silent><space>hu     :GitGutterUndoHunk<CR>
 "===============================================================================
 " Window things
 
-nnoremap <silent><space>ww   :InteractiveWindow<CR>
+nnoremap <silent><space><A-w>w   :InteractiveWindow<CR>
 
-nnoremap <silent><space>w-   :call SizeDown()<CR>
-nnoremap <silent><space>w+   :call SizeUp()<CR>
+nnoremap <silent><space><A-w>-   :call SizeDown()<CR>
+nnoremap <silent><space><A-w>+   :call SizeUp()<CR>
 
 "===============================================================================
 
@@ -652,7 +656,7 @@ nnoremap <silent> <A-c>   <cmd>BufferClose!<CR>
 nnoremap <silent> <A-C>   <cmd>BufferRestore<CR>
 
 nnoremap         <space>o   <cmd>BufferPick<CR>
-nnoremap <silent><space>bd  <cmd>BufferOrderByDirectory<CR>
+nnoremap <silent><space>bd  <cmd>BufferPickDelete<CR>
 nnoremap <silent><space>bl  <cmd>BufferOrderByLanguage<CR>
 
 " }}}1
