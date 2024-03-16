@@ -60,6 +60,11 @@ function! s:setup()
     hi! link notesDoneMarker     TextSuccess
     hi! link notesTODO           TextWarning
     " }}}
+
+    hi! link SpectreDir Directory
+    hi! link SpectreFile Directory
+    hi! link SpectreSearch TextErrorBold
+    hi! link SpectreReplace TextSpecialBold
 endfunc
 
 call s:setup()

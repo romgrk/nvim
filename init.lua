@@ -97,6 +97,7 @@ require('lazy').setup({
 
   -- General
   -- @plugins
+  { 'nvim-pack/nvim-spectre' },
   { 'projekt0n/github-nvim-theme'},
   { 'justinmk/vim-dirvish' },
   { 'fidian/hexmode' },
@@ -160,7 +161,6 @@ require('lazy').setup({
   { 'romgrk/pp.vim' },
   { 'romgrk/replace.vim' },
   { 'romgrk/winteract.vim'                 , cmd = 'InteractiveWindow'},
-  { 'romgrk/searchReplace.vim', dev = true },
 
   -- Language
   { 'rhysd/vim-llvm' },

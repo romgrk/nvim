@@ -471,6 +471,8 @@ nnoremap         <space>gdd    :GitDiff<space>
 nnoremap         <space>gR.    :Git restore %<CR>
 nnoremap         <space>gRR    :Git restore .<CR>
 nnoremap         <space>gkpr   :Kirby github-pr<CR>
+nnoremap         <space>gee    :Gedit<space>
+nnoremap         <space>ge.    :Gedit :%<Left><Left>
 
 " GitMessenger:
 nnoremap <silent><space>gm     :GitMessenger<CR>
@@ -487,10 +489,10 @@ nnoremap <silent><space>hu     :GitGutterUndoHunk<CR>
 "===============================================================================
 " Window things
 
-nnoremap <silent><space><A-w>w   :InteractiveWindow<CR>
+nnoremap <silent><space>vv :InteractiveWindow<CR>
 
-nnoremap <silent><space><A-w>-   :call SizeDown()<CR>
-nnoremap <silent><space><A-w>+   :call SizeUp()<CR>
+nnoremap <silent><space>vd   :call SizeDown()<CR>
+nnoremap <silent><space>vi   :call SizeUp()<CR>
 
 "===============================================================================
 
@@ -1048,10 +1050,9 @@ xmap <A-r><A-a>   <C-f><A-r><A-a>
 xmap <A-r><A-l>   <C-f><A-r><A-l>
 
 " SearchReplace
-nnoremap <silent><C-f><C-f> :Search<CR>
-nnoremap <silent><C-f><C-p> :Search <C-r>"<CR>
-nnoremap <silent><C-f><C-w> "cyiw:Search \b<C-r>c\b<CR>
-nnoremap <silent><C-f>w     "cyiw:Search \b<C-r>c\b<CR>
+nnoremap <silent><C-f><C-f> <cmd>lua require('spectre').toggle()<CR>
+nnoremap <silent><C-f><C-w> <cmd>lua require('spectre').open_visual({ select_word = true })<CR>
+nnoremap <silent><C-f>w     <cmd>lua require('spectre').open_visual({ select_word = true })<CR>
 
 " }}}1
 "===============================================================================

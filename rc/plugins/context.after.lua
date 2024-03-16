@@ -9,4 +9,5 @@
 require('treesitter-context').setup({
   mode = 'topline',
   line_numbers = true,
+  max_lines = 8,
 })
