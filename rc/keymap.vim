@@ -17,6 +17,7 @@ tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
 nnoremap <silent><space>w   :w<CR>
 nnoremap         <space>e   :Edit<space>
+nmap             <space>.   :Edit<space><A-i>d
 nnoremap         <space><space>   :
 
 " nnoremap <silent><space>.       :Clap blines<CR>
