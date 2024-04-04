@@ -4,7 +4,7 @@
 
 local vim = vim
 
-local history_path = os.getenv('HOME') .. '/.config/BraveSoftware/Brave-Browser/Default/History'
+local history_path = os.getenv('HOME') .. '/.config/BraveSoftware/Brave-Browser/Profile 2/History'
 local copy_path = os.getenv('HOME') .. '/.cache/nvim/browser_history.db'
 
 local lines = {'empty'}

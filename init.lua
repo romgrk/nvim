@@ -133,7 +133,7 @@ require('lazy').setup({
   { 'airblade/vim-gitgutter' },
   { 'yorickpeterse/nvim-pqf', init = function() require'pqf'.setup() end },
   { 'akinsho/nvim-toggleterm.lua' },
-  { 'lukas-reineke/indent-blankline.nvim' },
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} },
   -- { 'mfussenegger/nvim-dap' },
   -- { 'rcarriga/nvim-dap-ui' },
   -- { 'theHamsta/nvim-dap-virtual-text' },
@@ -224,6 +224,8 @@ nvim_create_autocmd('VimEnter', {
   group = nvim_create_augroup('RC_SETUP', { clear = true }),
   callback = function()
     vim.cmd [[colorscheme kyntell]]
+    vim.cmd [[IBLDisable | IBLEnable]]
+
 
     load('./rc/highlight.vim')
     load('./rc/keymap.vim')

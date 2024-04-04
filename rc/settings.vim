@@ -165,8 +165,9 @@ set list listchars=
 "set lcs+=conceal:
 "set lcs+=eol:¬                 " EOL character
 set lcs+=tab:\  "\             " Tab character replacement
-set lcs+=nbsp:―,trail:·         " hl group: SpecialKey
+set lcs+=nbsp:―                 " hl group: SpecialKey
 set lcs+=precedes:<,extends:>   " Horizontal ellipsis
+" set lcs+=trail:·                " hl group: SpecialKey
 
 set fillchars=
 set fcs+=vert:│
