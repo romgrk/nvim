@@ -511,6 +511,7 @@ nnoremap <silent><space>gf   :NERDTreeFind<CR>
 nnoremap <silent><space>ap   vip:EasyAlign<CR>
 nnoremap <silent><space>ret  :set et <Bar> ret<CR>
 nnoremap <silent><space>dws  :%DeleteTrailingWS<CR>
+nnoremap <silent><space>dcl  :g/console.log/d<CR>
 
 " nnoremap         <space>how  :r !hors -e google --raw<space>
 nnoremap <silent><space>how  :Kirby howdoi<CR>
