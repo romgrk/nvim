@@ -36,7 +36,7 @@ nnoremap <silent><expr> <Esc> (
             \   exists('b:esc') ? b:esc :
             \   sneak#is_sneaking() ? (sneak#cancel() . '')[1] :
             \   coc#float#has_float() ? (coc#float#close_all() . '')[1] :
-            \  ':nohl<CR>' )
+            \  ':let @/ = "" <Bar> nohl<CR>' )
 
 " <CR>
 "cnoremap <expr> <CR> g:space.parse_cmd_line()
@@ -1051,7 +1051,7 @@ xmap <A-r><A-a>   <C-f><A-r><A-a>
 xmap <A-r><A-l>   <C-f><A-r><A-l>
 
 " SearchReplace
-nnoremap <silent><C-f><C-f> <cmd>lua require('spectre').toggle()<CR>
+nnoremap <silent><C-f><C-f> <cmd>lua require('spectre').toggle({ is_insert_mode = true })<CR>
 nnoremap <silent><C-f><C-w> <cmd>lua require('spectre').open_visual({ select_word = true })<CR>
 nnoremap <silent><C-f>w     <cmd>lua require('spectre').open_visual({ select_word = true })<CR>
 
