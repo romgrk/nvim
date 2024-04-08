@@ -36,7 +36,7 @@ nnoremap <silent><expr> <Esc> (
             \   exists('b:esc') ? b:esc :
             \   sneak#is_sneaking() ? (sneak#cancel() . '')[1] :
             \   coc#float#has_float() ? (coc#float#close_all() . '')[1] :
-            \  ':let @/ = "" <Bar> nohl<CR>' )
+            \  ':SearchBoxClear <Bar> nohl<CR>' )
 
 " <CR>
 "cnoremap <expr> <CR> g:space.parse_cmd_line()
