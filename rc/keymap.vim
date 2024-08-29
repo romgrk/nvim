@@ -36,7 +36,7 @@ nnoremap <silent><expr> <Esc> (
             \   exists('b:esc') ? b:esc :
             \   sneak#is_sneaking() ? (sneak#cancel() . '')[1] :
             \   coc#float#has_float() ? (coc#float#close_all() . '')[1] :
-            \  ':exec "SearchBoxClear" <Bar> nohl<CR>' )
+            \  ':nohl<CR>' )
 
 " <CR>
 "cnoremap <expr> <CR> g:space.parse_cmd_line()
@@ -135,7 +135,7 @@ endfunc
 
 cmap <expr> w <SID>cmd_write()
 function! s:cmd_write()
-    if getcmdline() == ''
+    if getcmdtype() == ':' && getcmdline() == ''
         return "w\<CR>:echo ''\<CR>"
     end
     return 'w'
@@ -296,10 +296,10 @@ nnoremap ]c   /^<<<<CR>:set nohls<CR>
 nnoremap [c   ?^<<<<CR>:set nohls<CR>
 
 " QF window
-nnoremap <silent> ]q   <cmd>cnext<CR>
-nnoremap <silent> [q   <cmd>cprevious<CR>
-nnoremap <silent> ]l   <cmd>lnext<CR>
-nnoremap <silent> [l   <cmd>lprevious<CR>
+nnoremap <silent> ]q   <cmd>cnext<CR>zz
+nnoremap <silent> [q   <cmd>cprevious<CR>zz
+nnoremap <silent> ]l   <cmd>lnext<CR>zz
+nnoremap <silent> [l   <cmd>lprevious<CR>zz
 
 " 1}}}
 "===============================================================================
@@ -1017,8 +1017,8 @@ nnoremap g/ *zvzz
 nnoremap g? #zvzz
 
 " IncSearch
-nnoremap /  <cmd>SearchBoxMatchAll title=Search<CR>
-nnoremap ?  <cmd>SearchBoxMatchAll title=Search reverse=true<CR>
+" nnoremap /  <cmd>SearchBoxMatchAll title=Search<CR>
+" nnoremap ?  <cmd>SearchBoxMatchAll title=Search reverse=true<CR>
 
 nmap n  nzvzz
 nmap N  Nzvzz

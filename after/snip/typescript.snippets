@@ -7,10 +7,6 @@
 
 extends javascript
 
-snippet vi "print(vim.inspect())"
-print(vim.inspect($0))
-endsnippet
-
 # snippet perf "const start = Date.now() ..."
 # const start = Date.now()
 # const end = Date.now()
@@ -23,68 +19,10 @@ endsnippet
 
 # Declarations: Member properties
 
-snippet m: "member: declaration;" b
-${1:member}: ${2:undefined};
-endsnippet
-
-snippet + "public member" b
-public ${1:member}: ${2:undefined};
-endsnippet
-
-snippet - "private member" b
-private ${1:member}: ${2:undefined};
-endsnippet
-
-snippet : "protected member" b
-protected ${1:member}: ${2:undefined};
-endsnippet
-
-
-
-
-# Lang:
-
-snippet fu "function name (args) {}" b
-function ${1:name} (${2:argument${3:: Type}}) {$0}
-endsnippet
-
-snippet f "method (args) {}" b
-${1:name} (${2:argument${3:: Type}}) {$0}
-endsnippet
-
-snippet - "private" b
-private $0
-endsnippet
-
-snippet + "public" b
-public $0
-endsnippet
-
-
-
 snippet le "let val = ..." b
 let ${1:{${2:name}}} = ${3:this.${4:val}};
 endsnippet
 
 snippet c "const val = ..." b
 const ${1:{${2:name}}} = ${3:this.${4:val}};
-endsnippet
-
-snippet t "this." b
-this.$1${2:;}
-endsnippet
-
-snippet ret "return" b
-return $0;
-endsnippet
-
-
-# React
-
-snippet fnc "function Component"
-function ${1:Component}() {
-	return (
-		<div>$2</div>
-	)
-}
 endsnippet
