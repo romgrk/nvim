@@ -97,7 +97,7 @@ require('lazy').setup({
 
   -- General
   -- @plugins
-  { 'MagicDuck/grug-far.nvim', opts = { windowCreationCommand = 'aboveleft vsplit | vertical resize 80' } },
+  { 'MagicDuck/grug-far.nvim', opts = { windowCreationCommand = 'aboveleft vsplit | wincmd H | vertical resize 80' } },
   { 'projekt0n/github-nvim-theme'},
   { 'justinmk/vim-dirvish' },
   { 'fidian/hexmode' },
