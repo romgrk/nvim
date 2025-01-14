@@ -100,6 +100,7 @@ require('lazy').setup({
   {
     'MagicDuck/grug-far.nvim',
     opts = {
+      wrap = false,
       windowCreationCommand = 'aboveleft vsplit | wincmd H | vertical resize 80',
       resultLocation = {
         showNumberLabel = false,
