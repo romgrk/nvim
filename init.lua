@@ -97,7 +97,7 @@ require('lazy').setup({
 
   -- General
   -- @plugins
-  { 'nvim-pack/nvim-spectre' },
+  { 'MagicDuck/grug-far.nvim', opts = { windowCreationCommand = 'aboveleft vsplit | vertical resize 80' } },
   { 'projekt0n/github-nvim-theme'},
   { 'justinmk/vim-dirvish' },
   { 'fidian/hexmode' },

@@ -1052,9 +1052,12 @@ xmap <A-r><A-a>   <C-f><A-r><A-a>
 xmap <A-r><A-l>   <C-f><A-r><A-l>
 
 " SearchReplace
-nnoremap <silent><C-f><C-f> <cmd>lua require('spectre').toggle({ is_insert_mode = true })<CR>
-nnoremap <silent><C-f><C-w> <cmd>lua require('spectre').open_visual({ select_word = true })<CR>
-nnoremap <silent><C-f>w     <cmd>lua require('spectre').open_visual({ select_word = true })<CR>
+nnoremap <silent><C-f><C-f> <cmd>lua require('grug-far').toggle_instance({ instanceName='default', transient=true })<CR>
+nnoremap <silent><C-f><C-w> <cmd>lua require('grug-far').with_visual_selection({ instanceName='default', transient=true })<CR>
+nnoremap <silent><C-f>w     <cmd>lua require('grug-far').with_visual_selection({ instanceName='default', transient=true })<CR>
+nnoremap <silent><C-f>.     <cmd>lua require('grug-far').open({ instanceName='default', transient=true, prefills = { paths = vim.fn.expand("%") } })<CR>
+nnoremap <silent><C-f><C-n> <cmd>lua require('grug-far').open()<CR>
+nnoremap <silent><C-f>n     <cmd>lua require('grug-far').open()<CR>
 
 " }}}1
 "===============================================================================

@@ -101,6 +101,11 @@ let miniyank_maxitems = 100
 let hexmode_patterns = '*.bin,*.exe,*.dat,*.o,*.wasm'
 let hexmode_xxd_options = '-g 1'
 
+" Disable netrw
+let loaded_netrwPlugin = 1
+let loaded_netrw = 1
+
+
 " }}}1
 "=============================================================================
 " EOF
