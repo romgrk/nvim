@@ -458,6 +458,7 @@ nnoremap         <space>g.     :Git commit % -m ""<Left>
 nnoremap         <space>gkk    :Git checkout<space>
 nnoremap         <space>gkm    :Git checkout master<CR>
 nnoremap         <space>gkb    :Git checkout -b<space>
+nnoremap         <space>gkk    :Kirby git-branch<CR>
 nnoremap         <space>gb     :Kirby git-branch<CR>
 nnoremap         <space>gl     :Git pull<CR>
 nnoremap         <space>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
