@@ -45,8 +45,8 @@ nnoremap <silent><expr> <Esc> (
 " V cycles visual modes
 nnoremap       v v
 xnoremap <expr>v
-            \ (mode() ==# 'v' ? "\<C-V>"
-            \ : mode() ==# 'V' ? 'v' : 'V')
+            \ (mode() ==# 'v' ? 'V'
+            \ : mode() ==# 'V' ? "\<C-V>" : 'v')
 
 
 nnoremap Y  y$
