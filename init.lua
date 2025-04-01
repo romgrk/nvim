@@ -102,6 +102,7 @@ require('lazy').setup({
     opts = {
       wrap = false,
       windowCreationCommand = 'aboveleft vsplit | wincmd H | vertical resize 80',
+      openTargetWindow = { preferredLocation = 'right' },
       resultLocation = {
         showNumberLabel = false,
       }
