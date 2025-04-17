@@ -183,7 +183,7 @@ require('lazy').setup({
   { 'kelan/gyp.vim'                        , ft = 'gyp' },
   { 'cespare/vim-toml'                     , ft = 'toml' },
   { 'dzeban/vim-log-syntax'                , ft = 'log' },
-  { 'OXY2DEV/markview.nvim', lazy = false },
+  -- { 'OXY2DEV/markview.nvim', lazy = false },
 }, {
   dev = {
     path = '~/src',
