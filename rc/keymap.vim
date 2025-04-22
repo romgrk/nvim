@@ -10,8 +10,6 @@ nnoremap <silent><C-p> :Kirby commands-list<CR>
 nnoremap <silent><C-b>   :BufferPin<CR>
 nnoremap <silent><C-A-c> :BufferPickDelete<CR>
 
-nnoremap <space>cd :Kirby coc-diagnostics<CR>
-
 nnoremap <silent><a-space>           :ToggleTerm<CR>
 tnoremap <silent><a-space> <C-\><C-n>:ToggleTerm<CR>
 
@@ -338,9 +336,6 @@ omap U <Plug>Sneak_T
 " Intellisense (coc.nvim)                                                   {{{1
 
 
-" nmap <silent> <space>coc <cmd>Clap coc_commands<CR>
-nmap <silent> <F2>       <cmd>call CocAction('rename')<CR>
-
 " xmap <silent> gme    :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 " nmap <silent> gme    :<C-u>CocCommand actions.open<CR>
 
@@ -382,20 +377,13 @@ function! s:coc_popup_mappings ()
   nnoremap <silent><buffer> <Esc> :call coc#float#close_all()<CR>
 endfunc
 
+nnoremap <space>cd :Kirby coc-diagnostics<CR>
 
 " Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
+nmap     <space>cr <Plug>(coc-rename)
 
 " Remap for format selected region
 vmap gq         <Plug>(coc-format-selected)
-
-augroup CocEvents
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
 
 " Remap for do codeAction of selected region, ex: `<space>aap` for current paragraph
 " vmap <space>a  <Plug>(coc-codeaction-selected)
@@ -405,6 +393,15 @@ nmap <space>ac  <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
 nmap <space>qf  <Plug>(coc-fix-current)
+
+
+augroup CocEvents
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 
 " 1}}}
