@@ -472,6 +472,7 @@ nnoremap         <space>gRR    :Git restore .<CR>
 nnoremap         <space>gkpr   :Kirby github-pr<CR>
 nnoremap         <space>gee    :Gedit<space>
 nnoremap         <space>ge.    :Gedit :%<Left><Left>
+nnoremap         <space>gem    :Gedit master:%<CR>
 
 " GitMessenger:
 nnoremap <silent><space>gm     :GitMessenger<CR>
