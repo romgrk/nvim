@@ -1051,10 +1051,11 @@ xmap <A-r><A-a>   <C-f><A-r><A-a>
 xmap <A-r><A-l>   <C-f><A-r><A-l>
 
 " SearchReplace
-nnoremap <silent><C-f><C-f> <cmd>lua require('grug-far').toggle_instance({ instanceName='default', transient=true })<CR>
-nnoremap <silent><C-f><C-w> :lua require('grug-far').hide_instance('default')<CR>viw:lua require('grug-far').with_visual_selection({ instanceName='default', transient=true, startInInsertMode=false })<CR><Esc>
-nnoremap <silent><C-f>w     :lua require('grug-far').hide_instance('default')<CR>viw:lua require('grug-far').with_visual_selection({ instanceName='default', transient=true, startInInsertMode=false })<CR><Esc>
-nnoremap <silent><C-f>.     <cmd>lua require('grug-far').open({ instanceName='default', transient=true, prefills = { paths = vim.fn.expand("%") } })<CR>
+nnoremap <silent><C-f><C-f> <cmd>lua grug_defaultSearch()<CR>
+nnoremap <silent><C-f><C-w> <cmd>lua grug_defaultSearch({ search=vim.fn.expand('<cword>') })<CR>
+nnoremap <silent><C-f>w     <cmd>lua grug_defaultSearch({ search=vim.fn.expand('<cword>') })<CR>
+xnoremap <silent><C-f><C-f> <cmd>lua grug_defaultSearchVisual()<CR>
+nnoremap         <C-f>.     :lua grug_defaultSearch({ startpaths='<C-R>=expand('%:h')<CR>' })<Left><Left><Left><Left>
 nnoremap <silent><C-f><C-n> <cmd>lua require('grug-far').open()<CR>
 nnoremap <silent><C-f>n     <cmd>lua require('grug-far').open()<CR>
 
