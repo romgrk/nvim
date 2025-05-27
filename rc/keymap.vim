@@ -1055,7 +1055,7 @@ nnoremap <silent><C-f><C-f> <cmd>lua grug_defaultSearch()<CR>
 nnoremap <silent><C-f><C-w> <cmd>lua grug_defaultSearch({ search=vim.fn.expand('<cword>') })<CR>
 nnoremap <silent><C-f>w     <cmd>lua grug_defaultSearch({ search=vim.fn.expand('<cword>') })<CR>
 xnoremap <silent><C-f><C-f> <cmd>lua grug_defaultSearchVisual()<CR>
-nnoremap         <C-f>.     :lua grug_defaultSearch({ startpaths='<C-R>=expand('%:h')<CR>' })<Left><Left><Left><Left>
+nnoremap         <C-f>.     :lua grug_defaultSearch({ paths='<C-R>=expand('%:h')<CR>' })<Left><Left><Left><Left>
 nnoremap <silent><C-f><C-n> <cmd>lua require('grug-far').open()<CR>
 nnoremap <silent><C-f>n     <cmd>lua require('grug-far').open()<CR>
 

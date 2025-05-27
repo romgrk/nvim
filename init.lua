@@ -103,9 +103,10 @@ require('lazy').setup({
       wrap = false,
       windowCreationCommand = 'aboveleft vsplit | wincmd H | vertical resize 80',
       openTargetWindow = { preferredLocation = 'right' },
+      helpLine = { enabled = false },
       resultLocation = {
         showNumberLabel = false,
-      }
+      },
     },
   },
   { 'projekt0n/github-nvim-theme'},
