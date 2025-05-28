@@ -1041,14 +1041,14 @@ nmap <A-r><A-a>   :%s///<left>
 nmap <A-r>a       :%s///<left>
 nmap <A-r><A-j>   :.,$s///<left>
 nmap <A-r>j       :.,$s///<left>
-nmap <A-r><A-w>   viw<C-F><A-r><A-l>
-nmap <A-r>w       viw<C-F><A-r><A-l>
-nmap <A-r><A-p>   m'viw<C-F><A-r><A-l><A-p><CR>''
+nmap <A-r><A-w>   viw<C-/><A-r><A-l>
+nmap <A-r>w       viw<C-/><A-r><A-l>
+nmap <A-r><A-p>   m'viw<C-/><A-r><A-l><A-p><CR>''
 
 xmap <A-r><A-r>   :s///<left>
 xmap <A-r>r       :s///<left>
-xmap <A-r><A-a>   <C-f><A-r><A-a>
-xmap <A-r><A-l>   <C-f><A-r><A-l>
+xmap <A-r><A-a>   <C-/><A-r><A-a>
+xmap <A-r><A-l>   <C-/><A-r><A-l>
 
 " SearchReplace
 nnoremap <silent><C-f><C-f> <cmd>lua grug_defaultSearch()<CR>
