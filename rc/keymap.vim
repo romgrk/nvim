@@ -125,13 +125,13 @@ nmap <C-f> <Nop>
 " Semicolon quick commands                                                  {{{1
 
 " Semicolon key
-nmap <expr> ; <SID>n_semicolon()
+nmap <silent><expr> ; <SID>n_semicolon()
 function! s:n_semicolon ()
     if sneak#is_sneaking() | return ":call sneak#rpt('', 0)\<CR>:echo ''\<CR>" | end
     return "\<Plug>(leap-this-window)"
 endfunc
 
-cmap <expr> w <SID>cmd_write()
+cmap <silent><expr> w <SID>cmd_write()
 function! s:cmd_write()
     if getcmdtype() == ':' && getcmdline() == ''
         return "w\<CR>:echo ''\<CR>"
@@ -1026,7 +1026,7 @@ nmap N  Nzvzz
 map <silent><Plug>(visual-yank-plaintext)
       \ :<C-U>call setreg(v:register, '\C\V'.escape(visual#GetText(), '\/'))<CR>
 
-vmap <silent>    <C-f>  "/<Plug>(visual-yank-plaintext):set hlsearch<CR>
+vmap <silent>    <C-/>  "/<Plug>(visual-yank-plaintext):set hlsearch<CR>
 
 vmap <silent>       g/  "/<Plug>(visual-yank-plaintext)n
 vmap <silent>       g?  "/<Plug>(visual-yank-plaintext)N

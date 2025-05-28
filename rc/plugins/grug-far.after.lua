@@ -11,9 +11,9 @@ local grug = require('grug-far')
 -- nnoremap <silent><C-f><C-n> <cmd>lua require('grug-far').open()<CR>
 -- nnoremap <silent><C-f>n     <cmd>lua require('grug-far').open()<CR>
 
-local function getVisualSelection()
-  local start = vim.fn.getpos("'<")
-  local end_ = vim.fn.getpos("'>")
+function getVisualSelection()
+  local start = vim.fn.getpos('.')
+  local end_ = vim.fn.getpos('v')
   if (not start or not end_) then
     return ''
   end
@@ -44,6 +44,7 @@ function grug_defaultSearch(prefills)
       instance:update_input_values(prefills, false)
     else
       instance:goto_first_input()
+      vim.cmd('normal! cc')
       vim.cmd('startinsert')
     end
   else
@@ -52,5 +53,19 @@ function grug_defaultSearch(prefills)
 end
 
 function grug_defaultSearchVisual()
-  return grug_defaultSearch({ search=getVisualSelection() })
+  return grug_defaultSearch({ search=getVisualSelection(), flags='--fixed-strings' })
+end
+
+function grug_nextInput()
+  local instance = grug.get_instance(vim.fn.bufnr())
+  if (instance) then
+    instance:goto_next_input()
+  end
+end
+
+function grug_previousInput()
+  local instance = grug.get_instance(vim.fn.bufnr())
+  if (instance) then
+    instance:goto_next_input()
+  end
 end
