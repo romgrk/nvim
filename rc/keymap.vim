@@ -131,7 +131,7 @@ function! s:n_semicolon ()
     return "\<Plug>(leap-this-window)"
 endfunc
 
-cmap <silent><expr> w <SID>cmd_write()
+cmap <expr> w <SID>cmd_write()
 function! s:cmd_write()
     if getcmdtype() == ':' && getcmdline() == ''
         return "w\<CR>:echo ''\<CR>"
