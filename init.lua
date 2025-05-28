@@ -142,6 +142,7 @@ require('lazy').setup({
   { 'yorickpeterse/nvim-pqf', init = function() require'pqf'.setup() end },
   { 'akinsho/nvim-toggleterm.lua' },
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = { indent = { char = '▏', }, scope = { enabled = true, char = '▏', show_start = false, show_end = false, }, } },
+  { 'stevearc/quicker.nvim', event = 'FileType qf', opts = { borders = { vert = '│', } } },
 
   -- Personal
   { 'romgrk/kyntell.vim', dev = true, lazy = false, priority = 1000 },
