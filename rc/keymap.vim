@@ -1058,6 +1058,9 @@ nnoremap         <C-f>.     :lua grug_defaultSearch({ paths='<C-R>=expand('%:h')
 nnoremap <silent><C-f><C-n> <cmd>lua require('grug-far').open()<CR>
 nnoremap <silent><C-f>n     <cmd>lua require('grug-far').open()<CR>
 
+nnoremap <silent>]f         <cmd>lua grug_nextMatch()<CR>
+nnoremap <silent>[f         <cmd>lua grug_prevMatch()<CR>
+
 " }}}1
 "===============================================================================
 " Macro & Automation                                                        {{{1

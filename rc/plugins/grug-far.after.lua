@@ -27,7 +27,7 @@ function grug_defaultToggle(prefills)
       instance:close()
     end
   else
-    grug.open({ instanceName='default', prefills=prefills })
+    grug.open({ instanceName = 'default', prefills = prefills })
   end
 end
 
@@ -48,12 +48,12 @@ function grug_defaultSearch(prefills)
       vim.cmd('startinsert')
     end
   else
-    grug.open({ instanceName='default', prefills=prefills })
+    grug.open({ instanceName = 'default', prefills = prefills })
   end
 end
 
 function grug_defaultSearchVisual()
-  return grug_defaultSearch({ search=getVisualSelection(), flags='--fixed-strings' })
+  return grug_defaultSearch({ search = getVisualSelection(), flags = '--fixed-strings' })
 end
 
 function grug_nextInput()
@@ -67,5 +67,21 @@ function grug_previousInput()
   local instance = grug.get_instance(vim.fn.bufnr())
   if (instance) then
     instance:goto_next_input()
+  end
+end
+
+function grug_nextMatch()
+  local instance = grug.get_instance('default')
+  if (instance) then
+    instance:goto_next_match()
+    instance:goto_location()
+  end
+end
+
+function grug_prevMatch()
+  local instance = grug.get_instance('default')
+  if (instance) then
+    instance:goto_prev_match()
+    instance:goto_location()
   end
 end
