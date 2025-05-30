@@ -1,5 +1,4 @@
 {
-
   "inlayHint.enable": false,
 
   "suggest.noselect": true,
@@ -10,10 +9,12 @@
   "suggest.snippetIndicator": "•",
   "signature.target": "float",
 
-  "diagnostic.errorSign":   " ",
+  "diagnostic.errorSign": " ",
   "diagnostic.warningSign": " ",
-  "diagnostic.infoSign":    " ",
-  "diagnostic.hintSign":    " ",
+  "diagnostic.infoSign": " ",
+  "diagnostic.hintSign": " ",
+
+  "coc.preferences.formatOnSave": true,
 
   "css.lint.emptyRules": "ignore",
   "css.lint.unknownAtRules": "ignore",
@@ -29,7 +30,6 @@
   "sumneko-lua.enableNvimLuaDev": true,
 
   "languageserver": {
-
     "ocaml": {
       "command": "ocaml-language-server",
       "args": ["--stdio"],
@@ -61,7 +61,6 @@
     // CocInstall coc-actions coc-tsserver coc-css coc-html coc-json coc-pyright
     // CocInstall coc-tag coc-rust-analyzer coc-clangd coc-browser coc-lua coc-julia
     // CocInstall coc-tabnine
-
   },
 
   "Lua.telemetry.enable": true
