@@ -418,7 +418,7 @@ nnoremap <silent><space>fn     :enew<CR>
 nnoremap         <space>fs     :sav<space>
 nnoremap         <space>fr     :Rename<space>
 nnoremap         <space>fm     :Move<space>
-nnoremap <silent><space>fD     :FileDelete<CR>
+nnoremap <silent><space>fD     :Remove<CR>
 
 " Directory management
 nnoremap         <space>md     :Mkdir!<space>

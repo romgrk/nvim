@@ -185,7 +185,7 @@ set concealcursor=nc conceallevel=1
 "===============================================================================
 " Windows {{{
 
-set                    cmdheight=1
+set                    cmdheight=0
 set winminwidth=0   winminheight=0
 set    winwidth=1      winheight=1
 set                previewheight=5
