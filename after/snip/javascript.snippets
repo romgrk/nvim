@@ -1,3 +1,14 @@
+snippet esdl "eslint-disable-next-line"
+// eslint-disable-next-line
+endsnippet
+
+snippet esdi "eslint-disable"
+/* eslint-disable */
+endsnippet
+
+snippet esen "eslint-disable"
+/* eslint-enable */
+endsnippet
 
 snippet div "div" b
 <div className='$0'>
@@ -104,7 +115,7 @@ else {
 endsnippet
 
 snippet for "for" b
-for (let i = 0; i < ${1:items}.length; i++) {}
+for (let i = 0; i < ${1:items}.length; i += 1) {}
 endsnippet
 
 # Utils

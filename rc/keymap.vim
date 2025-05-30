@@ -127,7 +127,7 @@ nmap <C-f> <Nop>
 " Semicolon key
 nmap <silent><expr> ; <SID>n_semicolon()
 function! s:n_semicolon ()
-    if sneak#is_sneaking() | return ":call sneak#rpt('', 0)\<CR>:echo ''\<CR>" | end
+    if sneak#is_sneaking() | return ":call sneak#rpt('', 0)\<CR>" | end
     return "\<Plug>(leap-this-window)"
 endfunc
 
@@ -308,28 +308,27 @@ nnoremap <silent> [l   <cmd>lprevious<CR>zz
 " nmap ;            <Plug>(leap-this-window)
 nmap <A-;>        <Plug>(leap-cross-window)
 
-
 xmap <silent> ; <Plug>SneakNext
 xmap <silent> , <Plug>SneakPrevious
 
 " find operator
-nmap f     <Plug>Sneak_f
-xmap f     <Plug>Sneak_f
-omap f     <Plug>Sneak_f
-nmap F     <Plug>Sneak_F
-xmap F     <Plug>Sneak_F
-omap F     <Plug>Sneak_F
-nmap <A-f> <Plug>Sneak_F
-xmap <A-f> <Plug>Sneak_F
-omap <A-f> <Plug>Sneak_F
+nmap <silent>f     <Plug>Sneak_f
+xmap <silent>f     <Plug>Sneak_f
+omap <silent>f     <Plug>Sneak_f
+nmap <silent>F     <Plug>Sneak_F
+xmap <silent>F     <Plug>Sneak_F
+omap <silent>F     <Plug>Sneak_F
+nmap <silent><A-f> <Plug>Sneak_F
+xmap <silent><A-f> <Plug>Sneak_F
+omap <silent><A-f> <Plug>Sneak_F
 
 " until operator
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-xmap u <Plug>Sneak_t
-xmap U <Plug>Sneak_T
-omap u <Plug>Sneak_t
-omap U <Plug>Sneak_T
+nmap <silent>t <Plug>Sneak_t
+nmap <silent>T <Plug>Sneak_T
+xmap <silent>u <Plug>Sneak_t
+xmap <silent>U <Plug>Sneak_T
+omap <silent>u <Plug>Sneak_t
+omap <silent>U <Plug>Sneak_T
 
 " 1}}}
 "===============================================================================
