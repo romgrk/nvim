@@ -91,25 +91,26 @@ function! statusline#update_colors(mode) abort
   return ''
 endfunction
 
+
 "===============================================================================
 " Statusline builders
 
 function! statusline#active () abort
-  let is_normal = !(&bt =~# '\vno(file|write)' || &bt == 'prompt')
+  let is_normal_file = !(&bt =~# '\vno(file|write)' || &bt == 'prompt')
 
   " Left side items
 
   let content = '%{statusline#update_colors(mode())}'
 
-  if !is_normal
-    let content .= '%#StatuslineAccent# '
-    let content .= statusline#get_special_name() . ' '
-    let content .= '%#StatuslineSeparator#| '
-
-    let content .= '%#StatuslineFilename#'
+  if !is_normal_file
+    if &filetype == 'grug-far'
+      let content .= statusline#file_grug()
+    else
+      let content .= statusline#file_special()
+    end
   end
 
-  if is_normal
+  if is_normal_file
     " Mode
     let content .= '%#StatuslineAccent# '
     let content .= '%{statusline#get_mode(mode())} '
@@ -150,21 +151,65 @@ function! statusline#active () abort
   return content
 endfunc
 
+
+function! statusline#file_special() abort
+  let content = ''
+
+  let content .= '%#StatuslineAccent# '
+  let content .= statusline#get_special_name() . ' '
+  let content .= '%#StatuslineSeparator#| '
+
+  let content .= '%#StatuslineFilename#'
+
+  return content
+endfunc
+
+lua << EOF
+function statusline_grug_stats()
+  return require('grug-far').get_instance()._context.state.stats
+end
+function statusline_grug_engine()
+  return require('grug-far').get_instance()._context.engine.type
+end
+EOF
+
+function! statusline#file_grug() abort
+  let content = ''
+
+  let name_parts = split(bufname(), ':')
+  let name = len(name_parts) > 1 ? trim(name_parts[1]) : 'Search…'
+
+  let content .= '%#StatuslineAccent# '
+  let content .= ' '. name . ' '
+  let content .= '%#StatuslineSeparator#| '
+
+  let stats = v:lua.statusline_grug_stats()
+
+  let content .= '%#StatuslineFilename#'
+  let content .= printf('%i matches in %i files ', stats['matches'], stats['files'])
+
+  let content .= '%#StatuslineSeparator#| '
+  let content .= v:lua.statusline_grug_engine()
+
+  return content
+endfunc
+
+
 function! statusline#inactive () abort
   " Using laststatus=3
   return statusline#active()
 
-  " let is_normal = !(&bt =~# '\vno(file|write)')
+  " let is_normal_file = !(&bt =~# '\vno(file|write)')
   "
   " let content = ''
   "
-  " if !is_normal
+  " if !is_normal_file
   "   let content .= '%#StatuslinePartNC# '
   "   let content .= statusline#get_special_name() . ' '
   "   let content .= '%#StatuslineFilenameNC#'
   " end
   "
-  " if is_normal
+  " if is_normal_file
   "   " Mode placeholder
   "   let content .= '%#StatuslineAccentNC# '
   "   let content .= '%{statusline#get_mode("e")} '

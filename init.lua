@@ -1,7 +1,7 @@
 --
 -- init.lua
 --
-
+-- https://github.com/stevearc/overseer.nvim
 -- TODO https://github.com/rmehri01/onenord.nvim
 -- TODO https://github.com/folke/edgy.nvim
 -- TODO https://github.com/Bekaboo/dropbar.nvim
@@ -101,12 +101,15 @@ require('lazy').setup({
     'MagicDuck/grug-far.nvim',
     opts = {
       wrap = false,
-      windowCreationCommand = 'aboveleft vsplit | wincmd H | vertical resize 80',
+      windowCreationCommand = 'aboveleft vsplit | wincmd H | vertical resize 70',
       openTargetWindow = { preferredLocation = 'right' },
       helpLine = { enabled = false },
       resultLocation = {
         showNumberLabel = false,
       },
+      showCompactInputs = true,
+      showInputsBottomPadding = false,
+      showInputsTopPadding = false,
     },
   },
   { 'projekt0n/github-nvim-theme'},
