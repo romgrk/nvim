@@ -75,19 +75,19 @@ require('lazy').setup({
   -- Editing
   { 'nvim-treesitter/nvim-treesitter' },
   { 'nvim-treesitter/playground' },
-  { 'nvim-treesitter/nvim-treesitter-context', dev = true },
+  { 'nvim-treesitter/nvim-treesitter-context',    dev = true },
   { 'JoosepAlviste/nvim-ts-context-commentstring' },
   { 'AndrewRadev/sideways.vim' },
   { 'AndrewRadev/splitjoin.vim' },
-  { 'chrisgrieser/nvim-spider', lazy = true },
+  { 'chrisgrieser/nvim-spider',                   lazy = true },
   { 'coderifous/textobj-word-column.vim' },
-  { 'm4xshen/autoclose.nvim', init = function() require'autoclose'.setup() end },
+  { 'm4xshen/autoclose.nvim',                     init = function() require 'autoclose'.setup() end },
   { 'justinmk/vim-sneak' },
   { 'ggandor/leap.nvim' },
   { 'kana/vim-niceblock' },
   { 'Konfekt/vim-ctrlxa' },
   { 'michaeljsmith/vim-indent-object' },
-  { 'neoclide/coc.nvim', build = 'yarn install' },
+  { 'neoclide/coc.nvim',                          build = 'yarn install' },
   { 'numToStr/Comment.nvim' },
   { 'sirver/UltiSnips' },
   { 'tpope/vim-fugitive' },
@@ -110,9 +110,18 @@ require('lazy').setup({
       showCompactInputs = true,
       showInputsBottomPadding = false,
       showInputsTopPadding = false,
+      showStatusIcon = false,
+      showEngineInfo = false,
+      showStatusInfo = true,
+      onStatusChange = function()
+        vim.defer_fn(function()
+          vim.fn.execute('redraw')
+        end, 50)
+      end,
+      onStatusChangeThrottleTime = 500,
     },
   },
-  { 'projekt0n/github-nvim-theme'},
+  { 'projekt0n/github-nvim-theme' },
   { 'justinmk/vim-dirvish' },
   { 'fidian/hexmode' },
   { 'jbyuki/venn.nvim' },
@@ -128,7 +137,7 @@ require('lazy').setup({
   { 'tpope/vim-sleuth' },
   { 'vn-ki/coc-clap' },
   { 'wsdjeg/vim-fetch' },
-  { 'xolox/vim-misc'},
+  { 'xolox/vim-misc' },
   { 'xolox/vim-notes', dependencies = { 'xolox/vim-misc' } },
   { 'xolox/vim-shell', dependencies = { 'xolox/vim-misc' } },
   { 'romgrk/vim-session', dependencies = { 'xolox/vim-misc' } },
@@ -140,9 +149,9 @@ require('lazy').setup({
   { 'rhysd/git-messenger.vim' },
   { 'KabbAmine/vCoolor.vim' },
   { 'machakann/vim-highlightedyank' },
-  { 'RRethy/vim-hexokinase'                , build = 'make hexokinase' },
+  { 'RRethy/vim-hexokinase', build = 'make hexokinase' },
   { 'airblade/vim-gitgutter' },
-  { 'yorickpeterse/nvim-pqf', init = function() require'pqf'.setup() end },
+  { 'yorickpeterse/nvim-pqf', init = function() require 'pqf'.setup() end },
   { 'akinsho/nvim-toggleterm.lua' },
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = { indent = { char = '▏', }, scope = { enabled = true, char = '▏', show_start = false, show_end = false, }, } },
   { 'stevearc/quicker.nvim', event = 'FileType qf', opts = { borders = { vert = '│', } } },
@@ -155,39 +164,39 @@ require('lazy').setup({
   {
     'romgrk/kirby.nvim',
     dependencies = {
-      { 'romgrk/fzy-lua-native', build = 'make install', dev = true },
-      { 'romgrk/kui.nvim', dev = true },
+      { 'romgrk/fzy-lua-native',      build = 'make install', dev = true },
+      { 'romgrk/kui.nvim',            dev = true },
       { 'nvim-tree/nvim-web-devicons' },
       { 'nvim-lua/plenary.nvim' },
     },
     dev = true,
   },
-  { 'romgrk/barbar.nvim',                    dev = true },
-  { 'romgrk/todoist.nvim', dev = true      , build = ':TodoistInstall' },
+  { 'romgrk/barbar.nvim',                dev = true },
+  { 'romgrk/todoist.nvim',               dev = true,                                                  build = ':TodoistInstall' },
   { 'romgrk/equal.operator' },
   { 'romgrk/columnMove.vim' },
   { 'romgrk/lib.kom' },
   { 'romgrk/pp.vim' },
   { 'romgrk/replace.vim' },
-  { 'romgrk/winteract.vim'                 , cmd = 'InteractiveWindow'},
+  { 'romgrk/winteract.vim',              cmd = 'InteractiveWindow' },
 
   -- Language
   { 'rhysd/vim-llvm' },
-  { 'pantharshit00/vim-prisma'             , ft = 'prisma' },
+  { 'pantharshit00/vim-prisma',          ft = 'prisma' },
   { 'neoclide/jsonc.vim' },
-  { 'jordwalke/vim-reasonml'               , ft = 'reason' },
-  { 'tmhedberg/SimpylFold'                 , ft = 'python' },
-  { 'pangloss/vim-javascript'              , ft = 'javascript' },
-  { 'kristijanhusak/vim-js-file-import'    , ft = 'javascript' },
-  { 'neoclide/vim-jsx-improve'             , ft = 'javascript.jsx' },
-  { 'moll/vim-node'                        , ft = 'javascript.node' },
-  { 'iamcco/markdown-preview.nvim'         , build = function () vim.cmd[[call mkdp#util#install()]] end, ft = { 'markdown', 'vim-plug' } },
+  { 'jordwalke/vim-reasonml',            ft = 'reason' },
+  { 'tmhedberg/SimpylFold',              ft = 'python' },
+  { 'pangloss/vim-javascript',           ft = 'javascript' },
+  { 'kristijanhusak/vim-js-file-import', ft = 'javascript' },
+  { 'neoclide/vim-jsx-improve',          ft = 'javascript.jsx' },
+  { 'moll/vim-node',                     ft = 'javascript.node' },
+  { 'iamcco/markdown-preview.nvim',      build = function() vim.cmd [[call mkdp#util#install()]] end, ft = { 'markdown', 'vim-plug' } },
   { 'AndrewRadev/tagalong.vim' },
-  { 'valloric/MatchTagAlways'              , ft = 'html' },
-  { 'rstacruz/sparkup'                     , ft = 'html' },
-  { 'kelan/gyp.vim'                        , ft = 'gyp' },
-  { 'cespare/vim-toml'                     , ft = 'toml' },
-  { 'dzeban/vim-log-syntax'                , ft = 'log' },
+  { 'valloric/MatchTagAlways',           ft = 'html' },
+  { 'rstacruz/sparkup',                  ft = 'html' },
+  { 'kelan/gyp.vim',                     ft = 'gyp' },
+  { 'cespare/vim-toml',                  ft = 'toml' },
+  { 'dzeban/vim-log-syntax',             ft = 'log' },
   -- { 'OXY2DEV/markview.nvim', lazy = false },
 }, {
   dev = {
@@ -216,11 +225,11 @@ end
 
 -- Local settings:
 if filereadable(join(stdpath('config'), 'local.vim')) == 1 then
-    load('./local.vim')
+  load('./local.vim')
 end
 
 nvim_create_autocmd('VimEnter', {
-  pattern = {'*'},
+  pattern = { '*' },
   group = nvim_create_augroup('RC_SETUP', { clear = true }),
   callback = function()
     vim.cmd [[colorscheme kyntell]]

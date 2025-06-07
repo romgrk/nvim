@@ -443,35 +443,37 @@ nnoremap <silent><space>no     :Kirby note<CR>
 
 " Git (prefix: g)
 
-nnoremap <silent><space>gg     :tabedit %<CR>:Git<CR><C-W>o
-nnoremap <silent><space>gaa    :Git add --all<CR>
-nnoremap <silent><space>ga.    :Git add %<CR>
-nnoremap         <space>gcm    :Git commit -m ""<Left>
-nnoremap         <space>gcam   :Git commit -am ""<Left>
-nnoremap         <space>gcaa   :Git commit --amend<CR>
-nnoremap         <space>gclp   :Git commit -am "lint" <Bar> Git push<CR>
-nnoremap         <space>g.     :Git commit % -m ""<Left>
-nnoremap         <space>gkk    :Git checkout<space>
-nnoremap         <space>gkm    :Git checkout master<CR>
-nnoremap         <space>gkb    :Git checkout -b<space>
-nnoremap         <space>gkk    :Kirby git-branch<CR>
-nnoremap         <space>gb     :Kirby git-branch<CR>
-nnoremap         <space>gl     :Git pull<CR>
-nnoremap         <space>gp     :EchoHL ErrorMsg Remaped to SPC g p p<CR>
-nnoremap         <space>gpp    :Git push<CR>
-nnoremap         <space>gpf    :Git push --force<CR>
-nnoremap         <space>gpu    :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
-nnoremap <silent><space>gu     :GitOpenUnmergedFiles<CR>
-nnoremap <silent><space>gdo    :DiffviewOpen<CR>
-nnoremap <silent><space>gda    :GitDiff<CR>
-nnoremap <silent><space>gd.    :GitDiff %<CR>
-nnoremap         <space>gdd    :GitDiff<space>
-nnoremap         <space>gR.    :Git restore %<CR>
-nnoremap         <space>gRR    :Git restore .<CR>
-nnoremap         <space>gkpr   :Kirby github-pr<CR>
-nnoremap         <space>gee    :Gedit<space>
-nnoremap         <space>ge.    :Gedit :%<Left><Left>
-nnoremap         <space>gem    :Gedit master:%<CR>
+nnoremap <silent><space>gg        :tabedit %<CR>:Git<CR><C-W>o
+nnoremap <silent><space>gaa       :Git add --all<CR>
+nnoremap <silent><space>ga.       :Git add %<CR>
+nnoremap         <space>gcm       :Git commit -m ""<Left>
+nnoremap         <space>gcam      :Git commit -am ""<Left>
+nnoremap         <space>gcaa      :Git commit --amend<CR>
+nnoremap         <space>gclp      :Git commit -am "lint" <Bar> Git push<CR>
+nnoremap         <space>g.        :Git commit % -m ""<Left>
+nnoremap         <space>gkk       :Git checkout<space>
+nnoremap         <space>gkm       :Git checkout master<CR>
+nnoremap         <space>gkb       :Git checkout -b<space>
+nnoremap         <space>gkk       :Kirby git-branch<CR>
+nnoremap         <space>gb        :Kirby git-branch<CR>
+nnoremap         <space>gl        :Git pull<CR>
+nnoremap         <space>gp        :EchoHL ErrorMsg Remaped to SPC g p p<CR>
+nnoremap         <space>gpp       :Git push<CR>
+nnoremap         <space>gpf       :Git push --force<CR>
+nnoremap         <space>gpu       :Git push -u origin <C-R>=trim(system('git rev-parse --abbrev-ref HEAD'))<CR><CR>
+nnoremap <silent><space>gu        :GitOpenUnmergedFiles<CR>
+nnoremap <silent><space>gdo       :DiffviewOpen<CR>
+nnoremap <silent><space>gda       :GitDiff<CR>
+nnoremap <silent><space>gd.       :GitDiff %<CR>
+nnoremap         <space>gdd       :GitDiff<space>
+nnoremap         <space>gR.       :Git restore %<CR>
+nnoremap         <space>gRR       :Git restore .<CR>
+nnoremap         <space>gkpr      :Kirby github-pr<CR>
+nnoremap         <space>gee       :Gedit<space>
+nnoremap         <space>ge.       :Gedit :%<Left><Left>
+nnoremap         <space>gem       :Gedit master:%<CR>
+nnoremap         <space>gmm       :Git merge master<CR>
+nnoremap         <space>gm<space> :Git merge<space>
 
 " GitMessenger:
 nnoremap <silent><space>gm     :GitMessenger<CR>

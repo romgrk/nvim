@@ -1,4 +1,4 @@
 iabbrev ud undefined
 iabbrev nl null
-iabbrev fn function
+iabbrev fu function
 iabbrev re return

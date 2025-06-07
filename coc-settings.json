@@ -17,7 +17,7 @@
   "coc.preferences.formatOnSave": true,
 
   "prettier.singleQuote": true,
-  "prettier.printWidth": 120,
+  "prettier.printWidth": 90,
 
   "css.lint.emptyRules": "ignore",
   "css.lint.unknownAtRules": "ignore",

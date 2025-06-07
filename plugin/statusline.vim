@@ -165,16 +165,15 @@ function! statusline#file_special() abort
 endfunc
 
 lua << EOF
-function statusline_grug_stats()
-  return require('grug-far').get_instance()._context.state.stats
-end
-function statusline_grug_engine()
-  return require('grug-far').get_instance()._context.engine.type
+function statusline_grug_info()
+  return require('grug-far').get_instance():get_status_info()
 end
 EOF
 
 function! statusline#file_grug() abort
   let content = ''
+
+  let info = v:lua.statusline_grug_info()
 
   let name_parts = split(bufname(), ':')
   let name = len(name_parts) > 1 ? trim(name_parts[1]) : 'Search…'
@@ -183,13 +182,19 @@ function! statusline#file_grug() abort
   let content .= ' '. name . ' '
   let content .= '%#StatuslineSeparator#| '
 
-  let stats = v:lua.statusline_grug_stats()
-
   let content .= '%#StatuslineFilename#'
-  let content .= printf('%i matches in %i files ', stats['matches'], stats['files'])
+
+  if has_key(info, 'stats')
+    let stats = info['stats']
+    let content .= printf('%i matches in %i files ', stats['matches'], stats['files'])
+  end
+
+  if has_key(info, 'actionMessage')
+    let content = content . ' - ' . info['actionMessage']
+  end
 
   let content .= '%#StatuslineSeparator#| '
-  let content .= v:lua.statusline_grug_engine()
+  let content .= info['engineType']
 
   return content
 endfunc
