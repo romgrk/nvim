@@ -73,8 +73,7 @@ require('lazy').setup({
   { 'itchyny/vim-gitbranch' },
 
   -- Editing
-  { 'nvim-treesitter/nvim-treesitter' },
-  { 'nvim-treesitter/playground' },
+  { 'nvim-treesitter/nvim-treesitter', branch = 'master', build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-context',    dev = true },
   { 'JoosepAlviste/nvim-ts-context-commentstring' },
   { 'AndrewRadev/sideways.vim' },
@@ -87,13 +86,16 @@ require('lazy').setup({
   { 'kana/vim-niceblock' },
   { 'Konfekt/vim-ctrlxa' },
   { 'michaeljsmith/vim-indent-object' },
-  { 'neoclide/coc.nvim',                          build = 'yarn install' },
   { 'numToStr/Comment.nvim' },
   { 'sirver/UltiSnips' },
   { 'tpope/vim-fugitive' },
   { 'tpope/vim-repeat' },
   { 'tpope/vim-surround' },
   { 'wellle/targets.vim' },
+
+  -- coc.nvim
+  { 'neoclide/coc.nvim',                          build = 'yarn install' },
+  { 'neoclide/coc-eslint',                        build = 'yarn install --frozen-lockfile',         commit = '93642b1706fb2fbefe57caf4e394fe87019a67c6' },
 
   -- General
   -- @plugins

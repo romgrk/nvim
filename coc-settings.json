@@ -16,6 +16,8 @@
 
   "coc.preferences.formatOnSave": true,
 
+  "eslint.useFlatConfig": false,
+
   "prettier.singleQuote": true,
   "prettier.printWidth": 90,
 
