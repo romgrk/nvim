@@ -26,6 +26,7 @@
   "scss.lint.emptyRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
 
+  "Lua.format.enable": false,
   // "Lua.workspace.library": {
   //   "/usr/local/share/nvim/runtime/lua": true,
   //   "/usr/local/share/nvim/runtime/lua/vim": true,

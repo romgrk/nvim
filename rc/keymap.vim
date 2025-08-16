@@ -5,6 +5,9 @@
 
 " Recent mappings:
 
+let g:copilot_no_tab_map = v:true
+inoremap <silent><script><expr> <A-a> copilot#Accept("\<CR>")
+
 nnoremap <silent><C-p> :Kirby commands-list<CR>
 
 nnoremap <silent><C-b>   :BufferPin<CR>

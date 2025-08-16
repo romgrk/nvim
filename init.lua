@@ -73,7 +73,7 @@ require('lazy').setup({
   { 'itchyny/vim-gitbranch' },
 
   -- Editing
-  { 'nvim-treesitter/nvim-treesitter', branch = 'master', build = ':TSUpdate' },
+  { 'nvim-treesitter/nvim-treesitter',            branch = 'master',                                build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-context',    dev = true },
   { 'JoosepAlviste/nvim-ts-context-commentstring' },
   { 'AndrewRadev/sideways.vim' },
@@ -95,10 +95,22 @@ require('lazy').setup({
 
   -- coc.nvim
   { 'neoclide/coc.nvim',                          build = 'yarn install' },
-  { 'neoclide/coc-eslint',                        build = 'yarn install --frozen-lockfile',         commit = '93642b1706fb2fbefe57caf4e394fe87019a67c6' },
+
 
   -- General
   -- @plugins
+  { 'github/copilot.vim' },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken",
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
   {
     'MagicDuck/grug-far.nvim',
     opts = {
