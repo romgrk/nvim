@@ -475,7 +475,7 @@ nnoremap         <space>gkpr      :Kirby github-pr<CR>
 nnoremap         <space>gee       :Gedit<space>
 nnoremap         <space>ge.       :Gedit :%<Left><Left>
 nnoremap         <space>gem       :Gedit master:%<CR>
-nnoremap         <space>gmm       :Git merge master<CR>
+nnoremap         <space>gmm       :Git merge master --no-edit<CR>
 nnoremap         <space>gm<space> :Git merge<space>
 
 " GitMessenger:
