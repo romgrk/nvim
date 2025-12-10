@@ -41,6 +41,16 @@
       "args": ["--stdio"],
       "filetypes": ["reason", "ocaml"]
       // "cwd": "./src",
+    },
+
+    "flow": {
+      "command": "./node_modules/.bin/flow",
+      "args": ["lsp"],
+      "filetypes": ["javascript", "javascriptreact", "javascript.jsx"],
+      "initializationOptions": {},
+      "requireRootPattern": true,
+      "rootPatterns": [".flowconfig"],
+      "settings": {}
     }
 
     /* "css-and-friends": {
