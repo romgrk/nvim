@@ -405,10 +405,11 @@ function! ClearArgs()
 endfunction
 
 function! GetCurrentSession ()
-  if !exists('*xolox#session#find_current_session')
-    return 'none'
-  end
-  return xolox#session#find_current_session()
+    let session_name = v:lua.require('auto-session.lib').current_session_name(v:true) 
+    if empty(session_name)
+        return 'nvim ' . fnamemodify(getcwd(), ':~')
+    end
+    return session_name
 endfunc
 
 com! -bar          Hold   call GetChar()
