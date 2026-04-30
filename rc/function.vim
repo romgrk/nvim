@@ -405,11 +405,14 @@ function! ClearArgs()
 endfunction
 
 function! GetCurrentSession ()
-    let session_name = v:lua.require('auto-session.lib').current_session_name(v:true) 
+    return v:lua.require('auto-session.lib').current_session_name(v:true) 
+endfunc
+function! GetCurrentTitle()
+    let session_name = GetCurrentSession()
     if empty(session_name)
-        return 'nvim ' . fnamemodify(getcwd(), ':~')
+        return '󰷉 ' . fnamemodify(getcwd(), ':~')
     end
-    return session_name
+    return '󰷉 ' . session_name
 endfunc
 
 com! -bar          Hold   call GetChar()

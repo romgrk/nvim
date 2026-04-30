@@ -49,7 +49,7 @@ end
 set updatetime=300
 
 set title
-set titlestring=%(%{GetCurrentSession()}%)%(\ %a%)
+set titlestring=%(%{GetCurrentTitle()}%)%(\ %a%)
 
 " }}}
 "===============================================================================
