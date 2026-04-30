@@ -82,7 +82,7 @@ require('lazy').setup({
   { 'coderifous/textobj-word-column.vim' },
   { 'm4xshen/autoclose.nvim',                     init = function() require 'autoclose'.setup() end },
   { 'justinmk/vim-sneak' },
-  { 'ggandor/leap.nvim' },
+  { url = 'https://codeberg.org/andyg/leap.nvim', },
   { 'kana/vim-niceblock' },
   { 'Konfekt/vim-ctrlxa' },
   { 'michaeljsmith/vim-indent-object' },
@@ -147,6 +147,9 @@ require('lazy').setup({
   { 'liuchengxu/vim-clap', build = ':Clap install-binary!' },
   { 'liuchengxu/vista.vim' },
   { 'MarcWeber/vim-addon-local-vimrc' },
+  { 'rmagatti/auto-session', opts = {
+    auto_restore = false,
+  } },
   { 'tpope/vim-eunuch' },
   { 'tpope/vim-sleuth' },
   { 'vn-ki/coc-clap' },
@@ -154,7 +157,6 @@ require('lazy').setup({
   { 'xolox/vim-misc' },
   { 'xolox/vim-notes', dependencies = { 'xolox/vim-misc' } },
   { 'xolox/vim-shell', dependencies = { 'xolox/vim-misc' } },
-  { 'romgrk/vim-session', dependencies = { 'xolox/vim-misc' } },
 
   -- UI
   { 'sindrets/diffview.nvim' },
@@ -206,7 +208,7 @@ require('lazy').setup({
   { 'moll/vim-node',                     ft = 'javascript.node' },
   { 'iamcco/markdown-preview.nvim',      build = function() vim.cmd [[call mkdp#util#install()]] end, ft = { 'markdown', 'vim-plug' } },
   { 'AndrewRadev/tagalong.vim' },
-  { 'valloric/MatchTagAlways',           ft = 'html' },
+  -- { 'valloric/MatchTagAlways',           ft = 'html' },
   { 'rstacruz/sparkup',                  ft = 'html' },
   { 'kelan/gyp.vim',                     ft = 'gyp' },
   { 'cespare/vim-toml',                  ft = 'toml' },

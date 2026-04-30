@@ -46,7 +46,7 @@
     "flow": {
       "command": "./node_modules/.bin/flow",
       "args": ["lsp"],
-      "filetypes": ["javascript", "javascriptreact", "javascript.jsx"],
+      "filetypes": ["javascript", "javascriptreact", "javascript.jsx", "flow"],
       "initializationOptions": {},
       "requireRootPattern": true,
       "rootPatterns": [".flowconfig"],

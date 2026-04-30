@@ -25,7 +25,8 @@ nnoremap         <space><space>   :
 nnoremap <silent><space>/       :Clap  grep<CR>
 nnoremap <silent><C-A-S-o>      :Kirby browser-history<CR>
 
-nnoremap <silent><space>pr  :!yarn prettier %<CR>
+nnoremap <silent><A-]> gt
+nnoremap <silent><A-[> gT
 
 "===============================================================================
 " Major maps                                                                {{{1
@@ -427,13 +428,9 @@ nnoremap         <space>md     :Mkdir!<space>
 
 
 " Session management (prefix: s)
-nnoremap   <expr><space>ss     xolox#session#find_current_session() != 'default' ?
-                              \ ":wall! \<Bar> SaveSession\<CR>\<Esc>" : ":wall! \<Bar> SaveSession\<space>"
-nnoremap <silent><space>sS     :SaveSession!<space>
+nnoremap <silent><space>ss     :AutoSession save<CR>
 nnoremap <silent><space>so     :Kirby session<CR>
-nnoremap <silent><space>sd     :OpenSession! default<CR>
-nnoremap <silent><space>sc     :wall! <Bar> CloseSession<CR>
-nnoremap <silent><space>si     :wall! <Bar> CloseSession <Bar> OpenSession! <C-D>
+nnoremap <silent><space>sd     :AutoSession delete<space>
 
 nnoremap <silent><space>sl     :SourceLocalVimrc<CR>
 nnoremap <silent><space>sn     :Note <C-R>=xolox#session#find_current_session()<CR><CR>
