@@ -16,7 +16,7 @@ kirby.register({
   id = 'session',
   name = 'Open session',
   values = function()
-    local sessions = require('auto-session.lib').get_session_list(vim.fn.stdpath('data') .. '/sessions')
+    local sessions = require('auto-session.lib').get_session_list(vim.fn.stdpath('data') .. '/sessions/')
     return vim.tbl_map(function(s) return s.session_name end, sessions)
   end,
   onAccept = 'AutoSession restore',

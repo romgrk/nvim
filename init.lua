@@ -16,7 +16,6 @@
 -- TODO install https://github.com/anuvyklack/hydra.nvim
 -- TODO install https://github.com/RRethy/nvim-treesitter-textsubjects
 -- TODO install https://github.com/abecodes/tabout.nvim
--- TODO install https://github.com/pwntester/octo.nvim when working
 -- TODO install https://github.com/tanvirtin/vgit.nvim
 -- TODO install https://github.com/kevinhwang91/nvim-bqf
 -- TODO install https://github.com/stevearc/qf_helper.nvim
@@ -89,12 +88,19 @@ require('lazy').setup({
   { 'numToStr/Comment.nvim' },
   { 'sirver/UltiSnips' },
   { 'tpope/vim-fugitive' },
+  {
+    'pwntester/octo.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+  },
   { 'tpope/vim-repeat' },
   { 'tpope/vim-surround' },
   { 'wellle/targets.vim' },
 
   -- coc.nvim
-  { 'neoclide/coc.nvim',                          build = 'yarn install' },
+  { 'neoclide/coc.nvim', branch = 'release' },
 
 
   -- General
@@ -149,6 +155,7 @@ require('lazy').setup({
   { 'MarcWeber/vim-addon-local-vimrc' },
   { 'rmagatti/auto-session', opts = {
     auto_restore = false,
+    auto_delete_empty_sessions = false,
   } },
   { 'tpope/vim-eunuch' },
   { 'tpope/vim-sleuth' },

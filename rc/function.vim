@@ -304,8 +304,7 @@ function! OpenURLOrSearch (...)
       let uri = 'https://google.com/search?q=' . url#encode(expand('<cword>'))
     endif
   endif
-  let escapedUri = escape(uri, '%')
-  call system("xdg-open '" . escapedUri . "'")
+  silent! call v:lua.vim.ui.open(uri)
 endfunc
 
 function! FoldText()

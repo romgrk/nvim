@@ -475,6 +475,30 @@ nnoremap         <space>gem       :Gedit master:%<CR>
 nnoremap         <space>gmm       :Git merge master --no-edit<CR>
 nnoremap         <space>gm<space> :Git merge<space>
 
+" Octo (GitHub PRs/issues, prefix: go)
+nnoremap <silent><space>goo       :Octo<space>
+nnoremap <silent><space>gopl      :Octo pr list<CR>
+nnoremap <silent><space>gopc      :Octo pr create<CR>
+nnoremap <silent><space>gopo      :Octo pr checkout<CR>
+nnoremap <silent><space>gops      :Octo pr search<space>
+nnoremap <silent><space>gopr      :Octo pr ready<CR>
+nnoremap <silent><space>gopm      :Octo pr merge<CR>
+nnoremap <silent><space>gopd      :Octo pr diff<CR>
+nnoremap <silent><space>gopu      :Octo pr url<CR>
+nnoremap <silent><space>gopb      :Octo pr browser<CR>
+nnoremap <silent><space>goil      :Octo issue list<CR>
+nnoremap <silent><space>goic      :Octo issue create<CR>
+nnoremap <silent><space>gois      :Octo issue search<space>
+nnoremap <silent><space>goie      :Octo issue edit<space>
+nnoremap <silent><space>gors      :Octo review start<CR>
+nnoremap <silent><space>gorr      :Octo review resume<CR>
+nnoremap <silent><space>gorS      :Octo review submit<CR>
+nnoremap <silent><space>gorc      :Octo review close<CR>
+nnoremap <silent><space>gord      :Octo review discard<CR>
+nnoremap <silent><space>goca      :Octo comment add<CR>
+nnoremap <silent><space>gocd      :Octo comment delete<CR>
+nnoremap <silent><space>gorv      :Octo repo view<space>
+
 " GitMessenger:
 nnoremap <silent><space>gm     :GitMessenger<CR>
 
