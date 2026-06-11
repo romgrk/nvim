@@ -121,7 +121,7 @@ set showtabline=2
 
 set number numberwidth=4
 set colorcolumn=
-set signcolumn=number
+set signcolumn=yes
 
 
 set noshowcmd noshowmatch noshowmode
