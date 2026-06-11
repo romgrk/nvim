@@ -1174,7 +1174,7 @@ nmap z;i :setlocal fdm=indent<CR>
 nmap z;I :setlocal fdm=expr<CR>:setlocal foldexpr=GetIndentFold(v:lnum)<CR>
 nmap z;e :setlocal fdm=expr<CR>
 nmap z;E :setlocal fdm=expr<CR>:setlocal foldexpr=
-nmap z;t :setlocal fdm=expr<CR>:setlocal foldexpr=nvim_treesitter#foldexpr()<CR>
+nmap z;t :setlocal fdm=expr<CR>:setlocal foldexpr=v:lua.vim.treesitter.foldexpr()<CR>
 nmap z;b :setlocal fdm=marker<CR>:setlocal foldmarker={,}<CR>
 
 
@@ -1284,8 +1284,9 @@ xmap al     <Plug>(visual-Rhs)
 xmap iL     <Plug>(visual-Rhs)
 " end-of-LHS/RHS                                                             }}}
 
-" Treesitter operator:
-" ./rc/plugins/tree-sitter.after.lua
+" Treesitter textobjects: removed in the nvim-treesitter `main` migration
+" (nvim-treesitter-textobjects was never installed). Re-add the plugin to
+" restore am/im/af/if/]m/[m etc.
 
 " }}}1
 "===============================================================================

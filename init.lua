@@ -72,7 +72,7 @@ require('lazy').setup({
   { 'itchyny/vim-gitbranch' },
 
   -- Editing
-  { 'nvim-treesitter/nvim-treesitter',            branch = 'master',                                build = ':TSUpdate' },
+  { 'nvim-treesitter/nvim-treesitter',            branch = 'main',                                build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-context',    dev = true },
   { 'JoosepAlviste/nvim-ts-context-commentstring' },
   { 'AndrewRadev/sideways.vim' },
