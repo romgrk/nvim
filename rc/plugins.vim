@@ -33,6 +33,7 @@ let icons = {
 " Paths                                                                      {{{
 
 let $XDG_RUNTIME_DIR = $HOME . '/tmp'
+let $NVIM_COC_LOG_FILE = '/tmp/coc-nvim.log'
 
 let local_vimrc            = {}
 let local_vimrc.names      = ['.vimrc', '.localrc']
